@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
-"""实测运行器：把同一个 premise 交给一个 skill，在隔离目录里用 Claude Code 无头模式跑完，保存产出和问答记录。
+"""实测运行器：把同一份需求交给一个 skill，在隔离目录里用 Claude Code 无头模式跑完，保存产出和问答记录。
 
 用法（在仓库根目录）：
-  python evals/run.py 001-rebirth-revenge eternityspring/shuohao-skills --work /tmp/evals
-  python evals/run.py 001-rebirth-revenge baseline --work /tmp/evals     # 不装任何 skill 的对照组
-  python evals/run.py 001-rebirth-revenge <repo> --work /tmp/evals --more  # 对已有会话再发一次固定回复
+  python evals/run.py 002-open-brief eternityspring/shuohao-skills --run 1 --work /tmp/evals
+  python evals/run.py 002-open-brief baseline --run 1 --work /tmp/evals        # 不装任何 skill 的对照组
+  python evals/run.py 002-open-brief <repo> --run 1 --work /tmp/evals --more   # 对已有会话再发一次固定回复
 
-参赛名单和入口 skill 写在 evals/runs/<premise>/contestants.toml。
-每个 skill 用同一条开场指令和同一条固定回复，不额外加指令。
-为了安全，agent 只能读写自己的工作目录，不能运行命令、不能联网、不连任何 MCP。
-依赖：已登录的 claude CLI、git。只用标准库。
+参赛名单、入口 skill 和每个 skill 跑几次写在 evals/runs/<premise>/contestants.toml。
+每个 skill 用同一条开场指令和同一条固定回复，不额外加指令。skill 给出几个题材或故事方案时，固定回复按运行编号选：
+第 1 次运行选第 1 个，第 2 次选第 2 个，依此类推；其他问题一律按 skill 自己的推荐。
+为了安全，agent 只能写自己的工作目录。命令在 Claude Code 的系统沙箱里运行：不能联网，不能读主目录，
+也不能读 --work 旁边的东西和其他参赛者的工作目录。不连任何 MCP。
+--work 请用一个专门的目录。依赖：已登录的 claude CLI、git。只用标准库。
 """
 from __future__ import annotations
 
@@ -32,15 +34,16 @@ EVALS = ROOT / "evals"
 
 MODEL = "claude-opus-5-5"
 EFFORT = "high"
-MAX_TURNS = 8
+MAX_TURNS = 12
 TURN_TIMEOUT = 60 * 60
 
-TASK = "请完成 premise.md 里的短剧创作需求，交付物写成文件放在当前目录。"
-TASK_TOOLKIT = "请使用已安装的 skill，完成 premise.md 里的短剧创作需求，交付物写成文件放在当前目录。"
-REPLY = "需求都在 premise.md 里，里面没写的你来定，不用再问我。请继续，直到 premise.md 列出的三项交付都写成文件。"
+TASK = "我要写一部短剧，要求在 premise.md 里。"
+TASK_TOOLKIT = "我要用已安装的 skill 写一部短剧，要求在 premise.md 里。"
+REPLY = ("如果要我在几个题材或故事方案里选，就选第 {k} 个（没有第 {k} 个就选最后一个）；其他要我定的，都按你推荐的来，"
+         "不用再问我。请继续，直到 premise.md 列出的三项交付都写成文件。")
 
-ALLOWED = ["Edit(./**)", "Write(./**)", "Skill", "TodoWrite", "Agent"]
-DENIED = ["Bash", "WebFetch", "WebSearch", "Read(~/**)", "Edit(~/**)", "Write(~/**)"]
+ALLOWED = ["Bash", "Skill", "TodoWrite", "Agent"]  # Bash 全部放行，但都关在沙箱里，见 fence()
+DENIED = ["WebFetch", "WebSearch", "Read(~/**)", "Edit(~/**)", "Write(~/**)"]
 ASKING = re.compile(r"[？?]|确认|请选择|请回复|是否|要不要|哪一个|哪个方案|告诉我")
 
 
@@ -48,9 +51,12 @@ def slug(repo: str) -> str:
     return repo.replace("/", "__")
 
 
+def roster(premise: str) -> dict:
+    return tomllib.loads((EVALS / "runs" / premise / "contestants.toml").read_text(encoding="utf-8"))
+
+
 def contestant(premise: str, repo: str) -> dict:
-    roster = tomllib.loads((EVALS / "runs" / premise / "contestants.toml").read_text(encoding="utf-8"))
-    for c in roster["contestants"]:
+    for c in roster(premise)["contestants"]:
         if c["repo"].lower() == repo.lower():
             return c
     sys.exit(f"{repo} 不在 evals/runs/{premise}/contestants.toml 里")
@@ -93,16 +99,31 @@ def install(src: Path, ws: Path) -> list[str]:
     return sorted(dirs)
 
 
-def claude(ws: Path, prompt: str, session: str, resume: bool, log: Path) -> dict:
+def fence(ws: Path, work: Path, others: list[Path]) -> tuple[list[str], list[str], dict]:
+    """权限围栏：工具的允许和拒绝规则，加上 Bash 沙箱的设置。两层分开管，所以两边都要写。
+    写权限用绝对路径：agent 用 cd 换了目录以后，相对路径 ./ 会跟着变。"""
+    allow = ALLOWED + [f"Edit(/{ws}/**)", f"Write(/{ws}/**)"]
+    blocked = [p for p in work.parent.iterdir() if p.is_dir() and p != work]
+    blocked += [work / "src", work / "logs", *others]
+    deny = DENIED + [f"Read(/{p}/**)" for p in blocked]
+    settings = {"sandbox": {"enabled": True, "failIfUnavailable": True, "autoAllowBashIfSandboxed": True,
+                            "allowUnsandboxedCommands": False,
+                            "network": {"allowedDomains": [], "allowLocalBinding": False},
+                            "filesystem": {"denyRead": ["~/", str(work.parent)], "allowRead": [str(ws)]}}}
+    return allow, deny, settings
+
+
+def claude(ws: Path, prompt: str, session: str, resume: bool, log: Path, allow: list[str], deny: list[str],
+           settings: dict) -> dict:
     cmd = ["claude", "-p", prompt, "--output-format", "stream-json", "--verbose",
-           "--model", MODEL, "--effort", EFFORT, "--setting-sources", "project",
+           "--model", MODEL, "--effort", EFFORT, "--setting-sources", "project", "--settings", json.dumps(settings),
            "--strict-mcp-config", "--mcp-config", '{"mcpServers":{}}',
-           "--permission-mode", "dontAsk", "--allowedTools", *ALLOWED, "--disallowedTools", *DENIED]
+           "--permission-mode", "dontAsk", "--allowedTools", *allow, "--disallowedTools", *deny]
     cmd += ["--resume", session] if resume else ["--session-id", session]
     env = {k: v for k, v in os.environ.items() if not k.startswith("CLAUDE")}
     tools: dict[str, int] = {}
     result: dict = {}
-    with log.open("a", encoding="utf-8") as f, subprocess.Popen(cmd, cwd=ws, env=env, stdout=subprocess.PIPE,
+    with log.open("a", encoding="utf-8", buffering=1) as f, subprocess.Popen(cmd, cwd=ws, env=env, stdout=subprocess.PIPE,
                                                                  stderr=subprocess.STDOUT, text=True) as proc:
         try:
             for line in proc.stdout:
@@ -133,51 +154,79 @@ def deliverables(ws: Path) -> list[Path]:
                   and p.name != "premise.md")
 
 
+def snapshot(ws: Path) -> dict[str, tuple[int, int]]:
+    return {str(p): (p.stat().st_mtime_ns, p.stat().st_size) for p in deliverables(ws)}
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("premise", help="evals/premises/ 下的文件名，不带 .md")
     ap.add_argument("repo", help="owner/repo，或 baseline")
-    ap.add_argument("--work", required=True, type=Path, help="放克隆仓库和工作目录的地方（仓库之外）")
+    ap.add_argument("--run", type=int, default=1, help="第几次运行，从 1 开始；也决定固定回复里选第几个方案")
+    ap.add_argument("--work", required=True, type=Path, help="放克隆仓库、工作目录和日志的专门目录（仓库之外）")
     ap.add_argument("--more", action="store_true", help="对已有会话再发一次固定回复")
     args = ap.parse_args()
 
+    work = args.work.resolve()
     c = contestant(args.premise, args.repo)
-    ws = args.work / "ws" / args.premise / slug(c["repo"])
-    out = EVALS / "runs" / args.premise / slug(c["repo"])
-    state_path = ws.parent / f"{slug(c['repo'])}.state.json"
-    log = ws.parent / f"{slug(c['repo'])}.jsonl"
+    runs = roster(args.premise).get("runs", 1)
+    if not 1 <= args.run <= runs:
+        sys.exit(f"--run 要在 1 到 {runs} 之间")
+    tag = f"run-{args.run}"
+    ws_root = work / "ws" / args.premise
+    ws = ws_root / slug(c["repo"]) / tag
+    others = [ws_root / slug(o["repo"]) / f"run-{n}" for o in roster(args.premise)["contestants"]
+              for n in range(1, runs + 1)]
+    others = [p for p in others if p != ws]
+    out = EVALS / "runs" / args.premise / slug(c["repo"]) / tag
+    logs = work / "logs" / args.premise
+    logs.mkdir(parents=True, exist_ok=True)
+    state_path = logs / f"{slug(c['repo'])}.{tag}.state.json"
+    log = logs / f"{slug(c['repo'])}.{tag}.jsonl"
+    reply = REPLY.format(k=args.run)
 
     if args.more:
         state = json.loads(state_path.read_text(encoding="utf-8"))
-        prompts = [REPLY]
+        prompts = [reply]
     else:
         if ws.exists():
             sys.exit(f"{ws} 已存在；要重跑请先删掉它")
         ws.mkdir(parents=True)
         shutil.copy(EVALS / "premises" / f"{args.premise}.md", ws / "premise.md")
-        state = {"repo": c["repo"], "premise": args.premise, "session": str(uuid.uuid4()), "turns": [],
-                 "model": MODEL, "effort": EFFORT, "started": dt.datetime.now().astimezone().isoformat(timespec="seconds"),
+        state = {"repo": c["repo"], "premise": args.premise, "run": args.run, "session": str(uuid.uuid4()),
+                 "turns": [], "model": MODEL, "effort": EFFORT,
+                 "started": dt.datetime.now().astimezone().isoformat(timespec="seconds"),
                  "claude_code": subprocess.run(["claude", "--version"], capture_output=True, text=True).stdout.strip()}
         if c["repo"] == "baseline":
             state.update(commit=None, installed=[])
             first = TASK
         else:
-            src, state["commit"] = fetch(c["repo"], args.work / "src")
+            src, state["commit"] = fetch(c["repo"], work / "src")
             state["installed"] = install(src, ws)
             first = f"/{c['entry']} {TASK}" if c.get("entry") else TASK_TOOLKIT
-        prompts = [first] + [REPLY] * (MAX_TURNS - 1)
+        prompts = [first] + [reply] * (MAX_TURNS - 1)
 
+    allow, deny, settings = fence(ws, work, others)
+    idle = 0
     for prompt in prompts:
         resume = bool(state["turns"])
-        r = claude(ws, prompt, state["session"], resume, log)
-        state["turns"].append({"user": prompt, "agent": r.get("result", ""), "tools": r["tools"],
+        before = snapshot(ws)
+        r = claude(ws, prompt, state["session"], resume, log, allow, deny, settings)
+        changed = snapshot(ws) != before
+        state["turns"].append({"user": prompt, "agent": r.get("result", ""), "tools": r["tools"], "changed": changed,
                                "denied": [d.get("tool_name") for d in r.get("permission_denials", [])],
                                "cost_usd": r.get("total_cost_usd"), "duration_s": round(r.get("duration_ms", 0) / 1000),
                                "error": r.get("is_error", False)})
         state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
-        print(f"[{c['repo']}] 第 {len(state['turns'])} 轮：{len(deliverables(ws))} 个文件，"
-              f"{state['turns'][-1]['duration_s']}s", flush=True)
-        if r.get("is_error") or not ASKING.search(r.get("result", "")[-400:]) and deliverables(ws):
+        print(f"[{c['repo']} {tag}] 第 {len(state['turns'])} 轮：{len(deliverables(ws))} 个文件，"
+              f"{'有' if changed else '无'}改动，{state['turns'][-1]['duration_s']}s", flush=True)
+        if r.get("is_error"):
+            break
+        # agent 没在问问题、这一轮也没再改文件，说明它认为写完了；连续三轮没动静也停。
+        if not changed and not ASKING.search(r.get("result", "")[-400:]) and deliverables(ws):
+            break
+        idle = 0 if changed else idle + 1
+        if idle >= 3:
             break
 
     state["finished"] = dt.datetime.now().astimezone().isoformat(timespec="seconds")
@@ -193,7 +242,7 @@ def save(ws: Path, out: Path, state: dict) -> None:
         dest = out / "output" / p.relative_to(ws)
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy(p, dest)
-    lines = [f"# {state['repo']}", ""]
+    lines = [f"# {state['repo']} · 第 {state.get('run', 1)} 次运行", ""]
     if state["repo"] != "baseline":
         lines += [f"- 仓库：https://github.com/{state['repo']}/tree/{state['commit']}",
                   f"- 安装的 skill：{'、'.join(state['installed']) or '（无）'}"]

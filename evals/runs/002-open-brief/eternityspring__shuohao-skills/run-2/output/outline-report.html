@@ -1,0 +1,1317 @@
+<!doctype html>
+<html lang="zh"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>闪婚老公藏不住了 · 短剧改编大纲</title>
+<style>
+:root{
+  --paper:#eceded; --panel:#f5f6f5; --side:#e4e6e3; --ink:#191d21; --ink-2:#5b636a; --ink-3:#8c9298;
+  --rule:#d2d5d0; --rule-2:#c2c6bf; --seal:#8a3324; --seal-2:#c56a4e; --seal-3:#e0a98c; --seal-soft:#8a332412; --ok:#3d6b4f;
+  --serif:"Songti SC","STSong","Source Han Serif SC","Noto Serif CJK SC",Georgia,serif;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+.page{max-width:1600px;margin:0 auto;padding:24px 32px 90px}
+h1,h2,h3{margin:0;font-weight:400}
+
+.hd{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:12px}
+.hd h1{font:400 28px/1.1 var(--serif);letter-spacing:.06em}
+.hd .sub{font-size:13px;color:var(--ink-2)}
+.hd .right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.gatepill{display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--sans);border-radius:99px;padding:6px 12px}
+.gatepill.pass{color:var(--ok);border:1px solid var(--ok)}
+.gatepill.fail{color:var(--seal);border:1px solid var(--seal);background:var(--seal-soft)}
+.expo{font:500 11px/1 var(--sans);color:var(--ink-2);background:var(--panel);
+  border:1px solid var(--rule-2);border-radius:2px;padding:7px 11px;cursor:pointer;transition:.15s}
+.expo:hover{border-color:var(--seal);color:var(--seal)}
+.expo:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:18px 0 6px}
+@media(max-width:980px){.kpis{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:11px 14px 9px}
+.kpi .l{font:500 10px/1 var(--sans);letter-spacing:.18em;color:var(--ink-3)}
+.kpi .v{font:400 28px/1.15 var(--serif);margin-top:5px}
+.kpi .v small{font:400 14px var(--serif);color:var(--ink-2)}
+.kpi .v.mode{font-size:21px;padding-top:5px}
+.kpi .d{font-size:11px;color:var(--ink-2);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kpi.accent{border-top:2px solid var(--seal)}
+
+.galert{margin:14px 0 0;border:1px solid var(--seal);background:var(--seal-soft);border-radius:2px;
+  padding:10px 14px;font-size:13px}
+.galert b{color:var(--seal)}
+.galert span{display:block;font-size:12px;color:var(--ink-2)}
+
+section{margin-top:34px}
+.sec-h{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--rule-2);padding-bottom:8px;margin-bottom:16px}
+.sec-h .no{font:500 12px/1 var(--mono);color:var(--seal)}
+.sec-h h2{font:400 20px/1.2 var(--serif);letter-spacing:.05em}
+.sec-h .note{margin-left:auto;font-size:12px;color:var(--ink-3)}
+
+/* beat-rhythm chart/table tabs */
+.tabs{display:flex;width:max-content;margin-bottom:12px;border:1px solid var(--rule-2);
+  border-radius:2px;overflow:hidden}
+.tab{font:500 12px/1 var(--sans);letter-spacing:.06em;padding:7px 16px;background:var(--panel);
+  border:0;cursor:pointer;color:var(--ink-2);transition:.15s}
+.tab + .tab{border-left:1px solid var(--rule-2)}
+.tab.on{background:var(--seal);color:#fff}
+.tab:focus-visible{outline:2px solid var(--seal);outline-offset:-2px}
+.tabpane{display:none}
+.tabpane.on{display:block}
+
+/* episode overview: first three cards, fade-out + expand */
+.epswrap{position:relative}
+.eps{position:relative}
+.epswrap.clip .eps .ep:nth-child(n+4){display:none}
+.epswrap.clip .eps::after{content:'';position:absolute;left:0;right:0;bottom:0;height:90px;
+  background:linear-gradient(180deg,transparent,var(--paper));pointer-events:none}
+.epsmore{display:block;margin:10px auto 0;font:500 12px/1 var(--sans);letter-spacing:.06em;
+  color:var(--ink-2);background:var(--panel);border:1px solid var(--rule-2);border-radius:2px;
+  padding:8px 18px;cursor:pointer;transition:.15s}
+.epsmore:hover{border-color:var(--seal);color:var(--seal)}
+.epsmore:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+
+/* key decisions: the three sign-off items */
+.dec3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;align-items:start}
+@media(max-width:1080px){.dec3{grid-template-columns:1fr}}
+.dcol{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:4px 18px 14px}
+.dhead{margin:8px 0 0;font-size:12.5px;color:var(--ink-2)}
+.dlist{list-style:none;margin:8px 0 0;padding:0}
+.dlist li{padding:7px 0;border-top:1px solid var(--rule)}
+.dlist li:first-child{border-top:0}
+.dlist b{display:block;font:400 13.5px/1.6 var(--serif)}
+.dlist small{display:block;font-size:11.5px;color:var(--ink-2);line-height:1.6}
+.dnote{margin:10px 0 0;font-size:12px;color:var(--ink-2);line-height:1.7}
+.dnote.seal{color:var(--seal);background:var(--seal-soft);padding:7px 10px;border-radius:2px}
+.dmaj{list-style:none;margin:8px 0 0;padding:0}
+.dmaj li{display:flex;gap:9px;align-items:baseline;padding:5.5px 0;border-top:1px solid var(--rule);font-size:12.5px}
+.dmaj li:first-child{border-top:0}
+.dmaj i{flex:none;font:500 11px/1 var(--mono);color:var(--seal);font-style:normal;min-width:38px}
+.dmaj b{font:400 12.5px var(--serif)}
+.dmaj span{min-width:0}
+.dmaj em{flex:none;margin-left:auto;font:500 10px/1 var(--sans);letter-spacing:.1em;font-style:normal;
+  color:var(--seal);border:1px solid var(--seal);border-radius:99px;padding:2px 7px}
+
+/* beat-rhythm timeline */
+.chart{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:16px 20px 10px}
+.chart .legend{display:flex;gap:18px;font-size:12px;color:var(--ink-2);margin-bottom:2px}
+.chart .legend i{font-style:normal;display:inline-flex;align-items:center;gap:6px}
+.dotk{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--seal-2)}
+.dotk.major{width:12px;height:12px;background:var(--seal)}
+.rhythm svg{display:block;width:100%;height:auto}
+.rhythm .axis{stroke:var(--rule-2);stroke-width:1.5}
+.rhythm .tick{font:400 10.5px var(--mono);fill:var(--ink-3);paint-order:stroke;stroke:var(--panel);stroke-width:3px}
+.rhythm .stem{stroke:var(--seal-2);stroke-width:1.5}
+.rhythm .stem.major{stroke:var(--seal)}
+.rhythm .bdot{fill:var(--seal-2);stroke:var(--panel);stroke-width:2}
+.rhythm .bdot.major{fill:var(--seal)}
+.rhythm .blabel{font:500 12px var(--sans);fill:var(--ink)}
+.rhythm .bsub{font:400 10.5px var(--sans);fill:var(--ink-2)}
+.rhythm .gapnote{font:400 10.5px var(--sans);fill:var(--ink-3)}
+.rhythm .gapnote.bad{fill:var(--seal);font-weight:500}
+
+/* beat detail table + generic tables */
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--rule);font-size:13px}
+th,td{padding:8px 12px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+th{font:500 11px/1 var(--sans);letter-spacing:.1em;color:var(--ink-3);background:var(--side)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-family:var(--mono);font-size:12px;color:var(--ink-2);white-space:nowrap}
+q{quotes:"「" "」";font-family:var(--serif);border-left:2px solid var(--seal);padding-left:8px;display:inline-block}
+
+/* episode cards */
+.eps{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:13px}
+.ep{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:14px 16px 12px;position:relative}
+.ep .num{position:absolute;top:10px;right:14px;font:400 30px/1 var(--serif);color:var(--rule-2)}
+.ep header{display:flex;align-items:center;gap:8px;margin-bottom:8px;padding-right:44px;flex-wrap:wrap}
+.ep header b{font:500 15px var(--serif);letter-spacing:.04em}
+.bt{font-style:normal;font-size:11px;padding:2px 8px;border:1px solid var(--seal);border-radius:99px;color:var(--seal)}
+.bt.major{background:var(--seal);color:#fff}
+.ep .syn{margin:0 0 8px;font-size:13px;line-height:1.75}
+.hk{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px;font-size:12.5px;padding:6px 0;border-top:1px solid var(--rule)}
+.hk b{font:500 11px/1.8 var(--sans);letter-spacing:.14em;color:var(--seal);white-space:nowrap}
+:root[lang="en"] .hk b,html[lang="en"] .hk b{letter-spacing:.06em}
+.ep .meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.ep .meta i{font-style:normal;font:400 10.5px/1.5 var(--mono);border:1px solid var(--rule-2);
+  border-radius:2px;padding:0 5px;background:var(--paper);color:var(--ink-2)}
+.ep .meta .warn{border-color:var(--seal);color:var(--seal);background:var(--seal-soft)}
+
+/* dispatch matrix */
+.matrix{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:16px 18px;overflow-x:auto}
+.matrix table{border-collapse:separate;border-spacing:3px;font-size:12px;background:none;border:0;width:auto}
+.matrix th,.matrix td{border:0;padding:0}
+.matrix th{font:500 10px/1 var(--sans);letter-spacing:.1em;color:var(--ink-3);background:none;
+  text-align:left;padding:0 8px 5px 0;white-space:nowrap}
+.matrix th.ep-h{text-align:center;padding:0 0 5px;font-family:var(--mono)}
+.matrix td.name{padding-right:10px;white-space:nowrap;font-family:var(--serif);font-size:13px}
+.matrix td.tier{padding-right:10px;color:var(--ink-3);font-size:11px;white-space:nowrap}
+.matrix td.mc{width:var(--cw,26px);min-width:var(--cw,26px);height:22px;border-radius:2px;
+  background:var(--paper);border:1px solid var(--rule)}
+.matrix td.mc.on{background:var(--seal);border-color:var(--seal)}
+.matrix td.mc.on.sc{background:var(--seal-2);border-color:var(--seal-2)}
+.matrix td.mc.on.pp{background:var(--seal-3);border-color:var(--seal-3)}
+.matrix td.n{padding-left:10px;font-family:var(--mono);font-size:11px;color:var(--ink-2);white-space:nowrap}
+.matrix tr.div td{padding:8px 0 3px;font:500 10px/1 var(--sans);letter-spacing:.18em;color:var(--ink-3)}
+.matrix .mnote{font-size:11px;color:var(--ink-3);margin:10px 0 0}
+
+/* scene overview cards: full-width multi-column grid */
+.scenes{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:13px;align-items:start}
+.scard{position:relative;background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:14px 16px}
+.snum{position:absolute;top:10px;right:16px;font:400 26px/1 var(--serif);color:var(--rule-2);letter-spacing:.04em}
+.scard h3{font:400 16px/1.3 var(--serif);letter-spacing:.03em;display:flex;align-items:center;gap:8px;
+  padding-right:90px;flex-wrap:wrap}
+.scard h3 .id{font:400 10.5px var(--mono);color:var(--ink-3)}
+.badge{font:500 10.5px/1 var(--sans);padding:2px 8px;border-radius:99px;border:1px solid var(--seal);color:var(--seal)}
+.badge.once{border-color:var(--seal-2);color:var(--seal-2)}
+.strip{display:flex;flex-wrap:wrap;gap:3px;margin:7px 0 6px}
+.strip i{width:16px;height:10px;border-radius:2px;background:var(--paper);border:1px solid var(--rule)}
+.strip i.on{background:var(--seal);border-color:var(--seal)}
+.strip i.on.lt{background:var(--seal-2);border-color:var(--seal-2)}
+.srow{font-size:11.5px;color:var(--ink-2);display:flex;gap:6px;flex-wrap:wrap;align-items:baseline;margin-top:3px}
+.srow b{font:500 10px/1.8 var(--sans);letter-spacing:.12em;color:var(--ink-3);flex:none}
+.srow i{font-style:normal;font:400 10.5px/1.5 var(--mono);border:1px solid var(--rule-2);
+  border-radius:2px;padding:0 5px;background:var(--paper)}
+.srow .reuse{color:var(--seal)}
+
+/* asset conversion */
+.plan{background:var(--panel);border:1px solid var(--rule);border-radius:2px;padding:16px 18px}
+.plan table{background:none;border:0}
+.plan th{background:none;padding-left:0}
+.plan td{padding-left:0;border-top:1px solid var(--rule);border-bottom:0}
+.plan tr:first-child td{border-top:0}
+.plan td:first-child{font-family:var(--serif);font-size:13px;color:var(--ink)}
+
+/* adaptation notes */
+.core{font:400 17px/1.9 var(--serif);margin:0 0 6px}
+h3.sub{font:500 12px/1 var(--sans);letter-spacing:.18em;color:var(--seal);margin:20px 0 8px}
+
+/* quality gates */
+.gate{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 28px}
+@media(max-width:900px){.gate{grid-template-columns:1fr}}
+.gate li{display:flex;gap:8px;padding:5px 0;font-size:12.5px;line-height:1.55}
+.gate .m{flex:none;font-weight:700}
+.gate .ok .m,.gate li.ok .m{color:var(--ok)}
+.gate li.bad .m{color:var(--seal)}
+.gate li.bad{background:var(--seal-soft);border-radius:2px;padding-left:6px}
+.gate small{display:block;color:var(--ink-3)}
+.gsum{margin:10px 0 0;font-size:12px;color:var(--ink-2)}
+.gsum b{color:var(--seal)}
+
+.foot{margin-top:40px;font-size:11px;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:14px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* print: expand everything — both tab panes, all episode cards */
+@media print{
+  .expo,.tabs,.epsmore{display:none!important}
+  .tabpane{display:block!important;margin-bottom:14px}
+  .epswrap.clip .eps .ep{display:block!important}
+  .epswrap.clip .eps::after{display:none}
+  .page{max-width:none;padding:0}
+  section,.ep,.scard{page-break-inside:avoid}
+  body{background:#fff}
+}
+</style></head><body>
+<div class="page">
+
+<header class="hd">
+  <h1>闪婚老公藏不住了</h1>
+  <span class="sub">短剧改编大纲 · 60 集 × 1.5 分钟 · 女频·先婚后爱甜宠（身份马甲 + 打脸） · 抽核改编</span>
+  <span class="right">
+    <span class="gatepill pass">✓ 质量门 14 / 14</span>
+    <button class="expo" data-name="闪婚老公藏不住了-outline.json">导出 JSON</button>
+  </span>
+</header>
+
+<div class="kpis">
+  <div class="kpi accent"><div class="l">总集数</div><div class="v">60 <small>× 1.5 分钟</small></div><div class="d">正片约 90 分钟</div></div>
+  <div class="kpi"><div class="l">爽点</div><div class="v">31</div><div class="d">8 大爆点 · 最大间隔 3 集</div></div>
+  <div class="kpi"><div class="l">角色</div><div class="v">19</div><div class="d">主角 4 · 配角 7 · 功能 8</div></div>
+  <div class="kpi"><div class="l">主场景</div><div class="v">10 <small>+1</small></div><div class="d">无一次性场景</div></div>
+  <div class="kpi"><div class="l">生成难点</div><div class="v">115</div><div class="d">肢体接触 ×32（第 1、3、4、6、9、10、…</div></div>
+  <div class="kpi"><div class="l">改编幅度</div><div class="v mode">抽核</div><div class="d">砍 6 线 · 合 3 组</div></div>
+</div>
+
+
+<section id="sec-rhythm">
+  <div class="sec-h"><span class="no">01</span><h2>爽点节奏</h2></div>
+  <div class="tabs" role="tablist">
+    <button class="tab on" data-pane="pane-timeline">时间轴</button>
+    <button class="tab" data-pane="pane-table">明细表</button>
+  </div>
+  <div class="tabpane on" id="pane-timeline"><div class="chart rhythm">
+  <div class="legend">
+    <i><span class="dotk major"></span>大爆点</i>
+    <i><span class="dotk"></span>常规爽点</i>
+  </div>
+  <svg viewBox="0 0 1520 528" role="img" aria-label="爽点节奏">
+    <line class="axis" x1="30" y1="92" x2="1490" y2="92"/>
+    <line class="axis" x1="66.5" y1="88" x2="66.5" y2="96"/>
+    <line class="axis" x1="139.5" y1="88" x2="139.5" y2="96"/>
+    <line class="axis" x1="212.5" y1="88" x2="212.5" y2="96"/>
+    <line class="axis" x1="285.5" y1="88" x2="285.5" y2="96"/>
+    <line class="axis" x1="358.5" y1="88" x2="358.5" y2="96"/>
+    <line class="axis" x1="431.5" y1="88" x2="431.5" y2="96"/>
+    <line class="axis" x1="504.5" y1="88" x2="504.5" y2="96"/>
+    <line class="axis" x1="577.5" y1="88" x2="577.5" y2="96"/>
+    <line class="axis" x1="650.5" y1="88" x2="650.5" y2="96"/>
+    <line class="axis" x1="723.5" y1="88" x2="723.5" y2="96"/>
+    <line class="axis" x1="796.5" y1="88" x2="796.5" y2="96"/>
+    <line class="axis" x1="869.5" y1="88" x2="869.5" y2="96"/>
+    <line class="axis" x1="942.5" y1="88" x2="942.5" y2="96"/>
+    <line class="axis" x1="1015.5" y1="88" x2="1015.5" y2="96"/>
+    <line class="axis" x1="1088.5" y1="88" x2="1088.5" y2="96"/>
+    <line class="axis" x1="1161.5" y1="88" x2="1161.5" y2="96"/>
+    <line class="axis" x1="1234.5" y1="88" x2="1234.5" y2="96"/>
+    <line class="axis" x1="1307.5" y1="88" x2="1307.5" y2="96"/>
+    <line class="axis" x1="1380.5" y1="88" x2="1380.5" y2="96"/>
+    <line class="axis" x1="1453.5" y1="88" x2="1453.5" y2="96"/>
+    <line class="axis" x1="30" y1="268" x2="1490" y2="268"/>
+    <line class="axis" x1="66.5" y1="264" x2="66.5" y2="272"/>
+    <line class="axis" x1="139.5" y1="264" x2="139.5" y2="272"/>
+    <line class="axis" x1="212.5" y1="264" x2="212.5" y2="272"/>
+    <line class="axis" x1="285.5" y1="264" x2="285.5" y2="272"/>
+    <line class="axis" x1="358.5" y1="264" x2="358.5" y2="272"/>
+    <line class="axis" x1="431.5" y1="264" x2="431.5" y2="272"/>
+    <line class="axis" x1="504.5" y1="264" x2="504.5" y2="272"/>
+    <line class="axis" x1="577.5" y1="264" x2="577.5" y2="272"/>
+    <line class="axis" x1="650.5" y1="264" x2="650.5" y2="272"/>
+    <line class="axis" x1="723.5" y1="264" x2="723.5" y2="272"/>
+    <line class="axis" x1="796.5" y1="264" x2="796.5" y2="272"/>
+    <line class="axis" x1="869.5" y1="264" x2="869.5" y2="272"/>
+    <line class="axis" x1="942.5" y1="264" x2="942.5" y2="272"/>
+    <line class="axis" x1="1015.5" y1="264" x2="1015.5" y2="272"/>
+    <line class="axis" x1="1088.5" y1="264" x2="1088.5" y2="272"/>
+    <line class="axis" x1="1161.5" y1="264" x2="1161.5" y2="272"/>
+    <line class="axis" x1="1234.5" y1="264" x2="1234.5" y2="272"/>
+    <line class="axis" x1="1307.5" y1="264" x2="1307.5" y2="272"/>
+    <line class="axis" x1="1380.5" y1="264" x2="1380.5" y2="272"/>
+    <line class="axis" x1="1453.5" y1="264" x2="1453.5" y2="272"/>
+    <line class="axis" x1="30" y1="444" x2="1490" y2="444"/>
+    <line class="axis" x1="66.5" y1="440" x2="66.5" y2="448"/>
+    <line class="axis" x1="139.5" y1="440" x2="139.5" y2="448"/>
+    <line class="axis" x1="212.5" y1="440" x2="212.5" y2="448"/>
+    <line class="axis" x1="285.5" y1="440" x2="285.5" y2="448"/>
+    <line class="axis" x1="358.5" y1="440" x2="358.5" y2="448"/>
+    <line class="axis" x1="431.5" y1="440" x2="431.5" y2="448"/>
+    <line class="axis" x1="504.5" y1="440" x2="504.5" y2="448"/>
+    <line class="axis" x1="577.5" y1="440" x2="577.5" y2="448"/>
+    <line class="axis" x1="650.5" y1="440" x2="650.5" y2="448"/>
+    <line class="axis" x1="723.5" y1="440" x2="723.5" y2="448"/>
+    <line class="axis" x1="796.5" y1="440" x2="796.5" y2="448"/>
+    <line class="axis" x1="869.5" y1="440" x2="869.5" y2="448"/>
+    <line class="axis" x1="942.5" y1="440" x2="942.5" y2="448"/>
+    <line class="axis" x1="1015.5" y1="440" x2="1015.5" y2="448"/>
+    <line class="axis" x1="1088.5" y1="440" x2="1088.5" y2="448"/>
+    <line class="axis" x1="1161.5" y1="440" x2="1161.5" y2="448"/>
+    <line class="axis" x1="1234.5" y1="440" x2="1234.5" y2="448"/>
+    <line class="axis" x1="1307.5" y1="440" x2="1307.5" y2="448"/>
+    <line class="axis" x1="1380.5" y1="440" x2="1380.5" y2="448"/>
+    <line class="axis" x1="1453.5" y1="440" x2="1453.5" y2="448"/>
+    <text class="gapnote" x="139.5" y="80" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="358.5" y="80" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="577.5" y="80" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="723.5" y="80" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="869.5" y="80" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="1088.5" y="80" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="1271" y="80" text-anchor="middle">— 2 集空档 —</text>
+    <text class="gapnote" x="285.5" y="256" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="431.5" y="256" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="577.5" y="256" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="760" y="256" text-anchor="middle">— 2 集空档 —</text>
+    <text class="gapnote" x="979" y="256" text-anchor="middle">— 2 集空档 —</text>
+    <text class="gapnote" x="1161.5" y="256" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="1307.5" y="256" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="212.5" y="432" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="358.5" y="432" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="504.5" y="432" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="650.5" y="432" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="796.5" y="432" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="942.5" y="432" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="1088.5" y="432" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="1234.5" y="432" text-anchor="middle">— 1 集空档 —</text>
+    <text class="gapnote" x="1380.5" y="432" text-anchor="middle">— 1 集空档 —</text>
+    <line class="stem" x1="66.5" y1="92" x2="66.5" y2="62"/>
+    <circle class="bdot" cx="66.5" cy="56" r="6"><title>B01 闪婚反杀｜周子昂搂着苏晴当众退婚，嘲笑苏记不值一块表 → 苏念当场拉陌生男人领证，拿着结婚证从渣男面前走过</title></circle>
+    <text class="blabel" x="66.5" y="34" text-anchor="middle">闪婚反杀</text>
+    <text class="bsub" x="66.5" y="20" text-anchor="middle">周子昂搂着苏晴当众退婚，嘲笑…</text>
+    <line class="stem" x1="212.5" y1="92" x2="212.5" y2="122"/>
+    <circle class="bdot" cx="212.5" cy="128" r="6"><title>B02 打脸｜继母带苏晴上门收铺，说铺子已抵给周家 → 苏念打开铁皮盒亮出外婆遗嘱，铺子从来是她的</title></circle>
+    <text class="blabel" x="212.5" y="150" text-anchor="middle">打脸</text>
+    <text class="bsub" x="212.5" y="164" text-anchor="middle">继母带苏晴上门收铺，说铺子已…</text>
+    <line class="stem" x1="285.5" y1="92" x2="285.5" y2="62"/>
+    <circle class="bdot" cx="285.5" cy="56" r="6"><title>B03 长辈认可｜苏念带桂花糕去医院见奶奶，以为要被挑剔 → 奶奶一口吃出当年的味道，当场把传家玉镯戴到她手上，同意手术</title></circle>
+    <text class="blabel" x="285.5" y="34" text-anchor="middle">长辈认可</text>
+    <text class="bsub" x="285.5" y="20" text-anchor="middle">苏念带桂花糕去医院见奶奶，以…</text>
+    <line class="stem" x1="431.5" y1="92" x2="431.5" y2="122"/>
+    <circle class="bdot" cx="431.5" cy="128" r="6"><title>B04 护妻｜混混在苏记门口泼漆摘招牌 → 顾承宴赶到录证报警，混混落荒而逃，招牌挂回去</title></circle>
+    <text class="blabel" x="431.5" y="150" text-anchor="middle">护妻</text>
+    <text class="bsub" x="431.5" y="164" text-anchor="middle">混混在苏记门口泼漆摘招牌</text>
+    <line class="stem" x1="504.5" y1="92" x2="504.5" y2="62"/>
+    <circle class="bdot" cx="504.5" cy="56" r="6"><title>B05 打脸｜苏家寿宴上继母嘲讽顾承宴的茶叶寒酸 → 懂行的苏建国认出是有价无市的母树茶，周子昂的名表反被比下去</title></circle>
+    <text class="blabel" x="504.5" y="34" text-anchor="middle">打脸</text>
+    <text class="bsub" x="504.5" y="20" text-anchor="middle">苏家寿宴上继母嘲讽顾承宴的茶…</text>
+    <line class="stem major" x1="650.5" y1="92" x2="650.5" y2="127"/>
+    <circle class="bdot major" cx="650.5" cy="136" r="9"><title>B06 打脸｜订婚宴上苏晴栽赃苏念偷钻戒，全场围观 → 酒店经理对顾承宴毕恭毕敬调出监控，戒指是苏晴自己藏的，苏晴当众出丑</title></circle>
+    <text class="blabel" x="650.5" y="158" text-anchor="middle">打脸</text>
+    <text class="bsub" x="650.5" y="172" text-anchor="middle">订婚宴上苏晴栽赃苏念偷钻戒，…</text>
+    <line class="stem" x1="796.5" y1="92" x2="796.5" y2="62"/>
+    <circle class="bdot" cx="796.5" cy="56" r="6"><title>B07 反转｜拆迁通知落款顾氏总裁，三天后强拆 → 顾承宴查出是二叔伪签，当场叫停拆迁</title></circle>
+    <text class="blabel" x="796.5" y="34" text-anchor="middle">反转</text>
+    <text class="bsub" x="796.5" y="20" text-anchor="middle">拆迁通知落款顾氏总裁，三天后…</text>
+    <line class="stem" x1="942.5" y1="92" x2="942.5" y2="122"/>
+    <circle class="bdot" cx="942.5" cy="128" r="6"><title>B08 打脸｜林薇薇上门自称顾承宴未婚妻，羞辱苏念 → 苏念亮出结婚证，林薇薇当场哑火</title></circle>
+    <text class="blabel" x="942.5" y="150" text-anchor="middle">打脸</text>
+    <text class="bsub" x="942.5" y="164" text-anchor="middle">林薇薇上门自称顾承宴未婚妻，…</text>
+    <line class="stem" x1="1015.5" y1="92" x2="1015.5" y2="62"/>
+    <circle class="bdot" cx="1015.5" cy="56" r="6"><title>B09 撒糖｜苏念吃醋质问林薇薇的事，协议写着互不动心 → 停电夜意外的初吻</title></circle>
+    <text class="blabel" x="1015.5" y="34" text-anchor="middle">撒糖</text>
+    <text class="bsub" x="1015.5" y="20" text-anchor="middle">苏念吃醋质问林薇薇的事，协议…</text>
+    <line class="stem" x1="1161.5" y1="92" x2="1161.5" y2="122"/>
+    <circle class="bdot" cx="1161.5" cy="128" r="6"><title>B10 护妻｜苏念去顾氏送饭，被前台当成蹭饭的赶出去 → 顾承宴下楼当众牵她进电梯，前台被调岗</title></circle>
+    <text class="blabel" x="1161.5" y="150" text-anchor="middle">护妻</text>
+    <text class="bsub" x="1161.5" y="164" text-anchor="middle">苏念去顾氏送饭，被前台当成蹭…</text>
+    <line class="stem major" x1="1380.5" y1="92" x2="1380.5" y2="57"/>
+    <circle class="bdot major" cx="1380.5" cy="48" r="9"><title>B11 反转｜寿宴上林薇薇与苏晴设局，诬陷苏念摔碎传家玉镯 → 奶奶亮出真镯，碎的是苏晴准备的假货，两人当众出丑</title></circle>
+    <text class="blabel" x="1380.5" y="26" text-anchor="middle">反转</text>
+    <text class="bsub" x="1380.5" y="12" text-anchor="middle">寿宴上林薇薇与苏晴设局，诬陷…</text>
+    <line class="stem major" x1="1453.5" y1="92" x2="1453.5" y2="127"/>
+    <circle class="bdot major" cx="1453.5" cy="136" r="9"><title>B12 身份揭破｜主持人宣布有请顾氏集团总裁致辞 → 走上台的是苏念的契约丈夫，她手里的蛋糕掉在地上</title></circle>
+    <text class="blabel" x="1453.5" y="158" text-anchor="middle">身份揭破</text>
+    <text class="bsub" x="1453.5" y="172" text-anchor="middle">主持人宣布有请顾氏集团总裁致…</text>
+    <line class="stem" x1="212.5" y1="268" x2="212.5" y2="238"/>
+    <circle class="bdot" cx="212.5" cy="232" r="6"><title>B13 真相澄清｜苏念认定他骗婚就是为了拆铺子 → 律师当面鉴定拆迁合同上的签名是伪造的</title></circle>
+    <text class="blabel" x="212.5" y="210" text-anchor="middle">真相澄清</text>
+    <text class="bsub" x="212.5" y="196" text-anchor="middle">苏念认定他骗婚就是为了拆铺子</text>
+    <line class="stem" x1="358.5" y1="268" x2="358.5" y2="298"/>
+    <circle class="bdot" cx="358.5" cy="304" r="6"><title>B14 追妻撒糖｜冷战中的苏念搬回点心铺 → 顾承宴在铺子门口学做桂花糕，苏念心软同意回家</title></circle>
+    <text class="blabel" x="358.5" y="326" text-anchor="middle">追妻撒糖</text>
+    <text class="bsub" x="358.5" y="340" text-anchor="middle">冷战中的苏念搬回点心铺</text>
+    <line class="stem" x1="504.5" y1="268" x2="504.5" y2="238"/>
+    <circle class="bdot" cx="504.5" cy="232" r="6"><title>B15 打脸｜周子昂得知被苏晴骗，回头纠缠苏念 → 顾承宴一个电话终止周家所有分包，周子昂当场跪求</title></circle>
+    <text class="blabel" x="504.5" y="210" text-anchor="middle">打脸</text>
+    <text class="bsub" x="504.5" y="196" text-anchor="middle">周子昂得知被苏晴骗，回头纠缠…</text>
+    <line class="stem major" x1="650.5" y1="268" x2="650.5" y2="303"/>
+    <circle class="bdot major" cx="650.5" cy="312" r="9"><title>B16 反转｜苏记被栽赃食物中毒，铺子被封、苏念被网暴 → 唐果直播放出监控，投毒的是二叔的人，苏记解封</title></circle>
+    <text class="blabel" x="650.5" y="334" text-anchor="middle">反转</text>
+    <text class="bsub" x="650.5" y="348" text-anchor="middle">苏记被栽赃食物中毒，铺子被封…</text>
+    <line class="stem" x1="869.5" y1="268" x2="869.5" y2="238"/>
+    <circle class="bdot" cx="869.5" cy="232" r="6"><title>B17 打脸｜大赛海选，苏晴嘲笑苏念的手工点心土气 → 苏念以海选第一晋级，苏晴压线</title></circle>
+    <text class="blabel" x="869.5" y="210" text-anchor="middle">打脸</text>
+    <text class="bsub" x="869.5" y="196" text-anchor="middle">大赛海选，苏晴嘲笑苏念的手工…</text>
+    <line class="stem" x1="1088.5" y1="268" x2="1088.5" y2="298"/>
+    <circle class="bdot" cx="1088.5" cy="304" r="6"><title>B18 反转｜半决赛苏念的原料被调包 → 苏念临场改做外婆的老式点心，反超晋级</title></circle>
+    <text class="blabel" x="1088.5" y="326" text-anchor="middle">反转</text>
+    <text class="bsub" x="1088.5" y="340" text-anchor="middle">半决赛苏念的原料被调包</text>
+    <line class="stem" x1="1234.5" y1="268" x2="1234.5" y2="238"/>
+    <circle class="bdot" cx="1234.5" cy="232" r="6"><title>B19 撒糖｜被收买的评委当众质疑苏念走后门 → 顾承宴宣布退出赞助回避，只坐观众席为她加油</title></circle>
+    <text class="blabel" x="1234.5" y="210" text-anchor="middle">撒糖</text>
+    <text class="bsub" x="1234.5" y="196" text-anchor="middle">被收买的评委当众质疑苏念走后…</text>
+    <line class="stem major" x1="1380.5" y1="268" x2="1380.5" y2="303"/>
+    <circle class="bdot major" cx="1380.5" cy="312" r="9"><title>B20 夺冠打脸｜苏晴用偷来的秘方与苏念同台决赛 → 苏晴做不出外婆的最后一步，苏念夺冠，评委倒戈揭发收买</title></circle>
+    <text class="blabel" x="1380.5" y="334" text-anchor="middle">夺冠打脸</text>
+    <text class="bsub" x="1380.5" y="348" text-anchor="middle">苏晴用偷来的秘方与苏念同台决…</text>
+    <line class="stem" x1="1453.5" y1="268" x2="1453.5" y2="238"/>
+    <circle class="bdot" cx="1453.5" cy="232" r="6"><title>B21 揭秘｜苏念整理铁皮盒，发现夹层 → 旧照片上小苏念牵着受伤的少年，背面写着那天追来的人叫二爷</title></circle>
+    <text class="blabel" x="1453.5" y="210" text-anchor="middle">揭秘</text>
+    <text class="bsub" x="1453.5" y="196" text-anchor="middle">苏念整理铁皮盒，发现夹层</text>
+    <line class="stem" x1="139.5" y1="444" x2="139.5" y2="474"/>
+    <circle class="bdot" cx="139.5" cy="480" r="6"><title>B22 相认撒糖｜苏念拿照片问顾承宴 → 顾承宴承认自己就是那个少年，十五年只记得这一口甜</title></circle>
+    <text class="blabel" x="139.5" y="502" text-anchor="middle">相认撒糖</text>
+    <text class="bsub" x="139.5" y="516" text-anchor="middle">苏念拿照片问顾承宴</text>
+    <line class="stem major" x1="285.5" y1="444" x2="285.5" y2="409"/>
+    <circle class="bdot major" cx="285.5" cy="400" r="9"><title>B23 反转｜二叔联合林薇薇在董事会发难，要罢免顾承宴 → 苏念送来伪签拆迁合同的鉴定，二叔当场被停职，林薇薇家撤股</title></circle>
+    <text class="blabel" x="285.5" y="378" text-anchor="middle">反转</text>
+    <text class="bsub" x="285.5" y="364" text-anchor="middle">二叔联合林薇薇在董事会发难，…</text>
+    <line class="stem" x1="431.5" y1="444" x2="431.5" y2="474"/>
+    <circle class="bdot" cx="431.5" cy="480" r="6"><title>B24 倒戈｜苏晴被二叔和周子昂一起抛弃 → 苏晴把偷录二叔的录音笔交给苏念</title></circle>
+    <text class="blabel" x="431.5" y="502" text-anchor="middle">倒戈</text>
+    <text class="bsub" x="431.5" y="516" text-anchor="middle">苏晴被二叔和周子昂一起抛弃</text>
+    <line class="stem" x1="577.5" y1="444" x2="577.5" y2="414"/>
+    <circle class="bdot" cx="577.5" cy="408" r="6"><title>B25 虐心误会｜契约到期前夜，苏念听见顾承宴说协议到期就结束 → 苏念默默收拾行李，约他去民政局</title></circle>
+    <text class="blabel" x="577.5" y="386" text-anchor="middle">虐心误会</text>
+    <text class="bsub" x="577.5" y="372" text-anchor="middle">契约到期前夜，苏念听见顾承宴…</text>
+    <line class="stem" x1="723.5" y1="444" x2="723.5" y2="474"/>
+    <circle class="bdot" cx="723.5" cy="480" r="6"><title>B26 危机｜苏念在民政局等不到人 → 电话打来：顾承宴的车刹车失灵，正在抢救</title></circle>
+    <text class="blabel" x="723.5" y="502" text-anchor="middle">危机</text>
+    <text class="bsub" x="723.5" y="516" text-anchor="middle">苏念在民政局等不到人</text>
+    <line class="stem" x1="869.5" y1="444" x2="869.5" y2="414"/>
+    <circle class="bdot" cx="869.5" cy="408" r="6"><title>B27 将计就计｜二叔以为顾承宴昏迷，接管集团 → 顾承宴醒来与苏念联手装病，引二叔现形</title></circle>
+    <text class="blabel" x="869.5" y="386" text-anchor="middle">将计就计</text>
+    <text class="bsub" x="869.5" y="372" text-anchor="middle">二叔以为顾承宴昏迷，接管集团</text>
+    <line class="stem" x1="1015.5" y1="444" x2="1015.5" y2="474"/>
+    <circle class="bdot" cx="1015.5" cy="480" r="6"><title>B28 寻证｜当年绑匪下落不明 → 陈默找到当年绑匪，对方愿意作证</title></circle>
+    <text class="blabel" x="1015.5" y="502" text-anchor="middle">寻证</text>
+    <text class="bsub" x="1015.5" y="516" text-anchor="middle">当年绑匪下落不明</text>
+    <line class="stem major" x1="1161.5" y1="444" x2="1161.5" y2="409"/>
+    <circle class="bdot major" cx="1161.5" cy="400" r="9"><title>B29 揭破｜二叔把苏念绑进仓库逼要录音笔 → 顾承宴带警察赶到，录音与绑匪证词齐出，二叔落网</title></circle>
+    <text class="blabel" x="1161.5" y="378" text-anchor="middle">揭破</text>
+    <text class="bsub" x="1161.5" y="364" text-anchor="middle">二叔把苏念绑进仓库逼要录音笔</text>
+    <line class="stem major" x1="1307.5" y1="444" x2="1307.5" y2="479"/>
+    <circle class="bdot major" cx="1307.5" cy="488" r="9"><title>B30 撒糖求婚｜协议到期那天，苏念拿出婚前协议 → 顾承宴当面撕掉协议，用一盒桂花糕重新求婚</title></circle>
+    <text class="blabel" x="1307.5" y="510" text-anchor="middle">撒糖求婚</text>
+    <text class="bsub" x="1307.5" y="524" text-anchor="middle">协议到期那天，苏念拿出婚前协…</text>
+    <line class="stem" x1="1453.5" y1="444" x2="1453.5" y2="414"/>
+    <circle class="bdot" cx="1453.5" cy="408" r="6"><title>B31 圆满｜老街保住，苏记招牌重新挂起 → 老街补办婚礼，一年后苏记开了第二家店</title></circle>
+    <text class="blabel" x="1453.5" y="386" text-anchor="middle">圆满</text>
+    <text class="bsub" x="1453.5" y="372" text-anchor="middle">老街保住，苏记招牌重新挂起</text>
+    <text class="tick" x="66.5" y="112" text-anchor="middle">1</text>
+    <text class="tick" x="139.5" y="112" text-anchor="middle">2</text>
+    <text class="tick" x="212.5" y="112" text-anchor="middle">3</text>
+    <text class="tick" x="285.5" y="112" text-anchor="middle">4</text>
+    <text class="tick" x="358.5" y="112" text-anchor="middle">5</text>
+    <text class="tick" x="431.5" y="112" text-anchor="middle">6</text>
+    <text class="tick" x="504.5" y="112" text-anchor="middle">7</text>
+    <text class="tick" x="577.5" y="112" text-anchor="middle">8</text>
+    <text class="tick" x="650.5" y="112" text-anchor="middle">9</text>
+    <text class="tick" x="723.5" y="112" text-anchor="middle">10</text>
+    <text class="tick" x="796.5" y="112" text-anchor="middle">11</text>
+    <text class="tick" x="869.5" y="112" text-anchor="middle">12</text>
+    <text class="tick" x="942.5" y="112" text-anchor="middle">13</text>
+    <text class="tick" x="1015.5" y="112" text-anchor="middle">14</text>
+    <text class="tick" x="1088.5" y="112" text-anchor="middle">15</text>
+    <text class="tick" x="1161.5" y="112" text-anchor="middle">16</text>
+    <text class="tick" x="1234.5" y="112" text-anchor="middle">17</text>
+    <text class="tick" x="1307.5" y="112" text-anchor="middle">18</text>
+    <text class="tick" x="1380.5" y="112" text-anchor="middle">19</text>
+    <text class="tick" x="1453.5" y="112" text-anchor="middle">20</text>
+    <text class="tick" x="66.5" y="288" text-anchor="middle">21</text>
+    <text class="tick" x="139.5" y="288" text-anchor="middle">22</text>
+    <text class="tick" x="212.5" y="288" text-anchor="middle">23</text>
+    <text class="tick" x="285.5" y="288" text-anchor="middle">24</text>
+    <text class="tick" x="358.5" y="288" text-anchor="middle">25</text>
+    <text class="tick" x="431.5" y="288" text-anchor="middle">26</text>
+    <text class="tick" x="504.5" y="288" text-anchor="middle">27</text>
+    <text class="tick" x="577.5" y="288" text-anchor="middle">28</text>
+    <text class="tick" x="650.5" y="288" text-anchor="middle">29</text>
+    <text class="tick" x="723.5" y="288" text-anchor="middle">30</text>
+    <text class="tick" x="796.5" y="288" text-anchor="middle">31</text>
+    <text class="tick" x="869.5" y="288" text-anchor="middle">32</text>
+    <text class="tick" x="942.5" y="288" text-anchor="middle">33</text>
+    <text class="tick" x="1015.5" y="288" text-anchor="middle">34</text>
+    <text class="tick" x="1088.5" y="288" text-anchor="middle">35</text>
+    <text class="tick" x="1161.5" y="288" text-anchor="middle">36</text>
+    <text class="tick" x="1234.5" y="288" text-anchor="middle">37</text>
+    <text class="tick" x="1307.5" y="288" text-anchor="middle">38</text>
+    <text class="tick" x="1380.5" y="288" text-anchor="middle">39</text>
+    <text class="tick" x="1453.5" y="288" text-anchor="middle">40</text>
+    <text class="tick" x="66.5" y="464" text-anchor="middle">41</text>
+    <text class="tick" x="139.5" y="464" text-anchor="middle">42</text>
+    <text class="tick" x="212.5" y="464" text-anchor="middle">43</text>
+    <text class="tick" x="285.5" y="464" text-anchor="middle">44</text>
+    <text class="tick" x="358.5" y="464" text-anchor="middle">45</text>
+    <text class="tick" x="431.5" y="464" text-anchor="middle">46</text>
+    <text class="tick" x="504.5" y="464" text-anchor="middle">47</text>
+    <text class="tick" x="577.5" y="464" text-anchor="middle">48</text>
+    <text class="tick" x="650.5" y="464" text-anchor="middle">49</text>
+    <text class="tick" x="723.5" y="464" text-anchor="middle">50</text>
+    <text class="tick" x="796.5" y="464" text-anchor="middle">51</text>
+    <text class="tick" x="869.5" y="464" text-anchor="middle">52</text>
+    <text class="tick" x="942.5" y="464" text-anchor="middle">53</text>
+    <text class="tick" x="1015.5" y="464" text-anchor="middle">54</text>
+    <text class="tick" x="1088.5" y="464" text-anchor="middle">55</text>
+    <text class="tick" x="1161.5" y="464" text-anchor="middle">56</text>
+    <text class="tick" x="1234.5" y="464" text-anchor="middle">57</text>
+    <text class="tick" x="1307.5" y="464" text-anchor="middle">58</text>
+    <text class="tick" x="1380.5" y="464" text-anchor="middle">59</text>
+    <text class="tick" x="1453.5" y="464" text-anchor="middle">60</text>
+  </svg>
+</div></div>
+  <div class="tabpane" id="pane-table">
+  <table><thead><tr><th>ID</th><th>类型</th><th>量级</th><th>集</th><th>铺垫</th><th>兑现</th></tr></thead>
+<tbody><tr><td>B01</td><td>闪婚反杀</td><td>常规</td><td>1</td><td>周子昂搂着苏晴当众退婚，嘲笑苏记不值一块表</td><td>苏念当场拉陌生男人领证，拿着结婚证从渣男面前走过</td></tr>
+<tr><td>B02</td><td>打脸</td><td>常规</td><td>3</td><td>继母带苏晴上门收铺，说铺子已抵给周家</td><td>苏念打开铁皮盒亮出外婆遗嘱，铺子从来是她的</td></tr>
+<tr><td>B03</td><td>长辈认可</td><td>常规</td><td>4</td><td>苏念带桂花糕去医院见奶奶，以为要被挑剔</td><td>奶奶一口吃出当年的味道，当场把传家玉镯戴到她手上，同意手术</td></tr>
+<tr><td>B04</td><td>护妻</td><td>常规</td><td>6</td><td>混混在苏记门口泼漆摘招牌</td><td>顾承宴赶到录证报警，混混落荒而逃，招牌挂回去</td></tr>
+<tr><td>B05</td><td>打脸</td><td>常规</td><td>7</td><td>苏家寿宴上继母嘲讽顾承宴的茶叶寒酸</td><td>懂行的苏建国认出是有价无市的母树茶，周子昂的名表反被比下去</td></tr>
+<tr><td>B06</td><td>打脸</td><td>大爆点</td><td>9</td><td>订婚宴上苏晴栽赃苏念偷钻戒，全场围观</td><td>酒店经理对顾承宴毕恭毕敬调出监控，戒指是苏晴自己藏的，苏晴当众出丑</td></tr>
+<tr><td>B07</td><td>反转</td><td>常规</td><td>11</td><td>拆迁通知落款顾氏总裁，三天后强拆</td><td>顾承宴查出是二叔伪签，当场叫停拆迁</td></tr>
+<tr><td>B08</td><td>打脸</td><td>常规</td><td>13</td><td>林薇薇上门自称顾承宴未婚妻，羞辱苏念</td><td>苏念亮出结婚证，林薇薇当场哑火</td></tr>
+<tr><td>B09</td><td>撒糖</td><td>常规</td><td>14</td><td>苏念吃醋质问林薇薇的事，协议写着互不动心</td><td>停电夜意外的初吻</td></tr>
+<tr><td>B10</td><td>护妻</td><td>常规</td><td>16</td><td>苏念去顾氏送饭，被前台当成蹭饭的赶出去</td><td>顾承宴下楼当众牵她进电梯，前台被调岗</td></tr>
+<tr><td>B11</td><td>反转</td><td>大爆点</td><td>19</td><td>寿宴上林薇薇与苏晴设局，诬陷苏念摔碎传家玉镯</td><td>奶奶亮出真镯，碎的是苏晴准备的假货，两人当众出丑</td></tr>
+<tr><td>B12</td><td>身份揭破</td><td>大爆点</td><td>20</td><td>主持人宣布有请顾氏集团总裁致辞</td><td>走上台的是苏念的契约丈夫，她手里的蛋糕掉在地上</td></tr>
+<tr><td>B13</td><td>真相澄清</td><td>常规</td><td>23</td><td>苏念认定他骗婚就是为了拆铺子</td><td>律师当面鉴定拆迁合同上的签名是伪造的</td></tr>
+<tr><td>B14</td><td>追妻撒糖</td><td>常规</td><td>25</td><td>冷战中的苏念搬回点心铺</td><td>顾承宴在铺子门口学做桂花糕，苏念心软同意回家</td></tr>
+<tr><td>B15</td><td>打脸</td><td>常规</td><td>27</td><td>周子昂得知被苏晴骗，回头纠缠苏念</td><td>顾承宴一个电话终止周家所有分包，周子昂当场跪求</td></tr>
+<tr><td>B16</td><td>反转</td><td>大爆点</td><td>29</td><td>苏记被栽赃食物中毒，铺子被封、苏念被网暴</td><td>唐果直播放出监控，投毒的是二叔的人，苏记解封</td></tr>
+<tr><td>B17</td><td>打脸</td><td>常规</td><td>32</td><td>大赛海选，苏晴嘲笑苏念的手工点心土气</td><td>苏念以海选第一晋级，苏晴压线</td></tr>
+<tr><td>B18</td><td>反转</td><td>常规</td><td>35</td><td>半决赛苏念的原料被调包</td><td>苏念临场改做外婆的老式点心，反超晋级</td></tr>
+<tr><td>B19</td><td>撒糖</td><td>常规</td><td>37</td><td>被收买的评委当众质疑苏念走后门</td><td>顾承宴宣布退出赞助回避，只坐观众席为她加油</td></tr>
+<tr><td>B20</td><td>夺冠打脸</td><td>大爆点</td><td>39</td><td>苏晴用偷来的秘方与苏念同台决赛</td><td>苏晴做不出外婆的最后一步，苏念夺冠，评委倒戈揭发收买</td></tr>
+<tr><td>B21</td><td>揭秘</td><td>常规</td><td>40</td><td>苏念整理铁皮盒，发现夹层</td><td>旧照片上小苏念牵着受伤的少年，背面写着那天追来的人叫二爷</td></tr>
+<tr><td>B22</td><td>相认撒糖</td><td>常规</td><td>42</td><td>苏念拿照片问顾承宴</td><td>顾承宴承认自己就是那个少年，十五年只记得这一口甜</td></tr>
+<tr><td>B23</td><td>反转</td><td>大爆点</td><td>44</td><td>二叔联合林薇薇在董事会发难，要罢免顾承宴</td><td>苏念送来伪签拆迁合同的鉴定，二叔当场被停职，林薇薇家撤股</td></tr>
+<tr><td>B24</td><td>倒戈</td><td>常规</td><td>46</td><td>苏晴被二叔和周子昂一起抛弃</td><td>苏晴把偷录二叔的录音笔交给苏念</td></tr>
+<tr><td>B25</td><td>虐心误会</td><td>常规</td><td>48</td><td>契约到期前夜，苏念听见顾承宴说协议到期就结束</td><td>苏念默默收拾行李，约他去民政局</td></tr>
+<tr><td>B26</td><td>危机</td><td>常规</td><td>50</td><td>苏念在民政局等不到人</td><td>电话打来：顾承宴的车刹车失灵，正在抢救</td></tr>
+<tr><td>B27</td><td>将计就计</td><td>常规</td><td>52</td><td>二叔以为顾承宴昏迷，接管集团</td><td>顾承宴醒来与苏念联手装病，引二叔现形</td></tr>
+<tr><td>B28</td><td>寻证</td><td>常规</td><td>54</td><td>当年绑匪下落不明</td><td>陈默找到当年绑匪，对方愿意作证</td></tr>
+<tr><td>B29</td><td>揭破</td><td>大爆点</td><td>56</td><td>二叔把苏念绑进仓库逼要录音笔</td><td>顾承宴带警察赶到，录音与绑匪证词齐出，二叔落网</td></tr>
+<tr><td>B30</td><td>撒糖求婚</td><td>大爆点</td><td>58</td><td>协议到期那天，苏念拿出婚前协议</td><td>顾承宴当面撕掉协议，用一盒桂花糕重新求婚</td></tr>
+<tr><td>B31</td><td>圆满</td><td>常规</td><td>60</td><td>老街保住，苏记招牌重新挂起</td><td>老街补办婚礼，一年后苏记开了第二家店</td></tr></tbody></table>
+  </div>
+</section>
+
+<section id="sec-episodes">
+  <div class="sec-h"><span class="no">02</span><h2>分集概览</h2><span class="note">核心交付 · 每集三栏齐全</span></div>
+  <div class="epswrap clip">
+    <div class="eps">
+<article class="ep" id="ep-1">
+  <span class="num">1</span>
+  <header><b>第 1 集</b><i class="bt">闪婚反杀</i></header>
+  <p class="syn">苏念在民政局门口等周子昂领证，等来的却是他搂着苏晴。苏晴说自己怀孕了，周子昂当众退婚，嘲笑苏记破店不值他一块表，排队的人纷纷侧目。长椅上的顾承宴刚挂断奶奶电话，奶奶放话今天不结婚就不做手术。苏念转身问陌生人结不结婚，他答结。两人当场领证，苏念攥着结婚证从周子昂面前走过，周子昂嗤笑她嫁了个打工的。</p>
+  <div class="hk"><b>钩子</b><span>刚领证的陌生丈夫手机亮起，来电备注是奶奶·手术室，他到底是谁？</span></div>
+  <div class="hk"><b>悬念</b><span>顾承宴为何非今天结婚不可、他的真实身份；苏晴的怀孕是真是假。</span></div>
+  <div class="meta"><i>S01</i><i>C01</i><i>C05</i><i>C03</i><i>C02</i><i>C12</i><i class="warn">肢体接触</i><i class="warn">人群</i><i class="warn">手部特写</i><i class="warn" title="分两场拍。门口退婚场：苏念正面，周子昂搂苏晴为过肩双人，排队路人虚焦背影；顾承宴只在长椅远景带过。领证场：苏念与顾承宴并排正面，民政局工作人员只给过肩手部。出门场：苏念与顾承宴正面走出，周子昂苏晴以背影入画。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-2">
+  <span class="num">2</span>
+  <header><b>第 2 集</b></header>
+  <p class="syn">小两居里，顾承宴自称顾氏的普通项目经理，同姓只是巧合。他拿出婚前协议，一年为期，互不干涉、互不动心，苏念爽快签字。这套陈默连夜租下的房子漏洞百出，堂堂男人连燃气灶都打不着火。苏念发现他胃病犯了，随手煮了一碗面，他吃下第一口忽然愣住，多年来尝不出味道的舌头，竟然尝到了味道。</p>
+  <div class="hk"><b>钩子</b><span>他说明天带她去医院见奶奶，奶奶要验货，她能过关吗？</span></div>
+  <div class="hk"><b>悬念</b><span>顾承宴为何多年尝不出味道、偏偏尝得出她的面；项目经理的身份破绽。</span></div>
+  <div class="meta"><i>S03</i><i>C02</i><i>C01</i><i class="warn">手部特写</i><i class="warn" title="两人戏，无三人同框，一场拍完。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-3">
+  <span class="num">3</span>
+  <header><b>第 3 集</b><i class="bt">打脸</i></header>
+  <p class="syn">继母刘美琴带着苏晴闯进苏记点心铺，说苏建国早把铺子抵给了周家，让苏念三天内搬走，苏晴在一旁挑拣点心冷嘲热讽。苏念不吵不闹，从柜台下取出外婆的铁皮点心盒，打开亮出公证过的遗嘱：外婆把铺子直接留给了她，跟苏建国无关，更轮不到周家。刘美琴脸色铁青，拉着苏晴灰溜溜出门。</p>
+  <div class="hk"><b>钩子</b><span>苏晴在门外打电话放话老街要拆，看苏念还能守几天，拆迁从哪来？</span></div>
+  <div class="hk"><b>悬念</b><span>老街拆迁的消息是谁放出的；铁皮盒里除了遗嘱还装着什么。</span></div>
+  <div class="meta"><i>S02</i><i>C06</i><i>C03</i><i>C01</i><i class="warn">手部特写</i><i class="warn">肢体接触</i><i class="warn" title="一场拍完，三人不同时正面。苏念隔柜台正面，刘美琴与苏晴为前景过肩双人；亮遗嘱时切苏念手部与铁皮盒特写，再切母女反应正面。集尾苏晴门外打电话单独补拍。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-4">
+  <span class="num">4</span>
+  <header><b>第 4 集</b><i class="bt">长辈认可</i></header>
+  <p class="syn">苏念提着亲手做的桂花糕走进奶奶病房，以为要被挑剔。奶奶尝了一口忽然愣住，眼眶发红，说这是当年的味道。她当场褪下手上的传家玉镯，亲手戴到苏念腕上认下孙媳，随即同意手术。主治医生推着奶奶进手术室，苏念摸着玉镯不知所措，顾承宴在一旁看她的眼神变了。</p>
+  <div class="hk"><b>钩子</b><span>奶奶临进手术室低声问顾承宴，这丫头是不是当年那家的，他为何不答？</span></div>
+  <div class="hk"><b>悬念</b><span>奶奶口中的当年那家是谁；顾承宴是否早就认识苏念。</span></div>
+  <div class="meta"><i>S07</i><i>C01</i><i>C02</i><i>C08</i><i>C13</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn" title="分三段拍。尝糕段：奶奶病床正面，苏念侧坐过肩，顾承宴后景虚焦。戴镯段：两人手部特写，再切苏念正面反应。推床段：主治医生只拍推床背影，奶奶与顾承宴耳语为双人近景，苏念不入画。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-5">
+  <span class="num">5</span>
+  <header><b>第 5 集</b></header>
+  <p class="syn">同居生活开始，卧室一张床一条地铺，两人隔着协议互不越界。半夜顾承宴胃痛蜷在地铺上，苏念披衣起来熬了一锅小米粥，守着他喝完。第二天陈默上门送文件，张嘴差点喊出顾总，硬生生改口叫顾哥，苏念只当是同事之间的玩笑，没多想。顾承宴在她背后瞪了陈默一眼。</p>
+  <div class="hk"><b>钩子</b><span>苏念收到唐果的消息，铺子出事了，出了什么事？</span></div>
+  <div class="hk"><b>悬念</b><span>陈默那声没喊完的称呼；顾承宴的胃病和味觉之谜。</span></div>
+  <div class="meta"><i>S03</i><i>C01</i><i>C02</i><i>C09</i><i class="warn">手部特写</i><i class="warn" title="夜戏只有苏念顾承宴两人。白天送文件段三人同场：陈默门口正面，顾承宴侧身过肩，苏念在厨房后景背影；顾承宴瞪陈默为单人反打补拍。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-6">
+  <span class="num">6</span>
+  <header><b>第 6 集</b><i class="bt">护妻</i></header>
+  <p class="syn">苏记门口被泼了满地红漆，拆迁办经理带着几个混混正把外婆传下的老招牌往下摘，街坊远远围观不敢上前。苏念冲上去护招牌被推开，顾承宴赶到，一边举手机录像取证一边报警，混混见势落荒而逃。他扶起苏念，亲手搬梯子把老招牌挂回门楣，擦掉上面的红漆。</p>
+  <div class="hk"><b>钩子</b><span>苏晴躲在街角，拍下顾承宴坐进一辆挂顾氏车牌的车，她会拿这张照片做什么？</span></div>
+  <div class="hk"><b>悬念</b><span>拆迁办经理背后是谁指使；一个项目经理为何坐顾氏的车。</span></div>
+  <div class="meta"><i>S09</i><i>S02</i><i>C15</i><i>C01</i><i>C02</i><i>C03</i><i class="warn">人群</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn" title="分三场拍。闹事段：拆迁办经理正面，混混与围观街坊只给背影和远景；苏念被推开用剪辑带过。护妻段：顾承宴正面举手机，苏念过肩。挂招牌段：两人双人中景。集尾苏晴街角单独拍，顾承宴上车只拍背影远景。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-7">
+  <span class="num">7</span>
+  <header><b>第 7 集</b><i class="bt">打脸</i></header>
+  <p class="syn">苏建国过生日，苏念带着顾承宴回苏家。刘美琴和苏晴当众嘲笑他送的茶叶罐寒酸，周子昂抬手亮出腕上的名表，说这一块够买他一年工资。苏建国揭开茶罐一闻，脸色都变了，认出是有价无市的母树茶，一两难求，周子昂的名表顿时被比了下去。刘美琴笑容僵在脸上。</p>
+  <div class="hk"><b>钩子</b><span>苏晴宣布下周和周子昂订婚，点名请苏念来做点心看看什么叫豪门，这是什么局？</span></div>
+  <div class="hk"><b>悬念</b><span>一个打工的哪来的母树茶；苏晴订婚宴上的算计。</span></div>
+  <div class="meta"><i>S06</i><i>C07</i><i>C06</i><i>C03</i><i>C05</i><i>C01</i><i>C02</i><i class="warn">手部特写</i><i class="warn" title="六人分组拍，任何镜头正面不超过三人。苏念顾承宴一组并肩正面；刘美琴苏晴周子昂一组对面，嘲讽时轮流单人近景，其余以过肩带过。苏建国揭罐闻茶单人中景加茶罐手部特写；名表单独手部特写。全家反应用一个远景收。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-8">
+  <span class="num">8</span>
+  <header><b>第 8 集</b></header>
+  <p class="syn">苏晴来铺子下了订婚宴的点心大单，还要求苏念当天到场现场演示，摆明了要在宾客面前羞辱她。唐果劝她别接这单气受，苏念把订单收下，说钱照赚，脸也不会丢。顾承宴接过订单扫了一眼，宴会地点那家酒店是顾氏旗下的，他没出声，把订单折好放回柜台。</p>
+  <div class="hk"><b>钩子</b><span>苏晴走出铺子对周子昂说戒指的事都安排好了，她要用戒指做什么？</span></div>
+  <div class="hk"><b>悬念</b><span>订婚宴上针对苏念的陷阱；顾承宴在顾氏酒店的身份会不会暴露。</span></div>
+  <div class="meta"><i>S02</i><i>C03</i><i>C10</i><i>C01</i><i>C02</i><i>C05</i><i class="warn">手部特写</i><i class="warn" title="分三段拍。下单段：苏晴与苏念隔柜台正反打。劝说段：唐果与苏念双人，顾承宴后景接订单只拍手部与侧脸。集尾门外段：苏晴与周子昂双人单独拍，铺内无人入画。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-9">
+  <span class="num">9</span>
+  <header><b>第 9 集</b><i class="bt major">打脸</i></header>
+  <p class="syn">订婚宴上，苏晴的钻戒不翼而飞，她当众指认苏念偷了，宾客围成一圈指指点点，周子昂要报警。顾承宴推门进场，酒店经理快步迎上，对他弯腰称先生，二话不说调出后厨监控：画面里是苏晴自己把戒指塞进点心盒。全场哗然，苏晴当众出丑，捂着脸说不出话。顾承宴牵起苏念的手离开。</p>
+  <div class="hk"><b>钩子</b><span>周子昂死死盯着酒店经理对顾承宴的态度，起了疑心，他会查出什么？</span></div>
+  <div class="hk"><b>悬念</b><span>酒店经理为何对一个打工的毕恭毕敬；周子昂的怀疑。</span></div>
+  <div class="meta"><i>S08</i><i>C03</i><i>C05</i><i>C01</i><i>C02</i><i>C14</i><i class="warn">人群</i><i class="warn">手部特写</i><i class="warn">肢体接触</i><i class="warn" title="分四段拍。栽赃段：苏晴正面指认，苏念单人反打，宾客只给背影与虚焦远景。进场段：顾承宴正面走入，酒店经理弯腰为过肩。监控段：屏幕插入画面加众人反应用剪辑带过。离场段：顾承宴苏念牵手背影，周子昂前景过肩盯视。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-10">
+  <span class="num">10</span>
+  <header><b>第 10 集</b></header>
+  <p class="syn">奶奶术后醒来，拉着苏念的手不肯放，叮嘱她常来。苏念回到铺子，拆迁办经理带人贴上强拆通知：三天后强拆，盖着顾氏集团公章，落款是总裁亲笔签名。街坊围在门口议论，苏念攥着通知，说倒要看看这个顾总是什么人。站在她身后的顾承宴看清那个签名，脸色骤变。</p>
+  <div class="hk"><b>钩子</b><span>【付费卡点】通知上那个总裁签名不是他签的，到底是谁冒用他的名字要拆苏记？</span></div>
+  <div class="hk"><b>悬念</b><span>伪签拆迁通知的幕后人；苏念对顾总的恨意与顾承宴的真实身份正面相撞。</span></div>
+  <div class="meta"><i>S07</i><i>S02</i><i>C08</i><i>C01</i><i>C02</i><i>C15</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn">人群</i><i class="warn" title="分两场拍。病房场：奶奶与苏念双人，牵手特写，顾承宴不入画。铺子场：拆迁办经理贴通知只拍侧背与手部，围观街坊远景背影；苏念正面攥通知，顾承宴在她身后虚焦，再切签名特写与他单人近景反应。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-11">
+  <span class="num">11</span>
+  <header><b>第 11 集</b><i class="bt">反转</i></header>
+  <p class="syn">顾承宴连夜回到顾氏总部，让陈默调出老街拆迁项目的审批流程，一页页翻下去，发现拆迁合同上的总裁签名是二叔顾远山伪签代批的。他当场打电话叫停拆迁，把合同摔在二叔面前。顾远山笑眯眯地认错，说是下面人办事糊涂弄错了，保证不再插手老街，顾承宴冷着脸警告他别碰苏记。</p>
+  <div class="hk"><b>钩子</b><span>二叔关上门后拨出电话，说那个点心铺必须拆，他到底要对苏记做什么？</span></div>
+  <div class="hk"><b>悬念</b><span>二叔为什么非拆一间小点心铺不可；伪签的拆迁通知还攥在苏念手里，她认定顾总就是仇人。</span></div>
+  <div class="meta"><i>S04</i><i>C02</i><i>C09</i><i>C04</i><i class="warn">手部特写</i><i class="warn" title="总裁办两段：前段顾承宴与陈默翻文件，顾承宴正面、陈默侧身过肩；后段顾承宴与二叔对峙正反打，陈默退到门口只留背影；集尾二叔单人打电话另拍，三人最多二人主同框。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-12">
+  <span class="num">12</span>
+  <header><b>第 12 集</b></header>
+  <p class="syn">拆迁办经理带着一群人开到老街准备动手，接了个电话脸色一变，挥手撤走，苏念以为是街坊们的联名信起了作用。回到铺子，顾承宴非要帮她做桂花糕，揉面揉得面粉糊了一脸，苏念笑着踮脚替他擦掉。唐果在旁边越看越不对劲，悄悄提醒苏念他的手表和气场都不像打工的，苏念只当她想多了。</p>
+  <div class="hk"><b>钩子</b><span>门口进来一个穿高定的女人，要一盒桂花糕送给她的未婚夫顾承宴，她是谁？</span></div>
+  <div class="hk"><b>悬念</b><span>唐果对顾承宴身份的怀疑；拆迁办为何突然撤走，苏念并不知道是谁叫停的。</span></div>
+  <div class="meta"><i>S09</i><i>S02</i><i>C15</i><i>C01</i><i>C02</i><i>C10</i><i>C11</i><i class="warn">人群</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn" title="分两场拍。老街场：拆迁办经理正面接电话，手下与街坊只拍背影和远景虚化。铺子场：苏念与顾承宴双人中景正面，唐果在前景过肩带出，耳语一段改为唐果与苏念双人；林薇薇在门口逆光单独入画，与店内三人用正反打衔接，不做四人同框。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-13">
+  <span class="num">13</span>
+  <header><b>第 13 集</b><i class="bt">打脸</i></header>
+  <p class="syn">林薇薇踩着高跟鞋进店，自称顾承宴的未婚妻，说两家长辈早定了婚约，把一张支票拍在柜台上让苏念拿钱走人，嘲讽一个卖点心的也配。苏念不急不恼，从包里取出结婚证摊在支票旁边，告诉她法律上顾承宴的妻子只有一个，未婚妻请去排下辈子的号。林薇薇脸色发青当场哑火，抓起包摔门而去。</p>
+  <div class="hk"><b>钩子</b><span>林薇薇一出门就拨给苏晴，两个女人结了盟，她们要怎么联手对付苏念？</span></div>
+  <div class="hk"><b>悬念</b><span>林薇薇口中的两家婚约到底真假；顾承宴的真实家世她差点说破。</span></div>
+  <div class="meta"><i>S02</i><i>C11</i><i>C01</i><i>C03</i><i class="warn">手部特写</i><i class="warn" title="店内只有苏念与林薇薇二人，正反打加柜台双人中景；苏晴只在电话另一端出现，单人另场拍，与林薇薇用分屏或切镜衔接，三人无同框。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-14">
+  <span class="num">14</span>
+  <header><b>第 14 集</b><i class="bt">撒糖</i></header>
+  <p class="syn">苏念憋了一整天，晚饭时还是忍不住质问林薇薇是谁，顾承宴解释所谓婚约不过是长辈酒桌上的戏言，他从没当真。苏念嘴硬，说协议写着互不动心，她只是怕人找上门砸店。话音未落整栋楼停了电，她在黑暗里绊了一下，他伸手去扶，两人撞在一起，唇碰上了唇，谁都没有躲开。</p>
+  <div class="hk"><b>钩子</b><span>来电后苏念盯着协议上互不动心那一条，把协议塞进抽屉最底层，她是想毁约吗？</span></div>
+  <div class="hk"><b>悬念</b><span>两人都已动心却都不肯说破；一年契约的条款还压在抽屉里。</span></div>
+  <div class="meta"><i>S03</i><i>C01</i><i>C02</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn" title="仅二人同场，双人中景加正反打；停电段用剪影与轮廓光，一场拍完。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-15">
+  <span class="num">15</span>
+  <header><b>第 15 集</b></header>
+  <p class="syn">奶奶出院前把苏念叫到病房，拉着她戴玉镯的手，叮嘱下周寿宴一定要来，让顾家人都见见孙媳妇。苏念回到铺子，有人替林薇薇下了一千个点心的大单，她和唐果熬了一整夜赶工，天亮时对方一个电话取消，原料全砸在手里。苏念咬着牙把点心挨家分给老街街坊，一分钱没赚。</p>
+  <div class="hk"><b>钩子</b><span>苏晴躲在铺子后门，盯着外婆的铁皮盒放在哪里，她想偷什么？</span></div>
+  <div class="hk"><b>悬念</b><span>林薇薇想用订单拖垮苏记；苏晴盯上了铁皮盒里的东西；寿宴上等着苏念的是什么。</span></div>
+  <div class="meta"><i>S07</i><i>S02</i><i>C08</i><i>C01</i><i>C10</i><i>C03</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn">人群</i><i class="warn" title="分三场拍。病房：奶奶与苏念双人。铺子：苏念与唐果双人赶工，分点心时街坊只拍伸手接盒与背影。后门：苏晴单人窥视，铁皮盒用她的主观镜头带出，与店内人物不同框。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-16">
+  <span class="num">16</span>
+  <header><b>第 16 集</b><i class="bt">护妻</i></header>
+  <p class="syn">苏念拎着保温饭盒到顾氏大楼给顾承宴送饭，前台上下打量她的旧外套，当着排队访客的面把她当蹭饭的往外轰。顾承宴从电梯里出来，当众牵起她的手走进电梯，身后陈默不动声色地让人把前台调了岗。电梯门关上前他按的是顶楼，苏念疑惑，他只说带她去天台吃饭。</p>
+  <div class="hk"><b>钩子</b><span>二叔站在走廊尽头，看着两人的背影，他认出这个点心铺的女孩了吗？</span></div>
+  <div class="hk"><b>悬念</b><span>顶楼是总裁办，顾承宴的谎越圆越难；二叔已经盯上苏念。</span></div>
+  <div class="meta"><i>S04</i><i>C01</i><i>C02</i><i>C09</i><i>C04</i><i class="warn">肢体接触</i><i class="warn">人群</i><i class="warn">手部特写</i><i class="warn" title="大堂场：苏念与前台正反打，访客为背景虚化背影；顾承宴入画后与苏念双人正面，陈默在后景侧身处理前台。电梯场：二人双人。集尾二叔单人站在走廊尽头，前景是二人背影过肩，四人不同时露正脸。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-17">
+  <span class="num">17</span>
+  <header><b>第 17 集</b></header>
+  <p class="syn">奶奶出院回到顾家老宅，二叔顾远山拎着补品来探望，话里话外提起老街项目，说那片旧房早该拆了。奶奶放下茶杯冷了脸，让他别打苏记的主意。顾承宴回到小两居，看着灶上苏念给他留的粥，决定寿宴那天向她坦白一切，伏在桌前写了一封坦白信，夹在门边的外套口袋里。</p>
+  <div class="hk"><b>钩子</b><span>坦白信被风吹到地上，压在苏念鞋下，她没看见，寿宴那天他还来得及说吗？</span></div>
+  <div class="hk"><b>悬念</b><span>奶奶为何对老街格外护短；二叔与老街的旧账；顾承宴的坦白能否赶在真相之前。</span></div>
+  <div class="meta"><i>S05</i><i>S03</i><i>C08</i><i>C04</i><i>C02</i><i>C01</i><i class="warn">手部特写</i><i class="warn" title="分两场拍，无四人同框。老宅：奶奶与二叔正反打双人。小两居：顾承宴单人写信；集尾苏念进门只拍鞋与背影，与顾承宴不同框。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-18">
+  <span class="num">18</span>
+  <header><b>第 18 集</b></header>
+  <p class="syn">奶奶寿宴设在酒店宴会厅，苏念戴着玉镯以孙媳妇身份到场，顾承宴说公司临时有事晚些才到。满场宾客打量这个点心铺出身的孙媳妇，窃窃私语。林薇薇和苏晴一改往日嘴脸，端着香槟假意亲近，说陪她去补妆，一左一右挽着她走到人少的休息区，苏晴的手指有意无意碰了碰那只玉镯。</p>
+  <div class="hk"><b>钩子</b><span>一声脆响，玉镯碎在地上，苏晴尖叫苏念摔了传家宝，苏念要怎么自证清白？</span></div>
+  <div class="hk"><b>悬念</b><span>顾承宴迟迟不到场的原因；林薇薇和苏晴的局到底怎么设的。</span></div>
+  <div class="meta"><i>S08</i><i>C08</i><i>C01</i><i>C11</i><i>C03</i><i class="warn">人群</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn" title="宴会厅入场：苏念正面中景，奶奶在主桌远景，宾客全用背影与虚化。休息区：苏念居中正面，林薇薇与苏晴各一侧，一人正面一人过肩轮换，分两组镜头拍，避免三人同时正脸。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-19">
+  <span class="num">19</span>
+  <header><b>第 19 集</b><i class="bt major">反转</i></header>
+  <p class="syn">宾客围拢过来指指点点，林薇薇高声要求顾家把这个手脚不干净的孙媳妇赶出去。奶奶拄着拐杖走来，把苏念拉到身边，抬起手腕亮出真镯，开席前她怕有人使坏，早把真镯收回自己手上，地上碎的是苏晴自带的假货。酒店经理调出休息区监控，画面里苏晴从包里掏出假镯摔碎。林薇薇和苏晴在众目睽睽下狼狈退场。</p>
+  <div class="hk"><b>钩子</b><span>主持人敲响话筒，说下面有请顾氏集团总裁致辞，这个从不露面的总裁是谁？</span></div>
+  <div class="hk"><b>悬念</b><span>苏念仍不知道丈夫的身份；顾氏总裁即将登台。</span></div>
+  <div class="meta"><i>S08</i><i>C01</i><i>C11</i><i>C03</i><i>C08</i><i>C14</i><i class="warn">人群</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn" title="围观宾客一律背影与侧影虚化。分三组拍：林薇薇与苏念正反打；奶奶入画拉苏念为双人正面，林薇薇苏晴背影过肩；酒店经理与监控屏另拍，监控画面单独生成插入，苏晴的反应用单人近景。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-20">
+  <span class="num">20</span>
+  <header><b>第 20 集</b><i class="bt major">身份揭破</i></header>
+  <p class="syn">苏念端着刚切好的寿桃蛋糕回头，聚光灯下走上台的人西装笔挺，正是她那个自称项目经理的契约丈夫。全场宾客起立齐喊顾总，酒店经理在台侧深深鞠躬，奶奶笑着点头。不会用的燃气灶、陈默那声差点出口的顾总、酒店经理的那一躬，所有不对劲一下子全对上了，她手里的蛋糕掉在地上，台上的顾承宴握着话筒看着她。</p>
+  <div class="hk"><b>钩子</b><span>【付费卡点】苏念转身就走，顾承宴扔下话筒追出去，宴会厅大门在他面前关上，她还会原谅这个骗了她一路的丈夫吗？</span></div>
+  <div class="hk"><b>悬念</b><span>苏念认定的顾总就是签拆迁通知的人，她会怎么看这场闪婚；坦白信还没送到她手里。</span></div>
+  <div class="meta"><i>S08</i><i>C01</i><i>C02</i><i>C08</i><i>C14</i><i class="warn">人群</i><i class="warn">手部特写</i><i class="warn" title="苏念与台上顾承宴隔人群正反打，不做双人同框；起立宾客全用背影大远景；酒店经理鞠躬与奶奶点头各拍单人反应镜头；集尾追出与关门为顾承宴单人跟拍。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-21">
+  <span class="num">21</span>
+  <header><b>第 21 集</b></header>
+  <p class="syn">宴会厅外的老街深夜，苏念一个人往前走，顾承宴追上来拉住她解释，说自己不是故意瞒她。苏念甩开他的手，说她只想知道这场婚姻里哪句是真的。回到小两居，她沉默着收拾行李，拉开他的抽屉找自己的证件，却翻出一张拆迁通知复印件。她把结婚证摊在旁边比对，落款的总裁签名和结婚证上他的签名一笔一画都一样。</p>
+  <div class="hk"><b>钩子</b><span>签名对上了，苏念会认定顾承宴从闪婚那天起就是冲着苏记来的吗？</span></div>
+  <div class="hk"><b>悬念</b><span>拆迁通知上的签名到底是谁签的、顾承宴为什么一直留着这份复印件没跟她说，都还没有答案。</span></div>
+  <div class="meta"><i>S09</i><i>S03</i><i>C01</i><i>C02</i><i class="warn">肢体接触</i><i class="warn">手部特写</i></div>
+</article>
+<article class="ep" id="ep-22">
+  <span class="num">22</span>
+  <header><b>第 22 集</b></header>
+  <p class="syn">苏念搬回苏记点心铺住，认定顾承宴闪婚就是为了骗走铺子好拆。此后每天一早，顾承宴都站在铺子门口等，她拉下卷帘门不开。陈默拎着文件来替老板解释，话没说两句就被苏念抄起扫帚赶出门，狼狈地躲到顾承宴身后。街角，苏晴看着门口这一幕笑出了声，掏出手机给二叔发消息，说两人已经闹翻了。</p>
+  <div class="hk"><b>钩子</b><span>苏晴给二叔报信，两人下一步要趁冷战对苏记做什么？</span></div>
+  <div class="hk"><b>悬念</b><span>苏晴和二叔早已暗中勾连，她拿什么在跟二叔做交易仍未揭开；顾承宴能否在苏念面前洗清伪签的嫌疑。</span></div>
+  <div class="meta"><i>S02</i><i>C01</i><i>C02</i><i>C09</i><i>C03</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn" title="全集分三段拍：铺子门内苏念单人正面，隔卷帘门与门外顾承宴正反打，不同框；扫帚赶人一场苏念正面、陈默半侧逃出，顾承宴在门外只作过肩前景；苏晴在街角单独一场，正面拍发消息，铺子门口的人只作远景背影。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-23">
+  <span class="num">23</span>
+  <header><b>第 23 集</b><i class="bt">真相澄清</i></header>
+  <p class="syn">顾承宴带着律师走进苏记，把拆迁合同摊在柜台上，当着苏念的面做笔迹鉴定。律师把合同签名和他的亲笔签名放大比对，逐处指出起笔和收笔的破绽，结论是签名系伪造，顾承宴是被人冒名。苏念握着合同的手松了下来，嘴上仍硬，却忍不住追问到底是谁伪造的。顾承宴沉默片刻，说出了二叔两个字。</p>
+  <div class="hk"><b>钩子</b><span>听到二叔两个字，苏念脑中闪过外婆生前提过的一个人，那人究竟是谁？</span></div>
+  <div class="hk"><b>悬念</b><span>外婆生前提到的那个人与二叔有何关联；苏念对顾承宴的心结只松动未解开。</span></div>
+  <div class="meta"><i>S02</i><i>C01</i><i>C02</i><i>C19</i><i class="warn">手部特写</i><i class="warn" title="柜台一字排开拍：苏念在柜台内正面，顾承宴在柜台外半侧，律师背影或过肩带过，只给手部比对签名的特写；鉴定结论后切苏念与顾承宴两人正反打，律师出画。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-24">
+  <span class="num">24</span>
+  <header><b>第 24 集</b></header>
+  <p class="syn">苏建国来铺子劝女儿别跟女婿置气，话没说完，刘美琴追进门把他拽回了家。苏家客厅里两人大吵，刘美琴从苏建国嘴里得知那个打工女婿竟是顾氏总裁，当场变脸，连夜把苏念叫回家，逼她立刻回顾家当好少奶奶，好让娘家沾光。苏念当着父亲的面拒绝，说她的婚事不是继母的生意，转身离开。</p>
+  <div class="hk"><b>钩子</b><span>被拒的刘美琴转头联系林薇薇，要把苏念的消息卖给谁、卖什么？</span></div>
+  <div class="hk"><b>悬念</b><span>刘美琴手里握着苏念的哪些消息；苏建国在妻女之间还要沉默多久。</span></div>
+  <div class="meta"><i>S02</i><i>S06</i><i>C07</i><i>C06</i><i>C01</i><i class="warn">肢体接触</i><i class="warn" title="分三场拍：铺子里苏念与苏建国正反打，刘美琴进门拽人时苏建国背影过肩；客厅吵架只拍刘美琴与苏建国两人；逼苏念一场刘美琴与苏念正面对峙，苏建国坐在沙发一侧作侧背影前景。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-25">
+  <span class="num">25</span>
+  <header><b>第 25 集</b><i class="bt">追妻撒糖</i></header>
+  <p class="syn">顾承宴在苏记门口支起一张小桌，照着记忆学做桂花糕，一屉接一屉做坏，糊的塌的摆了十几屉，老街街坊围过来看热闹。卷帘门后的苏念看着他满手面粉还在揉，终于心软，推门出来尝了一口，说太甜了，顿了顿又低声说回家吧。顾承宴愣了一下，笑着收起小桌。两人并肩往家走，远处一辆车悄悄跟了上来。</p>
+  <div class="hk"><b>钩子</b><span>和好后回家的路上，那辆一直远远跟着的车里坐的是谁？</span></div>
+  <div class="hk"><b>悬念</b><span>跟车的人是谁派来的、要盯苏念还是顾承宴；苏念心软了，可婚前协议里互不动心的条款还在。</span></div>
+  <div class="meta"><i>S02</i><i>S09</i><i>C02</i><i>C01</i><i class="warn">人群</i><i class="warn">手部特写</i><i class="warn" title="两人戏为主：小桌前顾承宴正面、街坊只作虚焦背影；尝糕一场两人正反打；回家路上两人背影远景，跟车单独空镜。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-26">
+  <span class="num">26</span>
+  <header><b>第 26 集</b></header>
+  <p class="syn">和好后的小两居，顾承宴第一次正式下厨，苏念站在他身后握着他的手教他掂勺切菜，他一本正经地记笔记。饭桌上他状似随口地提起，那份婚前协议的条款可以重新谈。苏念低头扒饭装没听见，耳朵却红透了。夜里两人下楼扔垃圾，小区门口站着周子昂，手里攥着一张苏晴的孕检单，上面的日期对不上。</p>
+  <div class="hk"><b>钩子</b><span>周子昂拿着一张假孕检单堵上门来，他想从苏念这里要什么？</span></div>
+  <div class="hk"><b>悬念</b><span>苏晴假怀孕的事一旦败露，周家和苏晴会怎么反目；协议重新谈的话头被搁下了。</span></div>
+  <div class="meta"><i>S03</i><i>C01</i><i>C02</i><i>C05</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn" title="厨房与饭桌只有苏念、顾承宴两人，正反打与双人中景；周子昂只出现在集尾小区门口，单独一场，正面拍他与孕检单，苏念与顾承宴以背影过肩入画。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-27">
+  <span class="num">27</span>
+  <header><b>第 27 集</b><i class="bt">打脸</i></header>
+  <p class="syn">老街上，周子昂拦住苏念，说自己发现苏晴假怀孕骗了他，后悔当初退婚，拉着她的胳膊要复合。顾承宴从车上下来，把苏念护到身后，当着他的面打了一个电话，宣布终止周家公司在顾氏的全部分包。周子昂这才明白眼前这个打工的是谁，脸色煞白，扑通一声跪在地上求饶，被保安架着拖走。</p>
+  <div class="hk"><b>钩子</b><span>周子昂被拖走前喊出苏晴背后另有其人，那个人是谁？</span></div>
+  <div class="hk"><b>悬念</b><span>苏晴背后的同伙究竟有几个人；被断了生意的周家会不会狗急跳墙。</span></div>
+  <div class="meta"><i>S09</i><i>C05</i><i>C01</i><i>C02</i><i class="warn">肢体接触</i><i class="warn" title="纠缠段苏念正面、周子昂侧身拉扯；顾承宴下车后以他为正面，苏念在身后半侧，周子昂过肩；下跪与被拖走单拍周子昂，保安只露背影与手臂。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-28">
+  <span class="num">28</span>
+  <header><b>第 28 集</b></header>
+  <p class="syn">苏记一早开门，几位客人吃完点心没多久就上吐下泻，被救护车接走。卫生局的人随即赶到，当场贴了封条封店。网上流言炸开，唐果捧着手机一条条念骂苏记黑心的评论，苏念被网暴到不敢看。夜里她一个人在后厨清点原料想找原因，在糯米粉袋后面摸出一包从没见过的添加剂。</p>
+  <div class="hk"><b>钩子</b><span>这包不属于苏记的添加剂，是谁趁夜放进后厨的？</span></div>
+  <div class="hk"><b>悬念</b><span>投毒者如何进的铺子、背后是谁指使；苏记被封，老街拆迁会不会借机重启。</span></div>
+  <div class="meta"><i>S02</i><i>C01</i><i>C10</i><i class="warn">人群</i><i class="warn">手部特写</i></div>
+</article>
+<article class="ep" id="ep-29">
+  <span class="num">29</span>
+  <header><b>第 29 集</b><i class="bt major">反转</i></header>
+  <p class="syn">唐果翻出铺子门口的监控，凌晨三点有人撬开后门溜进后厨，正是拆迁办经理。唐果当场开直播把监控放给网友看，医院那边主治医生也拿出化验单，证实客人摄入的是外来添加剂，与苏记原料无关。直播间弹幕瞬间反转，苏记解封，拆迁办经理被警察押走。他上车前一直盯着街角停着的那辆车。</p>
+  <div class="hk"><b>钩子</b><span>拆迁办经理被押走时一直望着的那辆车，是二叔的吗？</span></div>
+  <div class="hk"><b>悬念</b><span>拆迁办经理会不会供出二叔；二叔一计不成，下一招会落在苏记还是顾承宴身上。</span></div>
+  <div class="meta"><i>S02</i><i>S07</i><i>C10</i><i>C01</i><i>C15</i><i>C13</i><i class="warn">人群</i><i class="warn">手部特写</i><i class="warn">肢体接触</i><i class="warn" title="分三场拍：铺子里唐果正面开直播、苏念侧坐，监控画面插入拆迁办经理；医院主治医生单独一场拿化验单说明；押走一场拆迁办经理正面，警察背影，苏念与唐果远景，不同框于医生。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-30">
+  <span class="num">30</span>
+  <header><b>第 30 集</b></header>
+  <p class="syn">全市美食大赛开放报名，苏念满怀期待回到铺子准备参赛，却发现外婆的铁皮点心盒锁扣被撬过，盒里的桂花糕秘方原件不翼而飞。她翻遍整个铺子一无所获。这时店里的电视正播着大赛报名现场，苏晴作为选手代表站在演播厅接受记者采访，笑着说要用独家桂花糕秘方参赛，夺下冠军。</p>
+  <div class="hk"><b>钩子</b><span>【付费卡点】苏晴对着镜头笑说，这个方子是她外婆传下来的——她偷走秘方，还要连外婆一起抢走吗？</span></div>
+  <div class="hk"><b>悬念</b><span>秘方是谁撬盒偷走的；苏晴拿着原件参赛，苏念还能拿什么证明方子是外婆的；外婆留下的东西是否只有秘方这一件。</span></div>
+  <div class="meta"><i>S10</i><i>S02</i><i>C01</i><i>C03</i><i>C17</i><i class="warn">手部特写</i><i class="warn">人群</i><i class="warn" title="两场无同框，分场拍：铺子里苏念单人，铁皮盒与电视画面作特写；演播厅里苏晴正面接受采访，记者以过肩背影和话筒入画，报名人群作虚焦背景。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-31">
+  <span class="num">31</span>
+  <header><b>第 31 集</b></header>
+  <p class="syn">苏念看着空了一半的铁皮盒，决定报名美食大赛，把外婆的桂花糕亲手赢回来，唐果当场报名做她的助手。顾承宴提出打个招呼让主办方关照，苏念一口回绝，说要堂堂正正地赢，让所有人看清谁才是苏记的传人。同一时刻，顾氏总部办公室里，顾远山笑着把一叠厚厚的现金推到大赛评委面前，评委犹豫片刻收下。</p>
+  <div class="hk"><b>钩子</b><span>收了钱的评委问二叔要怎么处理苏念，二叔会给出什么指令？</span></div>
+  <div class="hk"><b>悬念</b><span>被偷走的秘方原件此刻在苏晴手里，二叔为何对一场点心比赛如此上心，评委将在赛场上如何下手。</span></div>
+  <div class="meta"><i>S02</i><i>S04</i><i>C01</i><i>C10</i><i>C02</i><i>C04</i><i>C16</i><i class="warn">手部特写</i><i class="warn" title="分两场拍无交叉：S02 铺子场苏念、唐果、顾承宴三人，苏念正面居中，唐果侧身在后厨门口，顾承宴过肩带入；S04 办公室场顾远山正面、评委背影过肩，只拍推钱与收钱的反应。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-32">
+  <span class="num">32</span>
+  <header><b>第 32 集</b><i class="bt">打脸</i></header>
+  <p class="syn">美食大赛海选现场，选手挤满演播厅。苏晴摆出精致的网红点心，当众嘲笑苏念的手工点心土气，像菜市场摆摊的。苏念不接话，只把刚蒸好的桂花糕端上评审台，唐果在旁递盘。大屏公布成绩，苏念以海选第一晋级，苏晴压着最后一名线勉强过关，脸色铁青，周围选手窃窃私语。</p>
+  <div class="hk"><b>钩子</b><span>林薇薇以赞助商身份坐到评委席旁边，她要在接下来的比赛里做什么？</span></div>
+  <div class="hk"><b>悬念</b><span>收钱的评委在海选按兵不动，林薇薇与苏晴的联手才刚开始，苏晴手里的秘方还没亮出来。</span></div>
+  <div class="meta"><i>S10</i><i>C01</i><i>C03</i><i>C10</i><i>C16</i><i>C11</i><i class="warn">人群</i><i class="warn">手部特写</i><i class="warn" title="分三组机位：苏念与苏晴对峙用正反打，各自正面单人镜头，唐果在苏念身后虚焦；评审台一场评委正面、苏念背影过肩；林薇薇入座单独一条，评委席侧拍，选手群演只作背景虚化。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-33">
+  <span class="num">33</span>
+  <header><b>第 33 集</b></header>
+  <p class="syn">备赛的夜里，小两居的厨房灯一直亮到凌晨，顾承宴陪苏念一屉一屉地练，替她揉面、看火、记时间。苏念累得靠在他肩上睡着，他一动不敢动，最后轻轻把外套盖在她身上，低头看了她很久。另一边，苏记铺子的监控画面在深夜闪了一下，一个黑影撬开后门，溜进了原料间。</p>
+  <div class="hk"><b>钩子</b><span>深夜溜进苏记原料间的黑影是谁，他动了什么？</span></div>
+  <div class="hk"><b>悬念</b><span>协议上互不动心的条款还压在抽屉底，两人的距离越来越近却谁也没说破；苏记的原料已经被人盯上。</span></div>
+  <div class="meta"><i>S03</i><i>S02</i><i>C01</i><i>C02</i><i class="warn">肢体接触</i><i class="warn" title="两人同框，靠肩戏用双人中景加顾承宴单人特写；铺子监控画面为空景加黑影背影，不露脸，分场拍。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-34">
+  <span class="num">34</span>
+  <header><b>第 34 集</b></header>
+  <p class="syn">复赛开场，收了钱的评委专挑苏念点心的外形，说花样老旧上不了台面，林薇薇在赞助商席带头起哄，观众跟着嘘声一片。苏念当场捏出一道外婆传下的老式花样，讲清每一道褶子的来历，另外两位评委点头加分，她勉强晋级。唐果在台下长出一口气。半决赛前夜，苏念检查原料，没发现袋子里的糯米粉已被换成普通面粉。</p>
+  <div class="hk"><b>钩子</b><span>半决赛开锅那一刻，苏念才会发现原料被调包，她还能怎么做？</span></div>
+  <div class="hk"><b>悬念</b><span>调包的人与前夜溜进原料间的黑影是否同一人，评委和林薇薇的刁难还有多少后手。</span></div>
+  <div class="meta"><i>S10</i><i>C01</i><i>C16</i><i>C11</i><i>C10</i><i class="warn">人群</i><i class="warn">手部特写</i><i class="warn" title="评委刁难用评委正面加苏念背影过肩；林薇薇起哄单独拍赞助商席，观众嘘声用后排虚焦群演；苏念捏花样给手部与正脸交替；唐果台下反应单拍，四人不同时入画。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-35">
+  <span class="num">35</span>
+  <header><b>第 35 集</b><i class="bt">反转</i></header>
+  <p class="syn">半决赛开始，苏念打开原料袋，糯米粉变成了普通面粉，计时已经在走。唐果急得要找裁判，苏念按住她，决定临场改做外婆的老式酥饼，面粉起酥正合适。酥饼出炉层层起皮，香气压过全场，评委们尝后连连点头，苏念反超晋级决赛。后台，苏晴冲着林薇薇压低声音吼，说不是保证一定能拦住她吗。</p>
+  <div class="hk"><b>钩子</b><span>接连失手的苏晴和林薇薇，决赛会拿出什么更狠的招？</span></div>
+  <div class="hk"><b>悬念</b><span>原料调包的证据还没追查，收钱评委的票在关键时刻会投向哪边，苏晴手里的秘方要在决赛派上用场。</span></div>
+  <div class="meta"><i>S10</i><i>C01</i><i>C10</i><i>C16</i><i>C03</i><i>C11</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn">人群</i><i class="warn" title="分两场：赛台场苏念正面、唐果侧身半入画，评委品尝用评委正面加酥饼特写；后台场苏晴与林薇薇双人对峙，苏晴正面、林薇薇过肩，两组人不同框。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-36">
+  <span class="num">36</span>
+  <header><b>第 36 集</b></header>
+  <p class="syn">陈默把查到的转账记录送进总裁办，评委被收买证据确凿，顾承宴当场要揭发。晚上回到小两居，苏念摁住他的手机，说现在揭只会打草惊蛇，要留到决赛当着全场和镜头揭开。两人对着一张白纸写下计划，第一次像搭档一样并肩。另一边，顾氏董事会上，顾远山提出顾承宴利用赞助为妻子开后门，要求他立即回避。</p>
+  <div class="hk"><b>钩子</b><span>董事会逼顾承宴回避赞助，他会怎么接这一刀？</span></div>
+  <div class="hk"><b>悬念</b><span>二叔同时在赛场和董事会两头出手，他到底在怕苏念赢什么；决赛揭发的计划能否顺利进行。</span></div>
+  <div class="meta"><i>S04</i><i>S03</i><i>C02</i><i>C09</i><i>C01</i><i>C04</i><i class="warn">手部特写</i><i class="warn">人群</i><i class="warn" title="分三场：总裁办顾承宴正面、陈默过肩递文件；小两居苏念与顾承宴双人中景；董事会场顾远山正面发言，顾承宴侧影坐长桌另一端，其余董事背影虚化，不露脸。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-37">
+  <span class="num">37</span>
+  <header><b>第 37 集</b><i class="bt">撒糖</i></header>
+  <p class="syn">决赛预热，镜头对准选手，收钱的评委当众质疑苏念能一路晋级全靠顾氏赞助走后门，台下哗然。顾承宴从观众席站起，当场宣布顾氏退出本届赞助、本人全程回避，然后坐回观众席，只为她一个人鼓掌。记者的闪光灯疯狂闪成一片，苏念红了眼眶。后台，苏晴翻开偷来的秘方准备备料，却发现最后一页是空白的。</p>
+  <div class="hk"><b>钩子</b><span>秘方的最后一页为什么是空白，苏晴拿着残缺的方子要怎么比？</span></div>
+  <div class="hk"><b>悬念</b><span>外婆留下的最后一步究竟是什么，只有苏念知道；评委收钱的证据还捏在顾承宴手里没亮。</span></div>
+  <div class="meta"><i>S10</i><i>C01</i><i>C02</i><i>C16</i><i>C17</i><i>C03</i><i>C10</i><i class="warn">人群</i><i class="warn" title="分三组拍：评委质疑用评委正面加苏念背影过肩；顾承宴起身宣布从观众席侧拍，正面单人，观众与记者群演虚焦在前景，记者只露相机与背影；苏念与唐果台上反应双人镜头；后台苏晴单人一场，不与他人同框。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-38">
+  <span class="num">38</span>
+  <header><b>第 38 集</b></header>
+  <p class="syn">决赛第一轮，苏晴照着偷来的秘方做桂花糕，造型精致，色泽透亮，台下一片惊叹。苏念神色平静，做的竟是一模一样的桂花糕，唐果在旁看得直冒汗。评委当场打分，苏晴以明显的分差领先，苏晴得意地朝苏念扬起下巴。苏念不急不恼，看着她手里的糕，轻声问她桂花糕还差最后一步，知不知道是什么。</p>
+  <div class="hk"><b>钩子</b><span>苏念说的最后一步到底是什么，苏晴的高分桂花糕会不会露馅？</span></div>
+  <div class="hk"><b>悬念</b><span>秘方空白的那一页藏着外婆真正的手艺，苏晴领先的分数背后有收钱评委的手笔。</span></div>
+  <div class="meta"><i>S10</i><i>C01</i><i>C03</i><i>C16</i><i>C10</i><i class="warn">手部特写</i><i class="warn">人群</i><i class="warn" title="双赛台正反打：苏晴、苏念各自正面单人，对方以背影过肩入画；评委打分评委正面单拍；唐果反应单拍，观众群演只作背景声与虚焦。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-39">
+  <span class="num">39</span>
+  <header><b>第 39 集</b><i class="bt major">夺冠打脸</i></header>
+  <p class="syn">决赛终轮，苏念做出外婆那道没写进秘方的最后一步，桂花糕放凉依旧软糯回甘，苏晴的糕一凉就塌成一团。苏念夺冠，顾承宴在观众席起身鼓掌。记者围上评审台，收钱的评委扛不住镜头，当众崩溃承认收了钱。苏晴被当场取消资格，被工作人员拖下台时疯狂挣扎，冲着全场喊是二爷让她偷的。</p>
+  <div class="hk"><b>钩子</b><span>苏晴喊出的二爷是谁，他为何要偷一张点心秘方？</span></div>
+  <div class="hk"><b>悬念</b><span>二爷这个称呼第一次出现，和顾远山是什么关系；评委背后的金主还没被点名。</span></div>
+  <div class="meta"><i>S10</i><i>C01</i><i>C03</i><i>C16</i><i>C17</i><i>C02</i><i>C10</i><i class="warn">人群</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn" title="分四组拍：苏念与苏晴成品对比用正反打加糕点特写；顾承宴观众席起身单人正面，前景群演虚焦；评委认罪用评委正面、记者背影与话筒过肩；苏晴被拖下台用中远景，工作人员只露背影，唐果与苏念台上反应另拍。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-40">
+  <span class="num">40</span>
+  <header><b>第 40 集</b><i class="bt">揭秘</i></header>
+  <p class="syn">夺冠当晚，苏记铺子关了门，苏念把奖杯放在柜台上，一个人整理外婆的铁皮盒，手指摸到盒底有一层松动的夹层。她撬开夹层，里面躺着一张泛黄的旧照片：小时候的她扎着桂花发夹，牵着一个满脸是伤的少年站在铺子门口。苏念盯着少年的眉眼，越看越眼熟，慢慢把照片翻了过来。</p>
+  <div class="hk"><b>钩子</b><span>【付费卡点】照片背面是外婆的字，那天追来的人，叫他二爷——苏晴口中的二爷，竟然在十五年前就出现过？</span></div>
+  <div class="hk"><b>悬念</b><span>照片里满脸是伤的少年是谁，十五年前追他的二爷与指使苏晴偷秘方的是否同一人，外婆为何把照片藏进夹层。</span></div>
+  <div class="meta"><i>S02</i><i>C01</i><i class="warn">手部特写</i><i class="warn" title="单人戏，无同框；照片画面里的童年苏念与少年为静态旧照道具，不另拍。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-41">
+  <span class="num">41</span>
+  <header><b>第 41 集</b></header>
+  <p class="syn">夺冠当晚，苏念攥着铁皮盒夹层里的旧照片回到小两居，顾承宴不在。她推开从没进过的书房，在抽屉里看见一个旧相框，里面是同一个满脸是伤的少年，衣服和额角伤口都对得上。她手指发抖，把两张照片并排放在桌上，十五年前那个下午一下子清晰起来。门锁响了，顾承宴推门进来，看见她手里的两张照片。</p>
+  <div class="hk"><b>钩子</b><span>他看见她手里的两张照片，会承认自己就是那个少年吗？</span></div>
+  <div class="hk"><b>悬念</b><span>照片里的少年为何会在顾承宴的书房；外婆写下的二爷究竟是谁；当年那块桂花糕之后发生了什么。</span></div>
+  <div class="meta"><i>S03</i><i>C01</i><i>C02</i><i class="warn">手部特写</i></div>
+</article>
+<article class="ep" id="ep-42">
+  <span class="num">42</span>
+  <header><b>第 42 集</b><i class="bt">相认撒糖</i></header>
+  <p class="syn">顾承宴没有再瞒，承认自己就是照片里的少年。十四岁那年他被绑架，逃出来满身是伤躲进苏记，外婆把他藏在后厨，小苏念塞给他一块桂花糕，那是他十五年里尝到的唯一甜味。民政局那天，他一眼认出她发间的桂花发夹，才答应了结婚。苏念红着眼扑进他怀里。良久，她抬头问那天追来的二爷，是不是他二叔。</p>
+  <div class="hk"><b>钩子</b><span>那天追来的二爷，真的是顾承宴的亲二叔吗？</span></div>
+  <div class="hk"><b>悬念</b><span>二叔为何要绑架亲侄子；外婆当年护下少年后有没有被报复；苏念的心意还没正式说出口。</span></div>
+  <div class="meta"><i>S03</i><i>C01</i><i>C02</i><i class="warn">肢体接触</i><i class="warn">手部特写</i></div>
+</article>
+<article class="ep" id="ep-43">
+  <span class="num">43</span>
+  <header><b>第 43 集</b></header>
+  <p class="syn">顾承宴带苏念回老宅见奶奶。奶奶看着旧照片红了眼，证实当年报案时绑匪在勒索电话里提过二爷，人却一直没抓到。奶奶握着苏念的手道谢，说当年救下承宴的原来是苏家。二叔提着补品进门，目光扫过苏念手里的照片，笑容僵了一秒，寒暄几句便告辞。出了大门，他打给林薇薇，说明天的董事会提前。</p>
+  <div class="hk"><b>钩子</b><span>二叔认出了那张照片，提前召开的董事会要对顾承宴下什么手？</span></div>
+  <div class="hk"><b>悬念</b><span>二叔是否就是当年的二爷；他与林薇薇的联手底牌是什么；当年绑匪的下落。</span></div>
+  <div class="meta"><i>S05</i><i>C01</i><i>C02</i><i>C08</i><i>C04</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn" title="分两场拍。客厅场：奶奶坐沙发正面中景，苏念侧坐握手做双人中景，顾承宴立于后方用过肩带过；二叔进门时给二叔单独正面反应镜头，看照片僵笑用近景，其余三人转为背影与过肩。门外打电话场二叔单人单拍，林薇薇只出声不出镜。主画面同框不超过三人正面。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-44">
+  <span class="num">44</span>
+  <header><b>第 44 集</b><i class="bt major">反转</i></header>
+  <p class="syn">董事会上，二叔联合林薇薇家的股份发难，指责顾承宴为私情叫停老街项目，提议罢免。表决前一刻，苏念带着律师闯进会议室。律师当众出示拆迁合同签名的伪造鉴定，以及项目资金流进二叔私人账户的明细。满座董事哗然，二叔当场被停职，林薇薇家宣布撤股。二叔走出会议室，停在苏念面前，低声说她外婆当年也是这么不知死活。</p>
+  <div class="hk"><b>钩子</b><span>二叔一句外婆当年不知死活，外婆的死难道另有隐情？</span></div>
+  <div class="hk"><b>悬念</b><span>外婆的死与二叔有何关联；被停职的二叔会如何反扑；林薇薇撤股后的去向。</span></div>
+  <div class="meta"><i>S04</i><i>C01</i><i>C02</i><i>C04</i><i>C11</i><i>C19</i><i class="warn">人群</i><i class="warn">手部特写</i><i class="warn" title="分两场拍。会议室场：长桌两侧取对切，二叔与林薇薇同侧正面、顾承宴主位单独正面，苏念与律师从门口以背影入画再反打正面；董事群演做虚化背景与举手手部，不给脸。律师出示鉴定单独拍文件特写。走廊场仅二叔与苏念，双人过肩正反打。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-45">
+  <span class="num">45</span>
+  <header><b>第 45 集</b></header>
+  <p class="syn">苏建国病倒住院，苏念赶到病房。父亲拉着她的手第一次道歉，说这些年由着刘美琴欺负她、差点卖了外婆的铺子，是他没用，出院就和刘美琴离婚。苏念别过脸擦掉眼泪，替他掖好被角。入夜下起大雨，她回到苏记，门口站着一个浑身湿透的人，是苏晴，头发贴在脸上，手里死死攥着什么东西。</p>
+  <div class="hk"><b>钩子</b><span>一向和她作对的苏晴，为什么在雨夜湿透了找上门？</span></div>
+  <div class="hk"><b>悬念</b><span>苏晴手里攥着什么；她与二叔和周子昂之间出了什么事；苏建国能否真的与刘美琴了断。</span></div>
+  <div class="meta"><i>S07</i><i>S02</i><i>C01</i><i>C07</i><i>C03</i><i class="warn">雨戏</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn" title="三人分处两场，无同框，分场拍。病房场为苏念与苏建国父女双人戏，病床正面中景加握手近景；苏记门口场为苏念与苏晴双人，苏晴湿身正面中景，苏念用背影过肩带入。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-46">
+  <span class="num">46</span>
+  <header><b>第 46 集</b><i class="bt">倒戈</i></header>
+  <p class="syn">苏念把苏晴让进铺子，递上热毛巾。苏晴哭着说二叔拿到秘方就翻脸，周子昂也把她扔出了门，她什么都没有了。她掏出一支录音笔交给苏念，里面是二叔让她偷秘方的原话，还有一句要让那铺子和老太太一样消失。苏晴说这是她留的后手，现在只想还姐姐一个公道。苏念攥紧录音笔问老太太是谁，苏晴说，他提到了你外婆的死。</p>
+  <div class="hk"><b>钩子</b><span>外婆的死，难道是二叔一手造成的？</span></div>
+  <div class="hk"><b>悬念</b><span>外婆当年的真实死因；录音笔里还录了什么；苏晴这次倒戈是真心还是另有所图。</span></div>
+  <div class="meta"><i>S02</i><i>C01</i><i>C03</i><i class="warn">手部特写</i></div>
+</article>
+<article class="ep" id="ep-47">
+  <span class="num">47</span>
+  <header><b>第 47 集</b></header>
+  <p class="syn">苏念把录音笔交给顾承宴，两人在灯下反复听。他想立刻报警，她按住他的手，说单凭录音扳不倒二叔，要等找到当年的绑匪，人证物证一起出手。夜深，两人并肩坐在沙发上，契约一周年将近，他几次想提协议，她也欲言又止，最后谁都没开口。他回房后，苏念翻出婚前协议，在日历上圈出到期日，就在后天。</p>
+  <div class="hk"><b>钩子</b><span>协议后天就到期，两人都没说出口的话，还来得及说吗？</span></div>
+  <div class="hk"><b>悬念</b><span>当年绑匪身在何处；录音笔会不会被二叔察觉；协议到期后这段婚姻是续是散。</span></div>
+  <div class="meta"><i>S03</i><i>C01</i><i>C02</i><i class="warn">肢体接触</i><i class="warn">手部特写</i></div>
+</article>
+<article class="ep" id="ep-48">
+  <span class="num">48</span>
+  <header><b>第 48 集</b><i class="bt">虐心误会</i></header>
+  <p class="syn">协议到期前夜，苏念做好夜宵送到顾氏总部。总裁办的门虚掩着，她刚抬手要敲，听见顾承宴对陈默说，协议到期就结束，一天都不能多。她端着保温盒在门外站了很久，悄悄转身离开。回到小两居，她把衣服一件件叠进行李箱，把婚前协议摊在桌上，给他发去消息：明早九点，民政局，把手续办了。</p>
+  <div class="hk"><b>钩子</b><span>顾承宴口中的结束，真的是要和她离婚吗？</span></div>
+  <div class="hk"><b>悬念</b><span>顾承宴说要结束的到底是什么；他收到消息会作何反应；陈默似乎知道内情却没说。</span></div>
+  <div class="meta"><i>S04</i><i>S03</i><i>C01</i><i>C02</i><i>C09</i><i class="warn">手部特写</i><i class="warn" title="三人不同框，分场拍。总裁办内顾承宴与陈默双人，用门缝主观视角拍，只给侧脸和背影；门外苏念单人反应近景；小两居收拾行李为苏念独场。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-49">
+  <span class="num">49</span>
+  <header><b>第 49 集</b></header>
+  <p class="syn">第二天一早，苏念独自坐在民政局门口的长椅上，一年前她就是在这里问一个陌生人结不结婚。九点过了，十点过了，顾承宴没有来，电话也打不通。民政局工作人员认出她是当年闪婚的姑娘，给她倒了杯热水，问要不要再等等。苏念摩挲着结婚证说再等一会儿，心里越来越空。手机终于响了，屏幕上是陈默的名字。</p>
+  <div class="hk"><b>钩子</b><span>顾承宴为什么失约，陈默这通电话要告诉她什么？</span></div>
+  <div class="hk"><b>悬念</b><span>顾承宴失联的原因；他前夜那句结束的真意；二叔被停职后是否已经动手。</span></div>
+  <div class="meta"><i>S01</i><i>C01</i><i>C12</i><i class="warn">手部特写</i></div>
+</article>
+<article class="ep" id="ep-50">
+  <span class="num">50</span>
+  <header><b>第 50 集</b><i class="bt">危机</i></header>
+  <p class="syn">陈默在电话里声音发抖，说顾承宴来民政局的路上刹车失灵出了车祸，正在抢救。苏念赶到医院，手术室的灯一直亮着。陈默把车里找到的东西交给她，一个戒指盒，一份重新写好的婚书。她这才明白，他说的结束是结束契约，今天他是来重新求婚的。苏念抱着戒指盒蹲在走廊上痛哭。手术室门开，医生说病人可能醒不过来了。</p>
+  <div class="hk"><b>钩子</b><span>【付费卡点】顾承宴还能醒过来吗？那辆车的刹车，为什么偏偏在今天失灵？</span></div>
+  <div class="hk"><b>悬念</b><span>刹车失灵是否是二叔动的手；苏念还没来得及亲口说出喜欢；顾承宴倒下后集团与老街将落入谁手。</span></div>
+  <div class="meta"><i>S01</i><i>S07</i><i>C01</i><i>C09</i><i>C13</i><i class="warn">手部特写</i><i class="warn" title="分三场拍。民政局场苏念单人接电话，陈默在医院走廊接电话单拍，交叉剪辑；医院走廊陈默递戒指盒为双人过肩正反打；医生出场时苏念用背影过肩、正打医生，陈默侧后虚化，三人不同时给正面。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-51">
+  <span class="num">51</span>
+  <header><b>第 51 集</b></header>
+  <p class="syn">重症病房里，顾承宴插满管线一动不动。苏念握着他的手守了一整夜，把一年里没敢说的话全说出口，第一次承认她早就喜欢上了这个装成打工仔的男人。二叔捧着鲜花进门，红着眼眶嘘寒问暖，话锋一转却说集团不能一日无主，董事会正等他主持大局。苏念挡在床前冷脸送客。门刚合上，病床上那只手的手指轻轻动了一下。</p>
+  <div class="hk"><b>钩子</b><span>顾承宴的手指动了，他是真要醒了，还是苏念熬了一夜的错觉？</span></div>
+  <div class="hk"><b>悬念</b><span>二叔借探病试探伤情、急着接管集团；刹车失灵是否出自二叔之手还没有任何证据。</span></div>
+  <div class="meta"><i>S07</i><i>C01</i><i>C02</i><i>C04</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn" title="顾承宴全程卧床不动，作前景或床头虚化带过；苏念告白单独一场拍，苏念正面、顾承宴侧脸；二叔探病一场拍，苏念与二叔正反打，病床只露一角；手指特写单独补拍。共两场。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-52">
+  <span class="num">52</span>
+  <header><b>第 52 集</b><i class="bt">将计就计</i></header>
+  <p class="syn">深夜顾承宴醒来，第一句就是刹车被人动过。苏念又哭又笑，陈默连夜赶到。三人在病房里定计：封锁他已苏醒的消息，对外宣布他昏迷不醒，让二叔以为大局已定，放心接管集团，自己把马脚露出来。顾承宴握着苏念的手，说这一回换她陪他演戏。第二天医院走廊挤满记者，主治医生按计划宣布，病人陷入深度昏迷。</p>
+  <div class="hk"><b>钩子</b><span>假昏迷的消息放出去了，二叔会多快咬钩？</span></div>
+  <div class="hk"><b>悬念</b><span>动刹车的人还没查实；医院里有没有二叔的眼线能识破这场装病。</span></div>
+  <div class="meta"><i>S07</i><i>C01</i><i>C02</i><i>C09</i><i>C13</i><i>C17</i><i class="warn">肢体接触</i><i class="warn">人群</i><i class="warn" title="病房定计一场：苏念正面坐床边，顾承宴半卧侧面，陈默过肩背影入画；走廊发布另一场：主治医生正面单人，记者群只拍后脑、话筒与相机前景，不与主角同框。分两场拍。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-53">
+  <span class="num">53</span>
+  <header><b>第 53 集</b></header>
+  <p class="syn">顾承宴昏迷的消息一出，二叔以代理总裁身份坐进总裁办，椅子还没坐热就签下第一道命令：一周内强拆老街，苏记点心铺首当其冲。前些天刚被撤股的林薇薇提着礼盒上门，低头认错，愿拿林家的资源换顾氏未来的位子。二叔笑着收下。门一关，他站在落地窗前对着空荡的办公室低声说，大哥家的种，这次一个都不留。</p>
+  <div class="hk"><b>钩子</b><span>一周强拆令已下，苏念的铺子还撑得住几天？</span></div>
+  <div class="hk"><b>悬念</b><span>二叔口中的大哥家，暗示顾承宴父母当年之事另有隐情；林薇薇回头投靠是真心还是另有算盘。</span></div>
+  <div class="meta"><i>S04</i><i>C04</i><i>C11</i><i class="warn">手部特写</i></div>
+</article>
+<article class="ep" id="ep-54">
+  <span class="num">54</span>
+  <header><b>第 54 集</b><i class="bt">寻证</i></header>
+  <p class="syn">陈默顺着当年的报案记录摸到老街，认出巷口那个瘸腿修鞋匠就是十五年前的绑匪。他死不承认。苏念把他请进苏记，照外婆的方子蒸了一屉桂花糕，递过去一块。修鞋匠一口便红了眼，当年他逃出来饿了三天，是苏记的老太太塞给他一块一样的糕。他终于答应作证。修鞋摊对面，一辆车的车窗缓缓摇下，是二叔的人。</p>
+  <div class="hk"><b>钩子</b><span>车里那双眼睛盯上了证人，二叔会先下手吗？</span></div>
+  <div class="hk"><b>悬念</b><span>修鞋匠知道的二爷真相，以及外婆之死与当年绑架案的关联。</span></div>
+  <div class="meta"><i>S09</i><i>S02</i><i>C01</i><i>C09</i><i>C18</i><i class="warn">手部特写</i><i class="warn" title="老街一场：修鞋匠坐摊后正面，陈默侧身站立，两人对拍；苏记一场：修鞋匠正面，苏念侧面递糕，陈默门口背影；车窗摇下单独补一个空镜带人。分两场拍。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-55">
+  <span class="num">55</span>
+  <header><b>第 55 集</b></header>
+  <p class="syn">苏念陪修鞋匠去警局，刚出老街口，黑衣人推倒修鞋匠，把苏念拖上车。被拽进车门前，她把手伸进口袋按了一下。城郊废弃仓库里，苏念被绑在椅子上，二叔逼她交出苏晴给的录音笔，否则让她和她外婆一样消失。苏念咬定东西不在身上。二叔俯下身说，十五年前他在那间铺子门口跟丢了一个孩子，今天不会了。</p>
+  <div class="hk"><b>钩子</b><span>顾承宴还躺在病房装昏迷，谁能赶来救苏念？</span></div>
+  <div class="hk"><b>悬念</b><span>苏念口袋里按下的是什么；被推倒的修鞋匠能否脱身报信；外婆之死的真相。</span></div>
+  <div class="meta"><i>S09</i><i>S11</i><i>C01</i><i>C04</i><i>C18</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn" title="老街截人一场：苏念与修鞋匠正面，黑衣人只拍背影和拉扯动作；口袋按键手部特写单独拍；仓库一场：苏念被绑正面，二叔侧面与过肩，修鞋匠不在仓库。分两场拍，三人无同框于仓库。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-56">
+  <span class="num">56</span>
+  <header><b>第 56 集</b><i class="bt major">揭破</i></header>
+  <p class="syn">苏念故意激二叔，一句句引他亲口说出当年雇人绑架顾承宴、逼走外婆、伪签拆迁、动刹车的经过，口袋里的录音笔一直亮着红灯。二叔起疑要搜身，仓库大门被撞开，顾承宴带着警察和陈默冲进来，把苏念护在身后。修鞋匠当面指认二叔就是当年的二爷，录音与证词齐出，二叔被按倒戴上手铐。押走前他冷笑，你们以为林家就干净吗。</p>
+  <div class="hk"><b>钩子</b><span>二叔临走那句林家不干净，林薇薇还藏着什么？</span></div>
+  <div class="hk"><b>悬念</b><span>林家与当年旧案、刹车事故的牵连；外婆之死的完整经过还待录音全文揭开。</span></div>
+  <div class="meta"><i>S11</i><i>C01</i><i>C02</i><i>C04</i><i>C09</i><i>C18</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn">人群</i><i class="warn" title="拆三段：对峙段苏念正面、二叔侧面过肩，两人；破门段顾承宴正面护人，苏念在其身后半遮，陈默与警察背影入画；指认段修鞋匠正面，二叔过肩，警察只拍背影与手铐特写。分三场拍。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-57">
+  <span class="num">57</span>
+  <header><b>第 57 集</b></header>
+  <p class="syn">顾氏在酒店宴会厅开发布会，顾承宴现身，公布二叔伪签、买凶、谋害的全部证据，宣布复出。台下林薇薇想溜，被警察以涉案带走。记者爆出周家破产。苏建国在侧厅告诉苏念，他已和刘美琴离婚。苏念手机亮起，苏晴发来短信，说要离开这座城市重新开始。记者追问二人是不是契约婚姻，台上顾承宴看着苏念，没有回答。</p>
+  <div class="hk"><b>钩子</b><span>顾承宴为什么不回答，这段婚姻在他心里到底算不算数？</span></div>
+  <div class="hk"><b>悬念</b><span>协议到期之约被车祸打断，契约婚姻的最终答案悬而未决；苏晴此去是否真的放下。</span></div>
+  <div class="meta"><i>S08</i><i>C01</i><i>C02</i><i>C07</i><i>C09</i><i>C11</i><i>C17</i><i class="warn">人群</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn" title="拆四组：台上顾承宴正面单拍，陈默站台侧作过肩；林薇薇被带走一组，林薇薇正面、警察背影；侧厅苏建国与苏念两人对拍；记者群只拍后脑、举起的相机和话筒前景，苏念台下看台上用过肩。分四组拍。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-58">
+  <span class="num">58</span>
+  <header><b>第 58 集</b><i class="bt major">撒糖求婚</i></header>
+  <p class="syn">风波过后，苏记照常开门。苏念把那份被车祸拖过到期日的婚前协议放在柜台上，说当初签的是一年，今天该有个了结。顾承宴没看条款，当着她的面把协议撕成碎片，从身后拿出一盒自己做的桂花糕，这回一屉都没做坏。他单膝跪下，说那年她给的一块糕甜了他十五年，往后想换他给她做一辈子。苏念咬了一口，说太甜了，然后说好。</p>
+  <div class="hk"><b>钩子</b><span>求婚成了，奶奶憋了一年的婚礼要怎么办？</span></div>
+  <div class="hk"><b>悬念</b><span>二叔所说的林家旧账余波未平；外婆当年留下的东西是否还有没找到的。</span></div>
+  <div class="meta"><i>S02</i><i>C01</i><i>C02</i><i class="warn">肢体接触</i><i class="warn">手部特写</i></div>
+</article>
+<article class="ep" id="ep-59">
+  <span class="num">59</span>
+  <header><b>第 59 集</b></header>
+  <p class="syn">顾家老宅里，奶奶翻出压箱底的红绸和礼单，非要给两人补办婚礼，地方不选酒店，偏选老街。老街上，街坊们搬梯子挂灯笼，唐果架着手机直播，顾承宴亲手给苏记老招牌重新刷漆，苏念在下面扶着梯子。婚礼前夜，铺子门口多了一个没有署名的包裹，苏念拆开，里面是外婆年轻时的照片和一封信。</p>
+  <div class="hk"><b>钩子</b><span>匿名包裹是谁寄来的，那封信里写了什么？</span></div>
+  <div class="hk"><b>悬念</b><span>寄件人的身份；外婆年轻时的往事与苏记的来历。</span></div>
+  <div class="meta"><i>S05</i><i>S09</i><i>C01</i><i>C02</i><i>C08</i><i>C10</i><i class="warn">人群</i><i class="warn">手部特写</i><i class="warn" title="老宅一场：奶奶正面，苏念与顾承宴并肩侧面；老街一场：顾承宴梯上刷漆正面，苏念梯下背影，唐果直播单独拍，街坊远景虚化；拆包裹苏念单人一场。分三场拍。">同框拆解 ✓</i></div>
+</article>
+<article class="ep" id="ep-60">
+  <span class="num">60</span>
+  <header><b>第 60 集</b><i class="bt">圆满</i></header>
+  <p class="syn">信是苏晴寄来的，她回老家翻出外婆当年的手写菜谱，物归原主。老街婚礼当天，苏记招牌挂在街心，奶奶和苏建国坐主桌，唐果和陈默当伴娘伴郎，顾承宴牵着苏念走过整条老街。一年后苏记第二家店开张，两人又走进民政局补拍结婚照，她发间别着那支桂花发夹。顾承宴低声问下个周年想要什么，苏念把他的手放在自己小腹上。</p>
+  <div class="hk"><b>钩子</b><span>苏念小腹里，是不是已经有了苏记的第四代传人？</span></div>
+  <div class="hk"><b>悬念</b><span>新生命的到来留白；远走的苏晴是否还会回到老街。</span></div>
+  <div class="meta"><i>S09</i><i>S01</i><i>C01</i><i>C02</i><i>C07</i><i>C08</i><i>C09</i><i>C10</i><i>C12</i><i class="warn">人群</i><i class="warn">肢体接触</i><i class="warn">手部特写</i><i class="warn" title="婚礼拆四组：新人牵手走街正面跟拍，宾客与街坊只拍背影列队；主桌奶奶与苏建国两人同框；唐果与陈默伴娘伴郎单组；民政局尾声为另一场，苏念与顾承宴正面，民政局工作人员过肩拍照。分两场四组拍。">同框拆解 ✓</i></div>
+</article>
+    </div>
+    <button class="epsmore">▾ 展开全部 60 集</button>
+  </div>
+</section>
+
+<section id="sec-scenes">
+  <div class="sec-h"><span class="no">03</span><h2>场景概览</h2><span class="note">右上 = 出现集</span></div>
+  <div class="scenes">
+<article class="scard">
+  <span class="snum">1 · 49 · 50 · 60</span>
+  <h3><span class="id">S01</span>民政局<span class="badge">主场景</span></h3>
+  <div class="strip"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i></div>
+  <div class="srow"><b>承载爽点</b><span>闪婚反杀 · 危机 · 圆满</span></div>
+  <div class="srow"><b>出场角色</b><i>C01</i><i>C05</i><i>C03</i><i>C02</i><i>C12</i><i>C09</i><i>C13</i><i>C07</i><i>C08</i><i>C10</i></div>
+</article>
+<article class="scard">
+  <span class="snum">21 集</span>
+  <h3><span class="id">S02</span>苏记点心铺<span class="badge">主场景</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class="on"></i><i class=""></i><i class="on"></i><i class=""></i><i class="on"></i><i class="on"></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>打脸 ×2 · 护妻 · 真相澄清 · 追妻撒糖 · 反转 · 揭秘 · 倒戈 · 寻证 · 撒糖求婚</span></div>
+  <div class="srow"><b>出场角色</b><i>C06</i><i>C03</i><i>C01</i><i>C15</i><i>C02</i><i>C10</i><i>C05</i><i>C08</i><i>C11</i><i>C09</i><i>C19</i><i>C07</i><i>C13</i><i>C17</i><i>C04</i><i>C16</i><i>C18</i></div>
+</article>
+<article class="scard">
+  <span class="snum">12 集</span>
+  <h3><span class="id">S03</span>小两居（顾承宴租的伪装公寓）<span class="badge">主场景</span></h3>
+  <div class="strip"><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>撒糖 · 相认撒糖 · 虐心误会</span></div>
+  <div class="srow"><b>出场角色</b><i>C02</i><i>C01</i><i>C09</i><i>C08</i><i>C04</i><i>C05</i></div>
+</article>
+<article class="scard">
+  <span class="snum">7 集</span>
+  <h3><span class="id">S04</span>顾氏集团总部（总裁办 / 会议室）<span class="badge">主场景</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>反转 ×2 · 护妻 · 虐心误会</span></div>
+  <div class="srow"><b>出场角色</b><i>C02</i><i>C09</i><i>C04</i><i>C01</i><i>C10</i><i>C16</i><i>C11</i><i>C19</i></div>
+</article>
+<article class="scard">
+  <span class="snum">17 · 43 · 59</span>
+  <h3><span class="id">S05</span>顾家老宅<span class="badge">主场景</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>—</span></div>
+  <div class="srow"><b>出场角色</b><i>C08</i><i>C04</i><i>C02</i><i>C01</i><i>C10</i></div>
+</article>
+<article class="scard">
+  <span class="snum">7 · 24</span>
+  <h3><span class="id">S06</span>苏家客厅<span class="badge">主场景</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>打脸</span></div>
+  <div class="srow"><b>出场角色</b><i>C07</i><i>C06</i><i>C03</i><i>C05</i><i>C01</i><i>C02</i></div>
+</article>
+<article class="scard">
+  <span class="snum">8 集</span>
+  <h3><span class="id">S07</span>医院病房<span class="badge">主场景</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>长辈认可 · 反转 · 危机 · 将计就计</span></div>
+  <div class="srow"><b>出场角色</b><i>C01</i><i>C02</i><i>C08</i><i>C13</i><i>C15</i><i>C10</i><i>C03</i><i>C07</i><i>C09</i><i>C04</i><i>C17</i></div>
+</article>
+<article class="scard">
+  <span class="snum">5 集</span>
+  <h3><span class="id">S08</span>酒店宴会厅<span class="badge">主场景</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>打脸 · 反转 · 身份揭破</span></div>
+  <div class="srow"><b>出场角色</b><i>C03</i><i>C05</i><i>C01</i><i>C02</i><i>C14</i><i>C08</i><i>C11</i><i>C07</i><i>C09</i><i>C17</i></div>
+</article>
+<article class="scard">
+  <span class="snum">9 集</span>
+  <h3><span class="id">S09</span>老街<span class="badge">主场景</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class="on"></i></div>
+  <div class="srow"><b>承载爽点</b><span>护妻 · 追妻撒糖 · 打脸 · 寻证 · 圆满</span></div>
+  <div class="srow"><b>出场角色</b><i>C15</i><i>C01</i><i>C02</i><i>C03</i><i>C10</i><i>C11</i><i>C05</i><i>C09</i><i>C18</i><i>C04</i><i>C08</i><i>C07</i><i>C12</i></div>
+</article>
+<article class="scard">
+  <span class="snum">7 集</span>
+  <h3><span class="id">S10</span>美食大赛演播厅<span class="badge">主场景</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class="on"></i><i class=""></i><i class="on"></i><i class="on"></i><i class=""></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>打脸 · 反转 · 撒糖 · 夺冠打脸</span></div>
+  <div class="srow"><b>出场角色</b><i>C01</i><i>C03</i><i>C17</i><i>C10</i><i>C16</i><i>C11</i><i>C02</i></div>
+</article>
+<article class="scard">
+  <span class="snum">55–56</span>
+  <h3><span class="id">S11</span>废弃仓库<span class="badge once">一次性</span></h3>
+  <div class="strip"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on lt"></i><i class="on lt"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="srow"><b>承载爽点</b><span>揭破</span></div>
+  <div class="srow"><b>复用方案</b><span class="reuse">复用老街夜景资产的砖墙与路灯，改为城郊仓库内景；夜间冷光，铁门与旧货架两件新增陈设</span></div>
+</article>
+  </div>
+</section>
+
+<section id="sec-decisions">
+  <div class="sec-h"><span class="no">04</span><h2>关键决策</h2><span class="note">拍板过的三件事，落进纸面</span></div>
+  <div class="dec3">
+  <div class="dcol">
+    <h3 class="sub">砍了哪条线</h3>
+    <ul class="dlist"><li><b>唐果与陈默的欢喜冤家感情线</b><small>九十秒一集装不下第二对 CP，两人只保留功能戏份，避免稀释主 CP 糖分</small></li><li><b>苏念出国进修三年的事业线</b><small>时间跳跃打断契约一年的倒计时，事业高光由美食大赛夺冠承担</small></li><li><b>顾承宴母亲车祸旧案与大房二房三十年恩怨</b><small>与十五年前绑架案功能重叠，二叔的罪只保留绑架与伪签强拆两条，观众记得住</small></li><li><b>周子昂破产后黑化跟踪的复仇线</b><small>反派梯队已有二叔压轴，周子昂在第 27 集被打脸出局即可，再黑化抢戏</small></li><li><b>苏晴的网红经纪公司与流量造假行业线</b><small>行业戏需要新场景新角色，性价比低，苏晴的转变改由被二叔利用后倒戈承担</small></li><li><b>外婆与顾老夫人年轻时是闺中好友的往事</b><small>巧合叠巧合会削弱十五年前救人的分量，奶奶只保留一口吃出当年味道</small></li></ul>
+    <p class="dnote seal">这意味着：全剧只有一条主线（契约婚姻从假到真）和一条副线（守住苏记、扳倒二叔），终点是老街补办婚礼，不出国、不追溯上一代恩怨。</p>
+  </div>
+  <div class="dcol">
+    <h3 class="sub">合了哪些人</h3>
+    <p class="dhead">19 个角色位（主角组 4 · 重要配角 7 · 功能性 8）</p>
+    <p class="dhead">主角组：苏念、顾承宴、苏晴、顾远山</p>
+    <ul class="dlist"><li><b>林薇薇吸收「顾家安排的联姻对象」与「董事会股东代表」两个功能</b><small>同一个情敌兼二叔盟友，不需要两张脸</small></li><li><b>拆迁办经理兼任二叔派去老街闹事的现场执行人</b><small>强拆戏和闹事戏都由他出面，少一个功能角色</small></li><li><b>酒店经理贯穿订婚宴、寿宴、发布会三场宴会厅戏</b><small>他对顾承宴的态度就是马甲的温度计，一张脸复用三次</small></li></ul>
+    <p class="dnote seal">主角组定为苏念、顾承宴、苏晴、顾远山四人：苏念与顾承宴有完整的感情弧，苏晴有从抢夺到倒戈的转变弧，顾远山是贯穿始终的幕后黑手。</p>
+  </div>
+  <div class="dcol">
+    <h3 class="sub">大爆点落在第几集</h3>
+    <ul class="dmaj"><li><i>ep9</i><span><b>打脸</b> 酒店经理对顾承宴毕恭毕敬调出监控，戒指是…</span><em>首个</em></li><li><i>ep19</i><span><b>反转</b> 奶奶亮出真镯，碎的是苏晴准备的假货，两人…</span></li><li><i>ep20</i><span><b>身份揭破</b> 走上台的是苏念的契约丈夫，她手里的蛋糕掉…</span></li><li><i>ep29</i><span><b>反转</b> 唐果直播放出监控，投毒的是二叔的人，苏记…</span></li><li><i>ep39</i><span><b>夺冠打脸</b> 苏晴做不出外婆的最后一步，苏念夺冠，评委…</span></li><li><i>ep44</i><span><b>反转</b> 苏念送来伪签拆迁合同的鉴定，二叔当场被停…</span></li><li><i>ep56</i><span><b>揭破</b> 顾承宴带警察赶到，录音与绑匪证词齐出，二…</span></li><li><i>ep58</i><span><b>撒糖求婚</b> 顾承宴当面撕掉协议，用一盒桂花糕重新求婚</span><em>终局</em></li></ul>
+  </div>
+</div>
+</section>
+
+<section id="sec-matrix">
+  <div class="sec-h"><span class="no">05</span><h2>每集调度矩阵</h2><span class="note">一列 = 这一集要谁、在哪拍</span></div>
+  <div class="matrix" style="--cw:16px">
+  <table>
+    <tr><th>角色 / 场景 / 道具</th><th>层级</th><th class="ep-h">1</th><th class="ep-h">2</th><th class="ep-h">3</th><th class="ep-h">4</th><th class="ep-h">5</th><th class="ep-h">6</th><th class="ep-h">7</th><th class="ep-h">8</th><th class="ep-h">9</th><th class="ep-h">10</th><th class="ep-h">11</th><th class="ep-h">12</th><th class="ep-h">13</th><th class="ep-h">14</th><th class="ep-h">15</th><th class="ep-h">16</th><th class="ep-h">17</th><th class="ep-h">18</th><th class="ep-h">19</th><th class="ep-h">20</th><th class="ep-h">21</th><th class="ep-h">22</th><th class="ep-h">23</th><th class="ep-h">24</th><th class="ep-h">25</th><th class="ep-h">26</th><th class="ep-h">27</th><th class="ep-h">28</th><th class="ep-h">29</th><th class="ep-h">30</th><th class="ep-h">31</th><th class="ep-h">32</th><th class="ep-h">33</th><th class="ep-h">34</th><th class="ep-h">35</th><th class="ep-h">36</th><th class="ep-h">37</th><th class="ep-h">38</th><th class="ep-h">39</th><th class="ep-h">40</th><th class="ep-h">41</th><th class="ep-h">42</th><th class="ep-h">43</th><th class="ep-h">44</th><th class="ep-h">45</th><th class="ep-h">46</th><th class="ep-h">47</th><th class="ep-h">48</th><th class="ep-h">49</th><th class="ep-h">50</th><th class="ep-h">51</th><th class="ep-h">52</th><th class="ep-h">53</th><th class="ep-h">54</th><th class="ep-h">55</th><th class="ep-h">56</th><th class="ep-h">57</th><th class="ep-h">58</th><th class="ep-h">59</th><th class="ep-h">60</th><th>合计</th></tr>
+    <tr><td class="name">苏念</td><td class="tier">主角组</td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="n">58</td></tr>
+<tr><td class="name">顾承宴</td><td class="tier">主角组</td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="n">39</td></tr>
+<tr><td class="name">苏晴</td><td class="tier">主角组</td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">19</td></tr>
+<tr><td class="name">顾远山</td><td class="tier">主角组</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">11</td></tr>
+<tr><td class="name">周子昂</td><td class="tier">重要配角</td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">6</td></tr>
+<tr><td class="name">刘美琴</td><td class="tier">重要配角</td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">3</td></tr>
+<tr><td class="name">苏建国</td><td class="tier">重要配角</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="n">5</td></tr>
+<tr><td class="name">顾老夫人</td><td class="tier">重要配角</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="n">10</td></tr>
+<tr><td class="name">陈默</td><td class="tier">重要配角</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="n">12</td></tr>
+<tr><td class="name">唐果</td><td class="tier">重要配角</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="n">14</td></tr>
+<tr><td class="name">林薇薇</td><td class="tier">重要配角</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">10</td></tr>
+<tr><td class="name">民政局工作人员</td><td class="tier">功能性角色</td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="n">3</td></tr>
+<tr><td class="name">主治医生</td><td class="tier">功能性角色</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">4</td></tr>
+<tr><td class="name">酒店经理</td><td class="tier">功能性角色</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">3</td></tr>
+<tr><td class="name">拆迁办经理</td><td class="tier">功能性角色</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">4</td></tr>
+<tr><td class="name">大赛评委</td><td class="tier">功能性角色</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">7</td></tr>
+<tr><td class="name">记者</td><td class="tier">功能性角色</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">5</td></tr>
+<tr><td class="name">当年绑匪</td><td class="tier">功能性角色</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc on"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">3</td></tr>
+<tr><td class="name">律师</td><td class="tier">功能性角色</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">2</td></tr>
+<tr class="div"><td colspan="63">场　景</td></tr>
+<tr><td class="name">民政局</td><td class="tier">主场景</td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="n">4</td></tr>
+<tr><td class="name">苏记点心铺</td><td class="tier">主场景</td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="n">21</td></tr>
+<tr><td class="name">小两居（顾承宴租的伪装公寓）</td><td class="tier">主场景</td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">12</td></tr>
+<tr><td class="name">顾氏集团总部（总裁办 / 会议室）</td><td class="tier">主场景</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">7</td></tr>
+<tr><td class="name">顾家老宅</td><td class="tier">主场景</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="n">3</td></tr>
+<tr><td class="name">苏家客厅</td><td class="tier">主场景</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">2</td></tr>
+<tr><td class="name">医院病房</td><td class="tier">主场景</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">8</td></tr>
+<tr><td class="name">酒店宴会厅</td><td class="tier">主场景</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">5</td></tr>
+<tr><td class="name">老街</td><td class="tier">主场景</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="n">9</td></tr>
+<tr><td class="name">美食大赛演播厅</td><td class="tier">主场景</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">7</td></tr>
+<tr><td class="name">废弃仓库</td><td class="tier">一次性</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on sc"></td><td class="mc on sc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">2</td></tr>
+<tr class="div"><td colspan="63">道　具</td></tr>
+<tr><td class="name">结婚证</td><td class="tier">B01、B08</td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="n">6</td></tr>
+<tr><td class="name">婚前协议</td><td class="tier">B09、B25、B30</td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="n">6</td></tr>
+<tr><td class="name">外婆的铁皮点心盒</td><td class="tier">B02、B20、B21、B22</td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">9</td></tr>
+<tr><td class="name">顾家传家玉镯</td><td class="tier">B03、B11</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">4</td></tr>
+<tr><td class="name">录音笔</td><td class="tier">B24、B29</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">4</td></tr>
+<tr><td class="name">拆迁合同</td><td class="tier">B07、B13、B23</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="n">5</td></tr>
+<tr><td class="name">苏记老招牌</td><td class="tier">B04、B31</td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc"></td><td class="mc on pp"></td><td class="mc on pp"></td><td class="n">3</td></tr>
+  </table>
+  
+</div>
+</section>
+
+<section id="sec-plan">
+  <div class="sec-h"><span class="no">06</span><h2>资产量折算</h2><span class="note">按档自动折算 · 不让模型写</span></div>
+  <div class="plan">
+  <table><thead><tr><th>层级</th><th>人数</th><th>角色</th><th>资产量</th></tr></thead>
+<tbody><tr><td>主角组</td><td>4</td><td>苏念、顾承宴、苏晴、顾远山</td><td>全套角色设定图 + 逐镜一致性核对</td></tr>
+<tr><td>重要配角</td><td>7</td><td>周子昂、刘美琴、苏建国、顾老夫人、陈默、唐果、林薇薇</td><td>半身参考图，关键戏核对</td></tr>
+<tr><td>功能性角色</td><td>8</td><td>民政局工作人员、主治医生、酒店经理、拆迁办经理、大赛评委、记者、当年绑匪、律师</td><td>提示词直出，松散一致即可</td></tr>
+<tr><td>场景环境</td><td>10</td><td>民政局、苏记点心铺、小两居（顾承宴租的伪装公寓）、顾氏集团总部（总裁办 / 会议室）、顾家老宅、苏家客厅、医院病房、酒店宴会厅、老街、美食大赛演播厅</td><td>主场景各一套环境参考 + 光照基调</td></tr>
+<tr><td>叙事道具</td><td>7</td><td>结婚证、婚前协议、外婆的铁皮点心盒、顾家传家玉镯、录音笔、拆迁合同、苏记老招牌</td><td>每件一套白底设定图 + 状态变体，跨集要长一样</td></tr>
+<tr><td>生成难点</td><td>115</td><td>肢体接触 ×32（第 1、3、4、6、9、10、12、14、15、16、18、19、21、22、24、26、27、29、33、35、39、42、43、45、47、51、52、55、56、57、58、60 集） · 人群 ×27（第 1、6、9、10、12、15、16、18、19、20、25、28、29、30、32、34、35、36、37、38、39、44、52、56、57、59、60 集） · 手部特写 ×55（第 1、2、3、4、5、6、7、8、9、10、11、12、13、14、15、16、17、18、19、20、21、22、23、25、26、28、29、30、31、32、34、35、36、38、39、40、41、42、43、44、45、46、47、48、49、50、51、53、54、55、56、57、58、59、60 集） · 雨戏 ×1（第 45 集）</td><td>拍摄前逐条过预警清单</td></tr></tbody></table>
+  </div>
+</section>
+
+<section id="sec-characters">
+  <div class="sec-h"><span class="no">07</span><h2>人物表</h2></div>
+  <table><thead><tr><th>ID</th><th>角色</th><th>层级</th><th>定位</th><th>人物弧</th><th>← 改动记录</th></tr></thead>
+<tbody><tr><td>C01</td><td>苏念</td><td>主角组</td><td>女主·苏记点心铺第三代传人</td><td>从被退婚后赌气闪婚、守着契约不敢动心，到识破身份、亲手扳倒二叔，主动握住这段婚姻</td><td>原创</td></tr>
+<tr><td>C02</td><td>顾承宴</td><td>主角组</td><td>男主·顾氏集团总裁，隐藏身份闪婚</td><td>从为奶奶应付领证、尝不出味道的冷面总裁，到撕掉婚前协议、在老街重新求婚</td><td>原创</td></tr>
+<tr><td>C03</td><td>苏晴</td><td>主角组</td><td>前期主反派·苏念的继妹</td><td>从处处抢姐姐的东西、与林薇薇二叔结盟，到被利用后倒戈交出录音笔，离开重新开始</td><td>原创</td></tr>
+<tr><td>C04</td><td>顾远山</td><td>主角组</td><td>幕后主反派·顾承宴的二叔</td><td>笑面虎步步为营：伪签强拆、董事会夺权、制造车祸，最终在仓库里重演十五年前的绑架并落网</td><td>原创</td></tr>
+<tr><td>C05</td><td>周子昂</td><td>重要配角</td><td>渣前任·周家少爷</td><td>当众退婚的得意，到发现苏晴骗了他、回头纠缠苏念，最后被顾氏断掉合作出局</td><td>原创</td></tr>
+<tr><td>C06</td><td>刘美琴</td><td>重要配角</td><td>继母</td><td>一心卖铺子给女儿换嫁妆，屡次算计落空，最后被苏建国离婚出门</td><td>原创</td></tr>
+<tr><td>C07</td><td>苏建国</td><td>重要配角</td><td>苏念的父亲</td><td>被妻子拿捏、对女儿亏欠，终于站出来护女并与刘美琴决裂</td><td>原创</td></tr>
+<tr><td>C08</td><td>顾老夫人</td><td>重要配角</td><td>顾承宴的奶奶，CP 头号助攻</td><td>以手术逼婚，一口吃出当年的桂花糕，此后始终为孙媳妇站台</td><td>原创</td></tr>
+<tr><td>C09</td><td>陈默</td><td>重要配角</td><td>顾承宴的特助，马甲维护员</td><td>从手忙脚乱帮总裁演穷，到找出当年绑匪、成为扳倒二叔的关键人</td><td>原创；合并：唐果陈默感情线砍掉后只留功能</td></tr>
+<tr><td>C10</td><td>唐果</td><td>重要配角</td><td>苏念的闺蜜，美食博主</td><td>最早怀疑顾承宴不像打工的，大赛上陪苏念打下手，用直播替她澄清</td><td>原创</td></tr>
+<tr><td>C11</td><td>林薇薇</td><td>重要配角</td><td>情敌·顾家世交千金</td><td>自称未婚妻上门挑衅、设玉镯局、带股份投靠二叔，董事会失败后身败名裂</td><td>原创；合并：联姻对象 + 股东代表</td></tr>
+<tr><td>C12</td><td>民政局工作人员</td><td>功能性角色</td><td>见证闪婚与离婚预约</td><td>—</td><td>原创</td></tr>
+<tr><td>C13</td><td>主治医生</td><td>功能性角色</td><td>奶奶与顾承宴的医生</td><td>—</td><td>原创</td></tr>
+<tr><td>C14</td><td>酒店经理</td><td>功能性角色</td><td>顾氏旗下酒店经理，马甲温度计</td><td>—</td><td>原创；合并：订婚宴、寿宴、发布会三场的酒店方</td></tr>
+<tr><td>C15</td><td>拆迁办经理</td><td>功能性角色</td><td>二叔的强拆执行人</td><td>—</td><td>原创；合并：老街闹事的现场执行人</td></tr>
+<tr><td>C16</td><td>大赛评委</td><td>功能性角色</td><td>美食大赛主评委，被二叔收买又倒戈</td><td>—</td><td>原创</td></tr>
+<tr><td>C17</td><td>记者</td><td>功能性角色</td><td>发布会与赛场的媒体</td><td>—</td><td>原创</td></tr>
+<tr><td>C18</td><td>当年绑匪</td><td>功能性角色</td><td>十五年前被二叔雇用的绑匪，关键证人</td><td>—</td><td>原创</td></tr>
+<tr><td>C19</td><td>律师</td><td>功能性角色</td><td>顾承宴的律师，处理遗嘱、伪签与报案</td><td>—</td><td>原创</td></tr></tbody></table>
+</section>
+
+<section id="sec-adaptation">
+  <div class="sec-h"><span class="no">08</span><h2>改编说明</h2><span class="note">为什么这么改 · 附原文依据</span></div>
+  <p class="core">被当众退婚的点心铺女孩随手闪婚了顾氏总裁，一年契约从互不动心过成非你不可，她守着的老铺子藏着他十五年前活下来的秘密。</p>
+  <h3 class="sub">保留</h3><table><thead><tr><th>内容</th><th>理由</th><th>原文依据</th></tr></thead>
+<tbody><tr><td>民政局门口当众退婚、当场闪婚的开局</td><td>第 1 集钩子：羞辱和翻盘在九十秒内完成，标准先婚后爱起手</td><td><q>苏念转身问长椅上的陌生男人：你结婚吗？顾承宴说：结。</q></td></tr>
+<tr><td>顾承宴隐藏身份、租小两居扮打工人</td><td>马甲是前二十集甜宠和打脸的发动机，掉马即第 20 集付费卡点</td><td><q>顾承宴自称顾氏的普通项目经理，陈默连夜租下一套小两居。</q></td></tr>
+<tr><td>外婆的铁皮点心盒（遗嘱 + 秘方 + 旧照片）</td><td>一件道具串起护铺、比赛、十五年前旧案三段，前后呼应</td><td><q>外婆临终把铺子直接留给了她，遗嘱和桂花糕秘方锁在一只铁皮点心盒里。</q></td></tr>
+<tr><td>十五年前点心铺救下少年的旧缘</td><td>把甜宠的宿命感和反派的罪证拧成同一根绳，终局有分量</td><td><q>照片背后外婆写着：那天追来的人，叫他二爷。</q></td></tr>
+<tr><td>撕婚前协议、桂花糕求婚的结局</td><td>契约婚姻的标准收束，道具闭环</td><td><q>顾承宴当着她的面撕了婚前协议，用一盒桂花糕重新求婚，在老街补办婚礼。</q></td></tr></tbody></table>
+  <h3 class="sub">砍掉</h3><table><thead><tr><th>内容</th><th>理由</th></tr></thead>
+<tbody><tr><td>唐果与陈默的欢喜冤家感情线</td><td>九十秒一集装不下第二对 CP，两人只保留功能戏份，避免稀释主 CP 糖分</td></tr>
+<tr><td>苏念出国进修三年的事业线</td><td>时间跳跃打断契约一年的倒计时，事业高光由美食大赛夺冠承担</td></tr>
+<tr><td>顾承宴母亲车祸旧案与大房二房三十年恩怨</td><td>与十五年前绑架案功能重叠，二叔的罪只保留绑架与伪签强拆两条，观众记得住</td></tr>
+<tr><td>周子昂破产后黑化跟踪的复仇线</td><td>反派梯队已有二叔压轴，周子昂在第 27 集被打脸出局即可，再黑化抢戏</td></tr>
+<tr><td>苏晴的网红经纪公司与流量造假行业线</td><td>行业戏需要新场景新角色，性价比低，苏晴的转变改由被二叔利用后倒戈承担</td></tr>
+<tr><td>外婆与顾老夫人年轻时是闺中好友的往事</td><td>巧合叠巧合会削弱十五年前救人的分量，奶奶只保留一口吃出当年味道</td></tr></tbody></table>
+  <h3 class="sub">合并</h3><table><thead><tr><th>内容</th><th>理由</th></tr></thead>
+<tbody><tr><td>林薇薇吸收「顾家安排的联姻对象」与「董事会股东代表」两个功能</td><td>同一个情敌兼二叔盟友，不需要两张脸</td></tr>
+<tr><td>拆迁办经理兼任二叔派去老街闹事的现场执行人</td><td>强拆戏和闹事戏都由他出面，少一个功能角色</td></tr>
+<tr><td>酒店经理贯穿订婚宴、寿宴、发布会三场宴会厅戏</td><td>他对顾承宴的态度就是马甲的温度计，一张脸复用三次</td></tr></tbody></table>
+  <h3 class="sub">风险与对策</h3><table><thead><tr><th>内容</th><th>对策</th></tr></thead>
+<tbody><tr><td>马甲戏拖太久观众会烦</td><td>第 20 集掉马，之后转追妻与联手对敌，马甲戏不超过全剧三分之一</td></tr>
+<tr><td>女频打脸集中在前段，后段变成商战闷戏</td><td>后段每三集至少一次撒糖或护妻，董事会戏只给结果不给过程</td></tr>
+<tr><td>九十秒一集信息密度高，人物多容易乱</td><td>每集主戏不超过三人同框，配角按集轮换出场</td></tr>
+<tr><td>车祸、仓库营救等动作戏生成难度高</td><td>车祸只拍医院后果，仓库戏以对峙为主，打斗用剪辑与反应镜头带过</td></tr></tbody></table>
+</section>
+
+<section id="sec-gates">
+  <div class="sec-h"><span class="no">09</span><h2>质量门</h2></div>
+  <ul class="gate">
+  <li class="ok"><span class="m">✓</span><span>主角组 1–5 人</span></li>
+  <li class="ok"><span class="m">✓</span><span>重要配角 ≤ 10 人</span></li>
+  <li class="ok"><span class="m">✓</span><span>功能性角色 ≤ 10 人</span></li>
+  <li class="ok"><span class="m">✓</span><span>主场景 ≤ 10</span></li>
+  <li class="ok"><span class="m">✓</span><span>叙事道具 ≤ 8 件</span></li>
+  <li class="ok"><span class="m">✓</span><span>一次性场景已标注规避方案</span></li>
+  <li class="ok"><span class="m">✓</span><span>爽点间隔 ≤ 3 集，无真空区</span></li>
+  <li class="ok"><span class="m">✓</span><span>第 1 集有钩子</span></li>
+  <li class="ok"><span class="m">✓</span><span>大爆点不在最后一集才首次出现</span></li>
+  <li class="ok"><span class="m">✓</span><span>每集梗概三栏齐全（含【钩子】【悬念】）</span></li>
+  <li class="ok"><span class="m">✓</span><span>三人以上同框已标注拆解方案</span></li>
+  <li class="ok"><span class="m">✓</span><span>生成难点已进预警清单</span></li>
+  <li class="ok"><span class="m">✓</span><span>场景/角色/道具引用完整，无失业角色、无空转场景、无零集道具</span></li>
+  <li class="ok"><span class="m">✓</span><span>梗概是叙述体，无引号对白</span></li>
+</ul>
+  <p class="gsum">全部通过</p>
+</section>
+
+<p class="foot">大纲由模型依据原文生成，质量门由脚本确定性检查。</p>
+</div>
+
+<script type="application/json" id="outline-data">{"source":"闪婚老公藏不住了","lang":"zh","params":{"episodes":60,"minutesPerEpisode":1.5,"genre":"女频·先婚后爱甜宠（身份马甲 + 打脸）","adaptMode":"抽核","preferences":["付费卡点：第 1–10 集免费，第 10 / 20 / 30 / 40 / 50 集为卡点集，集尾放全剧最强悬念"]},"adaptation":{"core":"被当众退婚的点心铺女孩随手闪婚了顾氏总裁，一年契约从互不动心过成非你不可，她守着的老铺子藏着他十五年前活下来的秘密。","keep":[{"what":"民政局门口当众退婚、当场闪婚的开局","why":"第 1 集钩子：羞辱和翻盘在九十秒内完成，标准先婚后爱起手","evidence":"苏念转身问长椅上的陌生男人：你结婚吗？顾承宴说：结。"},{"what":"顾承宴隐藏身份、租小两居扮打工人","why":"马甲是前二十集甜宠和打脸的发动机，掉马即第 20 集付费卡点","evidence":"顾承宴自称顾氏的普通项目经理，陈默连夜租下一套小两居。"},{"what":"外婆的铁皮点心盒（遗嘱 + 秘方 + 旧照片）","why":"一件道具串起护铺、比赛、十五年前旧案三段，前后呼应","evidence":"外婆临终把铺子直接留给了她，遗嘱和桂花糕秘方锁在一只铁皮点心盒里。"},{"what":"十五年前点心铺救下少年的旧缘","why":"把甜宠的宿命感和反派的罪证拧成同一根绳，终局有分量","evidence":"照片背后外婆写着：那天追来的人，叫他二爷。"},{"what":"撕婚前协议、桂花糕求婚的结局","why":"契约婚姻的标准收束，道具闭环","evidence":"顾承宴当着她的面撕了婚前协议，用一盒桂花糕重新求婚，在老街补办婚礼。"}],"cut":[{"what":"唐果与陈默的欢喜冤家感情线","why":"九十秒一集装不下第二对 CP，两人只保留功能戏份，避免稀释主 CP 糖分"},{"what":"苏念出国进修三年的事业线","why":"时间跳跃打断契约一年的倒计时，事业高光由美食大赛夺冠承担"},{"what":"顾承宴母亲车祸旧案与大房二房三十年恩怨","why":"与十五年前绑架案功能重叠，二叔的罪只保留绑架与伪签强拆两条，观众记得住"},{"what":"周子昂破产后黑化跟踪的复仇线","why":"反派梯队已有二叔压轴，周子昂在第 27 集被打脸出局即可，再黑化抢戏"},{"what":"苏晴的网红经纪公司与流量造假行业线","why":"行业戏需要新场景新角色，性价比低，苏晴的转变改由被二叔利用后倒戈承担"},{"what":"外婆与顾老夫人年轻时是闺中好友的往事","why":"巧合叠巧合会削弱十五年前救人的分量，奶奶只保留一口吃出当年味道"}],"merge":[{"what":"林薇薇吸收「顾家安排的联姻对象」与「董事会股东代表」两个功能","why":"同一个情敌兼二叔盟友，不需要两张脸"},{"what":"拆迁办经理兼任二叔派去老街闹事的现场执行人","why":"强拆戏和闹事戏都由他出面，少一个功能角色"},{"what":"酒店经理贯穿订婚宴、寿宴、发布会三场宴会厅戏","why":"他对顾承宴的态度就是马甲的温度计，一张脸复用三次"}],"risks":[{"what":"马甲戏拖太久观众会烦","plan":"第 20 集掉马，之后转追妻与联手对敌，马甲戏不超过全剧三分之一"},{"what":"女频打脸集中在前段，后段变成商战闷戏","plan":"后段每三集至少一次撒糖或护妻，董事会戏只给结果不给过程"},{"what":"九十秒一集信息密度高，人物多容易乱","plan":"每集主戏不超过三人同框，配角按集轮换出场"},{"what":"车祸、仓库营救等动作戏生成难度高","plan":"车祸只拍医院后果，仓库戏以对峙为主，打斗用剪辑与反应镜头带过"}],"cutNote":"这意味着：全剧只有一条主线（契约婚姻从假到真）和一条副线（守住苏记、扳倒二叔），终点是老街补办婚礼，不出国、不追溯上一代恩怨。","mergeNote":"主角组定为苏念、顾承宴、苏晴、顾远山四人：苏念与顾承宴有完整的感情弧，苏晴有从抢夺到倒戈的转变弧，顾远山是贯穿始终的幕后黑手。"},"characters":[{"id":"C01","name":"苏念","role":"女主·苏记点心铺第三代传人","tier":"lead","arc":"从被退婚后赌气闪婚、守着契约不敢动心，到识破身份、亲手扳倒二叔，主动握住这段婚姻","from":["原创"]},{"id":"C02","name":"顾承宴","role":"男主·顾氏集团总裁，隐藏身份闪婚","tier":"lead","arc":"从为奶奶应付领证、尝不出味道的冷面总裁，到撕掉婚前协议、在老街重新求婚","from":["原创"]},{"id":"C03","name":"苏晴","role":"前期主反派·苏念的继妹","tier":"lead","arc":"从处处抢姐姐的东西、与林薇薇二叔结盟，到被利用后倒戈交出录音笔，离开重新开始","from":["原创"]},{"id":"C04","name":"顾远山","role":"幕后主反派·顾承宴的二叔","tier":"lead","arc":"笑面虎步步为营：伪签强拆、董事会夺权、制造车祸，最终在仓库里重演十五年前的绑架并落网","from":["原创"]},{"id":"C05","name":"周子昂","role":"渣前任·周家少爷","tier":"support","arc":"当众退婚的得意，到发现苏晴骗了他、回头纠缠苏念，最后被顾氏断掉合作出局","from":["原创"]},{"id":"C06","name":"刘美琴","role":"继母","tier":"support","arc":"一心卖铺子给女儿换嫁妆，屡次算计落空，最后被苏建国离婚出门","from":["原创"]},{"id":"C07","name":"苏建国","role":"苏念的父亲","tier":"support","arc":"被妻子拿捏、对女儿亏欠，终于站出来护女并与刘美琴决裂","from":["原创"]},{"id":"C08","name":"顾老夫人","role":"顾承宴的奶奶，CP 头号助攻","tier":"support","arc":"以手术逼婚，一口吃出当年的桂花糕，此后始终为孙媳妇站台","from":["原创"]},{"id":"C09","name":"陈默","role":"顾承宴的特助，马甲维护员","tier":"support","arc":"从手忙脚乱帮总裁演穷，到找出当年绑匪、成为扳倒二叔的关键人","from":["原创","合并：唐果陈默感情线砍掉后只留功能"]},{"id":"C10","name":"唐果","role":"苏念的闺蜜，美食博主","tier":"support","arc":"最早怀疑顾承宴不像打工的，大赛上陪苏念打下手，用直播替她澄清","from":["原创"]},{"id":"C11","name":"林薇薇","role":"情敌·顾家世交千金","tier":"support","arc":"自称未婚妻上门挑衅、设玉镯局、带股份投靠二叔，董事会失败后身败名裂","from":["原创","合并：联姻对象 + 股东代表"]},{"id":"C12","name":"民政局工作人员","role":"见证闪婚与离婚预约","tier":"functional","from":["原创"]},{"id":"C13","name":"主治医生","role":"奶奶与顾承宴的医生","tier":"functional","from":["原创"]},{"id":"C14","name":"酒店经理","role":"顾氏旗下酒店经理，马甲温度计","tier":"functional","from":["原创","合并：订婚宴、寿宴、发布会三场的酒店方"]},{"id":"C15","name":"拆迁办经理","role":"二叔的强拆执行人","tier":"functional","from":["原创","合并：老街闹事的现场执行人"]},{"id":"C16","name":"大赛评委","role":"美食大赛主评委，被二叔收买又倒戈","tier":"functional","from":["原创"]},{"id":"C17","name":"记者","role":"发布会与赛场的媒体","tier":"functional","from":["原创"]},{"id":"C18","name":"当年绑匪","role":"十五年前被二叔雇用的绑匪，关键证人","tier":"functional","from":["原创"]},{"id":"C19","name":"律师","role":"顾承宴的律师，处理遗嘱、伪签与报案","tier":"functional","from":["原创"]}],"scenes":[{"id":"S01","name":"民政局","primary":true},{"id":"S02","name":"苏记点心铺","primary":true},{"id":"S03","name":"小两居（顾承宴租的伪装公寓）","primary":true},{"id":"S04","name":"顾氏集团总部（总裁办 / 会议室）","primary":true},{"id":"S05","name":"顾家老宅","primary":true},{"id":"S06","name":"苏家客厅","primary":true},{"id":"S07","name":"医院病房","primary":true},{"id":"S08","name":"酒店宴会厅","primary":true},{"id":"S09","name":"老街","primary":true},{"id":"S10","name":"美食大赛演播厅","primary":true},{"id":"S11","name":"废弃仓库","primary":false,"reusePlan":"复用老街夜景资产的砖墙与路灯，改为城郊仓库内景；夜间冷光，铁门与旧货架两件新增陈设"}],"props":[{"id":"P01","name":"结婚证","function":"闪婚的凭证，苏念对抗情敌、撑场面的底牌","beatIds":["B01","B08"]},{"id":"P02","name":"婚前协议","function":"一年契约、互不动心的条款，感情线的计时器，结局被撕","beatIds":["B09","B25","B30"]},{"id":"P03","name":"外婆的铁皮点心盒","function":"装着遗嘱、桂花糕秘方和十五年前的旧照片，护铺、夺冠、揭旧案三段的钥匙","beatIds":["B02","B20","B21","B22"]},{"id":"P04","name":"顾家传家玉镯","function":"奶奶认孙媳的信物，寿宴上被设局栽赃","beatIds":["B03","B11"]},{"id":"P05","name":"录音笔","function":"苏晴倒戈交出的二叔罪证，终局翻盘的证据","beatIds":["B24","B29"]},{"id":"P06","name":"拆迁合同","function":"伪造顾承宴签名的强拆文件，误会的源头也是二叔伪签的铁证","beatIds":["B07","B13","B23"]},{"id":"P07","name":"苏记老招牌","function":"铺子的魂，被摘被砸又被挂回，婚礼时挂在老街正中","beatIds":["B04","B31"]}],"beats":[{"id":"B01","type":"闪婚反杀","weight":"minor","episode":1,"setup":"周子昂搂着苏晴当众退婚，嘲笑苏记不值一块表","payoff":"苏念当场拉陌生男人领证，拿着结婚证从渣男面前走过"},{"id":"B02","type":"打脸","weight":"minor","episode":3,"setup":"继母带苏晴上门收铺，说铺子已抵给周家","payoff":"苏念打开铁皮盒亮出外婆遗嘱，铺子从来是她的"},{"id":"B03","type":"长辈认可","weight":"minor","episode":4,"setup":"苏念带桂花糕去医院见奶奶，以为要被挑剔","payoff":"奶奶一口吃出当年的味道，当场把传家玉镯戴到她手上，同意手术"},{"id":"B04","type":"护妻","weight":"minor","episode":6,"setup":"混混在苏记门口泼漆摘招牌","payoff":"顾承宴赶到录证报警，混混落荒而逃，招牌挂回去"},{"id":"B05","type":"打脸","weight":"minor","episode":7,"setup":"苏家寿宴上继母嘲讽顾承宴的茶叶寒酸","payoff":"懂行的苏建国认出是有价无市的母树茶，周子昂的名表反被比下去"},{"id":"B06","type":"打脸","weight":"major","episode":9,"setup":"订婚宴上苏晴栽赃苏念偷钻戒，全场围观","payoff":"酒店经理对顾承宴毕恭毕敬调出监控，戒指是苏晴自己藏的，苏晴当众出丑"},{"id":"B07","type":"反转","weight":"minor","episode":11,"setup":"拆迁通知落款顾氏总裁，三天后强拆","payoff":"顾承宴查出是二叔伪签，当场叫停拆迁"},{"id":"B08","type":"打脸","weight":"minor","episode":13,"setup":"林薇薇上门自称顾承宴未婚妻，羞辱苏念","payoff":"苏念亮出结婚证，林薇薇当场哑火"},{"id":"B09","type":"撒糖","weight":"minor","episode":14,"setup":"苏念吃醋质问林薇薇的事，协议写着互不动心","payoff":"停电夜意外的初吻"},{"id":"B10","type":"护妻","weight":"minor","episode":16,"setup":"苏念去顾氏送饭，被前台当成蹭饭的赶出去","payoff":"顾承宴下楼当众牵她进电梯，前台被调岗"},{"id":"B11","type":"反转","weight":"major","episode":19,"setup":"寿宴上林薇薇与苏晴设局，诬陷苏念摔碎传家玉镯","payoff":"奶奶亮出真镯，碎的是苏晴准备的假货，两人当众出丑"},{"id":"B12","type":"身份揭破","weight":"major","episode":20,"setup":"主持人宣布有请顾氏集团总裁致辞","payoff":"走上台的是苏念的契约丈夫，她手里的蛋糕掉在地上"},{"id":"B13","type":"真相澄清","weight":"minor","episode":23,"setup":"苏念认定他骗婚就是为了拆铺子","payoff":"律师当面鉴定拆迁合同上的签名是伪造的"},{"id":"B14","type":"追妻撒糖","weight":"minor","episode":25,"setup":"冷战中的苏念搬回点心铺","payoff":"顾承宴在铺子门口学做桂花糕，苏念心软同意回家"},{"id":"B15","type":"打脸","weight":"minor","episode":27,"setup":"周子昂得知被苏晴骗，回头纠缠苏念","payoff":"顾承宴一个电话终止周家所有分包，周子昂当场跪求"},{"id":"B16","type":"反转","weight":"major","episode":29,"setup":"苏记被栽赃食物中毒，铺子被封、苏念被网暴","payoff":"唐果直播放出监控，投毒的是二叔的人，苏记解封"},{"id":"B17","type":"打脸","weight":"minor","episode":32,"setup":"大赛海选，苏晴嘲笑苏念的手工点心土气","payoff":"苏念以海选第一晋级，苏晴压线"},{"id":"B18","type":"反转","weight":"minor","episode":35,"setup":"半决赛苏念的原料被调包","payoff":"苏念临场改做外婆的老式点心，反超晋级"},{"id":"B19","type":"撒糖","weight":"minor","episode":37,"setup":"被收买的评委当众质疑苏念走后门","payoff":"顾承宴宣布退出赞助回避，只坐观众席为她加油"},{"id":"B20","type":"夺冠打脸","weight":"major","episode":39,"setup":"苏晴用偷来的秘方与苏念同台决赛","payoff":"苏晴做不出外婆的最后一步，苏念夺冠，评委倒戈揭发收买"},{"id":"B21","type":"揭秘","weight":"minor","episode":40,"setup":"苏念整理铁皮盒，发现夹层","payoff":"旧照片上小苏念牵着受伤的少年，背面写着那天追来的人叫二爷"},{"id":"B22","type":"相认撒糖","weight":"minor","episode":42,"setup":"苏念拿照片问顾承宴","payoff":"顾承宴承认自己就是那个少年，十五年只记得这一口甜"},{"id":"B23","type":"反转","weight":"major","episode":44,"setup":"二叔联合林薇薇在董事会发难，要罢免顾承宴","payoff":"苏念送来伪签拆迁合同的鉴定，二叔当场被停职，林薇薇家撤股"},{"id":"B24","type":"倒戈","weight":"minor","episode":46,"setup":"苏晴被二叔和周子昂一起抛弃","payoff":"苏晴把偷录二叔的录音笔交给苏念"},{"id":"B25","type":"虐心误会","weight":"minor","episode":48,"setup":"契约到期前夜，苏念听见顾承宴说协议到期就结束","payoff":"苏念默默收拾行李，约他去民政局"},{"id":"B26","type":"危机","weight":"minor","episode":50,"setup":"苏念在民政局等不到人","payoff":"电话打来：顾承宴的车刹车失灵，正在抢救"},{"id":"B27","type":"将计就计","weight":"minor","episode":52,"setup":"二叔以为顾承宴昏迷，接管集团","payoff":"顾承宴醒来与苏念联手装病，引二叔现形"},{"id":"B28","type":"寻证","weight":"minor","episode":54,"setup":"当年绑匪下落不明","payoff":"陈默找到当年绑匪，对方愿意作证"},{"id":"B29","type":"揭破","weight":"major","episode":56,"setup":"二叔把苏念绑进仓库逼要录音笔","payoff":"顾承宴带警察赶到，录音与绑匪证词齐出，二叔落网"},{"id":"B30","type":"撒糖求婚","weight":"major","episode":58,"setup":"协议到期那天，苏念拿出婚前协议","payoff":"顾承宴当面撕掉协议，用一盒桂花糕重新求婚"},{"id":"B31","type":"圆满","weight":"minor","episode":60,"setup":"老街保住，苏记招牌重新挂起","payoff":"老街补办婚礼，一年后苏记开了第二家店"}],"episodes":[{"ep":1,"synopsis":"苏念在民政局门口等周子昂领证，等来的却是他搂着苏晴。苏晴说自己怀孕了，周子昂当众退婚，嘲笑苏记破店不值他一块表，排队的人纷纷侧目。长椅上的顾承宴刚挂断奶奶电话，奶奶放话今天不结婚就不做手术。苏念转身问陌生人结不结婚，他答结。两人当场领证，苏念攥着结婚证从周子昂面前走过，周子昂嗤笑她嫁了个打工的。","hook":"刚领证的陌生丈夫手机亮起，来电备注是奶奶·手术室，他到底是谁？","suspense":"顾承宴为何非今天结婚不可、他的真实身份；苏晴的怀孕是真是假。","sceneIds":["S01"],"characterIds":["C01","C05","C03","C02","C12"],"propIds":["P01"],"crowdPlan":"分两场拍。门口退婚场：苏念正面，周子昂搂苏晴为过肩双人，排队路人虚焦背影；顾承宴只在长椅远景带过。领证场：苏念与顾承宴并排正面，民政局工作人员只给过肩手部。出门场：苏念与顾承宴正面走出，周子昂苏晴以背影入画。","warnings":["肢体接触","人群","手部特写"]},{"ep":2,"synopsis":"小两居里，顾承宴自称顾氏的普通项目经理，同姓只是巧合。他拿出婚前协议，一年为期，互不干涉、互不动心，苏念爽快签字。这套陈默连夜租下的房子漏洞百出，堂堂男人连燃气灶都打不着火。苏念发现他胃病犯了，随手煮了一碗面，他吃下第一口忽然愣住，多年来尝不出味道的舌头，竟然尝到了味道。","hook":"他说明天带她去医院见奶奶，奶奶要验货，她能过关吗？","suspense":"顾承宴为何多年尝不出味道、偏偏尝得出她的面；项目经理的身份破绽。","sceneIds":["S03"],"characterIds":["C02","C01"],"propIds":["P02"],"crowdPlan":"两人戏，无三人同框，一场拍完。","warnings":["手部特写"]},{"ep":3,"synopsis":"继母刘美琴带着苏晴闯进苏记点心铺，说苏建国早把铺子抵给了周家，让苏念三天内搬走，苏晴在一旁挑拣点心冷嘲热讽。苏念不吵不闹，从柜台下取出外婆的铁皮点心盒，打开亮出公证过的遗嘱：外婆把铺子直接留给了她，跟苏建国无关，更轮不到周家。刘美琴脸色铁青，拉着苏晴灰溜溜出门。","hook":"苏晴在门外打电话放话老街要拆，看苏念还能守几天，拆迁从哪来？","suspense":"老街拆迁的消息是谁放出的；铁皮盒里除了遗嘱还装着什么。","sceneIds":["S02"],"characterIds":["C06","C03","C01"],"propIds":["P03"],"crowdPlan":"一场拍完，三人不同时正面。苏念隔柜台正面，刘美琴与苏晴为前景过肩双人；亮遗嘱时切苏念手部与铁皮盒特写，再切母女反应正面。集尾苏晴门外打电话单独补拍。","warnings":["手部特写","肢体接触"]},{"ep":4,"synopsis":"苏念提着亲手做的桂花糕走进奶奶病房，以为要被挑剔。奶奶尝了一口忽然愣住，眼眶发红，说这是当年的味道。她当场褪下手上的传家玉镯，亲手戴到苏念腕上认下孙媳，随即同意手术。主治医生推着奶奶进手术室，苏念摸着玉镯不知所措，顾承宴在一旁看她的眼神变了。","hook":"奶奶临进手术室低声问顾承宴，这丫头是不是当年那家的，他为何不答？","suspense":"奶奶口中的当年那家是谁；顾承宴是否早就认识苏念。","sceneIds":["S07"],"characterIds":["C01","C02","C08","C13"],"propIds":["P04"],"crowdPlan":"分三段拍。尝糕段：奶奶病床正面，苏念侧坐过肩，顾承宴后景虚焦。戴镯段：两人手部特写，再切苏念正面反应。推床段：主治医生只拍推床背影，奶奶与顾承宴耳语为双人近景，苏念不入画。","warnings":["肢体接触","手部特写"]},{"ep":5,"synopsis":"同居生活开始，卧室一张床一条地铺，两人隔着协议互不越界。半夜顾承宴胃痛蜷在地铺上，苏念披衣起来熬了一锅小米粥，守着他喝完。第二天陈默上门送文件，张嘴差点喊出顾总，硬生生改口叫顾哥，苏念只当是同事之间的玩笑，没多想。顾承宴在她背后瞪了陈默一眼。","hook":"苏念收到唐果的消息，铺子出事了，出了什么事？","suspense":"陈默那声没喊完的称呼；顾承宴的胃病和味觉之谜。","sceneIds":["S03"],"characterIds":["C01","C02","C09"],"propIds":[],"crowdPlan":"夜戏只有苏念顾承宴两人。白天送文件段三人同场：陈默门口正面，顾承宴侧身过肩，苏念在厨房后景背影；顾承宴瞪陈默为单人反打补拍。","warnings":["手部特写"]},{"ep":6,"synopsis":"苏记门口被泼了满地红漆，拆迁办经理带着几个混混正把外婆传下的老招牌往下摘，街坊远远围观不敢上前。苏念冲上去护招牌被推开，顾承宴赶到，一边举手机录像取证一边报警，混混见势落荒而逃。他扶起苏念，亲手搬梯子把老招牌挂回门楣，擦掉上面的红漆。","hook":"苏晴躲在街角，拍下顾承宴坐进一辆挂顾氏车牌的车，她会拿这张照片做什么？","suspense":"拆迁办经理背后是谁指使；一个项目经理为何坐顾氏的车。","sceneIds":["S09","S02"],"characterIds":["C15","C01","C02","C03"],"propIds":["P07"],"crowdPlan":"分三场拍。闹事段：拆迁办经理正面，混混与围观街坊只给背影和远景；苏念被推开用剪辑带过。护妻段：顾承宴正面举手机，苏念过肩。挂招牌段：两人双人中景。集尾苏晴街角单独拍，顾承宴上车只拍背影远景。","warnings":["人群","肢体接触","手部特写"]},{"ep":7,"synopsis":"苏建国过生日，苏念带着顾承宴回苏家。刘美琴和苏晴当众嘲笑他送的茶叶罐寒酸，周子昂抬手亮出腕上的名表，说这一块够买他一年工资。苏建国揭开茶罐一闻，脸色都变了，认出是有价无市的母树茶，一两难求，周子昂的名表顿时被比了下去。刘美琴笑容僵在脸上。","hook":"苏晴宣布下周和周子昂订婚，点名请苏念来做点心看看什么叫豪门，这是什么局？","suspense":"一个打工的哪来的母树茶；苏晴订婚宴上的算计。","sceneIds":["S06"],"characterIds":["C07","C06","C03","C05","C01","C02"],"propIds":[],"crowdPlan":"六人分组拍，任何镜头正面不超过三人。苏念顾承宴一组并肩正面；刘美琴苏晴周子昂一组对面，嘲讽时轮流单人近景，其余以过肩带过。苏建国揭罐闻茶单人中景加茶罐手部特写；名表单独手部特写。全家反应用一个远景收。","warnings":["手部特写"]},{"ep":8,"synopsis":"苏晴来铺子下了订婚宴的点心大单，还要求苏念当天到场现场演示，摆明了要在宾客面前羞辱她。唐果劝她别接这单气受，苏念把订单收下，说钱照赚，脸也不会丢。顾承宴接过订单扫了一眼，宴会地点那家酒店是顾氏旗下的，他没出声，把订单折好放回柜台。","hook":"苏晴走出铺子对周子昂说戒指的事都安排好了，她要用戒指做什么？","suspense":"订婚宴上针对苏念的陷阱；顾承宴在顾氏酒店的身份会不会暴露。","sceneIds":["S02"],"characterIds":["C03","C10","C01","C02","C05"],"propIds":[],"crowdPlan":"分三段拍。下单段：苏晴与苏念隔柜台正反打。劝说段：唐果与苏念双人，顾承宴后景接订单只拍手部与侧脸。集尾门外段：苏晴与周子昂双人单独拍，铺内无人入画。","warnings":["手部特写"]},{"ep":9,"synopsis":"订婚宴上，苏晴的钻戒不翼而飞，她当众指认苏念偷了，宾客围成一圈指指点点，周子昂要报警。顾承宴推门进场，酒店经理快步迎上，对他弯腰称先生，二话不说调出后厨监控：画面里是苏晴自己把戒指塞进点心盒。全场哗然，苏晴当众出丑，捂着脸说不出话。顾承宴牵起苏念的手离开。","hook":"周子昂死死盯着酒店经理对顾承宴的态度，起了疑心，他会查出什么？","suspense":"酒店经理为何对一个打工的毕恭毕敬；周子昂的怀疑。","sceneIds":["S08"],"characterIds":["C03","C05","C01","C02","C14"],"propIds":[],"crowdPlan":"分四段拍。栽赃段：苏晴正面指认，苏念单人反打，宾客只给背影与虚焦远景。进场段：顾承宴正面走入，酒店经理弯腰为过肩。监控段：屏幕插入画面加众人反应用剪辑带过。离场段：顾承宴苏念牵手背影，周子昂前景过肩盯视。","warnings":["人群","手部特写","肢体接触"]},{"ep":10,"synopsis":"奶奶术后醒来，拉着苏念的手不肯放，叮嘱她常来。苏念回到铺子，拆迁办经理带人贴上强拆通知：三天后强拆，盖着顾氏集团公章，落款是总裁亲笔签名。街坊围在门口议论，苏念攥着通知，说倒要看看这个顾总是什么人。站在她身后的顾承宴看清那个签名，脸色骤变。","hook":"【付费卡点】通知上那个总裁签名不是他签的，到底是谁冒用他的名字要拆苏记？","suspense":"伪签拆迁通知的幕后人；苏念对顾总的恨意与顾承宴的真实身份正面相撞。","sceneIds":["S07","S02"],"characterIds":["C08","C01","C02","C15"],"propIds":["P06"],"crowdPlan":"分两场拍。病房场：奶奶与苏念双人，牵手特写，顾承宴不入画。铺子场：拆迁办经理贴通知只拍侧背与手部，围观街坊远景背影；苏念正面攥通知，顾承宴在她身后虚焦，再切签名特写与他单人近景反应。","warnings":["肢体接触","手部特写","人群"],"paywall":true},{"ep":11,"synopsis":"顾承宴连夜回到顾氏总部，让陈默调出老街拆迁项目的审批流程，一页页翻下去，发现拆迁合同上的总裁签名是二叔顾远山伪签代批的。他当场打电话叫停拆迁，把合同摔在二叔面前。顾远山笑眯眯地认错，说是下面人办事糊涂弄错了，保证不再插手老街，顾承宴冷着脸警告他别碰苏记。","hook":"二叔关上门后拨出电话，说那个点心铺必须拆，他到底要对苏记做什么？","suspense":"二叔为什么非拆一间小点心铺不可；伪签的拆迁通知还攥在苏念手里，她认定顾总就是仇人。","sceneIds":["S04"],"characterIds":["C02","C09","C04"],"propIds":["P06"],"crowdPlan":"总裁办两段：前段顾承宴与陈默翻文件，顾承宴正面、陈默侧身过肩；后段顾承宴与二叔对峙正反打，陈默退到门口只留背影；集尾二叔单人打电话另拍，三人最多二人主同框。","warnings":["手部特写"]},{"ep":12,"synopsis":"拆迁办经理带着一群人开到老街准备动手，接了个电话脸色一变，挥手撤走，苏念以为是街坊们的联名信起了作用。回到铺子，顾承宴非要帮她做桂花糕，揉面揉得面粉糊了一脸，苏念笑着踮脚替他擦掉。唐果在旁边越看越不对劲，悄悄提醒苏念他的手表和气场都不像打工的，苏念只当她想多了。","hook":"门口进来一个穿高定的女人，要一盒桂花糕送给她的未婚夫顾承宴，她是谁？","suspense":"唐果对顾承宴身份的怀疑；拆迁办为何突然撤走，苏念并不知道是谁叫停的。","sceneIds":["S09","S02"],"characterIds":["C15","C01","C02","C10","C11"],"propIds":[],"crowdPlan":"分两场拍。老街场：拆迁办经理正面接电话，手下与街坊只拍背影和远景虚化。铺子场：苏念与顾承宴双人中景正面，唐果在前景过肩带出，耳语一段改为唐果与苏念双人；林薇薇在门口逆光单独入画，与店内三人用正反打衔接，不做四人同框。","warnings":["人群","肢体接触","手部特写"]},{"ep":13,"synopsis":"林薇薇踩着高跟鞋进店，自称顾承宴的未婚妻，说两家长辈早定了婚约，把一张支票拍在柜台上让苏念拿钱走人，嘲讽一个卖点心的也配。苏念不急不恼，从包里取出结婚证摊在支票旁边，告诉她法律上顾承宴的妻子只有一个，未婚妻请去排下辈子的号。林薇薇脸色发青当场哑火，抓起包摔门而去。","hook":"林薇薇一出门就拨给苏晴，两个女人结了盟，她们要怎么联手对付苏念？","suspense":"林薇薇口中的两家婚约到底真假；顾承宴的真实家世她差点说破。","sceneIds":["S02"],"characterIds":["C11","C01","C03"],"propIds":["P01"],"crowdPlan":"店内只有苏念与林薇薇二人，正反打加柜台双人中景；苏晴只在电话另一端出现，单人另场拍，与林薇薇用分屏或切镜衔接，三人无同框。","warnings":["手部特写"]},{"ep":14,"synopsis":"苏念憋了一整天，晚饭时还是忍不住质问林薇薇是谁，顾承宴解释所谓婚约不过是长辈酒桌上的戏言，他从没当真。苏念嘴硬，说协议写着互不动心，她只是怕人找上门砸店。话音未落整栋楼停了电，她在黑暗里绊了一下，他伸手去扶，两人撞在一起，唇碰上了唇，谁都没有躲开。","hook":"来电后苏念盯着协议上互不动心那一条，把协议塞进抽屉最底层，她是想毁约吗？","suspense":"两人都已动心却都不肯说破；一年契约的条款还压在抽屉里。","sceneIds":["S03"],"characterIds":["C01","C02"],"propIds":["P02"],"crowdPlan":"仅二人同场，双人中景加正反打；停电段用剪影与轮廓光，一场拍完。","warnings":["肢体接触","手部特写"]},{"ep":15,"synopsis":"奶奶出院前把苏念叫到病房，拉着她戴玉镯的手，叮嘱下周寿宴一定要来，让顾家人都见见孙媳妇。苏念回到铺子，有人替林薇薇下了一千个点心的大单，她和唐果熬了一整夜赶工，天亮时对方一个电话取消，原料全砸在手里。苏念咬着牙把点心挨家分给老街街坊，一分钱没赚。","hook":"苏晴躲在铺子后门，盯着外婆的铁皮盒放在哪里，她想偷什么？","suspense":"林薇薇想用订单拖垮苏记；苏晴盯上了铁皮盒里的东西；寿宴上等着苏念的是什么。","sceneIds":["S07","S02"],"characterIds":["C08","C01","C10","C03"],"propIds":["P04","P03"],"crowdPlan":"分三场拍。病房：奶奶与苏念双人。铺子：苏念与唐果双人赶工，分点心时街坊只拍伸手接盒与背影。后门：苏晴单人窥视，铁皮盒用她的主观镜头带出，与店内人物不同框。","warnings":["肢体接触","手部特写","人群"]},{"ep":16,"synopsis":"苏念拎着保温饭盒到顾氏大楼给顾承宴送饭，前台上下打量她的旧外套，当着排队访客的面把她当蹭饭的往外轰。顾承宴从电梯里出来，当众牵起她的手走进电梯，身后陈默不动声色地让人把前台调了岗。电梯门关上前他按的是顶楼，苏念疑惑，他只说带她去天台吃饭。","hook":"二叔站在走廊尽头，看着两人的背影，他认出这个点心铺的女孩了吗？","suspense":"顶楼是总裁办，顾承宴的谎越圆越难；二叔已经盯上苏念。","sceneIds":["S04"],"characterIds":["C01","C02","C09","C04"],"propIds":[],"crowdPlan":"大堂场：苏念与前台正反打，访客为背景虚化背影；顾承宴入画后与苏念双人正面，陈默在后景侧身处理前台。电梯场：二人双人。集尾二叔单人站在走廊尽头，前景是二人背影过肩，四人不同时露正脸。","warnings":["肢体接触","人群","手部特写"]},{"ep":17,"synopsis":"奶奶出院回到顾家老宅，二叔顾远山拎着补品来探望，话里话外提起老街项目，说那片旧房早该拆了。奶奶放下茶杯冷了脸，让他别打苏记的主意。顾承宴回到小两居，看着灶上苏念给他留的粥，决定寿宴那天向她坦白一切，伏在桌前写了一封坦白信，夹在门边的外套口袋里。","hook":"坦白信被风吹到地上，压在苏念鞋下，她没看见，寿宴那天他还来得及说吗？","suspense":"奶奶为何对老街格外护短；二叔与老街的旧账；顾承宴的坦白能否赶在真相之前。","sceneIds":["S05","S03"],"characterIds":["C08","C04","C02","C01"],"propIds":[],"crowdPlan":"分两场拍，无四人同框。老宅：奶奶与二叔正反打双人。小两居：顾承宴单人写信；集尾苏念进门只拍鞋与背影，与顾承宴不同框。","warnings":["手部特写"]},{"ep":18,"synopsis":"奶奶寿宴设在酒店宴会厅，苏念戴着玉镯以孙媳妇身份到场，顾承宴说公司临时有事晚些才到。满场宾客打量这个点心铺出身的孙媳妇，窃窃私语。林薇薇和苏晴一改往日嘴脸，端着香槟假意亲近，说陪她去补妆，一左一右挽着她走到人少的休息区，苏晴的手指有意无意碰了碰那只玉镯。","hook":"一声脆响，玉镯碎在地上，苏晴尖叫苏念摔了传家宝，苏念要怎么自证清白？","suspense":"顾承宴迟迟不到场的原因；林薇薇和苏晴的局到底怎么设的。","sceneIds":["S08"],"characterIds":["C08","C01","C11","C03"],"propIds":["P04"],"crowdPlan":"宴会厅入场：苏念正面中景，奶奶在主桌远景，宾客全用背影与虚化。休息区：苏念居中正面，林薇薇与苏晴各一侧，一人正面一人过肩轮换，分两组镜头拍，避免三人同时正脸。","warnings":["人群","肢体接触","手部特写"]},{"ep":19,"synopsis":"宾客围拢过来指指点点，林薇薇高声要求顾家把这个手脚不干净的孙媳妇赶出去。奶奶拄着拐杖走来，把苏念拉到身边，抬起手腕亮出真镯，开席前她怕有人使坏，早把真镯收回自己手上，地上碎的是苏晴自带的假货。酒店经理调出休息区监控，画面里苏晴从包里掏出假镯摔碎。林薇薇和苏晴在众目睽睽下狼狈退场。","hook":"主持人敲响话筒，说下面有请顾氏集团总裁致辞，这个从不露面的总裁是谁？","suspense":"苏念仍不知道丈夫的身份；顾氏总裁即将登台。","sceneIds":["S08"],"characterIds":["C01","C11","C03","C08","C14"],"propIds":["P04"],"crowdPlan":"围观宾客一律背影与侧影虚化。分三组拍：林薇薇与苏念正反打；奶奶入画拉苏念为双人正面，林薇薇苏晴背影过肩；酒店经理与监控屏另拍，监控画面单独生成插入，苏晴的反应用单人近景。","warnings":["人群","肢体接触","手部特写"]},{"ep":20,"synopsis":"苏念端着刚切好的寿桃蛋糕回头，聚光灯下走上台的人西装笔挺，正是她那个自称项目经理的契约丈夫。全场宾客起立齐喊顾总，酒店经理在台侧深深鞠躬，奶奶笑着点头。不会用的燃气灶、陈默那声差点出口的顾总、酒店经理的那一躬，所有不对劲一下子全对上了，她手里的蛋糕掉在地上，台上的顾承宴握着话筒看着她。","hook":"【付费卡点】苏念转身就走，顾承宴扔下话筒追出去，宴会厅大门在他面前关上，她还会原谅这个骗了她一路的丈夫吗？","suspense":"苏念认定的顾总就是签拆迁通知的人，她会怎么看这场闪婚；坦白信还没送到她手里。","sceneIds":["S08"],"characterIds":["C01","C02","C08","C14"],"propIds":[],"crowdPlan":"苏念与台上顾承宴隔人群正反打，不做双人同框；起立宾客全用背影大远景；酒店经理鞠躬与奶奶点头各拍单人反应镜头；集尾追出与关门为顾承宴单人跟拍。","warnings":["人群","手部特写"],"paywall":true},{"ep":21,"synopsis":"宴会厅外的老街深夜，苏念一个人往前走，顾承宴追上来拉住她解释，说自己不是故意瞒她。苏念甩开他的手，说她只想知道这场婚姻里哪句是真的。回到小两居，她沉默着收拾行李，拉开他的抽屉找自己的证件，却翻出一张拆迁通知复印件。她把结婚证摊在旁边比对，落款的总裁签名和结婚证上他的签名一笔一画都一样。","hook":"签名对上了，苏念会认定顾承宴从闪婚那天起就是冲着苏记来的吗？","suspense":"拆迁通知上的签名到底是谁签的、顾承宴为什么一直留着这份复印件没跟她说，都还没有答案。","sceneIds":["S09","S03"],"characterIds":["C01","C02"],"propIds":["P06","P01"],"warnings":["肢体接触","手部特写"]},{"ep":22,"synopsis":"苏念搬回苏记点心铺住，认定顾承宴闪婚就是为了骗走铺子好拆。此后每天一早，顾承宴都站在铺子门口等，她拉下卷帘门不开。陈默拎着文件来替老板解释，话没说两句就被苏念抄起扫帚赶出门，狼狈地躲到顾承宴身后。街角，苏晴看着门口这一幕笑出了声，掏出手机给二叔发消息，说两人已经闹翻了。","hook":"苏晴给二叔报信，两人下一步要趁冷战对苏记做什么？","suspense":"苏晴和二叔早已暗中勾连，她拿什么在跟二叔做交易仍未揭开；顾承宴能否在苏念面前洗清伪签的嫌疑。","sceneIds":["S02"],"characterIds":["C01","C02","C09","C03"],"propIds":[],"crowdPlan":"全集分三段拍：铺子门内苏念单人正面，隔卷帘门与门外顾承宴正反打，不同框；扫帚赶人一场苏念正面、陈默半侧逃出，顾承宴在门外只作过肩前景；苏晴在街角单独一场，正面拍发消息，铺子门口的人只作远景背影。","warnings":["肢体接触","手部特写"]},{"ep":23,"synopsis":"顾承宴带着律师走进苏记，把拆迁合同摊在柜台上，当着苏念的面做笔迹鉴定。律师把合同签名和他的亲笔签名放大比对，逐处指出起笔和收笔的破绽，结论是签名系伪造，顾承宴是被人冒名。苏念握着合同的手松了下来，嘴上仍硬，却忍不住追问到底是谁伪造的。顾承宴沉默片刻，说出了二叔两个字。","hook":"听到二叔两个字，苏念脑中闪过外婆生前提过的一个人，那人究竟是谁？","suspense":"外婆生前提到的那个人与二叔有何关联；苏念对顾承宴的心结只松动未解开。","sceneIds":["S02"],"characterIds":["C01","C02","C19"],"propIds":["P06"],"crowdPlan":"柜台一字排开拍：苏念在柜台内正面，顾承宴在柜台外半侧，律师背影或过肩带过，只给手部比对签名的特写；鉴定结论后切苏念与顾承宴两人正反打，律师出画。","warnings":["手部特写"]},{"ep":24,"synopsis":"苏建国来铺子劝女儿别跟女婿置气，话没说完，刘美琴追进门把他拽回了家。苏家客厅里两人大吵，刘美琴从苏建国嘴里得知那个打工女婿竟是顾氏总裁，当场变脸，连夜把苏念叫回家，逼她立刻回顾家当好少奶奶，好让娘家沾光。苏念当着父亲的面拒绝，说她的婚事不是继母的生意，转身离开。","hook":"被拒的刘美琴转头联系林薇薇，要把苏念的消息卖给谁、卖什么？","suspense":"刘美琴手里握着苏念的哪些消息；苏建国在妻女之间还要沉默多久。","sceneIds":["S02","S06"],"characterIds":["C07","C06","C01"],"propIds":[],"crowdPlan":"分三场拍：铺子里苏念与苏建国正反打，刘美琴进门拽人时苏建国背影过肩；客厅吵架只拍刘美琴与苏建国两人；逼苏念一场刘美琴与苏念正面对峙，苏建国坐在沙发一侧作侧背影前景。","warnings":["肢体接触"]},{"ep":25,"synopsis":"顾承宴在苏记门口支起一张小桌，照着记忆学做桂花糕，一屉接一屉做坏，糊的塌的摆了十几屉，老街街坊围过来看热闹。卷帘门后的苏念看着他满手面粉还在揉，终于心软，推门出来尝了一口，说太甜了，顿了顿又低声说回家吧。顾承宴愣了一下，笑着收起小桌。两人并肩往家走，远处一辆车悄悄跟了上来。","hook":"和好后回家的路上，那辆一直远远跟着的车里坐的是谁？","suspense":"跟车的人是谁派来的、要盯苏念还是顾承宴；苏念心软了，可婚前协议里互不动心的条款还在。","sceneIds":["S02","S09"],"characterIds":["C02","C01"],"propIds":[],"crowdPlan":"两人戏为主：小桌前顾承宴正面、街坊只作虚焦背影；尝糕一场两人正反打；回家路上两人背影远景，跟车单独空镜。","warnings":["人群","手部特写"]},{"ep":26,"synopsis":"和好后的小两居，顾承宴第一次正式下厨，苏念站在他身后握着他的手教他掂勺切菜，他一本正经地记笔记。饭桌上他状似随口地提起，那份婚前协议的条款可以重新谈。苏念低头扒饭装没听见，耳朵却红透了。夜里两人下楼扔垃圾，小区门口站着周子昂，手里攥着一张苏晴的孕检单，上面的日期对不上。","hook":"周子昂拿着一张假孕检单堵上门来，他想从苏念这里要什么？","suspense":"苏晴假怀孕的事一旦败露，周家和苏晴会怎么反目；协议重新谈的话头被搁下了。","sceneIds":["S03"],"characterIds":["C01","C02","C05"],"propIds":["P02"],"crowdPlan":"厨房与饭桌只有苏念、顾承宴两人，正反打与双人中景；周子昂只出现在集尾小区门口，单独一场，正面拍他与孕检单，苏念与顾承宴以背影过肩入画。","warnings":["肢体接触","手部特写"]},{"ep":27,"synopsis":"老街上，周子昂拦住苏念，说自己发现苏晴假怀孕骗了他，后悔当初退婚，拉着她的胳膊要复合。顾承宴从车上下来，把苏念护到身后，当着他的面打了一个电话，宣布终止周家公司在顾氏的全部分包。周子昂这才明白眼前这个打工的是谁，脸色煞白，扑通一声跪在地上求饶，被保安架着拖走。","hook":"周子昂被拖走前喊出苏晴背后另有其人，那个人是谁？","suspense":"苏晴背后的同伙究竟有几个人；被断了生意的周家会不会狗急跳墙。","sceneIds":["S09"],"characterIds":["C05","C01","C02"],"propIds":[],"crowdPlan":"纠缠段苏念正面、周子昂侧身拉扯；顾承宴下车后以他为正面，苏念在身后半侧，周子昂过肩；下跪与被拖走单拍周子昂，保安只露背影与手臂。","warnings":["肢体接触"]},{"ep":28,"synopsis":"苏记一早开门，几位客人吃完点心没多久就上吐下泻，被救护车接走。卫生局的人随即赶到，当场贴了封条封店。网上流言炸开，唐果捧着手机一条条念骂苏记黑心的评论，苏念被网暴到不敢看。夜里她一个人在后厨清点原料想找原因，在糯米粉袋后面摸出一包从没见过的添加剂。","hook":"这包不属于苏记的添加剂，是谁趁夜放进后厨的？","suspense":"投毒者如何进的铺子、背后是谁指使；苏记被封，老街拆迁会不会借机重启。","sceneIds":["S02"],"characterIds":["C01","C10"],"propIds":[],"warnings":["人群","手部特写"]},{"ep":29,"synopsis":"唐果翻出铺子门口的监控，凌晨三点有人撬开后门溜进后厨，正是拆迁办经理。唐果当场开直播把监控放给网友看，医院那边主治医生也拿出化验单，证实客人摄入的是外来添加剂，与苏记原料无关。直播间弹幕瞬间反转，苏记解封，拆迁办经理被警察押走。他上车前一直盯着街角停着的那辆车。","hook":"拆迁办经理被押走时一直望着的那辆车，是二叔的吗？","suspense":"拆迁办经理会不会供出二叔；二叔一计不成，下一招会落在苏记还是顾承宴身上。","sceneIds":["S02","S07"],"characterIds":["C10","C01","C15","C13"],"propIds":[],"crowdPlan":"分三场拍：铺子里唐果正面开直播、苏念侧坐，监控画面插入拆迁办经理；医院主治医生单独一场拿化验单说明；押走一场拆迁办经理正面，警察背影，苏念与唐果远景，不同框于医生。","warnings":["人群","手部特写","肢体接触"]},{"ep":30,"synopsis":"全市美食大赛开放报名，苏念满怀期待回到铺子准备参赛，却发现外婆的铁皮点心盒锁扣被撬过，盒里的桂花糕秘方原件不翼而飞。她翻遍整个铺子一无所获。这时店里的电视正播着大赛报名现场，苏晴作为选手代表站在演播厅接受记者采访，笑着说要用独家桂花糕秘方参赛，夺下冠军。","hook":"【付费卡点】苏晴对着镜头笑说，这个方子是她外婆传下来的——她偷走秘方，还要连外婆一起抢走吗？","suspense":"秘方是谁撬盒偷走的；苏晴拿着原件参赛，苏念还能拿什么证明方子是外婆的；外婆留下的东西是否只有秘方这一件。","sceneIds":["S10","S02"],"characterIds":["C01","C03","C17"],"propIds":["P03"],"crowdPlan":"两场无同框，分场拍：铺子里苏念单人，铁皮盒与电视画面作特写；演播厅里苏晴正面接受采访，记者以过肩背影和话筒入画，报名人群作虚焦背景。","warnings":["手部特写","人群"],"paywall":true},{"ep":31,"synopsis":"苏念看着空了一半的铁皮盒，决定报名美食大赛，把外婆的桂花糕亲手赢回来，唐果当场报名做她的助手。顾承宴提出打个招呼让主办方关照，苏念一口回绝，说要堂堂正正地赢，让所有人看清谁才是苏记的传人。同一时刻，顾氏总部办公室里，顾远山笑着把一叠厚厚的现金推到大赛评委面前，评委犹豫片刻收下。","hook":"收了钱的评委问二叔要怎么处理苏念，二叔会给出什么指令？","suspense":"被偷走的秘方原件此刻在苏晴手里，二叔为何对一场点心比赛如此上心，评委将在赛场上如何下手。","sceneIds":["S02","S04"],"characterIds":["C01","C10","C02","C04","C16"],"propIds":["P03"],"crowdPlan":"分两场拍无交叉：S02 铺子场苏念、唐果、顾承宴三人，苏念正面居中，唐果侧身在后厨门口，顾承宴过肩带入；S04 办公室场顾远山正面、评委背影过肩，只拍推钱与收钱的反应。","warnings":["手部特写"]},{"ep":32,"synopsis":"美食大赛海选现场，选手挤满演播厅。苏晴摆出精致的网红点心，当众嘲笑苏念的手工点心土气，像菜市场摆摊的。苏念不接话，只把刚蒸好的桂花糕端上评审台，唐果在旁递盘。大屏公布成绩，苏念以海选第一晋级，苏晴压着最后一名线勉强过关，脸色铁青，周围选手窃窃私语。","hook":"林薇薇以赞助商身份坐到评委席旁边，她要在接下来的比赛里做什么？","suspense":"收钱的评委在海选按兵不动，林薇薇与苏晴的联手才刚开始，苏晴手里的秘方还没亮出来。","sceneIds":["S10"],"characterIds":["C01","C03","C10","C16","C11"],"propIds":[],"crowdPlan":"分三组机位：苏念与苏晴对峙用正反打，各自正面单人镜头，唐果在苏念身后虚焦；评审台一场评委正面、苏念背影过肩；林薇薇入座单独一条，评委席侧拍，选手群演只作背景虚化。","warnings":["人群","手部特写"]},{"ep":33,"synopsis":"备赛的夜里，小两居的厨房灯一直亮到凌晨，顾承宴陪苏念一屉一屉地练，替她揉面、看火、记时间。苏念累得靠在他肩上睡着，他一动不敢动，最后轻轻把外套盖在她身上，低头看了她很久。另一边，苏记铺子的监控画面在深夜闪了一下，一个黑影撬开后门，溜进了原料间。","hook":"深夜溜进苏记原料间的黑影是谁，他动了什么？","suspense":"协议上互不动心的条款还压在抽屉底，两人的距离越来越近却谁也没说破；苏记的原料已经被人盯上。","sceneIds":["S03","S02"],"characterIds":["C01","C02"],"propIds":[],"crowdPlan":"两人同框，靠肩戏用双人中景加顾承宴单人特写；铺子监控画面为空景加黑影背影，不露脸，分场拍。","warnings":["肢体接触"]},{"ep":34,"synopsis":"复赛开场，收了钱的评委专挑苏念点心的外形，说花样老旧上不了台面，林薇薇在赞助商席带头起哄，观众跟着嘘声一片。苏念当场捏出一道外婆传下的老式花样，讲清每一道褶子的来历，另外两位评委点头加分，她勉强晋级。唐果在台下长出一口气。半决赛前夜，苏念检查原料，没发现袋子里的糯米粉已被换成普通面粉。","hook":"半决赛开锅那一刻，苏念才会发现原料被调包，她还能怎么做？","suspense":"调包的人与前夜溜进原料间的黑影是否同一人，评委和林薇薇的刁难还有多少后手。","sceneIds":["S10"],"characterIds":["C01","C16","C11","C10"],"propIds":[],"crowdPlan":"评委刁难用评委正面加苏念背影过肩；林薇薇起哄单独拍赞助商席，观众嘘声用后排虚焦群演；苏念捏花样给手部与正脸交替；唐果台下反应单拍，四人不同时入画。","warnings":["人群","手部特写"]},{"ep":35,"synopsis":"半决赛开始，苏念打开原料袋，糯米粉变成了普通面粉，计时已经在走。唐果急得要找裁判，苏念按住她，决定临场改做外婆的老式酥饼，面粉起酥正合适。酥饼出炉层层起皮，香气压过全场，评委们尝后连连点头，苏念反超晋级决赛。后台，苏晴冲着林薇薇压低声音吼，说不是保证一定能拦住她吗。","hook":"接连失手的苏晴和林薇薇，决赛会拿出什么更狠的招？","suspense":"原料调包的证据还没追查，收钱评委的票在关键时刻会投向哪边，苏晴手里的秘方要在决赛派上用场。","sceneIds":["S10"],"characterIds":["C01","C10","C16","C03","C11"],"propIds":[],"crowdPlan":"分两场：赛台场苏念正面、唐果侧身半入画，评委品尝用评委正面加酥饼特写；后台场苏晴与林薇薇双人对峙，苏晴正面、林薇薇过肩，两组人不同框。","warnings":["肢体接触","手部特写","人群"]},{"ep":36,"synopsis":"陈默把查到的转账记录送进总裁办，评委被收买证据确凿，顾承宴当场要揭发。晚上回到小两居，苏念摁住他的手机，说现在揭只会打草惊蛇，要留到决赛当着全场和镜头揭开。两人对着一张白纸写下计划，第一次像搭档一样并肩。另一边，顾氏董事会上，顾远山提出顾承宴利用赞助为妻子开后门，要求他立即回避。","hook":"董事会逼顾承宴回避赞助，他会怎么接这一刀？","suspense":"二叔同时在赛场和董事会两头出手，他到底在怕苏念赢什么；决赛揭发的计划能否顺利进行。","sceneIds":["S04","S03"],"characterIds":["C02","C09","C01","C04"],"propIds":[],"crowdPlan":"分三场：总裁办顾承宴正面、陈默过肩递文件；小两居苏念与顾承宴双人中景；董事会场顾远山正面发言，顾承宴侧影坐长桌另一端，其余董事背影虚化，不露脸。","warnings":["手部特写","人群"]},{"ep":37,"synopsis":"决赛预热，镜头对准选手，收钱的评委当众质疑苏念能一路晋级全靠顾氏赞助走后门，台下哗然。顾承宴从观众席站起，当场宣布顾氏退出本届赞助、本人全程回避，然后坐回观众席，只为她一个人鼓掌。记者的闪光灯疯狂闪成一片，苏念红了眼眶。后台，苏晴翻开偷来的秘方准备备料，却发现最后一页是空白的。","hook":"秘方的最后一页为什么是空白，苏晴拿着残缺的方子要怎么比？","suspense":"外婆留下的最后一步究竟是什么，只有苏念知道；评委收钱的证据还捏在顾承宴手里没亮。","sceneIds":["S10"],"characterIds":["C01","C02","C16","C17","C03","C10"],"propIds":[],"crowdPlan":"分三组拍：评委质疑用评委正面加苏念背影过肩；顾承宴起身宣布从观众席侧拍，正面单人，观众与记者群演虚焦在前景，记者只露相机与背影；苏念与唐果台上反应双人镜头；后台苏晴单人一场，不与他人同框。","warnings":["人群"]},{"ep":38,"synopsis":"决赛第一轮，苏晴照着偷来的秘方做桂花糕，造型精致，色泽透亮，台下一片惊叹。苏念神色平静，做的竟是一模一样的桂花糕，唐果在旁看得直冒汗。评委当场打分，苏晴以明显的分差领先，苏晴得意地朝苏念扬起下巴。苏念不急不恼，看着她手里的糕，轻声问她桂花糕还差最后一步，知不知道是什么。","hook":"苏念说的最后一步到底是什么，苏晴的高分桂花糕会不会露馅？","suspense":"秘方空白的那一页藏着外婆真正的手艺，苏晴领先的分数背后有收钱评委的手笔。","sceneIds":["S10"],"characterIds":["C01","C03","C16","C10"],"propIds":[],"crowdPlan":"双赛台正反打：苏晴、苏念各自正面单人，对方以背影过肩入画；评委打分评委正面单拍；唐果反应单拍，观众群演只作背景声与虚焦。","warnings":["手部特写","人群"]},{"ep":39,"synopsis":"决赛终轮，苏念做出外婆那道没写进秘方的最后一步，桂花糕放凉依旧软糯回甘，苏晴的糕一凉就塌成一团。苏念夺冠，顾承宴在观众席起身鼓掌。记者围上评审台，收钱的评委扛不住镜头，当众崩溃承认收了钱。苏晴被当场取消资格，被工作人员拖下台时疯狂挣扎，冲着全场喊是二爷让她偷的。","hook":"苏晴喊出的二爷是谁，他为何要偷一张点心秘方？","suspense":"二爷这个称呼第一次出现，和顾远山是什么关系；评委背后的金主还没被点名。","sceneIds":["S10"],"characterIds":["C01","C03","C16","C17","C02","C10"],"propIds":[],"crowdPlan":"分四组拍：苏念与苏晴成品对比用正反打加糕点特写；顾承宴观众席起身单人正面，前景群演虚焦；评委认罪用评委正面、记者背影与话筒过肩；苏晴被拖下台用中远景，工作人员只露背影，唐果与苏念台上反应另拍。","warnings":["人群","肢体接触","手部特写"]},{"ep":40,"synopsis":"夺冠当晚，苏记铺子关了门，苏念把奖杯放在柜台上，一个人整理外婆的铁皮盒，手指摸到盒底有一层松动的夹层。她撬开夹层，里面躺着一张泛黄的旧照片：小时候的她扎着桂花发夹，牵着一个满脸是伤的少年站在铺子门口。苏念盯着少年的眉眼，越看越眼熟，慢慢把照片翻了过来。","hook":"【付费卡点】照片背面是外婆的字，那天追来的人，叫他二爷——苏晴口中的二爷，竟然在十五年前就出现过？","suspense":"照片里满脸是伤的少年是谁，十五年前追他的二爷与指使苏晴偷秘方的是否同一人，外婆为何把照片藏进夹层。","sceneIds":["S02"],"characterIds":["C01"],"propIds":["P03"],"crowdPlan":"单人戏，无同框；照片画面里的童年苏念与少年为静态旧照道具，不另拍。","warnings":["手部特写"],"paywall":true},{"ep":41,"synopsis":"夺冠当晚，苏念攥着铁皮盒夹层里的旧照片回到小两居，顾承宴不在。她推开从没进过的书房，在抽屉里看见一个旧相框，里面是同一个满脸是伤的少年，衣服和额角伤口都对得上。她手指发抖，把两张照片并排放在桌上，十五年前那个下午一下子清晰起来。门锁响了，顾承宴推门进来，看见她手里的两张照片。","hook":"他看见她手里的两张照片，会承认自己就是那个少年吗？","suspense":"照片里的少年为何会在顾承宴的书房；外婆写下的二爷究竟是谁；当年那块桂花糕之后发生了什么。","sceneIds":["S03"],"characterIds":["C01","C02"],"propIds":["P03"],"warnings":["手部特写"]},{"ep":42,"synopsis":"顾承宴没有再瞒，承认自己就是照片里的少年。十四岁那年他被绑架，逃出来满身是伤躲进苏记，外婆把他藏在后厨，小苏念塞给他一块桂花糕，那是他十五年里尝到的唯一甜味。民政局那天，他一眼认出她发间的桂花发夹，才答应了结婚。苏念红着眼扑进他怀里。良久，她抬头问那天追来的二爷，是不是他二叔。","hook":"那天追来的二爷，真的是顾承宴的亲二叔吗？","suspense":"二叔为何要绑架亲侄子；外婆当年护下少年后有没有被报复；苏念的心意还没正式说出口。","sceneIds":["S03"],"characterIds":["C01","C02"],"propIds":["P03"],"warnings":["肢体接触","手部特写"]},{"ep":43,"synopsis":"顾承宴带苏念回老宅见奶奶。奶奶看着旧照片红了眼，证实当年报案时绑匪在勒索电话里提过二爷，人却一直没抓到。奶奶握着苏念的手道谢，说当年救下承宴的原来是苏家。二叔提着补品进门，目光扫过苏念手里的照片，笑容僵了一秒，寒暄几句便告辞。出了大门，他打给林薇薇，说明天的董事会提前。","hook":"二叔认出了那张照片，提前召开的董事会要对顾承宴下什么手？","suspense":"二叔是否就是当年的二爷；他与林薇薇的联手底牌是什么；当年绑匪的下落。","sceneIds":["S05"],"characterIds":["C01","C02","C08","C04"],"propIds":["P03"],"crowdPlan":"分两场拍。客厅场：奶奶坐沙发正面中景，苏念侧坐握手做双人中景，顾承宴立于后方用过肩带过；二叔进门时给二叔单独正面反应镜头，看照片僵笑用近景，其余三人转为背影与过肩。门外打电话场二叔单人单拍，林薇薇只出声不出镜。主画面同框不超过三人正面。","warnings":["肢体接触","手部特写"]},{"ep":44,"synopsis":"董事会上，二叔联合林薇薇家的股份发难，指责顾承宴为私情叫停老街项目，提议罢免。表决前一刻，苏念带着律师闯进会议室。律师当众出示拆迁合同签名的伪造鉴定，以及项目资金流进二叔私人账户的明细。满座董事哗然，二叔当场被停职，林薇薇家宣布撤股。二叔走出会议室，停在苏念面前，低声说她外婆当年也是这么不知死活。","hook":"二叔一句外婆当年不知死活，外婆的死难道另有隐情？","suspense":"外婆的死与二叔有何关联；被停职的二叔会如何反扑；林薇薇撤股后的去向。","sceneIds":["S04"],"characterIds":["C01","C02","C04","C11","C19"],"propIds":["P06"],"crowdPlan":"分两场拍。会议室场：长桌两侧取对切，二叔与林薇薇同侧正面、顾承宴主位单独正面，苏念与律师从门口以背影入画再反打正面；董事群演做虚化背景与举手手部，不给脸。律师出示鉴定单独拍文件特写。走廊场仅二叔与苏念，双人过肩正反打。","warnings":["人群","手部特写"]},{"ep":45,"synopsis":"苏建国病倒住院，苏念赶到病房。父亲拉着她的手第一次道歉，说这些年由着刘美琴欺负她、差点卖了外婆的铺子，是他没用，出院就和刘美琴离婚。苏念别过脸擦掉眼泪，替他掖好被角。入夜下起大雨，她回到苏记，门口站着一个浑身湿透的人，是苏晴，头发贴在脸上，手里死死攥着什么东西。","hook":"一向和她作对的苏晴，为什么在雨夜湿透了找上门？","suspense":"苏晴手里攥着什么；她与二叔和周子昂之间出了什么事；苏建国能否真的与刘美琴了断。","sceneIds":["S07","S02"],"characterIds":["C01","C07","C03"],"propIds":[],"crowdPlan":"三人分处两场，无同框，分场拍。病房场为苏念与苏建国父女双人戏，病床正面中景加握手近景；苏记门口场为苏念与苏晴双人，苏晴湿身正面中景，苏念用背影过肩带入。","warnings":["雨戏","肢体接触","手部特写"]},{"ep":46,"synopsis":"苏念把苏晴让进铺子，递上热毛巾。苏晴哭着说二叔拿到秘方就翻脸，周子昂也把她扔出了门，她什么都没有了。她掏出一支录音笔交给苏念，里面是二叔让她偷秘方的原话，还有一句要让那铺子和老太太一样消失。苏晴说这是她留的后手，现在只想还姐姐一个公道。苏念攥紧录音笔问老太太是谁，苏晴说，他提到了你外婆的死。","hook":"外婆的死，难道是二叔一手造成的？","suspense":"外婆当年的真实死因；录音笔里还录了什么；苏晴这次倒戈是真心还是另有所图。","sceneIds":["S02"],"characterIds":["C01","C03"],"propIds":["P05"],"warnings":["手部特写"]},{"ep":47,"synopsis":"苏念把录音笔交给顾承宴，两人在灯下反复听。他想立刻报警，她按住他的手，说单凭录音扳不倒二叔，要等找到当年的绑匪，人证物证一起出手。夜深，两人并肩坐在沙发上，契约一周年将近，他几次想提协议，她也欲言又止，最后谁都没开口。他回房后，苏念翻出婚前协议，在日历上圈出到期日，就在后天。","hook":"协议后天就到期，两人都没说出口的话，还来得及说吗？","suspense":"当年绑匪身在何处；录音笔会不会被二叔察觉；协议到期后这段婚姻是续是散。","sceneIds":["S03"],"characterIds":["C01","C02"],"propIds":["P05","P02"],"warnings":["肢体接触","手部特写"]},{"ep":48,"synopsis":"协议到期前夜，苏念做好夜宵送到顾氏总部。总裁办的门虚掩着，她刚抬手要敲，听见顾承宴对陈默说，协议到期就结束，一天都不能多。她端着保温盒在门外站了很久，悄悄转身离开。回到小两居，她把衣服一件件叠进行李箱，把婚前协议摊在桌上，给他发去消息：明早九点，民政局，把手续办了。","hook":"顾承宴口中的结束，真的是要和她离婚吗？","suspense":"顾承宴说要结束的到底是什么；他收到消息会作何反应；陈默似乎知道内情却没说。","sceneIds":["S04","S03"],"characterIds":["C01","C02","C09"],"propIds":["P02"],"crowdPlan":"三人不同框，分场拍。总裁办内顾承宴与陈默双人，用门缝主观视角拍，只给侧脸和背影；门外苏念单人反应近景；小两居收拾行李为苏念独场。","warnings":["手部特写"]},{"ep":49,"synopsis":"第二天一早，苏念独自坐在民政局门口的长椅上，一年前她就是在这里问一个陌生人结不结婚。九点过了，十点过了，顾承宴没有来，电话也打不通。民政局工作人员认出她是当年闪婚的姑娘，给她倒了杯热水，问要不要再等等。苏念摩挲着结婚证说再等一会儿，心里越来越空。手机终于响了，屏幕上是陈默的名字。","hook":"顾承宴为什么失约，陈默这通电话要告诉她什么？","suspense":"顾承宴失联的原因；他前夜那句结束的真意；二叔被停职后是否已经动手。","sceneIds":["S01"],"characterIds":["C01","C12"],"propIds":["P01"],"warnings":["手部特写"]},{"ep":50,"paywall":true,"synopsis":"陈默在电话里声音发抖，说顾承宴来民政局的路上刹车失灵出了车祸，正在抢救。苏念赶到医院，手术室的灯一直亮着。陈默把车里找到的东西交给她，一个戒指盒，一份重新写好的婚书。她这才明白，他说的结束是结束契约，今天他是来重新求婚的。苏念抱着戒指盒蹲在走廊上痛哭。手术室门开，医生说病人可能醒不过来了。","hook":"【付费卡点】顾承宴还能醒过来吗？那辆车的刹车，为什么偏偏在今天失灵？","suspense":"刹车失灵是否是二叔动的手；苏念还没来得及亲口说出喜欢；顾承宴倒下后集团与老街将落入谁手。","sceneIds":["S01","S07"],"characterIds":["C01","C09","C13"],"propIds":["P01"],"crowdPlan":"分三场拍。民政局场苏念单人接电话，陈默在医院走廊接电话单拍，交叉剪辑；医院走廊陈默递戒指盒为双人过肩正反打；医生出场时苏念用背影过肩、正打医生，陈默侧后虚化，三人不同时给正面。","warnings":["手部特写"]},{"ep":51,"synopsis":"重症病房里，顾承宴插满管线一动不动。苏念握着他的手守了一整夜，把一年里没敢说的话全说出口，第一次承认她早就喜欢上了这个装成打工仔的男人。二叔捧着鲜花进门，红着眼眶嘘寒问暖，话锋一转却说集团不能一日无主，董事会正等他主持大局。苏念挡在床前冷脸送客。门刚合上，病床上那只手的手指轻轻动了一下。","hook":"顾承宴的手指动了，他是真要醒了，还是苏念熬了一夜的错觉？","suspense":"二叔借探病试探伤情、急着接管集团；刹车失灵是否出自二叔之手还没有任何证据。","sceneIds":["S07"],"characterIds":["C01","C02","C04"],"propIds":[],"crowdPlan":"顾承宴全程卧床不动，作前景或床头虚化带过；苏念告白单独一场拍，苏念正面、顾承宴侧脸；二叔探病一场拍，苏念与二叔正反打，病床只露一角；手指特写单独补拍。共两场。","warnings":["肢体接触","手部特写"]},{"ep":52,"synopsis":"深夜顾承宴醒来，第一句就是刹车被人动过。苏念又哭又笑，陈默连夜赶到。三人在病房里定计：封锁他已苏醒的消息，对外宣布他昏迷不醒，让二叔以为大局已定，放心接管集团，自己把马脚露出来。顾承宴握着苏念的手，说这一回换她陪他演戏。第二天医院走廊挤满记者，主治医生按计划宣布，病人陷入深度昏迷。","hook":"假昏迷的消息放出去了，二叔会多快咬钩？","suspense":"动刹车的人还没查实；医院里有没有二叔的眼线能识破这场装病。","sceneIds":["S07"],"characterIds":["C01","C02","C09","C13","C17"],"propIds":[],"crowdPlan":"病房定计一场：苏念正面坐床边，顾承宴半卧侧面，陈默过肩背影入画；走廊发布另一场：主治医生正面单人，记者群只拍后脑、话筒与相机前景，不与主角同框。分两场拍。","warnings":["肢体接触","人群"]},{"ep":53,"synopsis":"顾承宴昏迷的消息一出，二叔以代理总裁身份坐进总裁办，椅子还没坐热就签下第一道命令：一周内强拆老街，苏记点心铺首当其冲。前些天刚被撤股的林薇薇提着礼盒上门，低头认错，愿拿林家的资源换顾氏未来的位子。二叔笑着收下。门一关，他站在落地窗前对着空荡的办公室低声说，大哥家的种，这次一个都不留。","hook":"一周强拆令已下，苏念的铺子还撑得住几天？","suspense":"二叔口中的大哥家，暗示顾承宴父母当年之事另有隐情；林薇薇回头投靠是真心还是另有算盘。","sceneIds":["S04"],"characterIds":["C04","C11"],"propIds":[],"warnings":["手部特写"]},{"ep":54,"synopsis":"陈默顺着当年的报案记录摸到老街，认出巷口那个瘸腿修鞋匠就是十五年前的绑匪。他死不承认。苏念把他请进苏记，照外婆的方子蒸了一屉桂花糕，递过去一块。修鞋匠一口便红了眼，当年他逃出来饿了三天，是苏记的老太太塞给他一块一样的糕。他终于答应作证。修鞋摊对面，一辆车的车窗缓缓摇下，是二叔的人。","hook":"车里那双眼睛盯上了证人，二叔会先下手吗？","suspense":"修鞋匠知道的二爷真相，以及外婆之死与当年绑架案的关联。","sceneIds":["S09","S02"],"characterIds":["C01","C09","C18"],"propIds":["P03"],"crowdPlan":"老街一场：修鞋匠坐摊后正面，陈默侧身站立，两人对拍；苏记一场：修鞋匠正面，苏念侧面递糕，陈默门口背影；车窗摇下单独补一个空镜带人。分两场拍。","warnings":["手部特写"]},{"ep":55,"synopsis":"苏念陪修鞋匠去警局，刚出老街口，黑衣人推倒修鞋匠，把苏念拖上车。被拽进车门前，她把手伸进口袋按了一下。城郊废弃仓库里，苏念被绑在椅子上，二叔逼她交出苏晴给的录音笔，否则让她和她外婆一样消失。苏念咬定东西不在身上。二叔俯下身说，十五年前他在那间铺子门口跟丢了一个孩子，今天不会了。","hook":"顾承宴还躺在病房装昏迷，谁能赶来救苏念？","suspense":"苏念口袋里按下的是什么；被推倒的修鞋匠能否脱身报信；外婆之死的真相。","sceneIds":["S09","S11"],"characterIds":["C01","C04","C18"],"propIds":["P05"],"crowdPlan":"老街截人一场：苏念与修鞋匠正面，黑衣人只拍背影和拉扯动作；口袋按键手部特写单独拍；仓库一场：苏念被绑正面，二叔侧面与过肩，修鞋匠不在仓库。分两场拍，三人无同框于仓库。","warnings":["肢体接触","手部特写"]},{"ep":56,"synopsis":"苏念故意激二叔，一句句引他亲口说出当年雇人绑架顾承宴、逼走外婆、伪签拆迁、动刹车的经过，口袋里的录音笔一直亮着红灯。二叔起疑要搜身，仓库大门被撞开，顾承宴带着警察和陈默冲进来，把苏念护在身后。修鞋匠当面指认二叔就是当年的二爷，录音与证词齐出，二叔被按倒戴上手铐。押走前他冷笑，你们以为林家就干净吗。","hook":"二叔临走那句林家不干净，林薇薇还藏着什么？","suspense":"林家与当年旧案、刹车事故的牵连；外婆之死的完整经过还待录音全文揭开。","sceneIds":["S11"],"characterIds":["C01","C02","C04","C09","C18"],"propIds":["P05"],"crowdPlan":"拆三段：对峙段苏念正面、二叔侧面过肩，两人；破门段顾承宴正面护人，苏念在其身后半遮，陈默与警察背影入画；指认段修鞋匠正面，二叔过肩，警察只拍背影与手铐特写。分三场拍。","warnings":["肢体接触","手部特写","人群"]},{"ep":57,"synopsis":"顾氏在酒店宴会厅开发布会，顾承宴现身，公布二叔伪签、买凶、谋害的全部证据，宣布复出。台下林薇薇想溜，被警察以涉案带走。记者爆出周家破产。苏建国在侧厅告诉苏念，他已和刘美琴离婚。苏念手机亮起，苏晴发来短信，说要离开这座城市重新开始。记者追问二人是不是契约婚姻，台上顾承宴看着苏念，没有回答。","hook":"顾承宴为什么不回答，这段婚姻在他心里到底算不算数？","suspense":"协议到期之约被车祸打断，契约婚姻的最终答案悬而未决；苏晴此去是否真的放下。","sceneIds":["S08"],"characterIds":["C01","C02","C07","C09","C11","C17"],"propIds":[],"crowdPlan":"拆四组：台上顾承宴正面单拍，陈默站台侧作过肩；林薇薇被带走一组，林薇薇正面、警察背影；侧厅苏建国与苏念两人对拍；记者群只拍后脑、举起的相机和话筒前景，苏念台下看台上用过肩。分四组拍。","warnings":["人群","肢体接触","手部特写"]},{"ep":58,"synopsis":"风波过后，苏记照常开门。苏念把那份被车祸拖过到期日的婚前协议放在柜台上，说当初签的是一年，今天该有个了结。顾承宴没看条款，当着她的面把协议撕成碎片，从身后拿出一盒自己做的桂花糕，这回一屉都没做坏。他单膝跪下，说那年她给的一块糕甜了他十五年，往后想换他给她做一辈子。苏念咬了一口，说太甜了，然后说好。","hook":"求婚成了，奶奶憋了一年的婚礼要怎么办？","suspense":"二叔所说的林家旧账余波未平；外婆当年留下的东西是否还有没找到的。","sceneIds":["S02"],"characterIds":["C01","C02"],"propIds":["P02"],"warnings":["肢体接触","手部特写"]},{"ep":59,"synopsis":"顾家老宅里，奶奶翻出压箱底的红绸和礼单，非要给两人补办婚礼，地方不选酒店，偏选老街。老街上，街坊们搬梯子挂灯笼，唐果架着手机直播，顾承宴亲手给苏记老招牌重新刷漆，苏念在下面扶着梯子。婚礼前夜，铺子门口多了一个没有署名的包裹，苏念拆开，里面是外婆年轻时的照片和一封信。","hook":"匿名包裹是谁寄来的，那封信里写了什么？","suspense":"寄件人的身份；外婆年轻时的往事与苏记的来历。","sceneIds":["S05","S09"],"characterIds":["C01","C02","C08","C10"],"propIds":["P07"],"crowdPlan":"老宅一场：奶奶正面，苏念与顾承宴并肩侧面；老街一场：顾承宴梯上刷漆正面，苏念梯下背影，唐果直播单独拍，街坊远景虚化；拆包裹苏念单人一场。分三场拍。","warnings":["人群","手部特写"]},{"ep":60,"synopsis":"信是苏晴寄来的，她回老家翻出外婆当年的手写菜谱，物归原主。老街婚礼当天，苏记招牌挂在街心，奶奶和苏建国坐主桌，唐果和陈默当伴娘伴郎，顾承宴牵着苏念走过整条老街。一年后苏记第二家店开张，两人又走进民政局补拍结婚照，她发间别着那支桂花发夹。顾承宴低声问下个周年想要什么，苏念把他的手放在自己小腹上。","hook":"苏念小腹里，是不是已经有了苏记的第四代传人？","suspense":"新生命的到来留白；远走的苏晴是否还会回到老街。","sceneIds":["S09","S01"],"characterIds":["C01","C02","C07","C08","C09","C10","C12"],"propIds":["P07","P01"],"crowdPlan":"婚礼拆四组：新人牵手走街正面跟拍，宾客与街坊只拍背影列队；主桌奶奶与苏建国两人同框；唐果与陈默伴娘伴郎单组；民政局尾声为另一场，苏念与顾承宴正面，民政局工作人员过肩拍照。分两场四组拍。","warnings":["人群","肢体接触","手部特写"]}]}</script>
+<script>
+// beat rhythm: chart / table toggle
+document.querySelectorAll('.tab').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach((b) => b.classList.toggle('on', b === btn));
+    document.querySelectorAll('.tabpane').forEach((p) => p.classList.toggle('on', p.id === btn.dataset.pane));
+  });
+});
+
+// episode overview: first three by default, one click expands for good
+const epsMore = document.querySelector('.epsmore');
+if (epsMore) {
+  epsMore.addEventListener('click', () => {
+    document.querySelector('.epswrap').classList.remove('clip');
+    epsMore.remove();
+  });
+}
+
+// export: the report carries outline.json verbatim; the download is byte-identical
+document.querySelector('.expo').addEventListener('click', (e) => {
+  const btn = e.currentTarget;
+  const url = URL.createObjectURL(
+    new Blob([document.getElementById('outline-data').textContent], { type: 'application/json' }),
+  );
+  const a = Object.assign(document.createElement('a'), { href: url, download: btn.dataset.name });
+  a.click();
+  // don't revoke immediately — Safari may kill the blob before the download finishes reading
+  setTimeout(() => URL.revokeObjectURL(url), 10000);
+});
+</script>
+</body></html>

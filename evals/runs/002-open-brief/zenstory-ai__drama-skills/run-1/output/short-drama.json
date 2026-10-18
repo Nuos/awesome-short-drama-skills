@@ -1,0 +1,50 @@
+{
+  "created_at": "2026-10-18T05:40:00.814870Z",
+  "creator_authority": {
+    "constraints": [],
+    "decisions_artifact": "创作者决策/",
+    "delivery_surface": {
+      "aspect": null,
+      "overlay_regions": [],
+      "source_ref": null,
+      "status": "unset"
+    },
+    "production_profile": {
+      "choices": {},
+      "status": "unset"
+    },
+    "rhythm_profile": {
+      "beat_interval_seconds_max": 30,
+      "close_shot_share_min": 0.45,
+      "end_on_peak": true,
+      "first_hook_seconds": 5,
+      "first_major_payoff_by_episode": 1,
+      "form": "ai_live_action",
+      "opposed_reversals_per_episode_min": 1,
+      "reprise_previous_last_beat": true,
+      "status": "accepted",
+      "target_avg_shot_seconds": 2.5,
+      "vo_share_max": 0.3
+    },
+    "visual_direction": {
+      "choices": {
+        "look_development": null
+      },
+      "status": "unset"
+    }
+  },
+  "format": {
+    "aspect_ratio": "9:16",
+    "episode_count": 60,
+    "pacing": {
+      "seconds_per_action_paragraph": null,
+      "spoken_characters_per_second": null
+    },
+    "prompt_language": "en",
+    "target_seconds_per_episode": 90.0
+  },
+  "language": "zh-CN",
+  "project_id": "SD-DCB4FEA1F4B9",
+  "schema_version": "1.0.0-draft",
+  "title": "七格药盒"
+}

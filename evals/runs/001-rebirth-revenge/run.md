@@ -4,7 +4,7 @@
 - 交付要求：人物小传、60 集分集大纲（标出付费卡点）、第 1–3 集完整剧本
 - 运行时间：2026-10-17（北京时间）
 - 环境：Claude Code 2.1.302，模型 claude-opus-5-5，推理强度 high，每个 skill 跑 1 次
-- 运行器：[evals/run.py](../../run.py)，任何人都可以用同样的命令复现
+- 运行器：[evals/run.py 的第一轮版本](https://github.com/UnderleveledBuilder/awesome-short-drama-skills/blob/116df92/evals/run.py)，任何人都可以用同样的命令复现。第二轮起运行器改了（允许在沙箱里跑脚本、每个 skill 跑多次），复现第一轮请用这个版本
 
 ## 统一指令
 

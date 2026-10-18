@@ -1,0 +1,166 @@
+# 每次运行里，哪些文件是三项交付。由 judge.py locate 生成，人工核对过；改了要重新 pack。
+
+["Hao0321__ai-short-drama.run-1"]
+bios = ["01_主要人物小传.md"]
+outline = ["02_60集分集大纲.md"]
+scripts = ["03_第1-3集剧本.md"]
+
+["Hao0321__ai-short-drama.run-2"]
+bios = ["01-人物小传.md"]
+outline = ["02-分集大纲.md"]
+scripts = ["03-第1-3集剧本.md"]
+
+["Hao0321__ai-short-drama.run-3"]
+bios = ["01_主要人物小传.md"]
+outline = ["02_60集分集大纲.md"]
+scripts = ["03_第1-3集剧本.md"]
+
+["Shanyin-ai__shanyin-screenwriting-master.run-1"]
+bios = ["01_主要人物小传.md"]
+outline = ["02_分集大纲.md"]
+scripts = ["03_第1-3集剧本.md"]
+
+["Shanyin-ai__shanyin-screenwriting-master.run-2"]
+bios = ["01_主要人物小传.md"]
+outline = ["02_分集大纲.md"]
+scripts = ["03_第1-3集剧本.md"]
+
+["Shanyin-ai__shanyin-screenwriting-master.run-3"]
+bios = ["01_主要人物小传.md"]
+outline = ["02_分集大纲_60集.md"]
+scripts = ["03_第1-3集剧本.md"]
+
+["adoria111__emma-screenwriting-skills.run-1"]
+bios = ["01-主要人物小传.md"]
+outline = ["02-60集分集大纲.md"]
+scripts = ["03-第1-3集剧本.md"]
+
+["adoria111__emma-screenwriting-skills.run-2"]
+bios = ["01_人物小传.md"]
+outline = ["02_60集分集大纲.md"]
+scripts = ["03_第1-3集剧本.md"]
+
+["adoria111__emma-screenwriting-skills.run-3"]
+bios = ["01_主要人物小传.md"]
+outline = ["02_60集分集大纲.md"]
+scripts = ["03_第1-3集剧本.md"]
+
+["baseline.run-1"]
+bios = ["01_人物小传.md"]
+outline = ["02_分集大纲.md"]
+scripts = ["03_第1-3集剧本.md"]
+
+["baseline.run-2"]
+bios = ["01_人物小传.md"]
+outline = ["02_分集大纲.md"]
+scripts = ["03_第1-3集剧本.md"]
+
+["baseline.run-3"]
+bios = ["01_人物小传.md"]
+outline = ["02_分集大纲.md"]
+scripts = ["03_第1-3集剧本.md"]
+
+["catyiqian__qianqianwriting.run-1"]
+bios = ["01_人物小传.md"]
+outline = ["02_分集大纲.md"]
+scripts = ["03_第1-3集剧本.md"]
+
+["catyiqian__qianqianwriting.run-2"]
+bios = ["01_人物小传.md"]
+outline = ["02_分集大纲.md"]
+scripts = ["03_第1-3集剧本.md"]
+
+["catyiqian__qianqianwriting.run-3"]
+bios = ["01_人物小传.md"]
+outline = ["02_分集大纲.md"]
+scripts = ["03_第1-3集剧本.md"]
+
+["eternityspring__shuohao-skills.run-1"]
+bios = ["掌眼-主要人物小传.md"]
+outline = ["掌眼-60集分集大纲.md"]
+scripts = ["掌眼-script.md"]
+
+["eternityspring__shuohao-skills.run-2"]
+bios = ["人物小传.md"]
+outline = ["闪婚老公藏不住了-outline.md"]
+scripts = ["闪婚老公藏不住了-script.md"]
+
+["eternityspring__shuohao-skills.run-3"]
+bios = ["主要人物小传.md"]
+outline = ["60集分集大纲.md"]
+scripts = ["第1-3集剧本.md"]
+
+["jtydhr88__screenwriting-skills.run-1"]
+bios = ["人物小传.md"]
+outline = ["分集大纲.md"]
+scripts = ["剧本_第1-3集.txt"]
+
+["jtydhr88__screenwriting-skills.run-2"]
+bios = ["01_人物小传.md"]
+outline = ["02_分集大纲.md"]
+scripts = ["03_第1-3集剧本.txt"]
+
+["jtydhr88__screenwriting-skills.run-3"]
+bios = ["01_人物小传.md"]
+outline = ["02_分集大纲.md"]
+scripts = ["03_第1-3集剧本.txt"]
+
+["lixiaoxiao9888-create__manju-laoli-skill.run-1"]
+bios = ["01_人物小传.md"]
+outline = ["02_60集分集大纲.md"]
+scripts = ["03_第1-3集剧本.md"]
+
+["lixiaoxiao9888-create__manju-laoli-skill.run-2"]
+bios = ["01_主要人物小传.md"]
+outline = ["02_60集分集大纲.md"]
+scripts = ["03_第1-3集剧本.md"]
+
+["lixiaoxiao9888-create__manju-laoli-skill.run-3"]
+bios = ["01_主要人物小传.md"]
+outline = ["02_分集大纲_60集.md"]
+scripts = ["03_第1-3集剧本.md"]
+
+["lixiaoxiao9888-create__short-drama-factory.run-1"]
+bios = ["01-主要人物小传.md"]
+outline = ["02-六十集分集大纲.md"]
+scripts = ["剧本/第01集.md", "剧本/第02集.md", "剧本/第03集.md"]
+
+["lixiaoxiao9888-create__short-drama-factory.run-2"]
+bios = ["01-主要人物小传.md"]
+outline = ["02-60集分集大纲.md"]
+scripts = ["03-第1-3集剧本/第01集.md", "03-第1-3集剧本/第02集.md", "03-第1-3集剧本/第03集.md"]
+
+["lixiaoxiao9888-create__short-drama-factory.run-3"]
+bios = ["人物小传.md"]
+outline = ["分集大纲.md"]
+scripts = ["剧本_第01集.md", "剧本_第02集.md", "剧本_第03集.md"]
+
+["zenstory-ai__drama-skills.run-1"]
+bios = ["人物小传.md"]
+outline = ["分集大纲.md"]
+scripts = ["剧集/EP001/剧本.md", "剧集/EP002/剧本.md", "剧集/EP003/剧本.md"]
+
+["zenstory-ai__drama-skills.run-2"]
+bios = ["人物小传.md"]
+outline = ["分集大纲.md"]
+scripts = ["剧集/EP001/剧本.md", "剧集/EP002/剧本.md", "剧集/EP003/剧本.md"]
+
+["zenstory-ai__drama-skills.run-3"]
+bios = ["人物小传.md"]
+outline = ["分集大纲.md"]
+scripts = ["剧集/EP001/剧本.md", "剧集/EP002/剧本.md", "剧集/EP003/剧本.md"]
+
+["zhu5859243-free__hongguo-shortdrama-screenwriting.run-1"]
+bios = ["01-立项与人物小传.md"]
+outline = ["02-60集分集大纲.md"]
+scripts = ["剧本/第01集.md", "剧本/第02集.md", "剧本/第03集.md"]
+
+["zhu5859243-free__hongguo-shortdrama-screenwriting.run-2"]
+bios = ["人物小传.md"]
+outline = ["分集大纲.md"]
+scripts = ["剧本/第01集.md", "剧本/第02集.md", "剧本/第03集.md"]
+
+["zhu5859243-free__hongguo-shortdrama-screenwriting.run-3"]
+bios = ["01-主要人物小传.md"]
+outline = ["02-60集分集大纲.md"]
+scripts = ["剧本/第01集.md", "剧本/第02集.md", "剧本/第03集.md"]

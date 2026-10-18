@@ -1,0 +1,33 @@
+{
+  "artifacts": {
+    "AR-RHYTHM": {
+      "acceptance": {
+        "at": "2026-10-18T05:49:37.101998Z",
+        "decision": "accepted",
+        "note": "",
+        "outputs": {
+          "创作者决策/rhythm-profile.jsonl": "389b210922f98678554f4674a3b47b68c15b9ac1cb726cc64e0bc280b99fbbd0"
+        }
+      },
+      "inputs": {},
+      "outputs": [
+        "创作者决策/rhythm-profile.jsonl"
+      ],
+      "owner": "short-drama",
+      "review": null,
+      "updated_at": "2026-10-18T05:49:37.102186Z"
+    }
+  },
+  "authority": {
+    "/creator_authority/rhythm_profile": {
+      "decision": "创作者决策/rhythm-profile.jsonl#CD-RHYTHM",
+      "set_at": "2026-10-18T05:49:37.172818Z",
+      "value_sha256": "2af229672d73f19c8ab0040768165f063473b9cbe1c4f47ed575892ca6b96df4"
+    }
+  },
+  "last_action": "authority_set",
+  "project_id": "SD-DCB4FEA1F4B9",
+  "project_layout_mode": "canonical",
+  "schema_version": "2.0",
+  "updated_at": "2026-10-18T05:49:37.173034Z"
+}

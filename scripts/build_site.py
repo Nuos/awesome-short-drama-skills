@@ -72,6 +72,26 @@ CJK = re.compile(r"[\u3400-\u9fff]")
 
 # ───────────────────────── 数据 ─────────────────────────
 
+ROUNDS = {"001-rebirth-revenge": ("第一轮", "round one", "round-1"),
+          "002-open-brief": ("第二轮", "round two", "round-2")}
+
+
+def duel_record(run_dir: Path) -> dict[tuple[str, str], dict[str, list[int]]]:
+    """每个参赛者和对照组盲比的「赢、平、输」次数。两种先后顺序都判它赢才算赢，都判对照组赢才算输。"""
+    votes: dict[tuple[str, str, str, str], list[str]] = {}
+    for line in (run_dir / "duels.jsonl").open(encoding="utf-8"):
+        d = json.loads(line)
+        mine, side = (d["a_run"], "甲") if not d["a_run"].startswith("baseline.") else (d["b_run"], "乙")
+        slug, run = mine.rsplit(".", 1)
+        votes.setdefault((run_dir.name, slug, d["track"], run), []).append(
+            "W" if d["winner"] == side else "T" if d["winner"] == "平" else "L")
+    out: dict[tuple[str, str], dict[str, list[int]]] = {}
+    for (rnd, slug, track, _), v in votes.items():
+        r = out.setdefault((rnd, slug), {}).setdefault(track, [0, 0, 0])
+        r[0 if v.count("W") == len(v) else 2 if v.count("L") == len(v) else 1] += 1
+    return out
+
+
 class Data:
     def __init__(self) -> None:
         self.taxonomy, skills, self.packs, self.ignored = load_valid()
@@ -91,11 +111,14 @@ class Data:
         tr_path = DATA / "translations.json"
         self.translations = json.loads(tr_path.read_text(encoding="utf-8")) if tr_path.exists() else {}
         self.untranslated: set[str] = set()
-        # 参加过实测的项目：evals/runs/<轮次>/contestants.toml
+        # 参加过实测的项目：evals/runs/<轮次>/contestants.toml；有 duels.jsonl 的轮次再算出和对照组盲比的胜负
         self.evaluated: dict[str, list[str]] = {}
+        self.duels: dict[tuple[str, str], dict[str, list[int]]] = {}
         for roster in sorted((ROOT / "evals" / "runs").glob("*/contestants.toml")):
             for c in tomllib.loads(roster.read_text(encoding="utf-8"))["contestants"]:
                 self.evaluated.setdefault(c["repo"].lower(), []).append(roster.parent.name)
+            if (roster.parent / "duels.jsonl").exists():
+                self.duels.update(duel_record(roster.parent))
 
     def quote(self, text: str, lang: str) -> tuple[str, bool]:
         """第三方文字的展示版本和它是不是译文。英文页遇到中文换成译文，没有译文就先不显示。"""
@@ -601,12 +624,22 @@ class Site:
                                     for i, p in in_packs) + "</ul>")
 
         tested = ""
-        for run in d.evaluated.get(s["repo"].lower(), []):
-            out = f"{REPO_URL}/tree/main/evals/runs/{run}/{s['repo'].replace('/', '__')}/output"
+        rounds = d.evaluated.get(s["repo"].lower(), [])
+        if rounds:
+            run = rounds[-1]
+            zh_n, en_n, anchor = ROUNDS[run]
+            slug = s["repo"].replace("/", "__")
+            out = f"{REPO_URL}/tree/main/evals/runs/{run}/{slug}"
+            rec = d.duels.get((run, slug), {})
+            score = ""
+            if rec:
+                sc, ol = rec.get("script", [0, 0, 0]), rec.get("outline", [0, 0, 0])
+                score = L(lang, f"和不装 skill 的对照组盲比三次：剧本 {sc[0]} 赢 {sc[1]} 平 {sc[2]} 输，人物大纲 {ol[0]} 赢 {ol[1]} 平 {ol[2]} 输。",
+                          f"Blind comparisons with a no-skill control over three runs: scripts {sc[0]} won, {sc[1]} tied, "
+                          f"{sc[2]} lost; characters and outline {ol[0]} won, {ol[1]} tied, {ol[2]} lost. ")
             tested = (f'<h2>{L(lang, "实测", "Tested")}</h2><p>'
-                      + L(lang, "参加了第一轮剧本实测：同一个梗概交给 10 个剧本 skill，匿名盲评。",
-                          "Took part in round one of our script tests: one premise, 10 script-writing skills, blind review. ")
-                      + f'<a href="{url(lang, "/evals/")}#round-1">{L(lang, "看点评", "Read the results")}</a> · '
+                      + L(lang, f"参加了{zh_n}剧本实测。", f"Took part in {en_n} of our script tests. ") + score
+                      + f'<a href="{url(lang, "/evals/")}#{anchor}">{L(lang, "看点评", "Read the results")}</a> · '
                       + f'<a href="{out}">{L(lang, "看它的原始产出", "See its raw output")}</a></p>')
         mine = set(s["stages"])
         peers = [x for x in d.skills if x is not s and x["group"] == s["group"]]
@@ -789,10 +822,15 @@ class Site:
             lines.append(f"- [{display_name(s)}]({abs_url('en', repo_path(s))}) (★{fmt_stars(m.get('stars'))}, "
                          f"{d.groups[s['group']].get('label_en')}): {s.get('desc_en') or s['desc']}")
         lines += ["", "## Tests",
-                  f"- [Round one: script-writing skills]({abs_url('en', '/evals/')}): the same rebirth-revenge premise given to "
-                  "10 script-writing skills and a no-skill control (Claude Code, claude-opus-5-5), one run each, reviewed blind for "
-                  "hooks, dialogue, runtime and structure. Raw outputs: "
-                  f"{REPO_URL}/tree/main/evals/runs"]
+                  f"- [Round two: script-writing skills on an open brief]({abs_url('en', '/evals/')}#round-2): a one-line brief "
+                  "(a vertical short drama, 60 episodes of 1-2 minutes, no genre or plot) given to 10 script-writing skills and a "
+                  "no-skill control, three runs each with the same model (Claude Code, claude-opus-5-5), compared blind with the "
+                  "control. Most skills produced more shootable scripts than the control; the control often had stronger "
+                  "episode-ending hooks. Skills changed which kind of story got written, but the model's default names "
+                  "(a character called Xiaoman in 15 of 33 drafts) appeared regardless of skill.",
+                  f"- [Round one]({abs_url('en', '/evals/')}#round-1): one detailed rebirth-revenge premise, one run each. "
+                  "The premise fixed most of the plot, so it cannot show whether skills change the story.",
+                  f"- Raw outputs, story cards and every blind comparison: {REPO_URL}/tree/main/evals/runs"]
         lines += ["", "## Optional", f"- [Full data as JSON]({BASE}/data.json)", f"- [GitHub source]({REPO_URL})", ""]
         (DIST / "llms.txt").write_text("\n".join(lines), encoding="utf-8")
 
