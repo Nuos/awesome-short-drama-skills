@@ -35,6 +35,7 @@ skill 按 skills CLI 的默认范围安装：仓库里所有 SKILL.md 所在目�
 
 ## 这一轮的限制
 
+- **梗概写得太细。** 梗概写定了主角、重生节点、当众退婚、火场和结局，留给 skill 的创作空间很小，加上只用一个模型、各跑一次，产出有许多相同的情节和细节。这一轮的产出不能用来判断 skill 改不改变故事，见 [review.md](review.md) 的更正。
 - **不运行脚本。** 为了安全，agent 只能读写自己的工作目录，不能运行命令、不能联网、不连 MCP。shuohao-skills、zenstory drama-skills、漫剧老李、short-drama-factory、hongguo、ai-short-drama 都带校验脚本，这一轮里这些脚本没有跑，agent 改用手工核对，记录里写明了。产出的文字由模型照着 skill 的方法写成，脚本主要做格式和时长校验，但完整流程确实没有走全。
 - **只跑一次。** 同一个 skill 换一次运行，产出会不同。这一轮每个只跑一次，产出全部原样保留。
 - **开场指令要求直接交文件。** 有的 skill 原本会在大纲之后停下来等用户确认，再进入剧本环节（例如 shuohao-skills 的 novel-outline → novel-script）。统一回复让 agent 自己做决定，所以这类确认环节被跳过了。

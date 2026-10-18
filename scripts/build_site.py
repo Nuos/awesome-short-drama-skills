@@ -789,8 +789,8 @@ class Site:
                          f"{d.groups[s['group']].get('label_en')}): {s.get('desc_en') or s['desc']}")
         lines += ["", "## Tests",
                   f"- [Round one: script-writing skills]({abs_url('en', '/evals/')}): the same rebirth-revenge premise given to "
-                  "10 script-writing skills and a no-skill control (Claude Code, claude-opus-5-5), reviewed blind. Finding: the "
-                  "story skeletons converge; skills mainly change runtime, format and pacing discipline. Raw outputs: "
+                  "10 script-writing skills and a no-skill control (Claude Code, claude-opus-5-5), one run each, reviewed blind for "
+                  "hooks, dialogue, runtime and structure. Raw outputs: "
                   f"{REPO_URL}/tree/main/evals/runs"]
         lines += ["", "## Optional", f"- [Full data as JSON]({BASE}/data.json)", f"- [GitHub source]({REPO_URL})", ""]
         (DIST / "llms.txt").write_text("\n".join(lines), encoding="utf-8")
