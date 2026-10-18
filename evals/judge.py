@@ -2,12 +2,12 @@
 """实测评审：把每次运行的三项交付拼成匿名稿，抽故事卡，再让评审两两盲比。
 
 用法（在仓库根目录，按顺序）：
-  python evals/judge.py locate 002-open-brief --work /tmp/judge   # 找出每次运行里哪些文件是小传、大纲、剧本
-  python evals/judge.py pack   002-open-brief --work /tmp/judge   # 拼成匿名稿，随机编号，对应关系存在 --work 里
-  python evals/judge.py cards  002-open-brief --work /tmp/judge   # 每份匿名稿抽一张故事卡
-  python evals/judge.py cluster 002-open-brief --work /tmp/judge  # 按故事卡把所有剧分成故事类型，看谁和谁是同一个套路
-  python evals/judge.py duel   002-open-brief --work /tmp/judge   # 每个 skill 和对照组同一运行编号两两比，两种顺序各比一次
-  python evals/judge.py reveal 002-open-brief --work /tmp/judge   # 评完后揭晓：把故事卡、比较结果和对应关系写进 evals/runs/<premise>/
+  python evals/judge.py locate 001-open-brief --work /tmp/judge   # 找出每次运行里哪些文件是小传、大纲、剧本
+  python evals/judge.py pack   001-open-brief --work /tmp/judge   # 拼成匿名稿，随机编号，对应关系存在 --work 里
+  python evals/judge.py cards  001-open-brief --work /tmp/judge   # 每份匿名稿抽一张故事卡
+  python evals/judge.py cluster 001-open-brief --work /tmp/judge  # 按故事卡把所有剧分成故事类型，看谁和谁是同一个套路
+  python evals/judge.py duel   001-open-brief --work /tmp/judge   # 每个 skill 和对照组同一运行编号两两比，两种顺序各比一次
+  python evals/judge.py reveal 001-open-brief --work /tmp/judge   # 评完后揭晓：把故事卡、比较结果和对应关系写进 evals/runs/<premise>/
 
 评审和故事卡都用和参赛者相同的模型，不给任何工具，只看匿名稿。
 locate 的结果写在 evals/runs/<premise>/deliverables.toml，可以人工改。只用标准库。

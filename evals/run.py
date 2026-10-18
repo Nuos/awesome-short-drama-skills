@@ -2,9 +2,9 @@
 """实测运行器：把同一份需求交给一个 skill，在隔离目录里用 Claude Code 无头模式跑完，保存产出和问答记录。
 
 用法（在仓库根目录）：
-  python evals/run.py 002-open-brief eternityspring/shuohao-skills --run 1 --work /tmp/evals
-  python evals/run.py 002-open-brief baseline --run 1 --work /tmp/evals        # 不装任何 skill 的对照组
-  python evals/run.py 002-open-brief <repo> --run 1 --work /tmp/evals --more   # 对已有会话再发一次固定回复
+  python evals/run.py 001-open-brief eternityspring/shuohao-skills --run 1 --work /tmp/evals
+  python evals/run.py 001-open-brief baseline --run 1 --work /tmp/evals        # 不装任何 skill 的对照组
+  python evals/run.py 001-open-brief <repo> --run 1 --work /tmp/evals --more   # 对已有会话再发一次固定回复
 
 参赛名单、入口 skill 和每个 skill 跑几次写在 evals/runs/<premise>/contestants.toml。
 每个 skill 用同一条开场指令和同一条固定回复，不额外加指令。skill 给出几个题材或故事方案时，固定回复按运行编号选：

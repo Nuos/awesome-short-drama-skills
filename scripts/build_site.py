@@ -72,8 +72,7 @@ CJK = re.compile(r"[\u3400-\u9fff]")
 
 # ───────────────────────── 数据 ─────────────────────────
 
-ROUNDS = {"001-rebirth-revenge": ("第一轮", "round one", "round-1"),
-          "002-open-brief": ("第二轮", "round two", "round-2")}
+ROUNDS = {"001-open-brief": ("第一轮", "round one", "round-1")}
 
 
 def duel_record(run_dir: Path) -> dict[tuple[str, str], dict[str, list[int]]]:
@@ -822,14 +821,12 @@ class Site:
             lines.append(f"- [{display_name(s)}]({abs_url('en', repo_path(s))}) (★{fmt_stars(m.get('stars'))}, "
                          f"{d.groups[s['group']].get('label_en')}): {s.get('desc_en') or s['desc']}")
         lines += ["", "## Tests",
-                  f"- [Round two: script-writing skills on an open brief]({abs_url('en', '/evals/')}#round-2): a one-line brief "
+                  f"- [Round one: script-writing skills on an open brief]({abs_url('en', '/evals/')}#round-1): a one-line brief "
                   "(a vertical short drama, 60 episodes of 1-2 minutes, no genre or plot) given to 10 script-writing skills and a "
                   "no-skill control, three runs each with the same model (Claude Code, claude-opus-5-5), compared blind with the "
                   "control. Most skills produced more shootable scripts than the control; the control often had stronger "
                   "episode-ending hooks. Skills changed which kind of story got written, but the model's default names "
                   "(a character called Xiaoman in 15 of 33 drafts) appeared regardless of skill.",
-                  f"- [Round one]({abs_url('en', '/evals/')}#round-1): one detailed rebirth-revenge premise, one run each. "
-                  "The premise fixed most of the plot, so it cannot show whether skills change the story.",
                   f"- Raw outputs, story cards and every blind comparison: {REPO_URL}/tree/main/evals/runs"]
         lines += ["", "## Optional", f"- [Full data as JSON]({BASE}/data.json)", f"- [GitHub source]({REPO_URL})", ""]
         (DIST / "llms.txt").write_text("\n".join(lines), encoding="utf-8")
