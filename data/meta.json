@@ -78,13 +78,13 @@
     "HBAI-Ltd/Toonflow-app": {
       "archived": false,
       "description": "短剧、漫剧制作工具 Toonflow：开源 AI 视频创作平台，集成剧本创作、智能分镜、角色与场景资产管理、图像生成和视频生成。融合无限画布、AI Agent 与可视化工作流，支持本地部署、自选模型、跨平台客户端、MCP 与插件扩展。Open-source AI short drama and motion comic creation tool with an infinite canvas, AI agents, storyboarding, image and video generation. Self-hosted and extensible, with a canvas-based approach similar to LibTV and TapNow.",
-      "forks": 3213,
+      "forks": 3214,
       "full_name": "HBAI-Ltd/Toonflow-app",
       "license": "MIT",
       "pushed_at": "2026-10-16",
       "skill_count": 5,
       "skill_count_truncated": false,
-      "stars": 18060,
+      "stars": 18061,
       "status": "ok"
     },
     "HITsz-TMG/VideoClaw": {
@@ -233,7 +233,7 @@
       "pushed_at": "2026-04-01",
       "skill_count": 0,
       "skill_count_truncated": false,
-      "stars": 1342,
+      "stars": 1343,
       "status": "ok"
     },
     "SlavaSexton/ComfyUI-Agent-Kit": {
@@ -424,13 +424,13 @@
     "blader/humanizer": {
       "archived": false,
       "description": "Agent skill that removes signs of AI-generated writing from text",
-      "forks": 4590,
+      "forks": 4591,
       "full_name": "blader/humanizer",
       "license": "MIT",
       "pushed_at": "2026-10-16",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 57902,
+      "stars": 57904,
       "status": "ok"
     },
     "catyiqian/qianqianwriting": {
@@ -460,7 +460,7 @@
     "chatfire-AI/huobao-drama": {
       "archived": false,
       "description": "🎬 火宝短剧 - 基于AI的一站式短剧生成平台 《一句话生成完整短剧，从剧本到成片全自动化》  Huobao Drama - An AI-Powered End-to-End Short Drama Generator \"One Sentence to Complete Drama: Fully Automated from Script to Final Video\"",
-      "forks": 3027,
+      "forks": 3028,
       "full_name": "chatfire-AI/huobao-drama",
       "license": null,
       "pushed_at": "2026-10-05",
@@ -545,7 +545,7 @@
     "eternityspring/shuohao-skills": {
       "archived": false,
       "description": "AI 短剧制作的 skill 集合：拆角色、排大纲、出场景与道具设定、写剧本、切分镜 | Agent skills for AI short-drama production — character bibles, adaptation outlines, art bibles, screenplays, storyboards. Runs in Claude Code & codex.",
-      "forks": 650,
+      "forks": 649,
       "full_name": "eternityspring/shuohao-skills",
       "license": "Apache-2.0",
       "pushed_at": "2026-10-15",
@@ -975,7 +975,7 @@
     "waooAI/waoowaoo": {
       "archived": false,
       "description": "首家工业级全流程 AI 影视生产平台。Industry-first professional AI Agent platform for controllable film & video production. From shorts to live-action with Hollywood-standard workflows.",
-      "forks": 3298,
+      "forks": 3299,
       "full_name": "waooAI/waoowaoo",
       "license": null,
       "pushed_at": "2026-09-21",
@@ -1017,7 +1017,7 @@
       "pushed_at": "2026-08-31",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 236,
+      "stars": 237,
       "status": "ok"
     },
     "wyuzhi/qisi-video-remix": {
@@ -1059,7 +1059,7 @@
     "xuanyustudio/LocalMiniDrama": {
       "archived": false,
       "description": "🎬 seedance2接入  开源本地 AI 短剧 & 漫剧生成工具 —— 从故事到成片一站式完成，数据不出本机，短剧工作流管理平台，高灵活度，AI真人剧，AI漫剧本地搞定。 Open-source local AI short drama maker: story → storyboard → video, fully offline, your data stays yours. 纳米流水线",
-      "forks": 504,
+      "forks": 505,
       "full_name": "xuanyustudio/LocalMiniDrama",
       "license": "MIT",
       "pushed_at": "2026-10-16",

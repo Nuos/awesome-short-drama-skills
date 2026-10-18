@@ -277,7 +277,7 @@ Turn a script into shots: storyboards, character and scene assets, and prompts f
 
 - **[awesome-seedance-2.5-prompts-skills](https://github.com/AtlasCloudAI/awesome-seedance-2.5-prompts-skills)** · ★ 241<br>Seedance 2.5 prompt library plus skill: picks a T2V/R2V/I2V route, Seedream storyboards, multi-reference and shot-continuity design<br><sub>Stages: Prompts</sub><br><sub>updated 2026-10-16 · Multilingual · 2 skills</sub><br><sub>🎬 Seedance / Jimeng</sub><br><sub>💡 Vendor repo; execution defaults to the paid Atlas Cloud API; the prompt library is mostly ads and e-commerce</sub>
 
-- **[DirectorSKILL](https://github.com/wuwangzhang1216/DirectorSKILL)** · ★ 236<br>AI filmmaking: shot lists, keyframe and video prompts, with 20 built-in director styles such as Spielberg<br><sub>Stages: Storyboard · Prompts</sub><br><sub>updated 2026-08-31 · Multilingual · MIT</sub>
+- **[DirectorSKILL](https://github.com/wuwangzhang1216/DirectorSKILL)** · ★ 237<br>AI filmmaking: shot lists, keyframe and video prompts, with 20 built-in director styles such as Spielberg<br><sub>Stages: Storyboard · Prompts</sub><br><sub>updated 2026-08-31 · Multilingual · MIT</sub>
 
 - **[qisi-video-remix](https://github.com/wyuzhi/qisi-video-remix)** · ★ 180<br>Creative video remix: reference video → script → storyboard → per-segment generation prompts<br><sub>Stages: Adaptation · Script · Storyboard · Prompts</sub><br><sub>updated 2026-09-11 · Chinese · MIT</sub>
 
