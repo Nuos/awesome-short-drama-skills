@@ -253,7 +253,7 @@ Turn a script into shots: storyboards, character and scene assets, and prompts f
 
 - **[seedance2-skill](https://github.com/dexhunter/seedance2-skill)** · ★ 4.3k<br>Generates video prompts for Seedance 2.0<br><sub>Stages: Prompts</sub><br><sub>updated 2026-09-19 · Multilingual · 2 skills · MIT</sub><br><sub>🎬 Seedance / Jimeng</sub>
 
-- **[awesome-seedance](https://github.com/LearnPrompt/awesome-seedance)** · ★ 2.1k<br>Seedance 2.5/2.0 prompt library: 800+ cases traceable to original posts and nearly 500 cross-model retests, with skills<br><sub>Stages: Prompts</sub><br><sub>updated 2026-10-17 · Multilingual · 15 skills · MIT</sub><br><sub>🎬 Seedance / Jimeng</sub>
+- **[awesome-seedance](https://github.com/LearnPrompt/awesome-seedance)** · ★ 2.1k<br>Seedance 2.5/2.0 prompt library: 800+ cases traceable to original posts and nearly 500 cross-model retests, with skills<br><sub>Stages: Prompts</sub><br><sub>updated 2026-10-18 · Multilingual · 15 skills · MIT</sub><br><sub>🎬 Seedance / Jimeng</sub>
 
 - **[higgsfield-ai-prompt-skill](https://github.com/OSideMedia/higgsfield-ai-prompt-skill)** · ★ 758<br>Prompts for the Higgsfield platform: MCSLA formula, Seedance 2.5 multi-reference directing, performance direction, Soul ID character consistency, shot lists and failure diagnosis<br><sub>Stages: Characters · Prompts</sub><br><sub>updated 2026-09-27 · English · 36 skills · MIT</sub><br><sub>🎬 Seedance / Jimeng · Kling · Veo · Wan (Tongyi Wanxiang)</sub><br><sub>💡 Targets the paid Higgsfield platform; also includes advertising and marketing modules</sub>
 
@@ -265,7 +265,7 @@ Turn a script into shots: storyboards, character and scene assets, and prompts f
 
 - **[shanyin-director-master](https://github.com/Shanyin-ai/shanyin-director-master)** · ★ 587<br>Shanyin Super Director Master: script → director's tone-setting, pacing plan, script tweaks, storyboard breakdown, output as a nine-column storyboard sheet (xlsx), with built-in genre director-style templates<br><sub>Stages: Review · Storyboard</sub><br><sub>updated 2026-05-11 · Chinese · MIT</sub><br><sub>💡 Built for the Claude app; can be paired with Shanyin Super Screenwriting Master</sub>
 
-- **[visual-skills](https://github.com/smixs/visual-skills)** · ★ 527<br>AI film director: dramaturgy rules such as Murch's editing principles, blocking and montage, plus exact Seedance prompt syntax<br><sub>Stages: Storyboard · Prompts</sub><br><sub>updated 2026-09-16 · English · 2 skills · CC-BY-4.0</sub><br><sub>🎬 Seedance / Jimeng</sub>
+- **[visual-skills](https://github.com/smixs/visual-skills)** · ★ 528<br>AI film director: dramaturgy rules such as Murch's editing principles, blocking and montage, plus exact Seedance prompt syntax<br><sub>Stages: Storyboard · Prompts</sub><br><sub>updated 2026-09-16 · English · 2 skills · CC-BY-4.0</sub><br><sub>🎬 Seedance / Jimeng</sub>
 
 - **[XiaoLuo-AI-Drama-Skill](https://github.com/zhurui0523/XiaoLuo-AI-Drama-Skill)** · ★ 481<br>XiaoLuo series: script analysis, original adaptation, storyboard script, character three-views/costumes/expressions, scene layout<br><sub>Stages: Adaptation · Characters · Script · Storyboard</sub><br><sub>updated 2026-07-23 · 📝 prompts · Chinese</sub><br><sub>💡 A set of prompt .md files, not standard SKILL.md</sub>
 
