@@ -411,3 +411,13 @@ reason = "Higgsfield 调用封装，主打广告、电商与营销视频"
 [[ignored]]
 repo   = "FrameCoreWorks/framecore-works-codex-chatgpt-workflow-kit"
 reason = "通用创意生产流程，主打广告/电商/MV，不针对短剧"
+
+# 补审 discover.py 没搜到的高星项目（2026-10-18）
+
+[[ignored]]
+repo   = "freestylefly/director_ai"
+reason = "漫剧 App：README 现为 Vite 模板加赞助广告，没写用途和安装方法；无许可证，图像视频接口写死赞助商中转站"
+
+[[ignored]]
+repo   = "NarratorAI-Studio/narrator-ai-cli-skill"
+reason = "电影/短剧解说视频，不是短剧创作；本体是自家付费解说 API 的调用说明，Key 需联系索取"

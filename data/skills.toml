@@ -383,6 +383,20 @@ note    = "灵蟹创作（SoloEnt）出品，面向其五分钟短剧大赛"
 note_en = "Made by SoloEnt (Lingxie Chuangzuo) for its five-minute short-drama contest"
 checked = 2026-10-13
 
+[[skills]]
+repo    = "0xsline/short-drama"
+desc    = "短剧编剧全流程：选题立项、故事骨架、四层反派人物、带钩子和付费卡点的分集目录、逐集剧本、五维评分自检和合规审核，可切出海英文格式"
+desc_en = "Short-drama screenwriting workflow: topic setup, story skeleton, characters with a four-tier villain system, an episode list with hooks and paywall points, episode scripts, five-dimension self-review and compliance review, plus an English overseas mode"
+group   = "writing"
+stages  = ["market", "character", "structure", "drafting", "revision"]
+format  = "skill"
+lang    = "zh"
+agents  = ["claude-code", "codex", "gemini-cli"]
+install = "git clone https://github.com/0xsline/short-drama.git ~/.claude/skills/short-drama"
+note    = "SKILL.md 没有 name/description 头，不能用 npx skills 安装，按 README 克隆进技能目录"
+note_en = "SKILL.md has no name/description frontmatter, so npx skills cannot install it; clone it into your skills folder as the README says"
+checked = 2026-10-18
+
 # ───────────────────────── 分镜 · 视觉 ─────────────────────────
 
 [[skills]]
@@ -1135,3 +1149,27 @@ stages  = ["drafting", "storyboard", "production"]
 format  = "app"
 lang    = "multi"
 checked = 2026-10-13
+
+[[skills]]
+repo    = "LingGuoAI/LingGuo-Drama"
+desc    = "灵果短剧：一站式 AI 短剧/漫剧平台，剧本生成、角色场景道具提取与出图、分镜和帧提示词、视频生成，FFmpeg 合成成片"
+desc_en = "Lingguo Drama: all-in-one AI short drama / manju platform with script generation, character, scene and prop extraction and images, storyboards and frame prompts, video generation and FFmpeg merging into the final cut"
+group   = "platform"
+stages  = ["character", "drafting", "storyboard", "production"]
+format  = "app"
+lang    = "zh"
+note    = "内置的生成提示词与火宝短剧 2026 年 2 月版基本相同，仓库未注明来源；README 写 MIT，但仓库没有 LICENSE 文件"
+note_en = "Its built-in generation prompts are nearly identical to Huobao Drama's February 2026 version, with no credit in the repo; the README says MIT but the repo has no LICENSE file"
+checked = 2026-10-18
+
+[[skills]]
+repo    = "gzxx-2025/aid-studio"
+desc    = "AID Studio：可自部署的 AI 漫剧/短剧创作平台，剧本、角色场景资产、分镜、图片与视频生成、配音和成片预览，也能做短片和漫画"
+desc_en = "AID Studio: self-hostable AI manju / short-drama creation platform covering scripts, character and scene assets, storyboards, image and video generation, voiceover and final-cut preview; also makes short films and comics"
+group   = "platform"
+stages  = ["character", "drafting", "storyboard", "production"]
+format  = "app"
+lang    = "multi"
+note    = "附带的剧本 skill 由平台内部按固定版本调用，写明参考并重写自 zenstory-ai/drama-skills"
+note_en = "Its bundled screenplay skills are called internally by the platform at pinned versions and state that they are reimplemented from zenstory-ai/drama-skills"
+checked = 2026-10-18

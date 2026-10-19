@@ -1,6 +1,19 @@
 {
   "fetched_at": "2026-10-19",
   "repos": {
+    "0xsline/short-drama": {
+      "archived": false,
+      "description": "专业的短剧剧本创作skill,从选题立项到分集撰写、质量自检、合规审核、海外出海，覆盖短剧剧本生产全流程。",
+      "first_seen": "2026-10-18",
+      "forks": 246,
+      "full_name": "0xsline/short-drama",
+      "license": "MIT",
+      "pushed_at": "2026-04-17",
+      "skill_count": 1,
+      "skill_count_truncated": false,
+      "stars": 1436,
+      "status": "ok"
+    },
     "62656456/ai-film-skills": {
       "archived": false,
       "description": "Open Film Skills: 21 independent modules for story, directing, visual assets and AI-film production, with research galleries and playable 3D previs.",
@@ -158,6 +171,19 @@
       "skill_count": 15,
       "skill_count_truncated": false,
       "stars": 2140,
+      "status": "ok"
+    },
+    "LingGuoAI/LingGuo-Drama": {
+      "archived": false,
+      "description": "🎬 灵果短剧AI - 基于AI的一站式短剧/漫剧生成平台 《一句话生成完整短剧/漫剧，从剧本到成片短剧/漫剧全自动化》Lingguo-Drama AI-An AI-powered one-stop generation platform for mini-dramas and motion comics",
+      "first_seen": "2026-10-18",
+      "forks": 268,
+      "full_name": "LingGuoAI/LingGuo-Drama",
+      "license": null,
+      "pushed_at": "2026-08-21",
+      "skill_count": 0,
+      "skill_count_truncated": false,
+      "stars": 1586,
       "status": "ok"
     },
     "LuoJiangYong/muse-video-skill": {
@@ -564,6 +590,19 @@
       "skill_count": 13,
       "skill_count_truncated": false,
       "stars": 5,
+      "status": "ok"
+    },
+    "gzxx-2025/aid-studio": {
+      "archived": false,
+      "description": " 开源AI漫剧、AI短剧、AI电影与AI漫画创作平台，支持剧本、角色场景、智能分镜、图片与视频生成、配音及成片预览，多模型接入，可自行部署。预：无限画布、导演台。",
+      "first_seen": "2026-10-18",
+      "forks": 223,
+      "full_name": "gzxx-2025/aid-studio",
+      "license": "MIT",
+      "pushed_at": "2026-10-15",
+      "skill_count": 2,
+      "skill_count_truncated": false,
+      "stars": 1019,
       "status": "ok"
     },
     "ilkaydemiralay/vision_art_creator": {
