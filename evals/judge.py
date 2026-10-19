@@ -9,12 +9,19 @@
   python evals/judge.py duel   001-open-brief --work /tmp/judge   # 每个 skill 和对照组同一运行编号两两比，两种顺序各比一次
   python evals/judge.py reveal 001-open-brief --work /tmp/judge   # 评完后揭晓：把故事卡、比较结果和对应关系写进 evals/runs/<premise>/
 
-评审和故事卡都用和参赛者相同的模型，不给任何工具，只看匿名稿。
+  python evals/judge.py duel 001-open-brief --work /tmp/judge --judge gpt     # 换 GPT 当评审复核，结果另存 *-gpt
+  python evals/judge.py cluster 001-open-brief --work /tmp/judge --judge gpt
+
+主评审和故事卡用和参赛者相同的模型（claude-opus-5-5），不给任何工具，只看匿名稿。
+复核评审是 GPT（经 Codex CLI），用一字不差的提示词和输出格式；为了不读进本机的个人指令，
+它用一个只链接了登录凭据的干净 CODEX_HOME（环境变量 JUDGE_CODEX_HOME）。
+每次调用的提示词指纹（sha256）和原始返回存在 --work/raw/<评审>/ 下。
 locate 的结果写在 evals/runs/<premise>/deliverables.toml，可以人工改。只用标准库。
 """
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import random
@@ -30,6 +37,10 @@ ROOT = Path(__file__).resolve().parent.parent
 EVALS = ROOT / "evals"
 MODEL = "claude-opus-5-5"
 EFFORT = "high"
+GPT_MODEL = "gpt-6-astra"
+GPT_EFFORT = "high"
+JUDGE = "opus"                 # 由 --judge 设定
+RAW: Path | None = None        # 原始返回存在这里；由 main() 设定
 PARTS = {"bios": "人物小传", "outline": "分集大纲", "scripts": "第 1–3 集剧本"}
 TEXT = {".md", ".txt", ".markdown", ".fountain", ".json", ".yaml", ".yml", ".csv", ".html"}
 
@@ -118,8 +129,46 @@ LOCATE_SCHEMA = {"type": "object", "additionalProperties": False, "required": li
                  "properties": {k: {"type": "array", "items": {"type": "string"}} for k in PARTS}}
 
 
-def ask(prompt: str, schema: dict, system: str) -> dict:
-    """无工具、无项目设置的单次调用，返回按 schema 校验过的 JSON。"""
+def ask(prompt: str, schema: dict, system: str, call_id: str = "") -> dict:
+    """单次评审调用，返回按 schema 校验过的 JSON。给了 call_id 就把提示词指纹和原始返回存下来。"""
+    out = ask_gpt(prompt, schema, system) if JUDGE == "gpt" else ask_opus(prompt, schema, system)
+    raw = out.pop("_raw")
+    if RAW and call_id:
+        RAW.mkdir(parents=True, exist_ok=True)
+        meta = {"id": call_id, "judge": JUDGE, "model": GPT_MODEL if JUDGE == "gpt" else MODEL,
+                "effort": GPT_EFFORT if JUDGE == "gpt" else EFFORT, "system": system,
+                "prompt_sha256": hashlib.sha256(prompt.encode("utf-8")).hexdigest(), "raw": raw}
+        (RAW / f"{call_id}.json").write_text(json.dumps(meta, ensure_ascii=False) + "\n", encoding="utf-8")
+    return out
+
+
+def ask_gpt(prompt: str, schema: dict, system: str) -> dict:
+    """经 Codex CLI 调 GPT：只读沙箱、空目录、不存会话。Codex 没有单独的系统提示参数，system 放在提示词最前面。"""
+    home = os.environ.get("JUDGE_CODEX_HOME")
+    if not home:
+        sys.exit("请设置 JUDGE_CODEX_HOME：一个只放了 auth.json 的干净 Codex 目录")
+    with tempfile.TemporaryDirectory() as empty:
+        sp, last = Path(empty) / ".schema.json", Path(empty) / ".last.txt"
+        sp.write_text(json.dumps(schema), encoding="utf-8")
+        cmd = ["codex", "exec", "--skip-git-repo-check", "--ephemeral", "-s", "read-only", "--color", "never",
+               "-m", GPT_MODEL, "-c", f"model_reasoning_effort={GPT_EFFORT}", "--output-schema", str(sp),
+               "--json", "-o", str(last), "-"]
+        env = os.environ | {"CODEX_HOME": home}
+        err = ""
+        for attempt in range(3):
+            p = subprocess.run(cmd, input=f"{system}\n\n{prompt}", cwd=empty, env=env, capture_output=True,
+                               text=True, timeout=3600)
+            try:
+                data = json.loads(last.read_text(encoding="utf-8"))
+                events = [json.loads(l) for l in p.stdout.splitlines() if l.startswith("{")]
+                return data | {"_raw": events}
+            except (OSError, json.JSONDecodeError):
+                err = (p.stdout or p.stderr)[-500:]
+        raise RuntimeError(f"调用失败：{err}")
+
+
+def ask_opus(prompt: str, schema: dict, system: str) -> dict:
+    """无工具、无项目设置的单次调用。"""
     with tempfile.TemporaryDirectory() as empty:
         cmd = ["claude", "-p", "--output-format", "json", "--model", MODEL, "--effort", EFFORT, "--tools", "",
                "--setting-sources", "project", "--strict-mcp-config", "--mcp-config", '{"mcpServers":{}}',
@@ -130,7 +179,7 @@ def ask(prompt: str, schema: dict, system: str) -> dict:
             try:
                 out = json.loads(p.stdout)
                 data = out.get("structured_output") or json.loads(out["result"])
-                return data | {"_cost_usd": out.get("total_cost_usd")}
+                return data | {"_cost_usd": out.get("total_cost_usd"), "_raw": out}
             except (json.JSONDecodeError, KeyError, TypeError):
                 err = (p.stdout or p.stderr)[-500:]
         raise RuntimeError(f"调用失败：{err}")
@@ -224,13 +273,35 @@ def cmd_cards(premise: str, work: Path) -> None:
             print(row["code"], row["title"], row["genre"], flush=True)
 
 
-def cmd_cluster(premise: str, work: Path) -> None:
-    rows = [json.loads(l) for l in (work / "cards.jsonl").open(encoding="utf-8")]
-    random.shuffle(rows)
+CLUSTER_SYSTEM = "你是短剧行业编辑，只按要求输出。"
+DUEL_SYSTEM = "你是严格、公正的短剧编辑，只按要求输出。"
+SUFFIX = {"opus": "", "gpt": "-gpt"}
+
+
+def cluster_rows(work: Path) -> list[dict]:
+    """故事卡按编号排序后用固定种子打乱，谁都能重建出一模一样的提示词。"""
+    rows = sorted((json.loads(l) for l in (work / "cards.jsonl").open(encoding="utf-8")), key=lambda r: r["code"])
+    random.Random(20261018).shuffle(rows)
+    return rows
+
+
+def cluster_prompt(rows: list[dict]) -> str:
     lines = "\n".join(f"- {r['code']}：《{r['title']}》 {r['genre']}。{r['logline']} 主角：{r['protagonist']}。"
                       f"核心设定：{r['hook_device']}" for r in rows)
-    r = ask(CLUSTER.format(n=len(rows), lines=lines), CLUSTER_SCHEMA, "你是短剧行业编辑，只按要求输出。")
-    (work / "clusters.json").write_text(json.dumps(r, ensure_ascii=False, indent=1), encoding="utf-8")
+    return CLUSTER.format(n=len(rows), lines=lines)
+
+
+def duel_prompt(work: Path, track: str, a: str, b: str) -> str:
+    parts = TRACKS[track]
+    dims = "\n".join(f"- {d}：{why}" for d, why in track_dims(track).items())
+    return DUEL.format(part="、".join(PARTS[p] for p in parts), dims=dims, a=packet(work, a, parts),
+                       b=packet(work, b, parts))
+
+
+def cmd_cluster(premise: str, work: Path) -> None:
+    rows = cluster_rows(work)
+    r = ask(cluster_prompt(rows), CLUSTER_SCHEMA, CLUSTER_SYSTEM, "cluster")
+    (work / f"clusters{SUFFIX[JUDGE]}.json").write_text(json.dumps(r, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"{len(r['groups'])} 个故事类型")
 
 
@@ -239,28 +310,25 @@ def cmd_duel(premise: str, work: Path) -> None:
     code_of = {v: k for k, v in key_map.items()}
     runs = tomllib.loads(read_text(EVALS / "runs" / premise / "contestants.toml")).get("runs", 1)
     slugs = sorted({k.rsplit(".", 1)[0] for k in code_of} - {"baseline"})
-    out = work / "duels.jsonl"
+    out = work / f"duels{SUFFIX[JUDGE]}.jsonl"
     done = {(r["track"], r["a"], r["b"]) for r in map(json.loads, out.open(encoding="utf-8"))} if out.exists() else set()
     jobs = []
-    for track, parts in TRACKS.items():
-        dims = "\n".join(f"- {d}：{why}" for d, why in track_dims(track).items())
-        part = "、".join(PARTS[p] for p in parts)
+    for track in TRACKS:
         for s in slugs:
             for n in range(1, runs + 1):
                 x, y = code_of.get(f"{s}.run-{n}"), code_of.get(f"baseline.run-{n}")
                 if x and y:
                     for a, b in ((x, y), (y, x)):
                         if (track, a, b) not in done:
-                            jobs.append((track, part, dims, parts, a, b))
+                            jobs.append((track, a, b))
 
     def one(job):
-        track, part, dims, parts, a, b = job
-        prompt = DUEL.format(part=part, dims=dims, a=packet(work, a, parts), b=packet(work, b, parts))
-        r = ask(prompt, duel_schema(track), "你是严格、公正的短剧编辑，只按要求输出。")
+        track, a, b = job
+        r = ask(duel_prompt(work, track, a, b), duel_schema(track), DUEL_SYSTEM, f"duel.{track}.{a}.{b}")
         return {"track": track, "a": a, "b": b} | r
 
     print(f"{len(jobs)} 场比较", flush=True)
-    with ThreadPoolExecutor(8) as ex, out.open("a", encoding="utf-8") as f:
+    with ThreadPoolExecutor(4 if JUDGE == "gpt" else 8) as ex, out.open("a", encoding="utf-8") as f:
         for row in ex.map(one, jobs):
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
             f.flush()
@@ -271,19 +339,22 @@ def cmd_reveal(premise: str, work: Path) -> None:
     key_map = json.loads(read_text(work / "key.json"))
     base = EVALS / "runs" / premise
     (base / "blind_key.json").write_text(json.dumps(key_map, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    for name in ("cards.jsonl", "duels.jsonl"):
+    for name in ("cards.jsonl", "duels.jsonl", "duels-gpt.jsonl"):
+        if not (work / name).exists():
+            continue
         rows = [json.loads(l) for l in (work / name).open(encoding="utf-8")]
         for r in rows:
             for k in ("code", "a", "b"):
                 if k in r:
                     r[k + "_run"] = key_map[r[k]]
         (base / name).write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
-    if (work / "clusters.json").exists():
-        groups = json.loads(read_text(work / "clusters.json"))["groups"]
+    for name in ("clusters.json", "clusters-gpt.json"):
+        if not (work / name).exists():
+            continue
+        groups = json.loads(read_text(work / name))["groups"]
         for g in groups:
             g["runs"] = [key_map[c] for c in g["codes"]]
-        (base / "clusters.json").write_text(json.dumps({"groups": groups}, ensure_ascii=False, indent=1) + "\n",
-                                            encoding="utf-8")
+        (base / name).write_text(json.dumps({"groups": groups}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(f"写入 {base}")
 
 
@@ -292,8 +363,11 @@ def main() -> None:
     ap.add_argument("step", choices=["locate", "pack", "cards", "cluster", "duel", "reveal"])
     ap.add_argument("premise")
     ap.add_argument("--work", required=True, type=Path, help="放匿名稿和中间结果的目录（仓库之外）")
+    ap.add_argument("--judge", choices=["opus", "gpt"], default="opus", help="谁当评审；gpt 用来复核")
     args = ap.parse_args()
     args.work.mkdir(parents=True, exist_ok=True)
+    global JUDGE, RAW
+    JUDGE, RAW = args.judge, args.work.resolve() / "raw" / args.judge
     globals()[f"cmd_{args.step}"](args.premise, args.work.resolve())
 
 

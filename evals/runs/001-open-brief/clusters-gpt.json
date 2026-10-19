@@ -1,0 +1,270 @@
+{
+ "groups": [
+  {
+   "name": "鉴宝师出狱翻案：被陷害入狱的女鉴定师出狱后，靠鉴宝本领和器物暗记当众拆假，追查旧案幕后黑手。",
+   "pattern": "",
+   "codes": [
+    "874",
+    "795"
+   ],
+   "runs": [
+    "eternityspring__shuohao-skills.run-1",
+    "zenstory-ai__drama-skills.run-2"
+   ]
+  },
+  {
+   "name": "主妇离婚查账：长期替夫家免费管账的全职太太，在婚变时拿出多年账本，用财会本领追回权益、清算夫家。",
+   "pattern": "",
+   "codes": [
+    "824",
+    "891",
+    "861"
+   ],
+   "runs": [
+    "lixiaoxiao9888-create__manju-laoli-skill.run-3",
+    "zhu5859243-free__hongguo-shortdrama-screenwriting.run-1",
+    "zhu5859243-free__hongguo-shortdrama-screenwriting.run-3"
+   ]
+  },
+  {
+   "name": "追回被顶替的人生：中年女人发现自己的升学身份被冒用多年，向已功成名就的顶替者追讨名字和人生。",
+   "pattern": "",
+   "codes": [
+    "431"
+   ],
+   "runs": [
+    "Shanyin-ai__shanyin-screenwriting-master.run-1"
+   ]
+  },
+  {
+   "name": "听谎太太反杀：全职太太意外获得识别谎言的能力，装傻拆穿丈夫骗局，夺回亡母遗产。",
+   "pattern": "",
+   "codes": [
+    "151"
+   ],
+   "runs": [
+    "catyiqian__qianqianwriting.run-1"
+   ]
+  },
+  {
+   "name": "灵堂归来的原作者：被误认死亡的主妇撞见丈夫盘算赔偿金，决意离婚，并靠作品暗记追回多年被侵占的署名。",
+   "pattern": "",
+   "codes": [
+    "282"
+   ],
+   "runs": [
+    "adoria111__emma-screenwriting-skills.run-1"
+   ]
+  },
+  {
+   "name": "离婚带走老卤：被夫家轻视的妻子实际是祖传老卤的养卤人，离婚带走卤坛后夫家生意失去招牌味道，她凭手艺重起炉灶。",
+   "pattern": "",
+   "codes": [
+    "954",
+    "416",
+    "426",
+    "881"
+   ],
+   "runs": [
+    "Hao0321__ai-short-drama.run-2",
+    "lixiaoxiao9888-create__short-drama-factory.run-2",
+    "catyiqian__qianqianwriting.run-3",
+    "Hao0321__ai-short-drama.run-3"
+   ]
+  },
+  {
+   "name": "保洁母亲查女儿死因：母亲隐瞒身份进入女儿遇害的豪宅做保洁，利用污渍和清扫痕迹推翻自杀结论。",
+   "pattern": "",
+   "codes": [
+    "244"
+   ],
+   "runs": [
+    "jtydhr88__screenwriting-skills.run-3"
+   ]
+  },
+  {
+   "name": "入殓师替亡妹入豪门：入殓师发现死者是自己的双胞胎妹妹，冒充妹妹进入豪门，用职业本领调查妹妹死因。",
+   "pattern": "",
+   "codes": [
+    "484"
+   ],
+   "runs": [
+    "Shanyin-ai__shanyin-screenwriting-master.run-2"
+   ]
+  },
+  {
+   "name": "重生拒签假账：前世替婆家财务造假顶罪的女会计，重生回签字前，凭前世记忆和专业能力清算设局者。",
+   "pattern": "",
+   "codes": [
+    "912"
+   ],
+   "runs": [
+    "lixiaoxiao9888-create__manju-laoli-skill.run-1"
+   ]
+  },
+  {
+   "name": "重生守住高考身份：被冒名顶替毁掉人生的女孩重回高考前夜，提前阻断夺名骗局，扳倒顶替者及其保护伞。",
+   "pattern": "",
+   "codes": [
+    "977"
+   ],
+   "runs": [
+    "lixiaoxiao9888-create__manju-laoli-skill.run-2"
+   ]
+  },
+  {
+   "name": "离婚真掌勺夺招牌：长期被夫家冒领功劳的幕后主厨离婚后，以厨艺击败失去真正掌勺的夫家，夺回署名和祖传招牌。",
+   "pattern": "",
+   "codes": [
+    "453"
+   ],
+   "runs": [
+    "zhu5859243-free__hongguo-shortdrama-screenwriting.run-2"
+   ]
+  },
+  {
+   "name": "护工守遗产查毒案：护工获得附带限期居住条件的巨额遗赠，必须留在危机四伏的豪宅中查清老人被毒杀的真相。",
+   "pattern": "",
+   "codes": [
+    "917"
+   ],
+   "runs": [
+    "zenstory-ai__drama-skills.run-1"
+   ]
+  },
+  {
+   "name": "失忆审计师抢时翻案：患阿尔茨海默病的前审计师以保洁身份查账，靠记录对抗遗忘，揭穿新骗局并洗清旧冤。",
+   "pattern": "",
+   "codes": [
+    "277"
+   ],
+   "runs": [
+    "Hao0321__ai-short-drama.run-1"
+   ]
+  },
+  {
+   "name": "护士母亲潜入救女：母亲化名保姆进入豪门，凭护理经验暗中解除药物控制、唤醒植物人女儿并追究凶手。",
+   "pattern": "",
+   "codes": [
+    "543"
+   ],
+   "runs": [
+    "catyiqian__qianqianwriting.run-2"
+   ]
+  },
+  {
+   "name": "调香师重生保配方：被夺走配方后害死的调香师重回协议签署现场，凭前世记忆和嗅觉守住作品、追回母亲遗产。",
+   "pattern": "",
+   "codes": [
+    "661"
+   ],
+   "runs": [
+    "eternityspring__shuohao-skills.run-3"
+   ]
+  },
+  {
+   "name": "登记员追查被结婚：婚姻登记员发现自己被冒名结婚又离婚，利用登记程序和规则拆穿男友的身份骗局。",
+   "pattern": "",
+   "codes": [
+    "369"
+   ],
+   "runs": [
+    "adoria111__emma-screenwriting-skills.run-3"
+   ]
+  },
+  {
+   "name": "老人拿账本反逼产：多年供养家庭的老年女人被晚辈逼交房产，拿出数十年账本逐笔清算付出，向忘恩负义者讨回权益。",
+   "pattern": "",
+   "codes": [
+    "626",
+    "445"
+   ],
+   "runs": [
+    "lixiaoxiao9888-create__short-drama-factory.run-3",
+    "lixiaoxiao9888-create__short-drama-factory.run-1"
+   ]
+  },
+  {
+   "name": "闪婚隐藏总裁：被退婚的手艺女孩与隐瞒总裁身份的男人契约结婚，在相处中相爱并共同解决家族阴谋。",
+   "pattern": "",
+   "codes": [
+    "170"
+   ],
+   "runs": [
+    "eternityspring__shuohao-skills.run-2"
+   ]
+  },
+  {
+   "name": "遗物整理替母翻案：遗物整理师因限期遗嘱任务进入富豪书房，从旧物痕迹中追查母亲当年被诬陷坠亡的真相。",
+   "pattern": "",
+   "codes": [
+    "307"
+   ],
+   "runs": [
+    "adoria111__emma-screenwriting-skills.run-2"
+   ]
+  },
+  {
+   "name": "失聪陪护读唇查案：失聪女孩隐瞒读唇能力潜入豪门，利用旁人对她的轻视窃取秘密，调查姐姐遇害真相。",
+   "pattern": "",
+   "codes": [
+    "224"
+   ],
+   "runs": [
+    "jtydhr88__screenwriting-skills.run-2"
+   ]
+  },
+  {
+   "name": "装哑儿媳潜伏复仇：女人嫁入仇家装哑多年，暗中录下家人秘密，赶在离婚期限前搜集长辈杀父的证据。",
+   "pattern": "",
+   "codes": [
+    "539"
+   ],
+   "runs": [
+    "jtydhr88__screenwriting-skills.run-1"
+   ]
+  },
+  {
+   "name": "未来短信改命：女人不断收到明天的自己发来的限时短信，循着预警逃离婚恋陷阱，并在真假信息中追查母亲死因。",
+   "pattern": "",
+   "codes": [
+    "493"
+   ],
+   "runs": [
+    "baseline.run-2"
+   ]
+  },
+  {
+   "name": "入殓师停火化追凶：女入殓师从富豪遗体上发现谋杀证据，阻止火化，在豪门阻力中追查血案并牵出父亲旧冤。",
+   "pattern": "",
+   "codes": [
+    "465",
+    "190"
+   ],
+   "runs": [
+    "zenstory-ai__drama-skills.run-3",
+    "baseline.run-1"
+   ]
+  },
+  {
+   "name": "药企创始人化身保洁：替丈夫顶罪的药企创始人隐姓埋名回公司做保洁，凭研发知识追查问题新药、保护女儿并洗清旧案。",
+   "pattern": "",
+   "codes": [
+    "885"
+   ],
+   "runs": [
+    "baseline.run-3"
+   ]
+  },
+  {
+   "name": "顶罪车手代驾遇真凶：替人顶罪且终生禁驾的赛车手出狱后借号代驾，重遇真正肇事者，为保护女儿追查事故中缺失的记录。",
+   "pattern": "",
+   "codes": [
+    "711"
+   ],
+   "runs": [
+    "Shanyin-ai__shanyin-screenwriting-master.run-3"
+   ]
+  }
+ ]
+}

@@ -25,6 +25,7 @@ import urllib.parse
 from build import NEW_DAYS, SPECIALIST_MAX, STALE_DAYS, by_stars, display_name, fmt_stars, install_cmd, new_entries, \
     sort_key, tr
 from lib import DATA, ROOT, load_meta, load_toml, load_valid, third_party_text
+import build_evals
 
 WEB = ROOT / "web"
 DIST = WEB / "dist"
@@ -75,10 +76,11 @@ CJK = re.compile(r"[\u3400-\u9fff]")
 ROUNDS = {"001-open-brief": ("第一轮", "round one", "round-1")}
 
 
-def duel_record(run_dir: Path) -> dict[tuple[str, str], dict[str, list[int]]]:
-    """每个参赛者和对照组盲比的「赢、平、输」次数。两种先后顺序都判它赢才算赢，都判对照组赢才算输。"""
+def duel_record(run_dir: Path, name: str = "duels.jsonl") -> dict[tuple[str, str], dict[str, list[int]]]:
+    """每个参赛者和对照组盲比的「赢、平、输」次数。两种先后顺序都判它赢才算赢，都判对照组赢才算输。
+    name 是判决文件：duels.jsonl 是主评审，duels-gpt.jsonl 是复核。"""
     votes: dict[tuple[str, str, str, str], list[str]] = {}
-    for line in (run_dir / "duels.jsonl").open(encoding="utf-8"):
+    for line in (run_dir / name).open(encoding="utf-8"):
         d = json.loads(line)
         mine, side = (d["a_run"], "甲") if not d["a_run"].startswith("baseline.") else (d["b_run"], "乙")
         slug, run = mine.rsplit(".", 1)
@@ -113,11 +115,14 @@ class Data:
         # 参加过实测的项目：evals/runs/<轮次>/contestants.toml；有 duels.jsonl 的轮次再算出和对照组盲比的胜负
         self.evaluated: dict[str, list[str]] = {}
         self.duels: dict[tuple[str, str], dict[str, list[int]]] = {}
+        self.duels_gpt: dict[tuple[str, str], dict[str, list[int]]] = {}
         for roster in sorted((ROOT / "evals" / "runs").glob("*/contestants.toml")):
             for c in tomllib.loads(roster.read_text(encoding="utf-8"))["contestants"]:
                 self.evaluated.setdefault(c["repo"].lower(), []).append(roster.parent.name)
             if (roster.parent / "duels.jsonl").exists():
                 self.duels.update(duel_record(roster.parent))
+            if (roster.parent / "duels-gpt.jsonl").exists():
+                self.duels_gpt.update(duel_record(roster.parent, "duels-gpt.jsonl"))
 
     def quote(self, text: str, lang: str) -> tuple[str, bool]:
         """第三方文字的展示版本和它是不是译文。英文页遇到中文换成译文，没有译文就先不显示。"""
@@ -193,6 +198,7 @@ class Site:
     def __init__(self, data: Data) -> None:
         self.d = data
         self.pages: list[tuple[str, str]] = []  # (path, lastmod)，两种语言都有
+        self.zh_pages: list[tuple[str, str]] = []  # 只有中文的页（实测记录）
         self.css = asset("style.css")
 
     def write(self, lang: str, path: str, page: str) -> None:
@@ -201,10 +207,17 @@ class Site:
         out.write_text(page, encoding="utf-8")
 
     def page(self, lang: str, path: str, *, title: str, description: str, body: str, crumbs: list[tuple[str, str]],
-             jsonld: list[dict] = (), lastmod: str | None = None, og_type: str = "website") -> None:
+             jsonld: list[dict] = (), lastmod: str | None = None, og_type: str = "website",
+             zh_only: bool = False, wide: bool = False) -> None:
         if lang == "zh":
-            self.pages.append((path, lastmod or self.d.updated))
+            (self.zh_pages if zh_only else self.pages).append((path, lastmod or self.d.updated))
         other = "en" if lang == "zh" else "zh"
+        # 只有中文的页：不写英文对应页，语言切换去英文的实测页
+        alternates = (f'<link rel="alternate" hreflang="zh-CN" href="{abs_url("zh", path)}">' if zh_only else
+                      f'<link rel="alternate" hreflang="zh-CN" href="{abs_url("zh", path)}">\n'
+                      f'<link rel="alternate" hreflang="en" href="{abs_url("en", path)}">\n'
+                      f'<link rel="alternate" hreflang="x-default" href="{abs_url("zh", path)}">')
+        switch = url(other, "/evals/" if zh_only else path)
         trail = [(L(lang, "首页", "Home"), "/"), *crumbs]
         crumb_ld = {
             "@context": "https://schema.org", "@type": "BreadcrumbList",
@@ -229,9 +242,7 @@ class Site:
 <title>{e(title)}</title>
 <meta name="description" content="{e(description)}">
 <link rel="canonical" href="{abs_url(lang, path)}">
-<link rel="alternate" hreflang="zh-CN" href="{abs_url('zh', path)}">
-<link rel="alternate" hreflang="en" href="{abs_url('en', path)}">
-<link rel="alternate" hreflang="x-default" href="{abs_url('zh', path)}">
+{alternates}
 <meta property="og:type" content="{og_type}">
 <meta property="og:site_name" content="Awesome Short Drama Skills">
 <meta property="og:title" content="{e(title)}">
@@ -249,10 +260,10 @@ class Site:
 <body>
 <header class="site-header"><div class="wrap">
 <a class="brand" href="{url(lang, '/')}"><b>Awesome Short Drama Skills</b><span>{e(L(lang, 'AI 短剧 · 漫剧 Skill 精选', 'Curated agent skills for AI short drama'))}</span></a>
-<a class="lang-switch" href="{url(other, path)}" hreflang="{LANGS[other]['hreflang']}" lang="{LANGS[other]['hreflang']}">{L(lang, 'English', '中文')}</a>
+<a class="lang-switch" href="{switch}" hreflang="{LANGS[other]['hreflang']}" lang="{LANGS[other]['hreflang']}">{L(lang, 'English', '中文')}</a>
 <nav class="site-nav" aria-label="{L(lang, '主导航', 'Main')}">{nav}</nav>
 </div></header>
-<div class="wrap">
+<div class="wrap{' wide' if wide else ''}">
 {crumb_html}
 <main>
 {body}
@@ -636,9 +647,16 @@ class Site:
                 score = L(lang, f"和不装 skill 的对照组盲比三次：剧本 {sc[0]} 赢 {sc[1]} 平 {sc[2]} 输，人物大纲 {ol[0]} 赢 {ol[1]} 平 {ol[2]} 输。",
                           f"Blind comparisons with a no-skill control over three runs: scripts {sc[0]} won, {sc[1]} tied, "
                           f"{sc[2]} lost; characters and outline {ol[0]} won, {ol[1]} tied, {ol[2]} lost. ")
+            gpt = d.duels_gpt.get((run, slug), {})
+            if gpt:
+                gs, go = gpt.get("script", [0, 0, 0]), gpt.get("outline", [0, 0, 0])
+                score += L(lang, f"换 GPT 复核：剧本 {gs[0]} 赢 {gs[1]} 平 {gs[2]} 输，人物大纲 {go[0]} 赢 {go[1]} 平 {go[2]} 输。",
+                           f"Re-judged by GPT: scripts {gs[0]} won, {gs[1]} tied, {gs[2]} lost; characters and outline "
+                           f"{go[0]} won, {go[1]} tied, {go[2]} lost. ")
             tested = (f'<h2>{L(lang, "实测", "Tested")}</h2><p>'
                       + L(lang, f"参加了{zh_n}剧本实测。", f"Took part in {en_n} of our script tests. ") + score
                       + f'<a href="{url(lang, "/evals/")}#{anchor}">{L(lang, "看点评", "Read the results")}</a> · '
+                      + f'<a href="/evals/{anchor}/">{L(lang, "看每次运行的完整过程", "See every step of each run (Chinese)")}</a> · '
                       + f'<a href="{out}">{L(lang, "看它的原始产出", "See its raw output")}</a></p>')
         mine = set(s["stages"])
         peers = [x for x in d.skills if x is not s and x["group"] == s["group"]]
@@ -827,7 +845,10 @@ class Site:
                   "control. Most skills produced more shootable scripts than the control; the control often had stronger "
                   "episode-ending hooks. Skills changed which kind of story got written, but the model's default names "
                   "(a character called Xiaoman in 15 of 33 drafts) appeared regardless of skill.",
-                  f"- Raw outputs, story cards and every blind comparison: {REPO_URL}/tree/main/evals/runs"]
+                  f"- [Round one full record]({abs_url('zh', '/evals/round-1/')}) (Chinese): every input, every step of every run, "
+                  "the anonymous drafts, the prompt and verdict of every blind comparison (judged by Opus, re-judged by GPT), "
+                  "reviewer health checks and the process log; numbers are recomputed from the raw data at build time.",
+                  f"- Raw outputs, logs, story cards and every blind comparison: {REPO_URL}/tree/main/evals/runs"]
         lines += ["", "## Optional", f"- [Full data as JSON]({BASE}/data.json)", f"- [GitHub source]({REPO_URL})", ""]
         (DIST / "llms.txt").write_text("\n".join(lines), encoding="utf-8")
 
@@ -841,6 +862,8 @@ class Site:
             alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{abs_url("zh", path)}"/>'
             for lang in LANGS:
                 rows[lang].append((lastmod, f"<url><loc>{abs_url(lang, path)}</loc><lastmod>{lastmod}</lastmod>{alts}</url>"))
+        for path, lastmod in self.zh_pages:
+            rows["zh"].append((lastmod, f"<url><loc>{abs_url('zh', path)}</loc><lastmod>{lastmod}</lastmod></url>"))
         index = []
         for lang, items in rows.items():
             for i in range(0, len(items), SITEMAP_MAX):
@@ -886,6 +909,7 @@ class Site:
             self.content(lang, "glossary", [])
             self.content(lang, "evals", [])
             self.content(lang, "about", [])
+        build_evals.build(self, ROUNDS, REPO_URL, repo_path, display_name)
         self.not_found()
         self.data_json()
         self.llms()
@@ -899,7 +923,7 @@ def main() -> None:
     site = Site(Data())
     site.build()
     n = sum(1 for _ in DIST.rglob("index.html"))
-    print(f"已生成 {DIST.relative_to(ROOT)}：{n} 个页面（中英各 {len(site.pages)}）。")
+    print(f"已生成 {DIST.relative_to(ROOT)}：{n} 个页面（中英各 {len(site.pages)}，另有只出中文的实测记录 {len(site.zh_pages)} 页）。")
     if site.d.untranslated:
         print(f"提示：英文版有 {len(site.d.untranslated)} 段第三方中文说明没有译文，暂不显示；"
               "把「原文: 译文」补进 data/translations.json 即可。")

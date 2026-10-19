@@ -6,18 +6,18 @@
 - **故事差异**：每份稿子抽一张故事卡（剧名、题材、主角、所有人名、开场、卡点、结局），再把 33 部剧按「换个名字就是同一个故事」分组。见 [cards.jsonl](cards.jsonl)、[clusters.json](clusters.json)。
 - **写得好不好**：每个 skill 的第 n 次运行和对照组的第 n 次运行两两比，分「剧本」（第 1–3 集）和「人物大纲」（小传加分集大纲）两项。每场把先后顺序对调再比一次，两次都判它赢才算赢，一胜一负算平。见 [duels.jsonl](duels.jsonl)。
 
-评审是 AI（claude-opus-5-5），和写稿的是同一个模型。不打总分。
+主评审是 AI（claude-opus-5-5），和写稿的是同一个模型；又请 GPT（gpt-6-astra）用一字不差的提示词重判了一遍，见下面「GPT 复核」。不打总分。
 
 ## 先说结论
 
 **1. 装了 skill，剧本大多更能拍。** 剧本盲比里，10 个 skill 有 9 个在多数运行里赢了对照组，其中 5 个三次全赢。
 - 赢在可拍性、对白和 AI 味：对照组每集常有四到八场戏，还带闪回，篇幅超过 2 分钟；skill 的稿子大多一集一到五场，时长可信。
 - 对照组也有长处：每集结尾的钩子常常更强，评审在钩子这一项上多次判它赢。
-- shuohao-skills 是唯一三次都输的，评审嫌集尾钩子弱、台词偏模板，正文里还夹着「预估 90.8 秒」「认领爽点」这类元数据。
+- shuohao-skills 是唯一三次都输的，评审嫌集尾钩子弱、台词偏模板，正文里还夹着「预估 90.8 秒」「认领爽点」这类元数据。GPT 复核不同意，判它两赢一平，这一条有争议。
 
 **2. 人物和大纲，分化更大。**
 - ai-short-drama、山音编剧大师、screenwriting-skills、zenstory、漫剧老李三次全赢，艾玛编剧两赢一平。它们赢在人物：配角有动机，主角的缺点会造成实际损失。
-- qianqianwriting、hongguo、short-drama-factory、shuohao 没有一次稳赢对照组，评审主要嫌设定套路化、单集塞得太满。
+- qianqianwriting、hongguo、short-drama-factory、shuohao 三次里最多赢一次，评审主要嫌设定套路化、单集塞得太满。GPT 复核只在 shuohao 上同意（三次全输），另外三个有争议。
 - 付费卡点这一项，skill 普遍没有优势。33 份稿子的第一个付费卡点全在第 10 集，这既是行业惯例，也是模型的默认选择。
 
 **3. skill 会改变写什么故事。** 33 部剧被分成 21 种故事类型。
@@ -34,22 +34,34 @@
 
 **6. 交给剧组之前都要清理。** 每个 skill 的稿子里都夹着元数据：编号、时长预估、检查点、自检表、模板标签。评审几乎每场都提到这些「要删掉才能用」。
 
+## GPT 复核
+
+换 GPT（gpt-6-astra，经 Codex CLI）用一字不差的提示词和输出格式，把 120 场盲比和故事分组重做了一遍。主结果仍以 Opus 为准，两位评审结论不同的对子标「有争议」。
+
+- 逐场的总体判断，95/120 场一致（Cohen's kappa 0.59）。
+- 按「两种顺序都赢才算赢」得出的每对结果，60 对里 42 对一致（kappa 0.32），18 对有争议。最大的分歧是 shuohao 的剧本（Opus 三次全输，GPT 两赢一平）和 short-drama-factory 的人物大纲（Opus 零赢，GPT 两赢）。
+- 两位评审都同意的：10 个 skill 里有 9 个的剧本在多数运行里赢了对照组（Opus 认为没赢的是 shuohao，GPT 认为是 short-drama-factory）；ai-short-drama、山音编剧大师、screenwriting-skills、zenstory 的人物大纲两边都是三次全赢。
+- 故事分组：GPT 分成 25 组（Opus 21 组）。同一个 skill 的几次运行落进同一类型的比例 9.1%，不同 skill 之间 1.8%，结论方向相同。
+- 理由里加引号的原文，Opus 有 88% 能在两份稿子里找到，GPT 96%。
+
+逐场的判决见 [duels-gpt.jsonl](duels-gpt.jsonl)，分组见 [clusters-gpt.json](clusters-gpt.json)，每次调用的原始返回在 [judge-raw/gpt/](judge-raw/gpt/)。换序一致率、位置和篇幅偏差、有争议的对子，见网站上的[评审体检](https://shortdramaskills.com/evals/round-1/checks/)。
+
 ## 逐个看
 
-「剧本」「人物大纲」两列是和对照组盲比的结果，按「赢-平-输」记三次运行。
+「剧本」「人物大纲」两列是和对照组盲比的结果，按「赢-平-输」记三次运行；上面是主评审 Opus，下面是 GPT 复核。
 
 | 项目 | 剧本 | 人物大纲 | 三次写的剧 | 写得好的地方 | 主要问题 |
 |---|---|---|---|---|---|
-| [zenstory-ai/drama-skills](https://github.com/zenstory-ai/drama-skills) | 3-0-0 | 3-0-0 | 《七格药盒》《掌眼》《停炉》 | 台词短而克制，人物口吻分得开；场景和人物精简；翻盘都落在拍得出来的物证上 | 正文夹着「[连续性]」备注和「EP001-SC001」这类编号；大纲个别集信息量超载 |
-| [Hao0321/ai-short-drama](https://github.com/Hao0321/ai-short-drama) | 3-0-0 | 3-0-0 | 《账不会忘》《老卤》《老卤》 | 对白贴人物，如「缸不是秘方。手才是。」；设定能推动冲突，人物立体 | 正文夹着「Continuation Capsule」、Greenlight 自评和编号；部分集 1–2 分钟拍不完；两次写成同一个故事 |
-| [Shanyin-ai/shanyin-screenwriting-master](https://github.com/Shanyin-ai/shanyin-screenwriting-master) | 3-0-0 | 3-0-0 | 《顶替》《替身入殓师》《末班代驾》 | 对白短、有潜台词，如「第六。上回月考。」；只写镜头拍得到的细节，场景少，时长可信；配角都有动机 | 正文夹着「情节节奏/情感节奏」标注和记忆检查点表格；钩子偏收着，开场抓人慢 |
-| [jtydhr88/screenwriting-skills](https://github.com/jtydhr88/screenwriting-skills) | 3-0-0 | 3-0-0 | 《哑妻》《别在她面前说秘密》《擦痕》 | 每集三四场，人少景少；台词克制，如「你打字，从来不打句号」；戏核新：「她不说话，所以所有人都在她面前说真话」 | 剧本开头有体例说明和字数估算，大纲里有「结构锚点」「地雷表」；部分卡点偏弱；前两次都是「装聋装哑套秘密」 |
-| [adoria111/emma-screenwriting-skills](https://github.com/adoria111/emma-screenwriting-skills) | 3-0-0 | 2-1-0 | 《我没死，我要离婚》《遗物会说话》《被结婚的登记员》 | 对白有具体细节，如「掉在这屋里的东西，我一般都扔」；场景集中；配角有动机也有转变 | 正文夹着交接备注、落实表和自检清单；剧本集尾钩子偏软；大纲卡点不如对照组 |
-| [lixiaoxiao9888-create/manju-laoli-skill](https://github.com/lixiaoxiao9888-create/manju-laoli-skill) | 2-1-0 | 3-0-0 | 《重生清算日》《重回高考前夜》《冷静期三十天》 | 对白像人话，如「这三千万，就是你的了，啊」；靠具体物件推进；主角的缺点会造成实际损失 | 正文夹着 EPISODE_ID、SCRIPT_VERSION 和自检统计；集尾钩子偏弱，单集信息过密；最贵，三次共 $72.93 |
-| [catyiqian/qianqianwriting](https://github.com/catyiqian/qianqianwriting) | 2-1-0 | 1-0-2 | 《叮，他在撒谎》《她妈来了》《五十岁，我从这个家辞职了》 | 剧本每集三到五场、约 90 秒，用「（特效）叮——」这类机制收钩；金手指规则和人物绑得紧 | 正文夹着「本集欠条」和合规自检表；对白多半只推情节；大纲的新意和卡点不如对照组 |
-| [zhu5859243-free/hongguo-shortdrama-screenwriting](https://github.com/zhu5859243-free/hongguo-shortdrama-screenwriting) | 2-1-0 | 0-3-0 | 《离婚当天，我把婆家的账查穿了》《离婚后，婆家招牌菜做不出来了》《这个家的账，我算了十五年》 | 开场钩子狠，集尾卡在动作最高点；每集一两场，约 110 秒可信；大纲证据逐级升级 | 正文夹着「证据档1」「反驳档1」这类模板标签；台词偏口号，如「汤浑了，就得重吊」；三次都是清算婆家一类 |
-| [lixiaoxiao9888-create/short-drama-factory](https://github.com/lixiaoxiao9888-create/short-drama-factory) | 2-0-1 | 0-2-1 | 《这碗狮子头，你们不配吃》《离婚那天，我只带走了一坛老汤》《六十大寿，我把账本拍在了桌上》 | 剧本每集基本一个场景，时长可信；对白生活化，如「应该的。好，我记上」 | 正文夹着「【所属阶段】」这类模板元数据；设定偏套路，两次是老太太拿账本清算子女 |
-| [eternityspring/shuohao-skills](https://github.com/eternityspring/shuohao-skills) | 0-0-3 | 0-1-2 | 《掌眼》《闪婚老公藏不住了》《签字之前》 | 每集约 90 秒，场景和人物少；大纲伏笔埋得准 | 正文夹着「预估 90.8 秒」「认领爽点」和场次表；集尾钩子弱；台词偏模板，如「笑意不达眼底」。它是为改编小说设计的，这一轮没有原著 |
+| [zenstory-ai/drama-skills](https://github.com/zenstory-ai/drama-skills) | 3-0-0<br>GPT 3-0-0 | 3-0-0<br>GPT 3-0-0 | 《七格药盒》《掌眼》《停炉》 | 台词短而克制，人物口吻分得开；场景和人物精简；翻盘都落在拍得出来的物证上 | 正文夹着「[连续性]」备注和「EP001-SC001」这类编号；大纲个别集信息量超载 |
+| [Hao0321/ai-short-drama](https://github.com/Hao0321/ai-short-drama) | 3-0-0<br>GPT 2-0-1 | 3-0-0<br>GPT 3-0-0 | 《账不会忘》《老卤》《老卤》 | 对白贴人物，如「缸不是秘方。手才是。」；设定能推动冲突，人物立体 | 正文夹着「Continuation Capsule」、Greenlight 自评和编号；部分集 1–2 分钟拍不完；两次写成同一个故事 |
+| [Shanyin-ai/shanyin-screenwriting-master](https://github.com/Shanyin-ai/shanyin-screenwriting-master) | 3-0-0<br>GPT 3-0-0 | 3-0-0<br>GPT 3-0-0 | 《顶替》《替身入殓师》《末班代驾》 | 对白短、有潜台词，如「第六。上回月考。」；只写镜头拍得到的细节，场景少，时长可信；配角都有动机 | 正文夹着「情节节奏/情感节奏」标注和记忆检查点表格；钩子偏收着，开场抓人慢 |
+| [jtydhr88/screenwriting-skills](https://github.com/jtydhr88/screenwriting-skills) | 3-0-0<br>GPT 3-0-0 | 3-0-0<br>GPT 3-0-0 | 《哑妻》《别在她面前说秘密》《擦痕》 | 每集三四场，人少景少；台词克制，如「你打字，从来不打句号」；戏核新：「她不说话，所以所有人都在她面前说真话」 | 剧本开头有体例说明和字数估算，大纲里有「结构锚点」「地雷表」；部分卡点偏弱；前两次都是「装聋装哑套秘密」 |
+| [adoria111/emma-screenwriting-skills](https://github.com/adoria111/emma-screenwriting-skills) | 3-0-0<br>GPT 3-0-0 | 2-1-0<br>GPT 3-0-0 | 《我没死，我要离婚》《遗物会说话》《被结婚的登记员》 | 对白有具体细节，如「掉在这屋里的东西，我一般都扔」；场景集中；配角有动机也有转变 | 正文夹着交接备注、落实表和自检清单；剧本集尾钩子偏软；大纲卡点不如对照组 |
+| [lixiaoxiao9888-create/manju-laoli-skill](https://github.com/lixiaoxiao9888-create/manju-laoli-skill) | 2-1-0<br>GPT 3-0-0 | 3-0-0<br>GPT 2-1-0 | 《重生清算日》《重回高考前夜》《冷静期三十天》 | 对白像人话，如「这三千万，就是你的了，啊」；靠具体物件推进；主角的缺点会造成实际损失 | 正文夹着 EPISODE_ID、SCRIPT_VERSION 和自检统计；集尾钩子偏弱，单集信息过密；最贵，三次共 $72.93 |
+| [catyiqian/qianqianwriting](https://github.com/catyiqian/qianqianwriting) | 2-1-0<br>GPT 2-1-0 | 1-0-2<br>GPT 2-1-0 | 《叮，他在撒谎》《她妈来了》《五十岁，我从这个家辞职了》 | 剧本每集三到五场、约 90 秒，用「（特效）叮——」这类机制收钩；金手指规则和人物绑得紧 | 正文夹着「本集欠条」和合规自检表；对白多半只推情节；大纲的新意和卡点不如对照组 |
+| [zhu5859243-free/hongguo-shortdrama-screenwriting](https://github.com/zhu5859243-free/hongguo-shortdrama-screenwriting) | 2-1-0<br>GPT 2-1-0 | 0-3-0<br>GPT 1-1-1 | 《离婚当天，我把婆家的账查穿了》《离婚后，婆家招牌菜做不出来了》《这个家的账，我算了十五年》 | 开场钩子狠，集尾卡在动作最高点；每集一两场，约 110 秒可信；大纲证据逐级升级 | 正文夹着「证据档1」「反驳档1」这类模板标签；台词偏口号，如「汤浑了，就得重吊」；三次都是清算婆家一类 |
+| [lixiaoxiao9888-create/short-drama-factory](https://github.com/lixiaoxiao9888-create/short-drama-factory) | 2-0-1<br>GPT 1-0-2 | 0-2-1<br>GPT 2-0-1 | 《这碗狮子头，你们不配吃》《离婚那天，我只带走了一坛老汤》《六十大寿，我把账本拍在了桌上》 | 剧本每集基本一个场景，时长可信；对白生活化，如「应该的。好，我记上」 | 正文夹着「【所属阶段】」这类模板元数据；设定偏套路，两次是老太太拿账本清算子女 |
+| [eternityspring/shuohao-skills](https://github.com/eternityspring/shuohao-skills) | 0-0-3<br>GPT 2-1-0 | 0-1-2<br>GPT 0-0-3 | 《掌眼》《闪婚老公藏不住了》《签字之前》 | 每集约 90 秒，场景和人物少；大纲伏笔埋得准 | 正文夹着「预估 90.8 秒」「认领爽点」和场次表；集尾钩子弱；台词偏模板，如「笑意不达眼底」。它是为改编小说设计的，这一轮没有原著 |
 | 对照组（不装 skill） | — | — | 《别让他们烧了我》《来自明天的我》《扫尘》 | 集尾钩子常常更强，如第 1 集掀开白布认出「老顾头」；台词有记忆点，如「红烧肉，不放香菜」 | 每集四到八场戏，带闪回，常超过 2 分钟；有「声音冷得像冰」这类套话；有前后矛盾，同一件事一处写「二十七年」，一处写「二十四年」 |
 
 hongguo-shortdrama-screenwriting 基于 short-drama-factory v3.2 改编，两者框架相同。
@@ -59,5 +71,5 @@ hongguo-shortdrama-screenwriting 基于 short-drama-factory v3.2 改编，两者
 - **能说明的**：在 claude-opus-5-5 下，题目放开时，这些 skill 会把稿子往哪个方向推：写什么类型的故事，能不能拍，对白和人物怎么样。
 - **不能说明的**：
   - 换一个模型，结论会不会变。
-  - 人类编剧看了会不会同意。评审由 AI 完成，引文 85% 能在原稿里逐字找到。
+  - 人类编剧看了会不会同意。评审由 AI 完成；换一个 AI 评审，每对的结果有 18/60 对不同。
   - 真人用的时候会不会更好。大多数 skill 没有停下来让人挑方向，真人在这一步的选择可能让故事更独特。
