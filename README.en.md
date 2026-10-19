@@ -670,6 +670,7 @@ Every Monday, stars, last-updated dates and licenses refresh automatically and n
 - [PAMPAS-Lab/awesome-ai-short-drama](https://github.com/PAMPAS-Lab/awesome-ai-short-drama): a resource list on AI short-drama production, focused on open-source systems, research papers and commercial products
 - [zhaotoday/awesome-ai-video](https://github.com/zhaotoday/awesome-ai-video): an overview of AI video production resources, from short-drama platforms to editing, ComfyUI and distribution
 - [awesome-novel-skills](https://github.com/UnderleveledBuilder/awesome-novel-skills/blob/main/README.en.md): skills for writing novels and web fiction, the usual source material for short-drama adaptation
+- [awesome-social-media-skills](https://github.com/UnderleveledBuilder/awesome-social-media-skills/blob/main/README.en.md): social media skills for publishing and promoting the finished drama on Douyin, Xiaohongshu, TikTok, YouTube and more
 - [anthropics/skills](https://github.com/anthropics/skills): the official Agent Skills repo with the spec and examples, a good starting point for writing your own skill
 - [vercel-labs/skills](https://github.com/vercel-labs/skills): the `npx skills` installer, with the [skills.sh](https://skills.sh) directory
 - [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills): a general list of agent skills

@@ -667,6 +667,7 @@ npx skills add Nanako0129/sepia
 ## 相关资源
 
 - [awesome-story-skills](https://github.com/UnderleveledBuilder/awesome-story-skills)：让大模型讲好故事的方法合集，剧本和故事这一侧（大纲、人物、审稿、去 AI 味）的方法看这里，附方法指南
+- [awesome-social-media-skills](https://github.com/UnderleveledBuilder/awesome-social-media-skills)：自媒体运营 skill 精选，短剧做好后发抖音、小红书、视频号，写文案、做封面、定时发布看这里
 - [PAMPAS-Lab/awesome-ai-short-drama](https://github.com/PAMPAS-Lab/awesome-ai-short-drama)：AI 短剧生产资源列表（英文），偏开源系统、研究论文和商业产品
 - [zhaotoday/awesome-ai-video](https://github.com/zhaotoday/awesome-ai-video)：AI 视频生产资源全景，短剧平台、剪辑、ComfyUI、分发都有
 - [anthropics/skills](https://github.com/anthropics/skills)：官方 Agent Skills 仓库，含规范和示例，想自己写 skill 可以从这里看起
