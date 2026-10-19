@@ -511,7 +511,7 @@ Self-hostable short-drama and manju production platforms; not skills, listed for
 
 - **[Jellyfish](https://github.com/Forget-C/Jellyfish)** · ★ 6.8k<br>End-to-end AI short-drama workspace: script input, structured storyboarding, consistency management, video generation<br><sub>Stages: Script · Storyboard · Production</sub><br><sub>updated 2026-07-30 · 🧩 app · Multilingual · Apache-2.0</sub>
 
-- **[dramaclaw](https://github.com/dramaclaw/dramaclaw)** · ★ 6.3k<br>General-purpose AIGC video engine: one pipeline from script to final video, covering manju, ads, e-commerce and otome games<br><sub>Stages: Script · Storyboard · Production</sub><br><sub>updated 2026-10-17 · 🧩 app · Multilingual · 6 skills</sub>
+- **[dramaclaw](https://github.com/dramaclaw/dramaclaw)** · ★ 6.3k<br>General-purpose AIGC video engine: one pipeline from script to final video, covering manju, ads, e-commerce and otome games<br><sub>Stages: Script · Storyboard · Production</sub><br><sub>updated 2026-10-19 · 🧩 app · Multilingual · 6 skills</sub>
 
 - **[ArcReel](https://github.com/ArcReel/ArcReel)** · ★ 5.6k<br>Self-hostable video workspace: novel/script → character, scene and prop assets, storyboard, video and Jianying (CapCut) drafts, with cross-shot consistency and cost tracking<br><sub>Stages: Adaptation · Characters · Storyboard · Production</sub><br><sub>updated 2026-10-19 · 🧩 app · Multilingual · 51 skills · AGPL-3.0</sub>
 

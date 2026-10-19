@@ -78,13 +78,13 @@
     "HBAI-Ltd/Toonflow-app": {
       "archived": false,
       "description": "短剧、漫剧制作工具 Toonflow：开源 AI 视频创作平台，集成剧本创作、智能分镜、角色与场景资产管理、图像生成和视频生成。融合无限画布、AI Agent 与可视化工作流，支持本地部署、自选模型、跨平台客户端、MCP 与插件扩展。Open-source AI short drama and motion comic creation tool with an infinite canvas, AI agents, storyboarding, image and video generation. Self-hosted and extensible, with a canvas-based approach similar to LibTV and TapNow.",
-      "forks": 3233,
+      "forks": 3234,
       "full_name": "HBAI-Ltd/Toonflow-app",
       "license": "MIT",
       "pushed_at": "2026-10-16",
       "skill_count": 5,
       "skill_count_truncated": false,
-      "stars": 18138,
+      "stars": 18139,
       "status": "ok"
     },
     "HITsz-TMG/VideoClaw": {
@@ -108,7 +108,7 @@
       "pushed_at": "2026-09-30",
       "skill_count": 0,
       "skill_count_truncated": false,
-      "stars": 12689,
+      "stars": 12690,
       "status": "ok"
     },
     "Hao0321/ai-short-drama": {
@@ -430,7 +430,7 @@
       "pushed_at": "2026-10-16",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 58179,
+      "stars": 58186,
       "status": "ok"
     },
     "catyiqian/qianqianwriting": {
@@ -512,7 +512,7 @@
       "forks": 869,
       "full_name": "dramaclaw/dramaclaw",
       "license": null,
-      "pushed_at": "2026-10-17",
+      "pushed_at": "2026-10-19",
       "skill_count": 6,
       "skill_count_truncated": false,
       "stars": 6344,
@@ -1065,7 +1065,7 @@
       "pushed_at": "2026-10-16",
       "skill_count": 2,
       "skill_count_truncated": false,
-      "stars": 2133,
+      "stars": 2134,
       "status": "ok"
     },
     "yi1108/printfilm": {
@@ -1089,7 +1089,7 @@
       "pushed_at": "2026-10-15",
       "skill_count": 12,
       "skill_count_truncated": false,
-      "stars": 3046,
+      "stars": 3049,
       "status": "ok"
     },
     "zhaihao118/Micro-Drama-Skills": {

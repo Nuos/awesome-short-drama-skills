@@ -511,7 +511,7 @@ npx skills add Nanako0129/sepia
 
 - **[Jellyfish](https://github.com/Forget-C/Jellyfish)** · ★ 6.8k<br>AI 短剧端到端工作台：剧本输入、结构化分镜、一致性管理、视频生成<br><sub>阶段：剧本 · 分镜 · 出片</sub><br><sub>更新于 2026-07-30 · 🧩 应用 · 多语言 · Apache-2.0</sub>
 
-- **[dramaclaw](https://github.com/dramaclaw/dramaclaw)** · ★ 6.3k<br>通用 AIGC 视频引擎：剧本到成片一条流水线，覆盖漫剧、广告、电商、乙游<br><sub>阶段：剧本 · 分镜 · 出片</sub><br><sub>更新于 2026-10-17 · 🧩 应用 · 多语言 · 6 个 skill</sub>
+- **[dramaclaw](https://github.com/dramaclaw/dramaclaw)** · ★ 6.3k<br>通用 AIGC 视频引擎：剧本到成片一条流水线，覆盖漫剧、广告、电商、乙游<br><sub>阶段：剧本 · 分镜 · 出片</sub><br><sub>更新于 2026-10-19 · 🧩 应用 · 多语言 · 6 个 skill</sub>
 
 - **[ArcReel](https://github.com/ArcReel/ArcReel)** · ★ 5.6k<br>可自部署视频工作台：小说/剧本 → 角色场景道具资产、分镜、视频和剪映草稿，含跨镜头一致性与费用追踪<br><sub>阶段：改编 · 人物 · 分镜 · 出片</sub><br><sub>更新于 2026-10-19 · 🧩 应用 · 多语言 · 51 个 skill · AGPL-3.0</sub>
 
