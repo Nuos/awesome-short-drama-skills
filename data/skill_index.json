@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-18",
+  "fetched_at": "2026-10-19",
   "repos": {
     "62656456/ai-film-skills": {
       "branch": "main",
@@ -756,6 +756,11 @@
           "path": "SKILL.md"
         },
         {
+          "description": "把内容写进一个正在运行的 infinite-creation 实例（本地漫剧/短视频创作 Agent）：新建项目、写小说原文、写剧本、写分镜、写人物圣经/风格，也能改写**已经生成过的** LLM 产物。只走它的文本写入 API：读写一律通过 HTTP API，不直连数据库/文件；不触发生图/生视频/配音/配乐/导出，不删除项目。触发场景：用户要把小说/剧本/分镜「写进 infinite-creation」「导入项目」「批量建项目」「写入分镜表」，或要改写/覆盖已有项目里已生成的章节、剧本、分镜、提示词。不负责也无法触发生成链路（那些在应用界面里跑）。",
+          "name": "ic-writer",
+          "path": "harness-skills/ic-writer/SKILL.md"
+        },
+        {
           "description": "将故事大纲、剧情梗概或项目立项书完善为约70至90集、单集1至2分钟的中文AI漫剧、竖屏短剧或微短剧完整剧本，并执行受众决策、参考作品转化、人物与长线设计、爽点反转、AI可视化描写以及0715专用富文本剧本格式。用于用户要求大纲扩写、长篇逐集编剧、短视频平台剧本、漫剧剧本、角色与分集设计、钩子和反转设计，或明确要求采用0715编剧格式时；不用于单纯小说写作、分镜图生成或文生视频提示词。",
           "name": "0715-scriptwriter",
           "path": "skills/0715-scriptwriter/SKILL.md"
@@ -901,7 +906,7 @@
           "path": "skills/tts-voice-design/SKILL.md"
         }
       ],
-      "total": 30
+      "total": 31
     },
     "T8mars/minimax-h3-prompt-skill-T8": {
       "branch": "main",
