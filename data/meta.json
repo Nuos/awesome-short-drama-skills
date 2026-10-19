@@ -54,13 +54,13 @@
     "ArcReel/ArcReel": {
       "archived": false,
       "description": "AI Agent 驱动的开源可自部署视频工作台：将小说与剧本转为角色、场景、道具资产、分镜、视频和剪映草稿，支持跨镜头一致性、多供应商与费用追踪 | Self-hosted AI video workspace for stories, storyboards and short-form video production",
-      "forks": 1091,
+      "forks": 1092,
       "full_name": "ArcReel/ArcReel",
       "license": "AGPL-3.0",
       "pushed_at": "2026-10-19",
       "skill_count": 52,
       "skill_count_truncated": false,
-      "stars": 5594,
+      "stars": 5595,
       "status": "ok"
     },
     "AtlasCloudAI/awesome-seedance-2.5-prompts-skills": {
@@ -97,7 +97,7 @@
       "pushed_at": "2026-10-16",
       "skill_count": 5,
       "skill_count_truncated": false,
-      "stars": 18382,
+      "stars": 18383,
       "status": "ok"
     },
     "HITsz-TMG/VideoClaw": {
@@ -456,7 +456,7 @@
       "pushed_at": "2026-10-16",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 58477,
+      "stars": 58484,
       "status": "ok"
     },
     "catyiqian/qianqianwriting": {
@@ -1014,7 +1014,7 @@
     "waooAI/waoowaoo": {
       "archived": false,
       "description": "首家工业级全流程 AI 影视生产平台。Industry-first professional AI Agent platform for controllable film & video production. From shorts to live-action with Hollywood-standard workflows.",
-      "forks": 3379,
+      "forks": 3382,
       "full_name": "waooAI/waoowaoo",
       "license": null,
       "pushed_at": "2026-09-21",
@@ -1056,7 +1056,7 @@
       "pushed_at": "2026-08-31",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 241,
+      "stars": 242,
       "status": "ok"
     },
     "wyuzhi/qisi-video-remix": {

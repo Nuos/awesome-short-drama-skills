@@ -306,7 +306,7 @@ npx skills add zhu5859243-free/hongguo-shortdrama-screenwriting
 
 - **[awesome-seedance-2.5-prompts-skills](https://github.com/AtlasCloudAI/awesome-seedance-2.5-prompts-skills)** · ★ 243<br>Seedance 2.5 提示词库 + skill：按 T2V/R2V/I2V 选路线、Seedream 故事板、多参考与镜头连续性设计<br><sub>阶段：提示词</sub><br><sub>更新于 2026-10-16 · 多语言 · 2 个 skill</sub><br><sub>🎬 Seedance / 即梦</sub><br><sub>💡 厂商仓库，执行默认走 Atlas Cloud 付费 API；提示词库以广告、电商类居多</sub>
 
-- **[DirectorSKILL](https://github.com/wuwangzhang1216/DirectorSKILL)** · ★ 241<br>AI 拍片：镜头清单、关键帧与视频提示词，内置斯皮尔伯格等 20 种导演风格<br><sub>阶段：分镜 · 提示词</sub><br><sub>更新于 2026-08-31 · 多语言 · MIT</sub>
+- **[DirectorSKILL](https://github.com/wuwangzhang1216/DirectorSKILL)** · ★ 242<br>AI 拍片：镜头清单、关键帧与视频提示词，内置斯皮尔伯格等 20 种导演风格<br><sub>阶段：分镜 · 提示词</sub><br><sub>更新于 2026-08-31 · 多语言 · MIT</sub>
 
 - **[qisi-video-remix](https://github.com/wyuzhi/qisi-video-remix)** · ★ 181<br>视频创意改编：参考视频 → 剧本 → 分镜 → 分段生成提示词<br><sub>阶段：改编 · 剧本 · 分镜 · 提示词</sub><br><sub>更新于 2026-09-11 · 中文 · MIT</sub>
 
