@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-10-19T16:30:00+08:00",
+  "source": "premise.md",
+  "recommendedOptionId": 1,
+  "recommendedTitle": "差评",
+  "oneLiner": "三年前她能让五星酒店摘星，今天这家酒店让她跪着擦地——明天她换身地摊货回来入住。",
+  "genre": "都市女频 · 职场逆袭 · 隐藏身份打脸 · 单元剧",
+  "targetLength": {"webNovel": "约100万字", "shortDrama": "约80集 × 1.5-2分钟"},
+  "scores": [
+    {"id": 1, "title": "差评", "overall": 8.0},
+    {"id": 2, "title": "妈不伺候了", "overall": 7.2},
+    {"id": 4, "title": "讼师", "overall": 6.5},
+    {"id": 3, "title": "尽调", "overall": 6.3}
+  ],
+  "reason": "唯一同时适配长篇网文与竖屏短剧的方案；匿名是职业要求，隐藏身份可以反复重置；现实题材，合规风险低。",
+  "backupOptionId": 2,
+  "disclaimer": "市场分析基于AI知识推理，非实时平台数据"
+}

@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-10-19T00:00:00Z",
+  "source": "premise.md",
+  "recommendedOptionId": 1,
+  "recommendedTitle": "落槌",
+  "dramaTitle": "她举牌那天，全场噤声",
+  "oneLineHook": "她能看见每件拍品的真实价格，还能看见十年前仇人花多少钱把她家骗走。",
+  "genre": "都市职业·轻异能·复仇爽文",
+  "platform": "番茄小说 / 红果等免费短剧平台",
+  "audience": "女频25-40岁为主，兼顾男频捡漏读者",
+  "protagonist": "温砚，27岁，拍卖公司展台助理，被吞家产的落魄千金",
+  "antagonist": "陆鸣川，52岁，父亲的老合伙人，鸣川资产董事长",
+  "goldenFinger": "成交记录：看见物品的真实价和上次成交记录；只给事实不给证据，每天约10次",
+  "length": {
+    "webNovel": "120-150万字/6卷",
+    "shortDrama": "约80集"
+  },
+  "scores": [
+    {
+      "id": 1,
+      "title": "落槌",
+      "overallScore": 7.8
+    },
+    {
+      "id": 2,
+      "title": "离婚冷静期，我查清了他的每一分钱",
+      "overallScore": 7.25
+    },
+    {
+      "id": 3,
+      "title": "退休第一天，厂里求我回去",
+      "overallScore": 6.95
+    },
+    {
+      "id": 4,
+      "title": "1983，我在国营饭店掌勺",
+      "overallScore": 6.4
+    }
+  ],
+  "recommendationReason": "网文和短剧双端适配最好；女主加拍卖对决加复仇有差异化空档；拍品、金额、对手三条阶梯同步升级，主线终点明确；代价是需要做拍卖和评估的专业功课",
+  "nextStep": "sumeru-outline（复用已有选题数据）",
+  "deliverableFile": "选题.md",
+  "fullReportFile": "选题策划报告.md"
+}

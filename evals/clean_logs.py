@@ -18,7 +18,8 @@
   - tool_use_result / toolUseResult / wire_tool_inputs：工具输入和返回的重复副本，正文在 message 里原样保留。
 
 改掉的（本机路径和用户名）：
-  - 运行时的临时目录换成 /scratch（其他临时目录去掉用户编号，写成 /tmp/claude），用户主目录换成 /Users/user，
+  - 运行时的临时目录换成 /scratch（第二轮起的运行目录 /tmp/sd-evals 也换成 /scratch；其他临时目录去掉用户编号，
+    写成 /tmp/claude），用户主目录换成 /Users/user，
     ls -l 里的属主换成 user。
   - 工作目录里的轮次编号统一成公开的编号（001-open-brief）。
 
@@ -41,6 +42,9 @@ SCRUB = [
     (re.compile(r"(?:/private)?/tmp/claude-\d+/-Users-[\w.-]+?/[0-9a-f-]{36}/scratchpad"), "/scratch"),
     (re.compile(r"-private-tmp-claude-\d+--Users-[\w.-]+?-[0-9a-f-]{36}-scratchpad"), "-scratch"),
     (re.compile(r"(?:/private)?/tmp/claude-\d+(?=/)"), "/tmp/claude"),
+    # 第二轮起，运行目录放在 /tmp/sd-evals/<轮次>/ 下
+    (re.compile(r"(?:/private)?/tmp/sd-evals(?![\w-])"), "/scratch"),
+    (re.compile(r"-private-tmp-sd-evals-"), "-scratch-"),
     (re.compile(r"(ws[/-])\d{3}-open-brief"), r"\g<1>001-open-brief"),
     (re.compile(r"/Users/[A-Za-z0-9_.-]+"), "/Users/user"),
     (re.compile(r"-Users-(?!user\b)[A-Za-z0-9_.]+"), "-Users-user"),

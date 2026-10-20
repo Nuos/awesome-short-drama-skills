@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-10-19T00:00:00Z",
+  "source": "premise.md",
+  "recommendedOptionId": 1,
+  "recommendedTitle": "冷静期三十天",
+  "oneLinePitch": "丈夫逼她签下净身出户的离婚协议，她笑着签了。三十天冷静期里，这个“离了男人活不了”的全职太太要把他藏起来的每一分钱都翻出来，最后净身出户的是他。",
+  "genre": "都市女频·婚姻复仇/职业逆袭（现实向）",
+  "audience": "25-45岁女性",
+  "platforms": ["番茄", "七猫", "红果短剧", "抖音"],
+  "length": {"webNovel": "60-80万字，两卷", "shortDrama": "约80集×1.5-2分钟"},
+  "scores": [
+    {"id": 1, "title": "冷静期三十天", "overallScore": 7.8, "policyRisk": "low"},
+    {"id": 2, "title": "妈不伺候了", "overallScore": 7.1, "policyRisk": "low-medium"},
+    {"id": 3, "title": "二十四小时顶级打工人", "overallScore": 6.3, "policyRisk": "low"}
+  ],
+  "recommendationReason": "网文和短剧两端适配最好；在高热度赛道里找到了低竞争的切口（专业查账）；合法翻盘，合规友好；对手是女主带出来的徒弟，智斗能写得有来有回。",
+  "nextStep": "sumeru-outline（复用已有选题数据）"
+}

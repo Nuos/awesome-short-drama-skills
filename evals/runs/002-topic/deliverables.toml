@@ -1,0 +1,109 @@
+# 每次运行里，哪些文件是选题。由 judge.py locate 生成，人工核对过；改了要重新 pack。
+
+["0xsline__short-drama.run-1"]
+topic = ["topic.md"]
+
+["0xsline__short-drama.run-2"]
+topic = ["选题.md"]
+
+["0xsline__short-drama.run-3"]
+topic = ["选题.md"]
+
+["Hao0321__ai-short-drama.run-1"]
+topic = ["选题.md"]
+
+["Hao0321__ai-short-drama.run-2"]
+topic = ["选题.md"]
+
+["Hao0321__ai-short-drama.run-3"]
+topic = ["选题.md"]
+
+["LanyXiaosheng__bookflow-skill.run-1"]
+topic = ["topic.md"]
+
+["LanyXiaosheng__bookflow-skill.run-2"]
+topic = ["选题.md"]
+
+["LanyXiaosheng__bookflow-skill.run-3"]
+topic = ["选题.md"]
+
+["Tomsawyerhu__Chinese-WebNovel-Skill.run-1"]
+topic = ["选题.md"]
+
+["Tomsawyerhu__Chinese-WebNovel-Skill.run-2"]
+topic = ["选题.md"]
+
+["Tomsawyerhu__Chinese-WebNovel-Skill.run-3"]
+topic = ["选题.md"]
+
+["baseline.run-1"]
+topic = ["选题.md"]
+
+["baseline.run-2"]
+topic = ["选题.md"]
+
+["baseline.run-3"]
+topic = ["选题.md"]
+
+["dama-cyber__Distilled-Novel-Toolbox.run-1"]
+topic = ["选题.md"]
+
+["dama-cyber__Distilled-Novel-Toolbox.run-2"]
+topic = ["一句话卖点.md", "选题说明.md"]
+
+["dama-cyber__Distilled-Novel-Toolbox.run-3"]
+topic = ["选题.md"]
+
+["lingfengQAQ__webnovel-writer.run-1"]
+topic = ["选题.md"]
+
+["lingfengQAQ__webnovel-writer.run-2"]
+topic = ["选题.md"]
+
+["lingfengQAQ__webnovel-writer.run-3"]
+topic = ["选题.md"]
+
+["qingyabailu-git__webfiction-write.run-1"]
+topic = ["选题.md"]
+
+["qingyabailu-git__webfiction-write.run-2"]
+topic = ["选题.md"]
+
+["qingyabailu-git__webfiction-write.run-3"]
+topic = ["一句话卖点.md", "选题说明.md"]
+
+["tance-mang__chinese-webnovel-skills.run-1"]
+topic = ["选题.md"]
+
+["tance-mang__chinese-webnovel-skills.run-2"]
+topic = ["选题.md"]
+
+["tance-mang__chinese-webnovel-skills.run-3"]
+topic = ["一句话卖点.md", "选题说明.md"]
+
+["xiaofeng-928__chinese-longnovel-skill.run-1"]
+topic = ["选题.md"]
+
+["xiaofeng-928__chinese-longnovel-skill.run-2"]
+topic = ["一句话卖点.md", "选题说明.md"]
+
+["xiaofeng-928__chinese-longnovel-skill.run-3"]
+topic = ["选题.md"]
+
+["xindoo__sumeru.run-1"]
+topic = ["选题.md"]
+
+["xindoo__sumeru.run-2"]
+topic = ["选题.md"]
+
+["xindoo__sumeru.run-3"]
+topic = ["选题.md"]
+
+["zenstory-ai__oh-story-claudecode.run-1"]
+topic = ["选题.md"]
+
+["zenstory-ai__oh-story-claudecode.run-2"]
+topic = ["一句话卖点.md", "选题说明.md"]
+
+["zenstory-ai__oh-story-claudecode.run-3"]
+topic = ["选题.md"]

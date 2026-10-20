@@ -1,0 +1,176 @@
+{
+  "meta": {
+    "generatedAt": "2026-10-19T16:30:00+08:00",
+    "genre": "都市爽文（网文 + 竖屏短剧双形态）",
+    "keywords": ["隐藏身份", "打脸逆袭", "单元剧", "复仇", "职场"],
+    "platform": "番茄/七猫（网文）+ 竖屏短剧",
+    "audience": "女频",
+    "source": "premise.md",
+    "finalDeliverable": "选题.md"
+  },
+  "options": [
+    {
+      "id": 1,
+      "title": "差评",
+      "altTitles": ["她只是来住一晚", "全城酒店都在等我的差评"],
+      "coreConcept": "被诬陷后跪着擦了三年地的前首席评审，以匿名“零号评审”身份回归，逐家暗访当年设局害她的人背后的酒店帝国。",
+      "oneLiner": "三年前她能让五星酒店摘星，今天这家酒店让她跪着擦地——明天她换身地摊货回来入住。",
+      "goldenFinger": {
+        "name": "零号评审（专业能力 + 隐藏身份）",
+        "description": "顶级味觉与观察力；《银叶指南》创始人秦老秘密任命的匿名评审，身份只对秦老负责，所签评级编号具有行业公信力。",
+        "rules": ["评审必须匿名，以普通客人身份消费", "评级须有据可查", "评级编号一经签发即具行业效力"],
+        "limitations": ["评级不能凭个人好恶，否则会被反派抓住把柄", "在某地掉马后，该地不能再暗访", "靠山秦老年事已高，随时可能失去"],
+        "growthPath": "保洁 → 匿名评审 → 公开区域主审 → 重回首席；从单店到连锁，再到集团，最后到指南内部"
+      },
+      "characters": {
+        "protagonist": "许棠，29岁，前《银叶指南》最年轻首席评审，被诬陷受贿后在鼎华酒店当保洁三年",
+        "antagonists": [
+          "单元小反派：势利的大堂经理、刁难人的客户经理、抢功的副厨",
+          "唐蔓：鼎华酒店集团副总，周叙白未婚妻，靠买星扩张",
+          "周叙白：前未婚夫兼前副手，现任评审总监，设局陷害许棠，经营星级买卖"
+        ],
+        "loveInterest": "程既明，独立小馆主厨，因拒绝送礼被评为“不推荐”，痛恨评审",
+        "mentor": "秦老，《银叶指南》创始人"
+      },
+      "coreConflict": "明线：逐家暗访并以评级定生死；暗线：收集星级买卖证据，在年度发布会上扳倒周叙白与唐蔓并翻案；内在：评分是在复仇还是在评判。",
+      "coreSellingPoints": [
+        "隐藏身份有职业上的理由，可在每个新场景自动重置",
+        "专业细节支撑打脸，不降智",
+        "每个单元替一个基层员工出头",
+        "全部是现代室内场景，短剧成本低",
+        "单元结构天然适合拆季和续作"
+      ],
+      "audience": "女频都市读者与短剧女性观众，25-45岁，上班族，在服务消费中受过气",
+      "coolPointPattern": {
+        "type": "打脸",
+        "rhythm": "网文每3-5章一个小爽点、每单元约10万字一个大打脸；短剧每集一个钩子，每8-10集一次身份或评级揭晓",
+        "emotionCurve": "受辱压抑 → 隐忍取证（期待） → 专业碾压（释放） → 亮出编号（高潮） → 离主仇人更近一步（新悬念）"
+      },
+      "openingSuggestion": "第1章：唐蔓泼酒，命令许棠跪着擦地，周叙白认出她，结尾收到任命书（第一站就是这家酒店）；第2章：以客人身份入住，被刁难，暗中取证；第3章：签下银叶编号，经理崩溃，鼎华连夜追查零号，周叙白怀疑错人。",
+      "lengthPlan": {
+        "webNovel": "约100万字，五卷左右：开篇卷10万 + 6-8个单元各8-12万 + 终局卷10-15万",
+        "shortDrama": "约80集，每集1.5-2分钟：开篇卷 + 3个最强单元 + 终局，可拆季"
+      },
+      "sustainability": [
+        "匿名是职业要求，身份可以反复重置",
+        "单元场景取之不尽，每个场景对应一套行业黑幕",
+        "反派层层升级，主线终点明确",
+        "现代室内场景，短剧拍摄成本低"
+      ],
+      "scores": {
+        "marketHeat": 7,
+        "competition": 7,
+        "audienceSize": 8,
+        "creationDifficulty": 7,
+        "monetizationPotential": 9,
+        "dualFormatFit": 9,
+        "policyRisk": "low",
+        "overallScore": 8.0
+      },
+      "risks": ["单元重复疲劳", "评审行业冷门，有理解门槛", "影射真实品牌的风险", "价值导向被误读为看不起服务业"],
+      "differentiationStrategy": "用“评审”这个新鲜职业替代泛滥的霸总、战神、神医马甲；打脸落点放在评级结果上；每个单元带一个行业知识点。"
+    },
+    {
+      "id": 2,
+      "title": "妈不伺候了",
+      "coreConcept": "58岁母亲重生回儿子逼她过户房子的那天，守住房子和退休金，活出自己。",
+      "goldenFinger": {
+        "name": "重生记忆",
+        "description": "知道儿女和亲家会怎么算计她，也知道未来几年房价和政策的走向",
+        "rules": ["预知家人的算计", "预知市场与政策变化"],
+        "limitations": ["身体是老年人的，精力有限", "法律上的亲属关系割不断"],
+        "growthPath": "守住房子 → 搞钱 → 重新找到自我 → 子女悔过"
+      },
+      "coreSellingPoints": ["中老年女性觉醒的情绪共鸣极强", "家庭场景拍摄成本极低", "短剧付费转化已被市场验证"],
+      "audience": "35-60岁女性短剧观众，番茄家庭和年代读者",
+      "coolPointPattern": {
+        "type": "打脸/搞钱",
+        "rhythm": "拒绝 → 子女闹 → 法律和现实手段反击 → 子女吃瘪 → 她自己活得越来越好",
+        "emotionCurve": "憋屈到极点后觉醒，此后持续释放"
+      },
+      "openingSuggestion": "第1章：过户现场拒签掀桌；第2章：儿媳带全家上门闹，她拿出录音和房本；第3章：开早餐铺，第一天爆单。",
+      "scores": {
+        "marketHeat": 9,
+        "competition": 4,
+        "audienceSize": 8,
+        "creationDifficulty": 8,
+        "monetizationPotential": 7,
+        "dualFormatFit": 6,
+        "policyRisk": "medium-low",
+        "overallScore": 7.2
+      },
+      "risks": ["同类供给非常密集", "家庭冲突难撑长篇", "涉及孝道的价值导向需要把握"],
+      "differentiationStrategy": "加入搞钱和自我实现线，弱化撕扯，强化主角自己的成长"
+    },
+    {
+      "id": 3,
+      "title": "尽调",
+      "coreConcept": "背了财务造假黑锅被裁的38岁财务经理，以收购方尽调负责人的身份回到老东家查账。",
+      "goldenFinger": {
+        "name": "尽调权限",
+        "description": "专业财务能力加上收购方赋予的查账权限",
+        "rules": ["一笔账一个人，查出来就能动人"],
+        "limitations": ["尽调有时间窗口", "收购方有自己的利益，不一定站在他这边"],
+        "growthPath": "查经手人 → 查高管 → 查前老板 → 揭露更大的资本局"
+      },
+      "coreSellingPoints": ["中年男性打工人的情绪共鸣", "查账的悬疑感", "题材几乎没有竞争"],
+      "audience": "男频都市职场读者，28-45岁男性",
+      "coolPointPattern": {
+        "type": "打脸/权谋",
+        "rhythm": "查出一笔账 → 对质 → 证据拍桌 → 当事人出局",
+        "emotionCurve": "压抑后层层剥开，最后集中释放"
+      },
+      "openingSuggestion": "第1章：入场会上前老板嘲讽；第2章：调出被删掉的凭证；第3章：第一个经手人崩溃。",
+      "scores": {
+        "marketHeat": 6,
+        "competition": 8,
+        "audienceSize": 6,
+        "creationDifficulty": 4,
+        "monetizationPotential": 6,
+        "dualFormatFit": 5,
+        "policyRisk": "medium-low",
+        "overallScore": 6.3
+      },
+      "risks": ["财务知识门槛高", "短剧观众未必看得懂", "男频短剧的付费能力弱于女频"],
+      "differentiationStrategy": "把财务细节转化成直观的“钱去哪了”悬疑"
+    },
+    {
+      "id": 4,
+      "title": "讼师",
+      "coreConcept": "被革除功名的落魄书生开了一间状纸铺，一案一案替平民扳倒地方豪强。",
+      "goldenFinger": {
+        "name": "律例与验证",
+        "description": "熟读律例，精于验看证物",
+        "rules": ["一案一破", "以律例和证据取胜"],
+        "limitations": ["古代民告官本来就难", "他自己是戴罪之身"],
+        "growthPath": "县 → 府 → 京城，最后平反自己的冤案"
+      },
+      "coreSellingPoints": ["古装律政单元剧", "为民请命的正向价值", "一案一爽"],
+      "audience": "男女通吃，偏好古装和悬疑的读者",
+      "coolPointPattern": {
+        "type": "打脸",
+        "rhythm": "苦主喊冤 → 豪强压人 → 公堂翻证 → 反派伏法",
+        "emotionCurve": "以单元为周期，先压后扬"
+      },
+      "openingSuggestion": "第1章：被退婚加上被革功名；第2章：替卖豆腐的寡妇写状纸；第3章：公堂上驳倒县丞师爷。",
+      "scores": {
+        "marketHeat": 6,
+        "competition": 7,
+        "audienceSize": 7,
+        "creationDifficulty": 5,
+        "monetizationPotential": 7,
+        "dualFormatFit": 6,
+        "policyRisk": "low",
+        "overallScore": 6.5
+      },
+      "risks": ["古装短剧服化道成本高", "需要扎实的古代律法知识"],
+      "differentiationStrategy": "主角是讼师而不是官员，站在民间视角"
+    }
+  ],
+  "recommendedOptionId": 1,
+  "marketAnalysis": {
+    "trendingGenres": ["隐藏身份/掉马打脸", "家庭伦理逆袭", "重生复仇", "职场行业文", "年代/古言种田"],
+    "targetGenrePerformance": "隐藏身份打脸是短剧最成熟的付费公式，但马甲同质化严重；单元剧 + 复仇主线 + 可重置的信息差，是同时适配长篇网文和竖屏短剧的最佳交集。（AI推理，非实时数据）",
+    "audienceProfile": "短剧付费主力是25-50岁女性，下沉市场比例高；免费网文女频读者是22-40岁上班族。两者都对“店大欺客”有强烈共鸣。"
+  }
+}

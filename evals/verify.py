@@ -8,8 +8,8 @@
 做三件事：
   1. 逐个核对 evals/runs/<轮次>/MANIFEST.sha256 里的 sha256 指纹，也报出清单里没有的新文件。
      清单和 sha256sum 的格式相同，在轮次目录里运行 shasum -a 256 -c MANIFEST.sha256 也能核对。
-  2. 用 judge.py 的同一段代码，从匿名稿重建每一次 GPT 评审调用的提示词，和调用时记下的指纹比对。
-     Opus 用的是同一段代码，但当时只存了解析后的判决，没有提示词指纹可比。
+  2. 用 judge.py 的同一段代码，从匿名稿重建每一次评审调用的提示词，和调用时记下的指纹比对。
+     第一轮的 Opus 当时只存了解析后的判决，没有提示词指纹可比，只核对 GPT；第二轮起两位评审的都存了。
   3. 用 stats.py 把实测记录页上的数字重算一遍，打印出来，可以和网站对照。
 只用标准库。
 """
@@ -58,21 +58,27 @@ def check_manifest(base: Path) -> int:
 
 
 def check_prompts(base: Path) -> int:
-    raw = {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in (base / "judge-raw" / "gpt").glob("*.json")}
-    ok = bad = 0
-    for cid, rec in sorted(raw.items()):
-        if cid == "cluster":
-            prompt = judge.cluster_prompt(judge.cluster_rows(base))
-        else:
-            _, track, a, b = cid.split(".")
-            prompt = judge.duel_prompt(base, track, a, b)
-        if hashlib.sha256(prompt.encode("utf-8")).hexdigest() == rec["prompt_sha256"]:
-            ok += 1
-        else:
-            bad += 1
-            print(f"  重建的提示词和记录不符：{cid}")
-    print(f"2. 评审提示词：重建 {ok + bad} 次 GPT 调用，{ok} 次和记录一致")
-    return bad
+    sp = judge.spec(base.name)
+    problems = 0
+    for j, label in (("opus", "Opus"), ("gpt", "GPT")):
+        if not (base / "judge-raw" / j).is_dir():
+            continue
+        raw = {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in (base / "judge-raw" / j).glob("*.json")}
+        ok = bad = 0
+        for cid, rec in sorted(raw.items()):
+            if cid == "cluster":
+                prompt = judge.cluster_prompt(judge.cluster_rows(base, sp.seed), sp)
+            else:
+                _, track, a, b = cid.split(".")
+                prompt = judge.duel_prompt(base, track, a, b, sp)
+            if hashlib.sha256(prompt.encode("utf-8")).hexdigest() == rec["prompt_sha256"]:
+                ok += 1
+            else:
+                bad += 1
+                print(f"  重建的提示词和记录不符：{j} {cid}")
+        print(f"2. 评审提示词：重建 {ok + bad} 次 {label} 调用，{ok} 次和记录一致")
+        problems += bad
+    return problems
 
 
 def main() -> None:

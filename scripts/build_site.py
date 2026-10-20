@@ -67,13 +67,17 @@ def L(lang: str, zh: str, en: str) -> str:
     return zh if lang == "zh" else en
 
 
+def ordinal(n: int) -> str:
+    return f"{n}{'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
+
+
 e = functools.partial(html.escape, quote=True)
 CJK = re.compile(r"[\u3400-\u9fff]")
 
 
 # ───────────────────────── 数据 ─────────────────────────
 
-ROUNDS = {"001-open-brief": ("第一轮", "round one", "round-1")}
+ROUNDS = {"001-open-brief": ("第一轮", "round one", "round-1"), "002-topic": ("第二轮", "round two", "round-2")}
 
 
 def duel_record(run_dir: Path, name: str = "duels.jsonl") -> dict[tuple[str, str], dict[str, list[int]]]:
@@ -90,6 +94,24 @@ def duel_record(run_dir: Path, name: str = "duels.jsonl") -> dict[tuple[str, str
     for (rnd, slug, track, _), v in votes.items():
         r = out.setdefault((rnd, slug), {}).setdefault(track, [0, 0, 0])
         r[0 if v.count("W") == len(v) else 2 if v.count("L") == len(v) else 1] += 1
+    return out
+
+
+def standings(premise: str) -> dict[tuple[str, str], dict]:
+    """两两全比的轮次：每个参赛者的积分名次（Opus 和 GPT 各一份），和它对对照组三次比较的「赢、平、输」。"""
+    r = build_evals.Round(premise)
+    track = next(iter(r.sp.tracks))
+    out: dict[tuple[str, str], dict] = {}
+    for j in r.duels:
+        rows = r.standings(j, track)
+        place, last = 0, None
+        for i, (slug, rec, pts) in enumerate(rows, 1):
+            if pts != last:
+                place, last = i, pts
+            out.setdefault((premise, slug), {})[j] = (place, len(rows), rec, pts)
+    h2h = r.head_to_head("opus", track)
+    for slug in r.slugs:
+        out.setdefault((premise, slug), {})["vs_base"] = h2h.get((slug, "baseline"), [0, 0, 0])
     return out
 
 
@@ -116,9 +138,14 @@ class Data:
         self.evaluated: dict[str, list[str]] = {}
         self.duels: dict[tuple[str, str], dict[str, list[int]]] = {}
         self.duels_gpt: dict[tuple[str, str], dict[str, list[int]]] = {}
+        # 两两全比的轮次（第二轮起）不算和对照组的胜负，算积分名次
+        self.standings: dict[tuple[str, str], dict] = {}
         for roster in sorted((ROOT / "evals" / "runs").glob("*/contestants.toml")):
             for c in tomllib.loads(roster.read_text(encoding="utf-8"))["contestants"]:
                 self.evaluated.setdefault(c["repo"].lower(), []).append(roster.parent.name)
+            if (roster.parent / "duels.jsonl").exists() and build_evals.judge.spec(roster.parent.name).pairing == "all":
+                self.standings.update(standings(roster.parent.name))
+                continue
             if (roster.parent / "duels.jsonl").exists():
                 self.duels.update(duel_record(roster.parent))
             if (roster.parent / "duels-gpt.jsonl").exists():
@@ -636,29 +663,10 @@ class Site:
         tested = ""
         rounds = d.evaluated.get(s["repo"].lower(), [])
         if rounds:
-            run = rounds[-1]
-            zh_n, en_n, anchor = ROUNDS[run]
-            slug = s["repo"].replace("/", "__")
-            out = f"{REPO_URL}/tree/main/evals/runs/{run}/{slug}"
-            rec = d.duels.get((run, slug), {})
-            score = ""
-            if rec:
-                sc, ol = rec.get("script", [0, 0, 0]), rec.get("outline", [0, 0, 0])
-                score = L(lang, f"和不装 skill 的对照组盲比三次：剧本 {sc[0]} 赢 {sc[1]} 平 {sc[2]} 输，人物大纲 {ol[0]} 赢 {ol[1]} 平 {ol[2]} 输。",
-                          f"Blind comparisons with a no-skill control over three runs: scripts {sc[0]} won, {sc[1]} tied, "
-                          f"{sc[2]} lost; characters and outline {ol[0]} won, {ol[1]} tied, {ol[2]} lost. ")
-            gpt = d.duels_gpt.get((run, slug), {})
-            if gpt:
-                gs, go = gpt.get("script", [0, 0, 0]), gpt.get("outline", [0, 0, 0])
-                score += L(lang, f"换 GPT 复核：剧本 {gs[0]} 赢 {gs[1]} 平 {gs[2]} 输，人物大纲 {go[0]} 赢 {go[1]} 平 {go[2]} 输。",
-                           f"Re-judged by GPT: scripts {gs[0]} won, {gs[1]} tied, {gs[2]} lost; characters and outline "
-                           f"{go[0]} won, {go[1]} tied, {go[2]} lost. ")
-            tested = (f'<h2>{L(lang, "实测", "Tested")}</h2><p>'
-                      + L(lang, f"参加了{zh_n}剧本实测。", f"Took part in {en_n} of our script tests. ") + score
-                      + f'<a href="{url(lang, "/evals/")}#{anchor}">{L(lang, "看点评", "Read the results")}</a> · '
-                      + f'<a href="/evals/{anchor}/">{L(lang, "看每次运行的完整过程", "See every step of each run (Chinese)")}</a> · '
-                      + f'<a href="{out}">{L(lang, "看它的原始产出", "See its raw output")}</a></p>')
+            tested = (f'<h2>{L(lang, "实测", "Tested")}</h2>'
+                      + "".join(self.tested_round(d, s, run, lang) for run in rounds))
         mine = set(s["stages"])
+
         peers = [x for x in d.skills if x is not s and x["group"] == s["group"]]
         peers.sort(key=lambda x: (-len(mine & set(x["stages"])) / len(mine | set(x["stages"])), -d.stars(x)))
         alt = (f'<h2>{L(lang, "同类项目", "Similar projects")}</h2>{self.entries(peers[:5], lang)}' if peers else "")
@@ -695,6 +703,41 @@ class Site:
         self.page(lang, repo_path(s), title=title, description=meta_desc, body=body,
                   crumbs=[(tr(group, "label", lang), f"/type/{s['group']}/"), (name, repo_path(s))],
                   jsonld=[code_ld], lastmod=max(d.updated, str(s.get("checked") or "")))
+
+    def tested_round(self, d: Data, s: dict, run: str, lang: str) -> str:
+        """项目页「实测」一节里，这个项目参加过的一轮实测的成绩。"""
+        zh_n, en_n, anchor = ROUNDS[run]
+        slug = s["repo"].replace("/", "__")
+        out = f"{REPO_URL}/tree/main/evals/runs/{run}/{slug}"
+        links = (f'<a href="{url(lang, "/evals/")}#{anchor}">{L(lang, "看点评", "Read the results")}</a> · '
+                 + f'<a href="/evals/{anchor}/">{L(lang, "看每次运行的完整过程", "See every step of each run (Chinese)")}</a> · '
+                 + f'<a href="{out}">{L(lang, "看它的原始产出", "See its raw output")}</a></p>')
+        if build_evals.judge.spec(run).pairing == "all":
+            st, score = d.standings.get((run, slug), {}), ""
+            if "opus" in st:
+                place, n, _, _ = st["opus"]
+                w, ti, lo = st["vs_base"]
+                score = L(lang, f"和另外 {n - 1} 个参赛者（含不装 skill 的对照组）两两盲比，积分第 {place} 名（共 {n} 名）；"
+                                f"对对照组三次 {w} 赢 {ti} 平 {lo} 输。",
+                          f"Compared blind with the other {n - 1} entrants, including a no-skill control, it placed "
+                          f"{ordinal(place)} of {n} on points; against the control over three runs it won {w}, tied {ti}, lost {lo}. ")
+            if "gpt" in st:
+                score += L(lang, f"换 GPT 复核：积分第 {st['gpt'][0]} 名。", f"Re-judged by GPT: placed {ordinal(st['gpt'][0])}. ")
+            return "<p>" + L(lang, f"参加了{zh_n}选题实测。", f"Took part in {en_n} of our tests, on story premises. ") + score + links
+        rec = d.duels.get((run, slug), {})
+        score = ""
+        if rec:
+            sc, ol = rec.get("script", [0, 0, 0]), rec.get("outline", [0, 0, 0])
+            score = L(lang, f"和不装 skill 的对照组盲比三次：剧本 {sc[0]} 赢 {sc[1]} 平 {sc[2]} 输，人物大纲 {ol[0]} 赢 {ol[1]} 平 {ol[2]} 输。",
+                      f"Blind comparisons with a no-skill control over three runs: scripts {sc[0]} won, {sc[1]} tied, "
+                      f"{sc[2]} lost; characters and outline {ol[0]} won, {ol[1]} tied, {ol[2]} lost. ")
+        gpt = d.duels_gpt.get((run, slug), {})
+        if gpt:
+            gs, go = gpt.get("script", [0, 0, 0]), gpt.get("outline", [0, 0, 0])
+            score += L(lang, f"换 GPT 复核：剧本 {gs[0]} 赢 {gs[1]} 平 {gs[2]} 输，人物大纲 {go[0]} 赢 {go[1]} 平 {go[2]} 输。",
+                       f"Re-judged by GPT: scripts {gs[0]} won, {gs[1]} tied, {gs[2]} lost; characters and outline "
+                       f"{go[0]} won, {go[1]} tied, {go[2]} lost. ")
+        return "<p>" + L(lang, f"参加了{zh_n}剧本实测。", f"Took part in {en_n} of our script tests. ") + score + links
 
     def content(self, lang: str, slug: str, crumbs: list[tuple[str, str]]) -> None:
         raw = (WEB / "content" / lang / f"{slug.replace('/', '__')}.html").read_text(encoding="utf-8")
@@ -839,6 +882,18 @@ class Site:
             lines.append(f"- [{display_name(s)}]({abs_url('en', repo_path(s))}) (★{fmt_stars(m.get('stars'))}, "
                          f"{d.groups[s['group']].get('label_en')}): {s.get('desc_en') or s['desc']}")
         lines += ["", "## Tests",
+                  f"- [Round two: premise skills for web novels and short dramas]({abs_url('en', '/evals/')}#round-2): 11 web "
+                  "novel and short drama premise skills and a no-skill control each chose a premise for a new revenge-fantasy "
+                  "story that could become a web novel or a vertical short drama (no genre, length or platform given), three "
+                  "runs each with the same model (Claude Code, claude-opus-5-5). Every entry was compared blind with every "
+                  "other and ranked by points. Both reviewers (Opus, and GPT re-judging) put the same four skills on top, in "
+                  "a different order: Tomsawyerhu/Chinese-WebNovel-Skill, lingfengQAQ/webnovel-writer, "
+                  "LanyXiaosheng/bookflow-skill, Hao0321/ai-short-drama. The no-skill control placed 7th (Opus) and 10th (GPT) "
+                  "of 12; the two skills that start by checking bestseller charts placed last with both, with no network in "
+                  "the sandbox.",
+                  f"- [Round two full record]({abs_url('zh', '/evals/round-2/')}) (Chinese): every run, the anonymous premises, "
+                  "the prompt and verdict of every blind comparison (judged by Opus, re-judged by GPT), reviewer health checks "
+                  "and the process log.",
                   f"- [Round one: script-writing skills on an open brief]({abs_url('en', '/evals/')}#round-1): a one-line brief "
                   "(a vertical short drama, 60 episodes of 1-2 minutes, no genre or plot) given to 10 script-writing skills and a "
                   "no-skill control, three runs each with the same model (Claude Code, claude-opus-5-5), compared blind with the "

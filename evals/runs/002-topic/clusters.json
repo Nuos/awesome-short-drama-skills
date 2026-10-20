@@ -1,0 +1,276 @@
+{
+ "groups": [
+  {
+   "name": "头顶欠条讨债",
+   "pattern": "被吸血的老实人突然能看见别人欠自己的账（头顶欠条或祖传账本），按规则逐笔当面讨回",
+   "codes": [
+    "290",
+    "259",
+    "772"
+   ],
+   "runs": [
+    "lingfengQAQ__webnovel-writer.run-3",
+    "lingfengQAQ__webnovel-writer.run-1",
+    "xiaofeng-928__chinese-longnovel-skill.run-1"
+   ]
+  },
+  {
+   "name": "人情簿收回人情",
+   "pattern": "被全家吸血的长女继承民俗人情簿，能收回自己给出去的人情，代价是从此不再心疼对方",
+   "codes": [
+    "311"
+   ],
+   "runs": [
+    "Hao0321__ai-short-drama.run-2"
+   ]
+  },
+  {
+   "name": "代驾听秘密翻案",
+   "pattern": "被做局坑害的前精英沦为夜班代驾，靠后座老板们的醉话和秘密，加上自己的专业本事取证翻盘",
+   "codes": [
+    "255",
+    "926"
+   ],
+   "runs": [
+    "baseline.run-3",
+    "0xsline__short-drama.run-3"
+   ]
+  },
+  {
+   "name": "头顶出卖价码",
+   "pattern": "豪门独女能看见每个人出卖她的价码，在商战中反向收买人心、对抗幕后黑手",
+   "codes": [
+    "434"
+   ],
+   "runs": [
+    "lingfengQAQ__webnovel-writer.run-2"
+   ]
+  },
+  {
+   "name": "匿名评审暗访",
+   "pattern": "被诬陷封杀、沦为保洁的前首席评审被秘密启用，用匿名评审身份暗访打脸，扳倒陷害者",
+   "codes": [
+    "864"
+   ],
+   "runs": [
+    "xindoo__sumeru.run-1"
+   ]
+  },
+  {
+   "name": "重生审计断亲",
+   "pattern": "被全家吸血的审计师重生回房产过户现场，靠前世预知和多年转账流水查账断亲、追回欠款",
+   "codes": [
+    "623"
+   ],
+   "runs": [
+    "zenstory-ai__oh-story-claudecode.run-2"
+   ]
+  },
+  {
+   "name": "古代和离代书铺",
+   "pattern": "被休弃的前妻开代书铺专写和离书，凭律法本事帮前夫的新妇和离，两人联手告倒前夫",
+   "codes": [
+    "411"
+   ],
+   "runs": [
+    "LanyXiaosheng__bookflow-skill.run-3"
+   ]
+  },
+  {
+   "name": "豪门太太鉴定师",
+   "pattern": "被除名后嫁入豪门的顶级鉴定师在寿宴上被诬偷窃，重出江湖，靠眼力和黑账本掀翻师父",
+   "codes": [
+    "967"
+   ],
+   "runs": [
+    "tance-mang__chinese-webnovel-skills.run-1"
+   ]
+  },
+  {
+   "name": "摇号成仇家破产管理人",
+   "pattern": "父亲被仇家坑害的女儿摇号成了仇家集团的破产管理人，用法定权力追查转移资产、清算复仇",
+   "codes": [
+    "602",
+    "317"
+   ],
+   "runs": [
+    "tance-mang__chinese-webnovel-skills.run-2",
+    "Tomsawyerhu__Chinese-WebNovel-Skill.run-2"
+   ]
+  },
+  {
+   "name": "前夫家破产管理人",
+   "pattern": "被逼净身出户的前儿媳三年后成了前夫家族集团的破产管理人，逐项追回被藏的资产",
+   "codes": [
+    "554"
+   ],
+   "runs": [
+    "Tomsawyerhu__Chinese-WebNovel-Skill.run-1"
+   ]
+  },
+  {
+   "name": "拍卖行看成交记录",
+   "pattern": "家道中落的拍卖行底层助理能看见拍品的真实价格和成交记录，在拍场上扳倒骗垮她家的仇人",
+   "codes": [
+    "640"
+   ],
+   "runs": [
+    "xindoo__sumeru.run-3"
+   ]
+  },
+  {
+   "name": "银发老会计查旧账",
+   "pattern": "被儿子赶出家门的退休审计合伙人凭查账功夫，翻出十年前的上市公司假账旧案",
+   "codes": [
+    "441"
+   ],
+   "runs": [
+    "qingyabailu-git__webfiction-write.run-2"
+   ]
+  },
+  {
+   "name": "免费会计净身出户念账",
+   "pattern": "婚后给夫家公司当了多年免费会计的前审计师，被逼净身出户时拿出留存的账目证据逐笔清算夫家",
+   "codes": [
+    "134",
+    "231"
+   ],
+   "runs": [
+    "baseline.run-2",
+    "LanyXiaosheng__bookflow-skill.run-1"
+   ]
+  },
+  {
+   "name": "冷静期查账反杀",
+   "pattern": "当全职太太的前法务会计或清算师，借三十天离婚冷静期假装认命，暗中查账、揭穿丈夫藏钱和假债",
+   "codes": [
+    "575",
+    "670",
+    "525"
+   ],
+   "runs": [
+    "0xsline__short-drama.run-1",
+    "xindoo__sumeru.run-2",
+    "dama-cyber__Distilled-Novel-Toolbox.run-2"
+   ]
+  },
+  {
+   "name": "隐藏金牌离婚律师",
+   "pattern": "被逼净身出户的全职太太其实是传说级离婚律师，靠法条和证据（多在冷静期内）追回被藏的财产，反杀丈夫",
+   "codes": [
+    "277",
+    "439",
+    "725"
+   ],
+   "runs": [
+    "dama-cyber__Distilled-Novel-Toolbox.run-1",
+    "baseline.run-1",
+    "qingyabailu-git__webfiction-write.run-1"
+   ]
+  },
+  {
+   "name": "头七前替死者了愿",
+   "pattern": "遗物整理师或入殓师接触遗物后得到死者的本事或线索，必须在头七前替死者讨债翻案，主线是替自己的父亲或自己洗冤",
+   "codes": [
+    "532",
+    "592"
+   ],
+   "runs": [
+    "qingyabailu-git__webfiction-write.run-3",
+    "xiaofeng-928__chinese-longnovel-skill.run-2"
+   ]
+  },
+  {
+   "name": "重生记工员讨薪",
+   "pattern": "工地记工员重生回2006年，凭前世记下的二十年账，挨个讨回欠薪和血债",
+   "codes": [
+    "890"
+   ],
+   "runs": [
+    "zenstory-ai__oh-story-claudecode.run-1"
+   ]
+  },
+  {
+   "name": "古代当铺东家掉马",
+   "pattern": "被侯府看不起的世子夫人暗中是京城大当铺的东家，侯府当掉她的嫁妆时，当票全在她手里，掉马后打脸和离",
+   "codes": [
+    "917"
+   ],
+   "runs": [
+    "LanyXiaosheng__bookflow-skill.run-2"
+   ]
+  },
+  {
+   "name": "理赔调查员翻案",
+   "pattern": "被师父陷害背上骗保黑锅的金牌理赔调查员，逐个拆解骗保案翻身，最后清算师父",
+   "codes": [
+    "718"
+   ],
+   "runs": [
+    "dama-cyber__Distilled-Novel-Toolbox.run-3"
+   ]
+  },
+  {
+   "name": "当铺鉴宝复仇",
+   "pattern": "被栽赃封杀的鉴定师接手爷爷的当铺，能看穿当品的真价和来历，靠单元案攒实力、洗冤复仇",
+   "codes": [
+    "137",
+    "464"
+   ],
+   "runs": [
+    "xiaofeng-928__chinese-longnovel-skill.run-3",
+    "zenstory-ai__oh-story-claudecode.run-3"
+   ]
+  },
+  {
+   "name": "失物招领真千金",
+   "pattern": "被调包的真千金在失物招领处打工，一摸失物就能看见回放，一步步找出真相、夺回身份",
+   "codes": [
+    "146"
+   ],
+   "runs": [
+    "Hao0321__ai-short-drama.run-1"
+   ]
+  },
+  {
+   "name": "重生程序员反裁员",
+   "pattern": "被逼离职的核心程序员重生回裁员当天，靠未来记忆和劳动法、专利等规则反杀老东家",
+   "codes": [
+    "189"
+   ],
+   "runs": [
+    "tance-mang__chinese-webnovel-skills.run-3"
+   ]
+  },
+  {
+   "name": "退休法官卧底保姆",
+   "pattern": "退休家事法官隐藏身份在豪门当保姆，实为遗嘱考察人，审清争产的一家人，同时追查亡夫死因",
+   "codes": [
+    "808"
+   ],
+   "runs": [
+    "Tomsawyerhu__Chinese-WebNovel-Skill.run-3"
+   ]
+  },
+  {
+   "name": "遗产管理人推翻假遗嘱",
+   "pattern": "律师以遗产管理人的身份边办分家案边找证据，要在诉讼时效届满前推翻大伯的假遗嘱",
+   "codes": [
+    "583"
+   ],
+   "runs": [
+    "0xsline__short-drama.run-2"
+   ]
+  },
+  {
+   "name": "奇幻当铺收无形之物",
+   "pattern": "废柴继承只收才华、良心等无形之物的子时当铺，发现首富当在这里的良心快到期，借此倒计时复仇",
+   "codes": [
+    "777"
+   ],
+   "runs": [
+    "Hao0321__ai-short-drama.run-3"
+   ]
+  }
+ ]
+}

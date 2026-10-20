@@ -1,13 +1,57 @@
 <!--
 title: Short drama skill tests
-seo_title: AI short drama skill tests: 10 script-writing skills, one open brief, three runs each, blind comparison with a no-skill control
-description: A brief that sets only the length and deliverables went to 10 AI short drama script-writing skills and a no-skill control, three runs each with the same model. Story cards show how different the stories are, and blind pairwise comparisons with the control judge the scripts, characters and outlines.
+seo_title: AI short drama and web novel skill tests: two rounds, scripts and story premises, three runs each, blind comparison with a no-skill control
+description: Round two: 11 web novel and short drama premise skills plus a no-skill control each chose a premise for the same kind of revenge-fantasy story, and every entry was compared blind with every other to rank them by points. Round one: 10 short drama script-writing skills took the same open brief and were compared blind with the control. Same model, three runs each, the whole process public.
 crumb: Tests
-updated: 2026-10-19
+updated: 2026-10-20
 -->
 <p class="lead">"Checked" in the directory only means a project's details are accurate, not that it works well. This page holds the tests: <strong>the same brief goes to different skills, the outputs are kept unedited, and they are compared blind</strong> so you can judge for yourself.</p>
 
-<div class="note"><p><strong>Round one is done (2026-10-18):</strong> 10 script-writing skills plus a control with no skill, three runs each on the same open brief, 33 runs in all. The whole process can be checked in the <a href="/evals/round-1/">round one record</a> (in Chinese): every input given to the agent, every step of every run, the anonymous drafts the reviewers saw, the full prompt and verdict of every comparison, and a health check of the reviewers. Raw data is on <a href="{{repo_url}}/tree/main/evals/runs/001-open-brief">GitHub</a>.</p></div>
+<div class="note"><p><strong>Round two is done (2026-10-20):</strong> 11 web novel and short drama premise skills plus a no-skill control each chose a premise for the same kind of story, three runs each, 36 runs in all, and every entry was compared blind with every other. The whole process is in the <a href="/evals/round-2/">round two record</a> (in Chinese), and raw data is on <a href="{{repo_url}}/tree/main/evals/runs/002-topic">GitHub</a>.</p>
+<p><strong>Round one is done (2026-10-18):</strong> 10 script-writing skills plus a control with no skill, three runs each on the same open brief, 33 runs in all. The whole process can be checked in the <a href="/evals/round-1/">round one record</a> (in Chinese): every input given to the agent, every step of every run, the anonymous drafts the reviewers saw, the full prompt and verdict of every comparison, and a health check of the reviewers. Raw data is on <a href="{{repo_url}}/tree/main/evals/runs/001-open-brief">GitHub</a>.</p></div>
+
+<h2 id="round-2">Round two: choosing a premise</h2>
+<p>The brief asks for the premise of a new revenge-fantasy story (the "satisfying payback" genre big on Chinese web novel sites and vertical drama apps) that could later become a web novel or a vertical short drama. Only the premise: a one-line pitch and a premise note. No genre, length or platform. The entries were 11 skills, picked by stars from those in the short drama and novel lists that can come up with a premise from scratch, plus a control with no skill, all on Claude Code with claude-opus-5-5 at high effort and word-for-word identical prompts and replies. When a skill offered several options, it was told to pick the one it recommends most.</p>
+<p>Reviewers could not see who wrote which premise. Each premise got a story card, to see how alike they are. Then all 12 entries were compared in pairs, run n against run n, with the order swapped each time; an entry only wins if it wins both orders. A win scores 1 point and a tie 0.5, each entry has 33 comparisons, and entries are ranked by points. Only the final recommended premise counts, judged on five things: the pitch, freshness, conflict and payoffs, staying power, and feasibility. Length and market analysis earn nothing. The main reviewer was claude-opus-5-5; GPT (gpt-6-astra) re-judged everything with word-for-word identical prompts.</p>
+
+<h3>Findings</h3>
+<ol>
+  <li><strong>Both reviewers put the same four skills on top, in a different order.</strong> Opus ranked Tomsawyerhu/Chinese-WebNovel-Skill, webnovel-writer, bookflow-skill and ai-short-drama; GPT ranked bookflow-skill, ai-short-drama, webnovel-writer and Tomsawyerhu/Chinese-WebNovel-Skill. Each has its strength. Tomsawyerhu gave its heroines rare legal jobs and the most gripping pitches: in one, thirteen years after a rich family drove her father to his death, a court lottery sends her to seize everything they own. The law needs checking, though. webnovel-writer gave its powers rules with a price, such as collecting only debts that are truly owed, and paying back double for taking too much. bookflow-skill tests an idea with a short story first, with few locations and a small cast, so it is the easiest to produce. ai-short-drama's supernatural powers all follow rules, which makes its premises fresh, but all three need effects or AI imagery.</li>
+  <li><strong>Most skills chose better premises than no skill, but not all.</strong> The no-skill control ranked 7th with Opus (6 skills scored higher) and 10th with GPT (9 scored higher). Its one-line pitches were direct, but it was weak on freshness and staying power, and every one of its three premises had a skill writing the same kind of story.</li>
+  <li><strong>The bottom two both start by checking the charts.</strong> Both reviewers put oh-story and chinese-longnovel-skill last. Both want to read the bestseller charts of Chinese web novel platforms before choosing a premise; there was no network this round, and both said in their drafts that they had no chart data. They lost points for the premises themselves, not for missing data (market analysis earned nothing): reviewers kept calling them familiar formulas, like a reborn hero who knows the future or an appraiser who spots treasures. How they do with the network, this round cannot say.</li>
+  <li><strong>Lots of premises collided.</strong> The 36 premises fell into 25 story types. Five titles start with "Cooling-Off Period", and 18 story cards mention settling accounts, written by all 12 entries.</li>
+  <li><strong>The model's default names are still there.</strong> 11 of 36 protagonists have the surname Xu, and a character named Zhou Yan appears in the drafts of 4 entries, the control among them.</li>
+  <li><strong>No skill stopped to let you pick a direction.</strong> All 36 runs wrote the premise to a file in their first turn.</li>
+</ol>
+
+<h3>Points</h3>
+<p>Ranked by the main reviewer, Opus, with ties sharing a place; in brackets, won-tied-lost over 33 comparisons. The last column is the place and points from the GPT re-judge.</p>
+<table>
+  <thead><tr><th>Place</th><th>Project</th><th>Points</th><th>GPT re-judge</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><a href="https://github.com/Tomsawyerhu/Chinese-WebNovel-Skill">Tomsawyerhu/Chinese-WebNovel-Skill</a></td><td>29 (27-4-2)</td><td>4th, 20.5</td></tr>
+    <tr><td>2</td><td><a href="https://github.com/lingfengQAQ/webnovel-writer">lingfengQAQ/webnovel-writer</a></td><td>26.5 (25-3-5)</td><td>3rd, 23.5</td></tr>
+    <tr><td>3</td><td><a href="https://github.com/LanyXiaosheng/bookflow-skill">LanyXiaosheng/bookflow-skill</a></td><td>21.5 (19-5-9)</td><td>1st, 29</td></tr>
+    <tr><td>4</td><td><a href="/en/skills/hao0321/ai-short-drama/">Hao0321/ai-short-drama</a></td><td>20 (18-4-11)</td><td>2nd, 26</td></tr>
+    <tr><td>5</td><td><a href="https://github.com/xindoo/sumeru">xindoo/sumeru</a></td><td>19.5 (18-3-12)</td><td>8th, 14.5</td></tr>
+    <tr><td>6</td><td><a href="/en/skills/0xsline/short-drama/">0xsline/short-drama</a></td><td>17 (16-2-15)</td><td>7th, 15</td></tr>
+    <tr><td>7</td><td><a href="https://github.com/tance-mang/chinese-webnovel-skills">tance-mang/chinese-webnovel-skills</a></td><td>15 (13-4-16)</td><td>6th, 15.5</td></tr>
+    <tr><td>7</td><td>Control (no skill)</td><td>15 (11-8-14)</td><td>10th, 10</td></tr>
+    <tr><td>9</td><td><a href="https://github.com/qingyabailu-git/webfiction-write">qingyabailu-git/webfiction-write</a></td><td>13.5 (11-5-17)</td><td>5th, 19.5</td></tr>
+    <tr><td>9</td><td><a href="https://github.com/dama-cyber/Distilled-Novel-Toolbox">dama-cyber/Distilled-Novel-Toolbox</a></td><td>13.5 (10-7-16)</td><td>9th, 10.5</td></tr>
+    <tr><td>11</td><td><a href="https://github.com/xiaofeng-928/chinese-longnovel-skill">xiaofeng-928/chinese-longnovel-skill</a></td><td>5.5 (3-5-25)</td><td>11th, 8</td></tr>
+    <tr><td>12</td><td><a href="https://github.com/zenstory-ai/oh-story-claudecode">zenstory-ai/oh-story-claudecode</a></td><td>2 (1-2-30)</td><td>12th, 6</td></tr>
+  </tbody>
+</table>
+<p>Each entry's premises, strengths and main problems are in the <a href="{{repo_url}}/blob/main/evals/runs/002-topic/review.md">review summary</a> (in Chinese); the drafts, prompt and verdict of every comparison are in the <a href="/evals/round-2/">round two record</a>.</p>
+
+<h3>Limits of this round</h3>
+<ul>
+  <li><strong>One model.</strong> The results only describe these skills under claude-opus-5-5; another model may differ.</li>
+  <li><strong>Premises on paper.</strong> Whether a premise is good is finally decided by readers and viewers once it is written and released.</li>
+  <li><strong>No network.</strong> Skills that check the charts had to rely on what the model already knows.</li>
+  <li><strong>The reviewers are AI.</strong> Story cards, story types and comparisons were done by claude-opus-5-5, the same model that wrote the premises. Re-judged by GPT, the two rankings mostly agree (a rank correlation of 0.80, where 1 is identical) but name a different winner; single comparisons agreed 73% of the time, and the per-pair results (a win needs both orders) agreed on 127 of 198, with the rest marked as disputed. 80% of the quotes in Opus's reasoning can be found in the drafts, and 95% of GPT's. Details are in the <a href="/evals/round-2/checks/">reviewer health check</a> (in Chinese).</li>
+</ul>
 
 <h2 id="round-1">Round one: an open brief</h2>
 <p>The brief says only "write a vertical short drama", plus the length (60 episodes of 1–2 minutes) and three deliverables: a character bible, a 60-episode outline with paywall points, and full scripts for episodes 1–3. No genre, characters or plot. Every run used Claude Code with claude-opus-5-5 at high effort and word-for-word identical prompts and replies, so the only variable is which skill was installed. Scripts that ship with a skill could run inside a system sandbox.</p>
@@ -56,7 +100,7 @@ updated: 2026-10-19
   <li><strong>The same input, as little as possible</strong>: the brief gives only the length and deliverables, with no genre, characters or plot, and every skill in the round shares it.</li>
   <li><strong>The skill is the only variable</strong>: the same agent, model, reasoning effort and tool permissions, with versions recorded. The control just has no skill.</li>
   <li><strong>Pinned skill versions</strong>: the commit of each repo at test time is recorded.</li>
-  <li><strong>Each skill's own process</strong>: the run opens by calling the entry skill. When a skill stops to ask, it gets the same fixed reply: if it offered several genres or story options, run n picks option n; everything else follows the skill's own recommendation.</li>
+  <li><strong>Each skill's own process</strong>: the run opens by calling the entry skill. When a skill stops to ask, it gets the same fixed reply, and everything else follows the skill's own recommendation. If it offered several genres or story options, in round one run n picked option n, so the three runs would tell different stories; round two compares the choosing itself, so there it picks the option it recommends most.</li>
   <li><strong>Skill scripts can run</strong>: commands run in a system sandbox with no network and no view of other entries' output.</li>
   <li><strong>Three runs each, all kept</strong>: no cherry-picking.</li>
   <li><strong>Blind review</strong>: reviewers do not know which skill wrote a draft, and every comparison is run in both orders.</li>
@@ -76,7 +120,10 @@ updated: 2026-10-19
     <tr><td>Paywall points</td><td>Are they well placed, with enough of a hook before each</td></tr>
   </tbody>
 </table>
-<p>Reviews give observations and examples, with no overall scores. The runner is <a href="{{repo_url}}/blob/main/evals/run.py">evals/run.py</a> and the reviewer is <a href="{{repo_url}}/blob/main/evals/judge.py">evals/judge.py</a>, so anyone can reproduce the method.</p>
+<p>Round two compares premises on five things: the pitch (does the one-liner make you want it now), freshness (is it a familiar formula with new names), conflict and payoffs (what the hero wants, who stands in the way, can the payoffs keep coming), staying power (does it hold up for the length it plans), and feasibility (can it be written and filmed, any obvious review risk).</p>
+<p>Reviews give observations and examples. Round one has no overall scores; round two compares everyone with everyone and ranks by points. The runner is <a href="{{repo_url}}/blob/main/evals/run.py">evals/run.py</a> and the reviewer is <a href="{{repo_url}}/blob/main/evals/judge.py">evals/judge.py</a>, so anyone can reproduce the method.</p>
 
 <h2>Want a skill tested?</h2>
 <p>Open an <a href="{{repo_url}}/issues">issue on GitHub</a> with the repo link and the genres it is good at.</p>
+<h2>Want to compete yourself?</h2>
+<p>Next round is open to people: web novelists, screenwriters or teams answer the same brief, and their premises are compared blind alongside the skills', with results published the same way. To join, open an <a href="{{repo_url}}/issues">issue on GitHub</a>.</p>

@@ -6,7 +6,7 @@
   python evals/judge.py pack   001-open-brief --work /tmp/judge   # 拼成匿名稿，随机编号，对应关系存在 --work 里
   python evals/judge.py cards  001-open-brief --work /tmp/judge   # 每份匿名稿抽一张故事卡
   python evals/judge.py cluster 001-open-brief --work /tmp/judge  # 按故事卡把所有剧分成故事类型，看谁和谁是同一个套路
-  python evals/judge.py duel   001-open-brief --work /tmp/judge   # 每个 skill 和对照组同一运行编号两两比，两种顺序各比一次
+  python evals/judge.py duel   001-open-brief --work /tmp/judge   # 按这一轮的配对方式两两比，两种顺序各比一次
   python evals/judge.py reveal 001-open-brief --work /tmp/judge   # 评完后揭晓：把故事卡、比较结果和对应关系写进 evals/runs/<premise>/
 
   python evals/judge.py duel 001-open-brief --work /tmp/judge --judge gpt     # 换 GPT 当评审复核，结果另存 *-gpt
@@ -17,11 +17,16 @@
 它用一个只链接了登录凭据的干净 CODEX_HOME（环境变量 JUDGE_CODEX_HOME）。
 每次调用的提示词指纹（sha256）和原始返回存在 --work/raw/<评审>/ 下。
 locate 的结果写在 evals/runs/<premise>/deliverables.toml，可以人工改。只用标准库。
+
+每一轮的交付、提示词、比较维度和配对方式不一样，登记在文件末尾的 SPECS 里：
+第一轮（001-open-brief）比剧本和人物大纲，每个 skill 只和对照组比；第二轮（002-topic）比选题，所有参赛者两两全比。
+第一轮的常量原样保留，verify.py 才能重建当时的每一条提示词。
 """
 from __future__ import annotations
 
 import argparse
 import hashlib
+import itertools
 import json
 import os
 import random
@@ -112,21 +117,26 @@ CLUSTER_SCHEMA = {"type": "object", "additionalProperties": False, "required": [
 DIM_ENUM = {"type": "string", "enum": ["甲", "乙", "平"]}
 
 
-def track_dims(track: str) -> dict[str, str]:
+def track_dims(track: str, sp: "Spec | None" = None) -> dict[str, str]:
     """一个比较项目要看的维度；人物小传和大纲都有「新意」，合并时只留一个。"""
-    return {d: why for part in TRACKS[track] for d, why in DIMS[part].items()}
+    sp = sp or ROUND1
+    return {d: why for part in sp.tracks[track] for d, why in sp.dims[part].items()}
 
 
-def duel_schema(track: str) -> dict:
-    dims = list(track_dims(track))
+def duel_schema(track: str, sp: "Spec | None" = None) -> dict:
+    dims = list(track_dims(track, sp))
     return {"type": "object", "additionalProperties": False, "required": ["dims", "winner", "reason"],
             "properties": {"dims": {"type": "object", "additionalProperties": False, "required": dims,
                                     "properties": {d: DIM_ENUM for d in dims}},
                            "winner": DIM_ENUM, "reason": {"type": "string", "description": "三到五句，引用原文"}}}
 
 
-LOCATE_SCHEMA = {"type": "object", "additionalProperties": False, "required": list(PARTS),
-                 "properties": {k: {"type": "array", "items": {"type": "string"}} for k in PARTS}}
+def locate_schema(parts: dict[str, str]) -> dict:
+    return {"type": "object", "additionalProperties": False, "required": list(parts),
+            "properties": {k: {"type": "array", "items": {"type": "string"}} for k in parts}}
+
+
+LOCATE_SCHEMA = locate_schema(PARTS)
 
 
 def ask(prompt: str, schema: dict, system: str, call_id: str = "") -> dict:
@@ -195,6 +205,7 @@ def read_text(p: Path) -> str:
 
 
 def cmd_locate(premise: str, work: Path) -> None:
+    sp = spec(premise)
     target = EVALS / "runs" / premise / "deliverables.toml"
     done = tomllib.loads(read_text(target)) if target.exists() else {}
     todo = [(s, n, d) for s, n, d in runs_of(premise) if f"{s}.run-{n}" not in done]
@@ -204,17 +215,17 @@ def cmd_locate(premise: str, work: Path) -> None:
         files = [p for p in sorted((d / "output").rglob("*")) if p.is_file() and p.suffix.lower() in TEXT]
         listing = "\n\n".join(f"## {p.relative_to(d / 'output')}（{len(read_text(p))} 字）\n{read_text(p)[:400]}"
                               for p in files)
-        r = ask(LOCATE.format(listing=listing), LOCATE_SCHEMA, "你负责整理文件，只按要求输出。")
-        return f"{s}.run-{n}", {k: [f for f in r[k] if (d / "output" / f).is_file()] for k in PARTS}
+        r = ask(sp.locate.format(listing=listing), locate_schema(sp.parts), "你负责整理文件，只按要求输出。")
+        return f"{s}.run-{n}", {k: [f for f in r[k] if (d / "output" / f).is_file()] for k in sp.parts}
 
     with ThreadPoolExecutor(8) as ex:
         for key, parts in ex.map(one, todo):
             done[key] = parts
             print(key, {k: len(v) for k, v in parts.items()}, flush=True)
-    lines = ["# 每次运行里，哪些文件是三项交付。由 judge.py locate 生成，人工核对过；改了要重新 pack。", ""]
+    lines = [f"# 每次运行里，哪些文件是{'、'.join(sp.parts.values())}。由 judge.py locate 生成，人工核对过；改了要重新 pack。", ""]
     for key in sorted(done):
         lines.append(f'["{key}"]')
-        lines += [f"{k} = {json.dumps(done[key][k], ensure_ascii=False)}" for k in PARTS]
+        lines += [f"{k} = {json.dumps(done[key][k], ensure_ascii=False)}" for k in sp.parts]
         lines.append("")
     target.write_text("\n".join(lines), encoding="utf-8")
 
@@ -228,6 +239,7 @@ def scrub(text: str, names: list[str]) -> str:
 
 
 def cmd_pack(premise: str, work: Path) -> None:
+    sp = spec(premise)
     deliv = tomllib.loads(read_text(EVALS / "runs" / premise / "deliverables.toml"))
     roster = tomllib.loads(read_text(EVALS / "runs" / premise / "contestants.toml"))
     names = ["skills", "skill"]
@@ -246,24 +258,26 @@ def cmd_pack(premise: str, work: Path) -> None:
         s, run = key.rsplit(".", 1)
         d = EVALS / "runs" / premise / s / run / "output"
         key_map[str(code)] = key
-        for part in PARTS:
+        for part in sp.parts:
             text = "\n\n".join(f"<!-- {f} -->\n{read_text(d / f)}" for f in deliv[key][part])
             (blind / f"{code}.{part}.md").write_text(scrub(text, names), encoding="utf-8")
     (work / "key.json").write_text(json.dumps(key_map, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"{len(keys)} 份匿名稿写到 {blind}")
 
 
-def packet(work: Path, code: str, parts: list[str]) -> str:
-    return "\n\n".join(f"## {PARTS[p]}\n\n{read_text(work / 'blind' / f'{code}.{p}.md')}" for p in parts)
+def packet(work: Path, code: str, parts: list[str], labels: dict[str, str] | None = None) -> str:
+    labels = labels or PARTS
+    return "\n\n".join(f"## {labels[p]}\n\n{read_text(work / 'blind' / f'{code}.{p}.md')}" for p in parts)
 
 
 def cmd_cards(premise: str, work: Path) -> None:
+    sp = spec(premise)
     key_map = json.loads(read_text(work / "key.json"))
     out = work / "cards.jsonl"
     done = {json.loads(l)["code"] for l in out.open(encoding="utf-8")} if out.exists() else set()
 
     def one(code):
-        r = ask(CARD.format(text=packet(work, code, list(PARTS))), CARD_SCHEMA, "你负责如实摘录信息。")
+        r = ask(sp.card.format(text=packet(work, code, list(sp.parts), sp.parts)), sp.card_schema, "你负责如实摘录信息。")
         return {"code": code} | r
 
     with ThreadPoolExecutor(8) as ex, out.open("a", encoding="utf-8") as f:
@@ -278,45 +292,55 @@ DUEL_SYSTEM = "你是严格、公正的短剧编辑，只按要求输出。"
 SUFFIX = {"opus": "", "gpt": "-gpt"}
 
 
-def cluster_rows(work: Path) -> list[dict]:
+def cluster_rows(work: Path, seed: int = 20261018) -> list[dict]:
     """故事卡按编号排序后用固定种子打乱，谁都能重建出一模一样的提示词。"""
     rows = sorted((json.loads(l) for l in (work / "cards.jsonl").open(encoding="utf-8")), key=lambda r: r["code"])
-    random.Random(20261018).shuffle(rows)
+    random.Random(seed).shuffle(rows)
     return rows
 
 
-def cluster_prompt(rows: list[dict]) -> str:
+def cluster_prompt(rows: list[dict], sp: "Spec | None" = None) -> str:
     lines = "\n".join(f"- {r['code']}：《{r['title']}》 {r['genre']}。{r['logline']} 主角：{r['protagonist']}。"
                       f"核心设定：{r['hook_device']}" for r in rows)
-    return CLUSTER.format(n=len(rows), lines=lines)
+    return (sp or ROUND1).cluster.format(n=len(rows), lines=lines)
 
 
-def duel_prompt(work: Path, track: str, a: str, b: str) -> str:
-    parts = TRACKS[track]
-    dims = "\n".join(f"- {d}：{why}" for d, why in track_dims(track).items())
-    return DUEL.format(part="、".join(PARTS[p] for p in parts), dims=dims, a=packet(work, a, parts),
-                       b=packet(work, b, parts))
+def duel_prompt(work: Path, track: str, a: str, b: str, sp: "Spec | None" = None) -> str:
+    sp = sp or ROUND1
+    parts = sp.tracks[track]
+    dims = "\n".join(f"- {d}：{why}" for d, why in track_dims(track, sp).items())
+    return sp.duel.format(part="、".join(sp.parts[p] for p in parts), dims=dims, a=packet(work, a, parts, sp.parts),
+                          b=packet(work, b, parts, sp.parts))
 
 
 def cmd_cluster(premise: str, work: Path) -> None:
-    rows = cluster_rows(work)
-    r = ask(cluster_prompt(rows), CLUSTER_SCHEMA, CLUSTER_SYSTEM, "cluster")
+    sp = spec(premise)
+    rows = cluster_rows(work, sp.seed)
+    r = ask(cluster_prompt(rows, sp), CLUSTER_SCHEMA, sp.cluster_system, "cluster")
     (work / f"clusters{SUFFIX[JUDGE]}.json").write_text(json.dumps(r, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"{len(r['groups'])} 个故事类型")
 
 
+def pairings(premise: str, slugs: list[str]) -> list[tuple[str, str]]:
+    """这一轮谁和谁比。baseline：每个 skill 只和对照组比；all：所有参赛者（含对照组）两两全比。"""
+    if spec(premise).pairing == "baseline":
+        return [(s, "baseline") for s in slugs if s != "baseline"]
+    return list(itertools.combinations(sorted(slugs), 2))
+
+
 def cmd_duel(premise: str, work: Path) -> None:
+    sp = spec(premise)
     key_map = json.loads(read_text(work / "key.json"))
     code_of = {v: k for k, v in key_map.items()}
     runs = tomllib.loads(read_text(EVALS / "runs" / premise / "contestants.toml")).get("runs", 1)
-    slugs = sorted({k.rsplit(".", 1)[0] for k in code_of} - {"baseline"})
+    slugs = sorted({k.rsplit(".", 1)[0] for k in code_of})
     out = work / f"duels{SUFFIX[JUDGE]}.jsonl"
     done = {(r["track"], r["a"], r["b"]) for r in map(json.loads, out.open(encoding="utf-8"))} if out.exists() else set()
     jobs = []
-    for track in TRACKS:
-        for s in slugs:
+    for track in sp.tracks:
+        for s, o in pairings(premise, slugs):
             for n in range(1, runs + 1):
-                x, y = code_of.get(f"{s}.run-{n}"), code_of.get(f"baseline.run-{n}")
+                x, y = code_of.get(f"{s}.run-{n}"), code_of.get(f"{o}.run-{n}")
                 if x and y:
                     for a, b in ((x, y), (y, x)):
                         if (track, a, b) not in done:
@@ -324,7 +348,7 @@ def cmd_duel(premise: str, work: Path) -> None:
 
     def one(job):
         track, a, b = job
-        r = ask(duel_prompt(work, track, a, b), duel_schema(track), DUEL_SYSTEM, f"duel.{track}.{a}.{b}")
+        r = ask(duel_prompt(work, track, a, b, sp), duel_schema(track, sp), sp.duel_system, f"duel.{track}.{a}.{b}")
         return {"track": track, "a": a, "b": b} | r
 
     print(f"{len(jobs)} 场比较", flush=True)
@@ -356,6 +380,85 @@ def cmd_reveal(premise: str, work: Path) -> None:
             g["runs"] = [key_map[c] for c in g["codes"]]
         (base / name).write_text(json.dumps({"groups": groups}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(f"写入 {base}")
+
+
+# ── 第二轮：选题 ──
+
+TOPIC_PARTS = {"topic": "选题"}
+
+TOPIC_LOCATE = """下面是一次给新故事定选题留下的文件清单，每个文件附了开头。需求要的交付是一份选题：一句话卖点，加上选题说明（题材、写给谁看、主角和对手、核心冲突、开篇钩子、爽点从哪来、打算写多长、为什么撑得住）。
+请指出哪些文件是最终交付的选题（相对路径，按阅读顺序）。只选最终交付的正文；过程文件、扫榜或分析报告、检查报告、配置和数据文件都不选。最终交付里列了几个备选方案的，照样选它。找不到就给空列表。
+
+{listing}"""
+
+TOPIC_CARD = """下面是一个新故事的选题。请如实抽出它的基本信息，只写稿子里有的内容，不评价好坏。稿子里列了几个方案的，只抽它最终推荐的那一个。
+
+{text}"""
+
+TOPIC_CARD_SCHEMA = {"type": "object", "additionalProperties": False,
+                     "required": ["title", "genre", "logline", "era_place", "hook_device", "protagonist", "antagonist",
+                                  "names", "audience", "length"],
+                     "properties": {
+                         "title": {"type": "string", "description": "书名或剧名，没有就写「无」"},
+                         "genre": {"type": "string", "description": "题材标签，如「女频·重生·复仇」"},
+                         "logline": {"type": "string", "description": "一句话梗概，40 字以内"},
+                         "era_place": {"type": "string", "description": "时代和地点"},
+                         "hook_device": {"type": "string", "description": "核心设定或金手指，一句话"},
+                         "protagonist": {"type": "string", "description": "主角姓名和身份"},
+                         "antagonist": {"type": "string", "description": "主要对手的姓名和身份"},
+                         "names": {"type": "array", "items": {"type": "string"}, "description": "所有有名字的角色姓名"},
+                         "audience": {"type": "string", "description": "写给谁看，照稿子里的说法"},
+                         "length": {"type": "string", "description": "打算写多长，照抄稿子里的说法，如「80 集」「120 万字」；没写就写「未写」"}}}
+
+TOPIC_CLUSTER = """下面是 {n} 个新故事的选题，每个有一个编号。请按「故事类型」把它们分组：同一组的选题，核心设定和主线冲突属于同一种套路（比如「全职主妇离婚时拿账本清算婆家」「入殓师从遗体上发现命案」），换个名字和细节就差不多是同一个故事。分组要尽量细，宁可多分几组；每个只进一组；只有一个的也单独成组。给每组起一个短名字，再写一句这一组的共同套路。
+
+{lines}"""
+
+TOPIC_DUEL = """你是有经验的网文和竖屏短剧编辑。下面是两份新故事的选题，甲和乙，各自来自不同的作者，你不知道它们出自谁。这两个故事以后可以写成网文，也可以拍成竖屏短剧。请只比较选题本身，按下面几个维度逐项判断哪份更好：
+
+{dims}
+
+注意：
+- 一份稿子里列了几个方案的，只看它最终推荐的那一个。
+- 篇幅长、格式花哨、附带市场分析或检查清单都不加分；只看这个故事值不值得写、值不值得拍。
+- 两份差不多就判「平」。理由要引用原文。
+
+=== 甲 ===
+{a}
+
+=== 乙 ===
+{b}"""
+
+TOPIC_DIMS = {"topic": {"卖点": "一句话卖点能不能让人立刻想看",
+                        "新意": "是不是常见套路换个名字，有没有让人眼前一亮的东西",
+                        "冲突和爽点": "主角要什么、谁挡着、爽点从哪来，能不能一直供得上",
+                        "续航": "按它自己打算的篇幅，故事撑不撑得住，中段会不会没戏",
+                        "可执行": "写得下去、拍得出来，人物和场景规模是否合理，有没有明显的审核风险"}}
+
+
+class Spec:
+    """一轮评审的设置：交付分几份、各步的提示词、比较维度、配对方式、分组用的随机种子。"""
+
+    def __init__(self, **kw) -> None:
+        self.__dict__.update(kw)
+
+
+ROUND1 = Spec(parts=PARTS, locate=LOCATE, card=CARD, card_schema=CARD_SCHEMA, cluster=CLUSTER, duel=DUEL, dims=DIMS,
+              tracks=TRACKS, cluster_system=CLUSTER_SYSTEM, duel_system=DUEL_SYSTEM, seed=20261018, pairing="baseline")
+
+SPECS = {
+    "001-open-brief": ROUND1,
+    "002-topic": Spec(parts=TOPIC_PARTS, locate=TOPIC_LOCATE, card=TOPIC_CARD, card_schema=TOPIC_CARD_SCHEMA,
+                      cluster=TOPIC_CLUSTER, duel=TOPIC_DUEL, dims=TOPIC_DIMS, tracks={"topic": ["topic"]},
+                      cluster_system="你是网文和短剧行业编辑，只按要求输出。",
+                      duel_system="你是严格、公正的网文和短剧编辑，只按要求输出。", seed=20261020, pairing="all"),
+}
+
+
+def spec(premise: str) -> Spec:
+    if premise not in SPECS:
+        sys.exit(f"{premise} 没有登记评审设置，见 judge.py 的 SPECS")
+    return SPECS[premise]
 
 
 def main() -> None:

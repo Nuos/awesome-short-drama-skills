@@ -1,0 +1,87 @@
+# 第二轮的过程记录：安全检查、自检、试点、正式运行和评审各步的时间，中途改过什么、为什么改。时间是北京时间。
+# 网站的「过程记录」页从这里生成。evidence 里 log:<名字> 指 logs/ 下的日志，file:<路径> 指仓库里的文件。
+
+[[event]]
+time = "2026-10-20T07:22:00+08:00"
+title = "检查运行环境，给参赛仓库做安全检查"
+body = "本机是 Claude Code 2.1.304，评审复核用 Codex CLI 0.163.0。11 个参赛仓库先用清单收录时那套安全检查脚本查了一遍（不调模型，查二进制和压缩包、安装钩子、远程执行、读敏感文件）：8 个通过，3 个「要看」。逐个打开看过：oh-story 和 chinese-webnovel-skills 被标出的是 Windows 上的启动脚本（.cmd、.bat），只是找 Python 再运行；oh-story 的浏览器控制 skill 和 webfiction-write 的扫榜脚本会在用户自己打开的网页里读登录态，用来抓榜单。这些都不是恶意代码，而且沙箱里不能联网、没有浏览器，用不上。另用便宜的模型确认了一件事：项目级 skill 的调用名是它的文件夹名，入口按文件夹名写。"
+evidence = ["file:evals/runs/002-topic/contestants.toml"]
+
+[[event]]
+time = "2026-10-20T07:24:00+08:00"
+title = "沙箱自检：围栏拦不拦得住"
+body = "用和正式运行同一段围栏代码，让便宜的 claude-haiku-5-5 在一个假的工作目录里逐条试：读运行者的主目录、读别的参赛者的目录、列上一级目录、联网、在工作目录外写文件，全部被拦；用 Read 工具读别的参赛者的文件也被拒，它开的子 agent 同样受限。python3、node 能跑，cd 之后在工作目录里能写，for 循环能跑。第一轮修过的两个权限问题没有复发。"
+evidence = ["log:check-1"]
+
+[[event]]
+time = "2026-10-20T07:25:00+08:00"
+title = "试点：对照组和 webnovel-writer 各跑一次"
+body = "第一次启动时，运行器里新加的「读这一轮的开场指令和固定回复」的函数和一个变量重名，还没调用模型就报错退出；改名后重跑。对照组 3 轮写完。webnovel-writer 跑了 6 轮：第 1 轮 3 分半钟写出选题，第 2 轮把一个文件拆成和需求对应的两份，第 4 轮自查时改了一处设定矛盾，之后两轮没再改，停下。开场指令、固定回复和停止规则都按设计工作。试点产出不进评审，正式运行全部重跑。"
+evidence = ["log:pilot-1.baseline", "log:pilot-1.lingfengQAQ__webnovel-writer", "file:evals/run.py"]
+
+[[event]]
+time = "2026-10-20T07:30:00+08:00"
+title = "正式运行第 1 批"
+body = "12 个参赛组（11 个 skill 加对照组）的第 1 次运行同时开始，07:35 全部写完。"
+evidence = ["page:#runs"]
+page_label = "运行列表"
+
+[[event]]
+time = "2026-10-20T07:35:00+08:00"
+title = "正式运行第 2 批"
+body = "12 个参赛组的第 2 次运行开始，07:40 全部写完。"
+
+[[event]]
+time = "2026-10-20T07:40:00+08:00"
+title = "正式运行第 3 批"
+body = "12 个参赛组的第 3 次运行开始，07:47 全部写完。最慢的是 sumeru，第一轮写了 5 分半钟。"
+
+[[event]]
+time = "2026-10-20T07:46:00+08:00"
+title = "清理原始日志"
+body = "试点、自检和 36 次正式运行的原始日志用 clean_logs.py 清理：去掉本机路径、用户名、额度用量和 Claude Code 的内部记录，其余原样保留，准备公开。"
+evidence = ["file:evals/clean_logs.py"]
+
+[[event]]
+time = "2026-10-20T07:47:00+08:00"
+title = "认交付、匿名打包、抽故事卡"
+body = "认出每次运行里哪些文件是最终交付的选题，人工逐个核对：拆成「一句话卖点」和「选题说明」两个文件的，两个都算；sumeru 的多方案策划报告、oh-story 的扫榜报告和几个 skill 的状态文件不算。36 份选题拼成匿名稿，随机三位编号，抹掉 skill 名、仓库名和作者名，然后每份抽一张故事卡。"
+evidence = ["file:evals/runs/002-topic/deliverables.toml", "file:evals/judge.py"]
+
+[[event]]
+time = "2026-10-20T07:49:00+08:00"
+title = "故事分组"
+body = "Opus 把 36 张故事卡按「换个名字就是同一个故事」分组。故事卡按编号排序后用固定种子打乱再排进提示词，谁都能重建出一模一样的提示词。GPT 07:50 用同样的提示词另分一次。"
+evidence = ["page:stories/"]
+page_label = "故事卡页"
+
+[[event]]
+time = "2026-10-20T07:50:00+08:00"
+title = "盲比：12 个参赛者两两比"
+body = "66 对参赛者，每对比 3 次（第 n 次运行对第 n 次运行），每次两种先后顺序各判一次，共 396 场。Opus 和 GPT 同时开始，各自独立判，用的提示词和输出格式一字不差；两位评审每次调用的提示词指纹和原始返回都存了下来。"
+evidence = ["page:duels/", "file:evals/judge.py"]
+page_label = "盲比列表"
+
+[[event]]
+time = "2026-10-20T08:05:00+08:00"
+title = "Opus 判完，揭晓出处"
+body = "Opus 15 分钟判完 396 场。揭晓匿名编号对应的运行，按积分排名。"
+evidence = ["file:evals/runs/002-topic/blind_key.json"]
+
+[[event]]
+time = "2026-10-20T08:15:00+08:00"
+title = "写点评"
+body = "揭晓出处后开始写点评。每个参赛者在五项上的胜负按判决现算，评审看好的和主要问题从判决理由里归纳。评审理由里的引文，写进点评前都在原稿里逐条找过；找不到原话的（多是评审的转述）不当引文用。GPT 判完后，结论按两位评审一起定稿。"
+evidence = ["file:evals/runs/002-topic/review.md"]
+
+[[event]]
+time = "2026-10-20T08:36:00+08:00"
+title = "GPT 复核判完"
+body = "GPT（gpt-6-astra，经 Codex CLI）判完 396 场，每场比 Opus 慢，共用了 46 分钟。提示词和输出格式和 Opus 一字不差；Codex 没有单独的系统提示参数，系统提示放在提示词最前面；为了不读进运行者本机的个人指令，Codex 用一个只链接了登录凭据的干净配置目录。两位评审排出的名次相关系数 0.80，每对的最终结果 198 个里 127 个一致，不一致的 71 个标「有争议」。"
+evidence = ["page:checks/#agreement", "file:evals/runs/002-topic/duels-gpt.jsonl"]
+page_label = "评审体检"
+
+[[event]]
+time = "2026-10-20T11:30:00+08:00"
+title = "结果发布"
+body = "选题、运行日志、故事卡、分组、两位评审的全部判决和点评推到 GitHub，网站随之更新。"

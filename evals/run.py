@@ -7,8 +7,9 @@
   python evals/run.py 001-open-brief <repo> --run 1 --work /tmp/evals --more   # 对已有会话再发一次固定回复
 
 参赛名单、入口 skill 和每个 skill 跑几次写在 evals/runs/<premise>/contestants.toml。
-每个 skill 用同一条开场指令和同一条固定回复，不额外加指令。skill 给出几个题材或故事方案时，固定回复按运行编号选：
-第 1 次运行选第 1 个，第 2 次选第 2 个，依此类推；其他问题一律按 skill 自己的推荐。
+每个 skill 用同一条开场指令和同一条固定回复，不额外加指令。两句话写在 contestants.toml 的 [prompts] 里，
+没写的沿用第一轮：skill 给出几个题材或故事方案时，固定回复按运行编号选，第 1 次运行选第 1 个，
+第 2 次选第 2 个，依此类推；其他问题一律按 skill 自己的推荐。
 为了安全，agent 只能写自己的工作目录。命令在 Claude Code 的系统沙箱里运行：不能联网，不能读主目录，
 也不能读 --work 旁边的东西和其他参赛者的工作目录。不连任何 MCP。
 --work 请用一个专门的目录。依赖：已登录的 claude CLI、git。只用标准库。
@@ -53,6 +54,12 @@ def slug(repo: str) -> str:
 
 def roster(premise: str) -> dict:
     return tomllib.loads((EVALS / "runs" / premise / "contestants.toml").read_text(encoding="utf-8"))
+
+
+def wording(premise: str) -> dict[str, str]:
+    """这一轮的开场指令和固定回复；contestants.toml 的 [prompts] 没写的，沿用第一轮的。"""
+    p = roster(premise).get("prompts", {})
+    return {"task": p.get("task", TASK), "toolkit": p.get("toolkit", TASK_TOOLKIT), "reply": p.get("reply", REPLY)}
 
 
 def contestant(premise: str, repo: str) -> dict:
@@ -183,7 +190,8 @@ def main() -> None:
     logs.mkdir(parents=True, exist_ok=True)
     state_path = logs / f"{slug(c['repo'])}.{tag}.state.json"
     log = logs / f"{slug(c['repo'])}.{tag}.jsonl"
-    reply = REPLY.format(k=args.run)
+    said = wording(args.premise)
+    reply = said["reply"].format(k=args.run)
 
     if args.more:
         state = json.loads(state_path.read_text(encoding="utf-8"))
@@ -199,11 +207,11 @@ def main() -> None:
                  "claude_code": subprocess.run(["claude", "--version"], capture_output=True, text=True).stdout.strip()}
         if c["repo"] == "baseline":
             state.update(commit=None, installed=[])
-            first = TASK
+            first = said["task"]
         else:
             src, state["commit"] = fetch(c["repo"], work / "src")
             state["installed"] = install(src, ws)
-            first = f"/{c['entry']} {TASK}" if c.get("entry") else TASK_TOOLKIT
+            first = f"/{c['entry']} {said['task']}" if c.get("entry") else said["toolkit"]
         prompts = [first] + [reply] * (MAX_TURNS - 1)
 
     allow, deny, settings = fence(ws, work, others)
