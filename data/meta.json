@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-19",
+  "fetched_at": "2026-10-20",
   "repos": {
     "0xsline/short-drama": {
       "archived": false,
@@ -11,7 +11,7 @@
       "pushed_at": "2026-04-17",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 1439,
+      "stars": 1442,
       "status": "ok"
     },
     "62656456/ai-film-skills": {
@@ -23,7 +23,7 @@
       "pushed_at": "2026-10-18",
       "skill_count": 21,
       "skill_count_truncated": false,
-      "stars": 78,
+      "stars": 80,
       "status": "ok"
     },
     "A-cat-with-carrots/OnlyShot": {
@@ -54,13 +54,13 @@
     "ArcReel/ArcReel": {
       "archived": false,
       "description": "AI Agent 驱动的开源可自部署视频工作台：将小说与剧本转为角色、场景、道具资产、分镜、视频和剪映草稿，支持跨镜头一致性、多供应商与费用追踪 | Self-hosted AI video workspace for stories, storyboards and short-form video production",
-      "forks": 1092,
+      "forks": 1093,
       "full_name": "ArcReel/ArcReel",
       "license": "AGPL-3.0",
-      "pushed_at": "2026-10-19",
+      "pushed_at": "2026-10-20",
       "skill_count": 52,
       "skill_count_truncated": false,
-      "stars": 5595,
+      "stars": 5599,
       "status": "ok"
     },
     "AtlasCloudAI/awesome-seedance-2.5-prompts-skills": {
@@ -85,19 +85,19 @@
       "pushed_at": "2026-07-30",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 6780,
+      "stars": 6782,
       "status": "ok"
     },
     "HBAI-Ltd/Toonflow-app": {
       "archived": false,
       "description": "短剧、漫剧制作工具 Toonflow：开源 AI 视频创作平台，集成剧本创作、智能分镜、角色与场景资产管理、图像生成和视频生成。融合无限画布、AI Agent 与可视化工作流，支持本地部署、自选模型、跨平台客户端、MCP 与插件扩展。Open-source AI short drama and motion comic creation tool with an infinite canvas, AI agents, storyboarding, image and video generation. Self-hosted and extensible, with a canvas-based approach similar to LibTV and TapNow.",
-      "forks": 3269,
+      "forks": 3285,
       "full_name": "HBAI-Ltd/Toonflow-app",
       "license": "MIT",
       "pushed_at": "2026-10-16",
       "skill_count": 5,
       "skill_count_truncated": false,
-      "stars": 18383,
+      "stars": 18475,
       "status": "ok"
     },
     "HITsz-TMG/VideoClaw": {
@@ -121,7 +121,7 @@
       "pushed_at": "2026-09-30",
       "skill_count": 0,
       "skill_count_truncated": false,
-      "stars": 12699,
+      "stars": 12705,
       "status": "ok"
     },
     "Hao0321/ai-short-drama": {
@@ -158,19 +158,19 @@
       "pushed_at": "2026-08-11",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 4134,
+      "stars": 4136,
       "status": "ok"
     },
     "LearnPrompt/awesome-seedance": {
       "archived": false,
       "description": "🎬 Evidence-led Seedance 2.5 / 2.0 prompt library: 840+ cases traced to original posts, 490+ cross-model retest runs, 27 copy-ready templates, 80+ installable AI-video Skills. Synced daily from goodcase.ai. EN / 中文 / 日本語.",
-      "forks": 359,
+      "forks": 360,
       "full_name": "LearnPrompt/awesome-seedance",
       "license": "MIT",
       "pushed_at": "2026-10-19",
       "skill_count": 15,
       "skill_count_truncated": false,
-      "stars": 2160,
+      "stars": 2162,
       "status": "ok"
     },
     "LingGuoAI/LingGuo-Drama": {
@@ -183,7 +183,7 @@
       "pushed_at": "2026-08-21",
       "skill_count": 0,
       "skill_count_truncated": false,
-      "stars": 1587,
+      "stars": 1591,
       "status": "ok"
     },
     "LuoJiangYong/muse-video-skill": {
@@ -220,7 +220,7 @@
       "pushed_at": "2026-10-15",
       "skill_count": 6,
       "skill_count_truncated": false,
-      "stars": 3249,
+      "stars": 3256,
       "status": "ok"
     },
     "OSideMedia/higgsfield-ai-prompt-skill": {
@@ -246,7 +246,7 @@
       "pushed_at": "2026-05-11",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 589,
+      "stars": 591,
       "status": "ok"
     },
     "Shanyin-ai/shanyin-screenwriting-master": {
@@ -259,7 +259,7 @@
       "pushed_at": "2026-04-01",
       "skill_count": 0,
       "skill_count_truncated": false,
-      "stars": 1354,
+      "stars": 1358,
       "status": "ok"
     },
     "SlavaSexton/ComfyUI-Agent-Kit": {
@@ -303,13 +303,13 @@
     "SwotAtmk/infinite-creation": {
       "archived": false,
       "description": "infinite-creation 是一个通过提交小说/剧本，本地ComfyUI-MiniMaxH3+Agent+Skill技能全自动无限生产视频，不限时长。",
-      "forks": 23,
+      "forks": 24,
       "full_name": "SwotAtmk/infinite-creation",
       "license": "MIT",
       "pushed_at": "2026-10-19",
       "skill_count": 31,
       "skill_count_truncated": false,
-      "stars": 86,
+      "stars": 90,
       "status": "ok"
     },
     "T8mars/minimax-h3-prompt-skill-T8": {
@@ -321,7 +321,7 @@
       "pushed_at": "2026-10-18",
       "skill_count": 284,
       "skill_count_truncated": false,
-      "stars": 293,
+      "stars": 294,
       "status": "ok"
     },
     "Tencent/workrally": {
@@ -354,7 +354,7 @@
       "forks": 84,
       "full_name": "VanGong1999/screen-creative-skills",
       "license": "MIT",
-      "pushed_at": "2026-10-12",
+      "pushed_at": "2026-10-20",
       "skill_count": 31,
       "skill_count_truncated": false,
       "stars": 466,
@@ -450,13 +450,13 @@
     "blader/humanizer": {
       "archived": false,
       "description": "Agent skill that removes signs of AI-generated writing from text",
-      "forks": 4634,
+      "forks": 4642,
       "full_name": "blader/humanizer",
       "license": "MIT",
       "pushed_at": "2026-10-16",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 58484,
+      "stars": 58560,
       "status": "ok"
     },
     "catyiqian/qianqianwriting": {
@@ -486,13 +486,13 @@
     "chatfire-AI/huobao-drama": {
       "archived": false,
       "description": "🎬 火宝短剧 - 基于AI的一站式短剧生成平台 《一句话生成完整短剧，从剧本到成片全自动化》  Huobao Drama - An AI-Powered End-to-End Short Drama Generator \"One Sentence to Complete Drama: Fully Automated from Script to Final Video\"",
-      "forks": 3041,
+      "forks": 3046,
       "full_name": "chatfire-AI/huobao-drama",
       "license": null,
       "pushed_at": "2026-10-05",
       "skill_count": 7,
       "skill_count_truncated": false,
-      "stars": 16378,
+      "stars": 16392,
       "status": "ok"
     },
     "ciel-oliver/analyze-hit-novel": {
@@ -516,7 +516,7 @@
       "pushed_at": "2026-09-19",
       "skill_count": 2,
       "skill_count_truncated": false,
-      "stars": 4352,
+      "stars": 4354,
       "status": "ok"
     },
     "djyy1031/ai-comic-drama-director-skills": {
@@ -535,13 +535,13 @@
     "dramaclaw/dramaclaw": {
       "archived": false,
       "description": "A general-purpose AIGC video engine: script to finished film in one pipeline — dramas, ads, product videos, otome games, and more. | 通用 AIGC 视频引擎 —— 从剧本到成片一条流水线，漫剧、广告、电商、乙游皆可",
-      "forks": 870,
+      "forks": 872,
       "full_name": "dramaclaw/dramaclaw",
       "license": null,
       "pushed_at": "2026-10-19",
       "skill_count": 6,
       "skill_count_truncated": false,
-      "stars": 6365,
+      "stars": 6374,
       "status": "ok"
     },
     "e06084/claude-screenwriting": {
@@ -571,13 +571,13 @@
     "eternityspring/shuohao-skills": {
       "archived": false,
       "description": "AI 短剧制作的 skill 集合：拆角色、排大纲、出场景与道具设定、写剧本、切分镜 | Agent skills for AI short-drama production — character bibles, adaptation outlines, art bibles, screenplays, storyboards. Runs in Claude Code & codex.",
-      "forks": 665,
+      "forks": 668,
       "full_name": "eternityspring/shuohao-skills",
       "license": "Apache-2.0",
       "pushed_at": "2026-10-15",
       "skill_count": 7,
       "skill_count_truncated": false,
-      "stars": 4823,
+      "stars": 4843,
       "status": "ok"
     },
     "geslie1/kunka-screenwriting-master": {
@@ -602,7 +602,7 @@
       "pushed_at": "2026-10-15",
       "skill_count": 2,
       "skill_count_truncated": false,
-      "stars": 1027,
+      "stars": 1031,
       "status": "ok"
     },
     "ilkaydemiralay/vision_art_creator": {
@@ -628,7 +628,7 @@
       "pushed_at": "2026-09-02",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 60,
+      "stars": 59,
       "status": "ok"
     },
     "jlam00-dev/hardcore-director": {
@@ -665,7 +665,7 @@
       "pushed_at": "2026-10-03",
       "skill_count": 26,
       "skill_count_truncated": false,
-      "stars": 1717,
+      "stars": 1720,
       "status": "ok"
     },
     "jxshow/jingju-skills": {
@@ -708,13 +708,13 @@
     "liangdabiao/Seedance2-Storyboard-Generator": {
       "archived": false,
       "description": "一句话：试错成本越来越高，提示词的重要性从来没有像今天这样大。Seedance 2.0 Storyboard Generator 开源剧情剧本Skill工具，帮佬友一键写好剧本 - 将小说/故事转化为多集视频。 为什么做这个？ 因为 seedance2 已经改变了一切，需要新的剧本剧情制作工具，更好的利用新AI的能力和更方便的制作短剧",
-      "forks": 381,
+      "forks": 382,
       "full_name": "liangdabiao/Seedance2-Storyboard-Generator",
       "license": null,
       "pushed_at": "2026-09-21",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 2626,
+      "stars": 2629,
       "status": "ok"
     },
     "liangdabiao/make-prompt-seedance2": {
@@ -757,25 +757,25 @@
     "lixiaoxiao9888-create/manju-laoli-skill": {
       "archived": false,
       "description": "漫剧老李 AIGC 创作全流程 Skill · V7.4.20 多技能套装版（Short-Drama Director Suite）：1 总控 + 12 子技能 · 四层纵深——赛道分流 / 素材采风 / 剧本 / 资产 / 分镜 / 三大打戏引擎 / 投喂 / 质检全链路。六道前置锁 + I 画风锁 · 48 份规则库 · 机检 C1~C26 | H1~H12 + 六道投喂闸门 · 素材形态 M0/M1/M2（本包不持有图）· 产出可直接投喂 Seedance 2.5 / 2.0 / MiniMax H3 的七段式提示词组。适配 OpenClaw·WorkBuddy·豆包Coze·Dify。测试版，二次修改整合开源内容。",
-      "forks": 154,
+      "forks": 157,
       "full_name": "lixiaoxiao9888-create/manju-laoli-skill",
       "license": "MIT",
       "pushed_at": "2026-10-16",
       "skill_count": 13,
       "skill_count_truncated": false,
-      "stars": 1497,
+      "stars": 1507,
       "status": "ok"
     },
     "lixiaoxiao9888-create/short-drama-factory": {
       "archived": false,
       "description": "🎬 Short-Drama Factory v4.3 · 抖音/红果爆款短剧工业化编剧超级系统 | 一句创意/一部网文 → 标准60-100集·长档30-50集·漫剧带付费墙剧本 | 40赛道全图+六母型钩子+五大断章+A~I反转轮换 | 情绪契约单元链·悖论按单元跑≤30集闭环 | 动态按需挂载矩阵（8交互模式防Context爆炸）| 机检E1~E23+S1~S8 | 纯剧本层 · Industrial hit short-drama screenplay engine (60-100 eps, paywall built-in)",
-      "forks": 60,
+      "forks": 61,
       "full_name": "lixiaoxiao9888-create/short-drama-factory",
       "license": "MIT",
       "pushed_at": "2026-10-16",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 409,
+      "stars": 411,
       "status": "ok"
     },
     "liyue-aigc/seedance-2-5-fight-director": {
@@ -787,7 +787,7 @@
       "pushed_at": "2026-10-04",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 84,
+      "stars": 85,
       "status": "ok"
     },
     "liyue-aigc/seedance-2-5-video-director": {
@@ -799,7 +799,7 @@
       "pushed_at": "2026-08-26",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 715,
+      "stars": 717,
       "status": "ok"
     },
     "luanyi824-hash/xiaxia": {
@@ -849,7 +849,7 @@
       "pushed_at": "2026-09-11",
       "skill_count": 9,
       "skill_count_truncated": false,
-      "stars": 36,
+      "stars": 38,
       "status": "ok"
     },
     "momo5213/live-action-drama-16x9": {
@@ -948,7 +948,7 @@
       "pushed_at": "2026-10-03",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 606,
+      "stars": 609,
       "status": "ok"
     },
     "qualsenWeb/fight-video-create-skill": {
@@ -984,7 +984,7 @@
       "pushed_at": "2026-10-06",
       "skill_count": 0,
       "skill_count_truncated": false,
-      "stars": 2352,
+      "stars": 2354,
       "status": "ok"
     },
     "smixs/visual-skills": {
@@ -996,7 +996,7 @@
       "pushed_at": "2026-09-16",
       "skill_count": 2,
       "skill_count_truncated": false,
-      "stars": 536,
+      "stars": 537,
       "status": "ok"
     },
     "suihe1/short-drama-production": {
@@ -1020,7 +1020,7 @@
       "pushed_at": "2026-09-21",
       "skill_count": 6,
       "skill_count_truncated": false,
-      "stars": 14602,
+      "stars": 14605,
       "status": "ok"
     },
     "wddxh/ShortVideoDirector": {
@@ -1056,7 +1056,7 @@
       "pushed_at": "2026-08-31",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 242,
+      "stars": 243,
       "status": "ok"
     },
     "wyuzhi/qisi-video-remix": {
@@ -1098,13 +1098,13 @@
     "xuanyustudio/LocalMiniDrama": {
       "archived": false,
       "description": "🎬 seedance2接入  开源本地 AI 短剧 & 漫剧生成工具 —— 从故事到成片一站式完成，数据不出本机，短剧工作流管理平台，高灵活度，AI真人剧，AI漫剧本地搞定。 Open-source local AI short drama maker: story → storyboard → video, fully offline, your data stays yours. 纳米流水线",
-      "forks": 509,
+      "forks": 511,
       "full_name": "xuanyustudio/LocalMiniDrama",
       "license": "MIT",
       "pushed_at": "2026-10-16",
       "skill_count": 2,
       "skill_count_truncated": false,
-      "stars": 2148,
+      "stars": 2149,
       "status": "ok"
     },
     "yi1108/printfilm": {
@@ -1116,7 +1116,7 @@
       "pushed_at": "2026-10-15",
       "skill_count": 1,
       "skill_count_truncated": false,
-      "stars": 5183,
+      "stars": 5186,
       "status": "ok"
     },
     "zenstory-ai/drama-skills": {
@@ -1128,7 +1128,7 @@
       "pushed_at": "2026-10-15",
       "skill_count": 12,
       "skill_count_truncated": false,
-      "stars": 3073,
+      "stars": 3082,
       "status": "ok"
     },
     "zhaihao118/Micro-Drama-Skills": {
