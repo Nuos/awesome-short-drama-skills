@@ -886,19 +886,14 @@ class Site:
                   "novel and short drama premise skills and a no-skill control each chose a premise for a new revenge-fantasy "
                   "story that could become a web novel or a vertical short drama (no genre, length or platform given), three "
                   "runs each with the same model (Claude Code, claude-opus-5-5). Every entry was compared blind with every "
-                  "other and ranked by points. Both reviewers (Opus, and GPT re-judging) put the same four skills on top, in "
-                  "a different order: Tomsawyerhu/Chinese-WebNovel-Skill, lingfengQAQ/webnovel-writer, "
-                  "LanyXiaosheng/bookflow-skill, Hao0321/ai-short-drama. The no-skill control placed 7th (Opus) and 10th (GPT) "
-                  "of 12; the two skills that start by checking bestseller charts placed last with both, with no network in "
-                  "the sandbox.",
+                  "other.",
                   f"- [Round two full record]({abs_url('zh', '/evals/round-2/')}) (Chinese): every run, the anonymous premises, "
                   "the prompt and verdict of every blind comparison (judged by Opus, re-judged by GPT), reviewer health checks "
                   "and the process log.",
                   f"- [Round one: script-writing skills on an open brief]({abs_url('en', '/evals/')}#round-1): a one-line brief "
                   "(a vertical short drama, 60 episodes of 1-2 minutes, no genre or plot) given to 10 script-writing skills and a "
                   "no-skill control, three runs each with the same model (Claude Code, claude-opus-5-5), compared blind with the "
-                  "control. Most skills produced more shootable scripts than the control; the control often had stronger "
-                  "episode-ending hooks. Skills changed which kind of story got written, but the model's default names "
+                  "control. Skills changed which kind of story got written, but the model's default names "
                   "(a character called Xiaoman in 15 of 33 drafts) appeared regardless of skill.",
                   f"- [Round one full record]({abs_url('zh', '/evals/round-1/')}) (Chinese): every input, every step of every run, "
                   "the anonymous drafts, the prompt and verdict of every blind comparison (judged by Opus, re-judged by GPT), "
