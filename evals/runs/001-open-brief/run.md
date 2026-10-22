@@ -39,7 +39,7 @@ agent 在一轮里没有提问、也没有再改文件，就算写完；连续�
 | [catyiqian/qianqianwriting](https://github.com/catyiqian/qianqianwriting) | [`436088b`](https://github.com/catyiqian/qianqianwriting/tree/436088b3bb2ebeae5cf26663fa92525512460f5b) | `/qianqianwriting` | 1 | 《叮，他在撒谎》<br>2 轮 · 15 分钟 · $5.29<br>[产出](catyiqian__qianqianwriting/run-1/output/) · [记录](catyiqian__qianqianwriting/run-1/transcript.md) | 《她妈来了》<br>3 轮 · 14 分钟 · $7.29<br>[产出](catyiqian__qianqianwriting/run-2/output/) · [记录](catyiqian__qianqianwriting/run-2/transcript.md) | 《五十岁，我从这个家辞职了》<br>2 轮 · 12 分钟 · $4.15<br>[产出](catyiqian__qianqianwriting/run-3/output/) · [记录](catyiqian__qianqianwriting/run-3/transcript.md) |
 | [Hao0321/ai-short-drama](https://github.com/Hao0321/ai-short-drama) | [`a1a00d3`](https://github.com/Hao0321/ai-short-drama/tree/a1a00d3949fedd74edb6830a79d189a2c76920db) | `/ai-short-drama` | 1 | 《账不会忘》<br>3 轮 · 22 分钟 · $11.19<br>[产出](Hao0321__ai-short-drama/run-1/output/) · [记录](Hao0321__ai-short-drama/run-1/transcript.md) | 《老卤》<br>2 轮 · 19 分钟 · $6.44<br>[产出](Hao0321__ai-short-drama/run-2/output/) · [记录](Hao0321__ai-short-drama/run-2/transcript.md) | 《老卤》<br>2 轮 · 21 分钟 · $7.03<br>[产出](Hao0321__ai-short-drama/run-3/output/) · [记录](Hao0321__ai-short-drama/run-3/transcript.md) |
 
-33 次运行按 API 价格折算共 $352.97；评审（找交付文件、抽故事卡、分故事类型、120 场盲比）另约 $45。
+33 次运行按 API 价格折算共 $352.97；评审（找交付文件、抽故事卡、分故事类型、120 场盲比）另约 $44，其中 Opus 的 120 场盲比 $30.34。
 
 ## 这一轮的限制
 
@@ -48,7 +48,7 @@ agent 在一轮里没有提问、也没有再改文件，就算写完；连续�
 - **命令输出太长时读不全。** Claude Code 会把太长的命令输出存进主目录下的文件，主目录被隔离了，agent 只能改用分段查看。所有参赛者条件相同。
 - **缺 matplotlib。** 漫剧老李有一个画情绪曲线的脚本要用 matplotlib，本机没装，沙箱也不能联网安装。
 - **不联网。** 需要查榜单或热点的 skill 只能凭已有资料判断，有的稿子里写明了这一点。
-- **评审是 AI。** 故事卡、故事类型和盲比由和写稿相同的模型（claude-opus-5-5）完成，它看不到稿子出自谁。又请 GPT（gpt-6-astra）用一字不差的提示词复核：逐场的判断 95/120 一致，每对的最终结果 42/60 一致，不一致的标「有争议」。引文核对、位置和篇幅偏差见网站上的[评审体检](https://shortdramaskills.com/evals/round-1/checks/)。下一轮计划请人类编剧参与。
+- **评审是 AI。** 故事卡、故事类型和盲比由和写稿相同的模型（claude-opus-5-5）完成，它看不到稿子出自谁。又请 GPT（gpt-6-astra）用一字不差的提示词复核：逐场的判断 89/120 一致，每对的最终结果 39/60 一致，不一致的标「有争议」。引文核对、位置和篇幅偏差见网站上的[评审体检](https://shortdramaskills.com/evals/round-1/checks/)。下一轮计划请人类编剧参与。
 
 ## 怎么评
 
@@ -56,8 +56,8 @@ agent 在一轮里没有提问、也没有再改文件，就算写完；连续�
 2. **匿名**：三项交付拼成匿名稿，去掉仓库名、skill 名和作者名，随机编成三位数编号。对应关系见 [blind_key.json](blind_key.json)。
 3. **故事卡**：每份匿名稿抽出剧名、题材、一句话梗概、主角、所有人名、开场画面、第一个付费卡点和结局，见 [cards.jsonl](cards.jsonl)。
 4. **故事类型**：把 33 张故事卡放在一起，按「换个名字就是同一个故事」的标准分组，见 [clusters.json](clusters.json)。
-5. **盲比**：每个 skill 的第 n 次运行和对照组的第 n 次运行比，分剧本（第 1–3 集）和人物大纲（小传加分集大纲）两项，每场把先后顺序对调再比一次，两次都判它赢才算赢。剧本看钩子、对白、AI 味、可拍性；人物大纲看人物、新意、结构、卡点。见 [duels.jsonl](duels.jsonl)。
-6. **复核**：GPT（gpt-6-astra，经 Codex CLI，只读沙箱、空目录）用一字不差的提示词和输出格式重新分组、重判全部盲比，见 [clusters-gpt.json](clusters-gpt.json)、[duels-gpt.jsonl](duels-gpt.jsonl)。每次调用的提示词指纹和原始返回在 [judge-raw/gpt/](judge-raw/gpt/)。
+5. **盲比**：每个 skill 的第 n 次运行和对照组的第 n 次运行比，分剧本（第 1–3 集）和人物大纲（小传加分集大纲）两项，每场把先后顺序对调再比一次，两次都判它赢才算赢。剧本看钩子、对白、AI 味、上屏；人物大纲看人物、新意、结构、卡点。评审假定稿子要交给 AI 从头拍成片，没有演员和片场：特效、群戏、场景多、角色多都不扣分，场面大也不加分。「上屏」看每集 1–2 分钟装不装得下（按画面和台词估），情绪和爽点有没有落在脸上和动作上，能不能直接交给 AI 出片。见 [duels.jsonl](duels.jsonl)。
+6. **复核**：GPT（gpt-6-astra，经 Codex CLI，只读沙箱、空目录）用一字不差的提示词和输出格式重新分组、重判全部盲比，见 [clusters-gpt.json](clusters-gpt.json)、[duels-gpt.jsonl](duels-gpt.jsonl)。两位评审每次盲比调用的提示词指纹和原始返回在 [judge-raw/](judge-raw/)（故事分组只存了 GPT 的）。
 
 ## 原始记录和核对
 
@@ -65,5 +65,5 @@ agent 在一轮里没有提问、也没有再改文件，就算写完；连续�
 - [logs/pilots/](logs/pilots/)、[logs/checks/](logs/checks/)：正式运行前的 2 次试点（各 2 个参赛组）和 5 次沙箱自检，为什么做、发现了什么见 [timeline.toml](timeline.toml)。这些产出不进评审。
 - 日志公开前用 [clean_logs.py](../../clean_logs.py) 清理过：去掉本机路径、用户名、额度用量和 Claude Code 的内部记录，其余原样保留。
 - [blind/](blind/)：评审看到的 99 份匿名稿，原样。
-- [MANIFEST.sha256](MANIFEST.sha256)：这一轮每个文件的 sha256 指纹。在仓库根目录运行 `python3 evals/verify.py 001-open-brief`，会核对指纹、从匿名稿重建每一次 GPT 评审的提示词并和记录比对，再把网页上的数字重算一遍（统计代码见 [evals/stats.py](../../stats.py)）。
+- [MANIFEST.sha256](MANIFEST.sha256)：这一轮每个文件的 sha256 指纹。在仓库根目录运行 `python3 evals/verify.py 001-open-brief`，会核对指纹、从匿名稿重建存了指纹的每一次评审调用的提示词并和记录比对，再把网页上的数字重算一遍（统计代码见 [evals/stats.py](../../stats.py)）。
 - skill 作者如果觉得自己的 skill 装错了、跑错了或者记录有误，可以提 issue，我们会对着原始日志核对，公开答复。

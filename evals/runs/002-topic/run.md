@@ -50,7 +50,7 @@ agent 在一轮里没有提问、也没有再改文件，就算写完；连续�
 | [Hao0321/ai-short-drama](https://github.com/Hao0321/ai-short-drama) | [`a1a00d3`](https://github.com/Hao0321/ai-short-drama/tree/a1a00d3949fedd74edb6830a79d189a2c76920db) | `/ai-short-drama` | 1 | 《失物招领》<br>3 轮 · 3 分钟 · $2.11<br>[产出](Hao0321__ai-short-drama/run-1/output/) · [记录](Hao0321__ai-short-drama/run-1/transcript.md) | 《这份人情，我收回了》<br>2 轮 · 3 分钟 · $1.21<br>[产出](Hao0321__ai-short-drama/run-2/output/) · [记录](Hao0321__ai-short-drama/run-2/transcript.md) | 《首富的良心，当在我家》<br>2 轮 · 3 分钟 · $1.30<br>[产出](Hao0321__ai-short-drama/run-3/output/) · [记录](Hao0321__ai-short-drama/run-3/transcript.md) |
 | [qingyabailu-git/webfiction-write](https://github.com/qingyabailu-git/webfiction-write) | [`2c0128d`](https://github.com/qingyabailu-git/webfiction-write/tree/2c0128db58a608c27177b63d012ae4011f230967) | `/fiction-conceive` | 15 | 《七年账本》<br>4 轮 · 2 分钟 · $1.55<br>[产出](qingyabailu-git__webfiction-write/run-1/output/) · [记录](qingyabailu-git__webfiction-write/run-1/transcript.md) | 《账不会老》<br>3 轮 · 2 分钟 · $1.33<br>[产出](qingyabailu-git__webfiction-write/run-2/output/) · [记录](qingyabailu-git__webfiction-write/run-2/transcript.md) | 《头七之内，替死人讨债》<br>3 轮 · 2 分钟 · $1.37<br>[产出](qingyabailu-git__webfiction-write/run-3/output/) · [记录](qingyabailu-git__webfiction-write/run-3/transcript.md) |
 
-36 次运行按 API 价格折算共 $67.98；Opus 评审另花 $42.20（抽故事卡 $2.29，396 场盲比 $39.91），找交付文件和分故事类型调用少，没有单独记花费。
+36 次运行按 API 价格折算共 $67.98；Opus 评审另花 $41.37（抽故事卡 $2.29，396 场盲比 $39.08），找交付文件和分故事类型调用少，没有单独记花费。
 
 ## 没测的
 
@@ -76,7 +76,7 @@ agent 在一轮里没有提问、也没有再改文件，就算写完；连续�
 - **不联网。** 好几个 skill 的选题流程第一步是扫榜（查起点、番茄等平台的榜单）。沙箱里不能联网，它们只能凭模型已有的知识判断：oh-story 每次都先走扫榜，在报告里写明没拿到榜单；chinese-longnovel-skill 每次都试着读番茄、起点、常读的榜单，被拦下后在选题文件开头标明「没经过市场验证」。
 - **按 skill 装插件。** webnovel-writer 是按 Claude Code 插件写的，它的初始化脚本靠插件的环境变量找路径，按 skill 装上后找不到。它在三次运行里都说明了这一点；选题这一步不用跑初始化，交付不受影响。
 - **记忆写不进去。** 有 8 次运行（含对照组 2 次）想把固定回复里的要求（「按你推荐的来，不用再问我」）记进 Claude Code 的记忆目录，那个目录在主目录下，被隔离规则拦下。不影响交付，每个参赛者条件相同。整轮被拦下的调用列在网站的评审体检页。
-- **评审是 AI。** 故事卡、故事类型和盲比由和写稿相同的模型（claude-opus-5-5）完成，它看不到稿子出自谁。又请 GPT（gpt-6-astra）用一字不差的提示词复核：逐场的判断 290/396 一致，每对的最终结果 127/198 一致，不一致的标「有争议」；两位评审排出的名次相关系数 0.80，前四名是同样四个 skill，最后两名也一样。引文核对、位置和篇幅偏差见网站上的[评审体检](https://shortdramaskills.com/evals/round-2/checks/)。下一轮欢迎真人参赛。
+- **评审是 AI。** 故事卡、故事类型和盲比由和写稿相同的模型（claude-opus-5-5）完成，它看不到稿子出自谁。又请 GPT（gpt-6-astra）用一字不差的提示词复核：逐场的判断 305/396 一致，每对的最终结果 135/198 一致，不一致的标「有争议」；两位评审排出的名次相关系数 0.87，前三名是同样三个 skill，对照组都排第 9，最后三名也一样。引文核对、位置和篇幅偏差见网站上的[评审体检](https://shortdramaskills.com/evals/round-2/checks/)。下一轮欢迎真人参赛。
 
 ## 怎么评
 
@@ -84,7 +84,7 @@ agent 在一轮里没有提问、也没有再改文件，就算写完；连续�
 2. **匿名**：选题文件拼成匿名稿，去掉仓库名、skill 名和作者名，随机编成三位数编号。对应关系见 [blind_key.json](blind_key.json)。
 3. **故事卡**：每份匿名稿抽出书名、题材、一句话梗概、时代地点、核心设定、主角、对手、所有人名、目标读者和篇幅，见 [cards.jsonl](cards.jsonl)。稿子里列了几个方案的，只抽它最终推荐的那个。
 4. **故事类型**：把 36 张故事卡放在一起，按「换个名字就是同一个故事」的标准分组，见 [clusters.json](clusters.json)。
-5. **盲比**：12 个参赛者（含对照组）两两比，每对比 3 次（第 n 次运行对第 n 次运行），每次把先后顺序对调再比一次，两次都判它赢才算赢，一胜一负算平。赢一次记 1 分，平一次记 0.5 分，按积分排名。只看它最终推荐的那个选题，看卖点、新意、冲突和爽点、续航、可执行五项；篇幅、排版和市场分析不加分。见 [duels.jsonl](duels.jsonl)。
+5. **盲比**：12 个参赛者（含对照组）两两比，每对比 3 次（第 n 次运行对第 n 次运行），每次把先后顺序对调再比一次，两次都判它赢才算赢，一胜一负算平。赢一次记 1 分，平一次记 0.5 分，按积分排名。只看它最终推荐的那个选题，看卖点、新意、冲突和爽点、续航、上屏五项；篇幅、排版和市场分析不加分。评审假定选题要交给 AI 从头拍成竖屏短剧，没有演员和片场：特效、异能、奇幻、群戏、场景多、角色多都不扣分，场面大也不加分，审核风险不算分。「上屏」看观众代入谁、这个人有没有一张能演戏的脸，爽点落在谁脸上，关键情绪靠不靠心里话撑。见 [duels.jsonl](duels.jsonl)。
 6. **复核**：GPT（gpt-6-astra，经 Codex CLI，只读沙箱、空目录）用一字不差的提示词和输出格式重新分组、重判全部盲比，见 [clusters-gpt.json](clusters-gpt.json)、[duels-gpt.jsonl](duels-gpt.jsonl)。两位评审每次调用的提示词指纹和原始返回都在 [judge-raw/](judge-raw/)。
 
 ## 原始记录和核对
