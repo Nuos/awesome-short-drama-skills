@@ -886,14 +886,19 @@ class Site:
                   "novel and short drama premise skills and a no-skill control each chose a premise for a new revenge-fantasy "
                   "story that could become a web novel or a vertical short drama (no genre, length or platform given), three "
                   "runs each with the same model (Claude Code, claude-opus-5-5). Every entry was compared blind with every "
-                  "other.",
+                  "other; reviewers judge as if AI will make the whole drama, so effects and big casts cost no points. Both "
+                  "reviewers (Opus and GPT) put the same three skills on top: Tomsawyerhu/Chinese-WebNovel-Skill, "
+                  "lingfengQAQ/webnovel-writer and Hao0321/ai-short-drama; the no-skill control placed 9th of 12 with both.",
                   f"- [Round two full record]({abs_url('zh', '/evals/round-2/')}) (Chinese): every run, the anonymous premises, "
                   "the prompt and verdict of every blind comparison (judged by Opus, re-judged by GPT), reviewer health checks "
                   "and the process log.",
                   f"- [Round one: script-writing skills on an open brief]({abs_url('en', '/evals/')}#round-1): a one-line brief "
                   "(a vertical short drama, 60 episodes of 1-2 minutes, no genre or plot) given to 10 script-writing skills and a "
                   "no-skill control, three runs each with the same model (Claude Code, claude-opus-5-5), compared blind with the "
-                  "control. Skills changed which kind of story got written, but the model's default names "
+                  "control, judged as if AI will make the whole drama. Both reviewers found four skills beating the control in all "
+                  "three runs on both scripts and outlines: zenstory-ai/drama-skills, Shanyin-ai/shanyin-screenwriting-master, "
+                  "jtydhr88/screenwriting-skills and adoria111/emma-screenwriting-skills. Skills changed which kind of story got "
+                  "written, but the model's default names "
                   "(a character called Xiaoman in 15 of 33 drafts) appeared regardless of skill.",
                   f"- [Round one full record]({abs_url('zh', '/evals/round-1/')}) (Chinese): every input, every step of every run, "
                   "the anonymous drafts, the prompt and verdict of every blind comparison (judged by Opus, re-judged by GPT), "

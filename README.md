@@ -12,6 +12,47 @@
 
 收录 83 个 skill 项目 + 16 个相关开源平台 · 元数据更新于 2026-10-22
 
+## 写剧本装哪个
+
+第一轮实测（2026-10-18）：10 个剧本 skill 和一个不装 skill 的对照组，各写 3 次同一道开放题，由两位 AI 评审（Opus 和 GPT）盲比。评审按交给 AI 从头拍成片来评，特效、群戏、场景多都不扣分。下面 4 个的剧本和人物大纲，两位评审都判三次全赢对照组：
+
+| skill | 适合 | 要注意 |
+|---|---|---|
+| [zenstory-ai/drama-skills](https://github.com/zenstory-ai/drama-skills) | 台词短，人物各有口气，情绪落在物件上 | 集尾钩子收得含蓄 |
+| [Shanyin-ai/shanyin-screenwriting-master](https://github.com/Shanyin-ai/shanyin-screenwriting-master) | 对白短、有潜台词，情绪落在动作上 | 钩子偏收着，开场偏安静 |
+| [jtydhr88/screenwriting-skills](https://github.com/jtydhr88/screenwriting-skills) | 情绪落在动作上，不靠心里话；配角有来路 | 集尾钩子有时不够猛 |
+| [adoria111/emma-screenwriting-skills](https://github.com/adoria111/emma-screenwriting-skills) | 台词克制，配角有动机也有转变 | 集尾钩子偏收着，付费卡点偏弱 |
+
+[Hao0321/ai-short-drama](https://github.com/Hao0321/ai-short-drama) 的人物大纲也三次全赢，剧本不稳（Opus 一赢两平，GPT 两赢一输）。
+
+这一轮的局限：
+- 集尾钩子，Opus 认为常是对照组更强，GPT 看法相反。
+- 另外 6 个 skill 的剧本，两位评审结论差得远。
+- 只测了 claude-opus-5-5 一个模型。
+- 每个 skill 的稿子都夹着编号和自检表，交给 AI 出片前要删掉。
+
+全过程和逐个点评见[第一轮实测记录](https://shortdramaskills.com/evals/round-1/)。
+
+## 定选题装哪个
+
+第二轮实测（2026-10-20）：11 个网文和短剧的选题 skill 和一个不装 skill 的对照组，给同一个以后能写网文、也能拍短剧的爽文故事定选题，各定 3 次；所有参赛者两两盲比，按积分排名。评审看的是交给 AI 拍出来，观众会不会一直看下去。两位 AI 评审（Opus 和 GPT）排出的前三名是同样三个 skill，三个都三次全赢了对照组：
+
+| skill | 名次（Opus / GPT） | 适合 | 要注意 |
+|---|---|---|---|
+| [Tomsawyerhu/Chinese-WebNovel-Skill](https://github.com/Tomsawyerhu/Chinese-WebNovel-Skill) | 1 / 2 | 少见的法律职业加身份翻转，一句话卖点就懂，爽点打在对手脸上 | 有一次是常见的扮猪吃虎；撑长篇有限 |
+| [lingfengQAQ/webnovel-writer](https://github.com/lingfengQAQ/webnovel-writer) | 2 / 3 | 金手指配有代价的规则，主角的缺点和能力绑在一起 | 三次都是头顶能看见数字一类；中段容易重复 |
+| [Hao0321/ai-short-drama](https://github.com/Hao0321/ai-short-drama) | 3 / 1 | 新意最强，异能都有规矩，钩子有画面 | 规矩把主角限得太被动，爽点来得慢 |
+
+前两个收在[小说清单](https://github.com/UnderleveledBuilder/awesome-novel-skills)里。本清单的 [0xsline/short-drama](https://github.com/0xsline/short-drama) 排第 4 / 第 7，法条用得巧，一句话卖点偏长。
+
+这一轮的局限：
+- 不装 skill 的对照组，两位评审都排第 9，有 3 个 skill 排在它后面。
+- 沙箱不能联网，要先扫榜的两个 skill 没拿到榜单，排在最后几名。
+- 两位评审每对的结论，198 个里有 63 个不同，中间几名差得多。
+- 只测了 claude-opus-5-5 一个模型。
+
+全过程和逐个点评见[第二轮实测记录](https://shortdramaskills.com/evals/round-2/)。
+
 **图例**：🌟 精选 · 📝 提示词文件（非标准 skill）· 🧩 完整应用 · 🎬 适配的视频模型 · 💤 超过 180 天未更新 · 📦 已归档 · ⚠️ 仓库失效
 
 **让 agent 帮你挑**：这份清单也是一个 skill。运行 `npx skills add UnderleveledBuilder/awesome-short-drama-skills` 装上 short-drama-skill-finder，再问你的 agent「我用 Codex 做小说改编短剧，装哪个 skill？」。
